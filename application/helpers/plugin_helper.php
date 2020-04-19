@@ -20,10 +20,10 @@ if (!function_exists('load_datatable')) {
 
     function load_datatable(&$data)
     {
-        array_push($data['stylesheet_tag'], base_url() . "public/admin/vendor/datatables/datatables.min.css");
+        array_push($data['stylesheet_tag'], base_url() . "public/lib/datatables/datatables.min.css");
 
-        array_push($data['javascript_tag'], base_url() . "public/admin/vendor/datatables/datatables.min.js");
-        array_push($data['javascript_tag'], base_url() . "public/admin/vendor/datatables/jquery.highlight.js");
+        array_push($data['javascript_tag'], base_url() . "public/lib/datatables/datatables.min.js");
+        array_push($data['javascript_tag'], base_url() . "public/lib/datatables/jquery.highlight.js");
     }
 }
 

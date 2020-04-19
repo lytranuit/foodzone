@@ -139,7 +139,8 @@ class Slider extends MY_Administrator
             foreach ($posts as $post) {
                 $nestedData['id'] = $post->id;
                 $nestedData['order'] = $post->order;
-                $nestedData['image'] = "<img src='" . isset($post->image->src) ? $post->image->src : "" . "' />";
+                $image = isset($post->image->src) ? base_url() . $post->image->src : "";
+                $nestedData['image'] = "<img src='$image' width='100'/>";
                 $nestedData['action'] = '<a href="' . base_url() . 'slider/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="edit">'
                     . '<i class="fas fa-pencil-alt">'
                     . '</i>'

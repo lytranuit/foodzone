@@ -24,40 +24,89 @@ class Ajax extends MY_Controller
     function images()
     {
         $this->load->model('file_model');
-        $data = $this->file_model->get_all();
+        $data = $this->file_model->where(array("type" => 1, "deleted" => 0))->order_by("id", "desc")->get_all();
         echo json_encode($data);
     }
-    function uploadchart()
+
+    /*
+     * UPload hình ảnh
+     */
+
+    public function uploadimage()
     {
-        $data = $this->input->post('image');
-        $name = $this->input->post('name');
-        if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
-            $data = substr($data, strpos($data, ',') + 1);
-            $type = strtolower($type[1]); // jpg, png, gif
-
-            if (!in_array($type, ['jpg', 'jpeg', 'gif', 'png'])) {
-                throw new \Exception('invalid image type');
-            }
-
-            $data = base64_decode($data);
-
-            if ($data === false) {
-                throw new \Exception('base64_decode failed');
-            }
-        } else {
-            throw new \Exception('did not match data URI with image data');
+        ini_set('post_max_size', '64M');
+        ini_set('upload_max_filesize', '64M');
+        $this->load->helper('file');
+        $date = date("Y-m-d");
+        $upload_path_url = "public/uploads/$date/";
+        $dir = FCPATH . "public/uploads/$date/";
+        if (!file_exists($dir)) {
+            mkdir($dir, 0777, true);
         }
+        $config['upload_path'] = $dir;
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['max_size'] = '10000';
+        $this->load->library('upload', $config);
+        $files = $_FILES;
+        
+        $ext = pathinfo($files['file']['name'], PATHINFO_EXTENSION);
+        $_FILES['file']['name'] = time() . "." . $ext;
+        $real_name = $files['file']['name'];
+        if (!$this->upload->do_upload('file')) {
+            $errors = $this->upload->display_errors();
+            print_r($errors);
+        } else {
+            $data = $this->upload->data();
+            /*
+             * Array
+              (
+              [file_name] => png1.jpg
+              [file_type] => image/jpeg
+              [file_path] => /home/ipresupu/public_html/uploads/
+              [full_path] => /home/ipresupu/public_html/uploads/png1.jpg
+              [raw_name] => png1
+              [orig_name] => png.jpg
+              [client_name] => png.jpg
+              [file_ext] => .jpg
+              [file_size] => 456.93
+              [is_image] => 1
+              [image_width] => 1198
+              [image_height] => 1166
+              [image_type] => jpeg
+              [image_size_str] => width="1198" height="1166"
+              )
 
-        file_put_contents(APPPATH . '../public/upload/chart/' . $name . "." . $type, $data);
-        echo 1;
-    }
-    function datachart()
-    {
-        $time_type = $this->input->get('time_type') or "Day";
+              // to re-size for thumbnail images un-comment and set path here and in json array
+              $config = array();
+              $config['image_library'] = 'gd2';
+              $config['source_image'] = $data['full_path'];
+              $config['create_thumb'] = TRUE;
+              $config['new_image'] = $data['file_path'] . 'thumbs/';
+              $config['maintain_ratio'] = TRUE;
+              $config['thumb_marker'] = '';
+              $config['width'] = 75;
+              $config['height'] = 50;
+              $this->load->library('image_lib', $config);
+              $this->image_lib->resize();
+             */
+            ///resize 1
 
-        $this->load->model('saleorder_model');
-        $data = $this->saleorder_model->amount_sale_group_by_time($time_type);
-        echo json_encode($data);
+            ////////////
+            $data_up = array(
+                'name' => $data['file_name'],
+                'real_name' => $real_name,
+                'src' => $upload_path_url . $data['file_name'],
+                'file_type' => $data['file_type'],
+                'size' => $data['file_size'] * 1024,
+                'type' => 1,
+                'id_user' => $this->session->userdata('user_id'),
+                'date' => date("Y-m-d H:i:s")
+            );
+            $this->load->model('file_model');
+            $id_image = $this->file_model->insert($data_up);
+            $data_up['id'] = $id_image;
+            echo json_encode($data_up);
+        }
     }
 
     function getopencart()
