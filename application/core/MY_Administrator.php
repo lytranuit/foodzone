@@ -49,6 +49,24 @@ class MY_Administrator extends CI_Controller
                 $this->data['title'] = "";
                 $this->data['host'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                 //        print_r($this->data['template']);
+
+                $version = $this->config->item("version");
+                $this->data['stylesheet_tag'] = array(
+                        base_url() . "public/assets/css/main.css?v=" . $version,
+                        base_url() . "public/assets/css/custom.css?v=" . $version,
+                        base_url() . "public/lib/fontawesome/css/fontawesome-all.css"
+                );
+                $this->data['javascript_tag'] = array(
+                        base_url() . 'public/assets/scripts/jquery.min.js',
+                        base_url() . 'public/lib/jquery-ui/jquery-ui.js',
+                        base_url() . "public/assets/scripts/main.js",
+                        base_url() . "public/lib/jquery-validation/jquery.validate.js",
+                        base_url() . "public/lib/image_feature/jquery.image.js",
+                        base_url() . "public/lib/mustache/mustache.min.js",
+                        base_url() . "public/lib/inputmask/js/jquery.inputmask.bundle.js",
+                        base_url() . "public/lib/moment/moment.js",
+                        base_url() . "public/js/admin.js?v=" . $version
+                );
         }
 
         ////////////

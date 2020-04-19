@@ -99,8 +99,7 @@ class Ajax extends MY_Controller
                 'file_type' => $data['file_type'],
                 'size' => $data['file_size'] * 1024,
                 'type' => 1,
-                'id_user' => $this->session->userdata('user_id'),
-                'date' => date("Y-m-d H:i:s")
+                'user_id' => $this->session->userdata('user_id')
             );
             $this->load->model('file_model');
             $id_image = $this->file_model->insert($data_up);

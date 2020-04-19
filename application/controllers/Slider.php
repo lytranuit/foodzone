@@ -12,21 +12,6 @@ class Slider extends MY_Administrator
         $this->data['userdata'] = $this->session->userdata();
         $this->data['template'] = "admin";
         $this->data['title'] = "Admin";
-        $version = $this->config->item("version");
-        $this->data['stylesheet_tag'] = array(
-            base_url() . "public/assets/css/main.css?v=" . $version,
-            base_url() . "public/assets/css/custom.css?v=" . $version,
-            base_url() . "public/lib/fontawesome/css/fontawesome-all.css"
-        );
-        $this->data['javascript_tag'] = array(
-            base_url() . 'public/assets/scripts/jquery.min.js',
-            base_url() . "public/assets/scripts/main.js?v=" . $version,
-            base_url() . "public/lib/jquery-validation/jquery.validate.js",
-            base_url() . "public/lib/mustache/mustache.min.js",
-            base_url() . "public/lib/inputmask/js/jquery.inputmask.bundle.js",
-            base_url() . "public/lib/moment/moment.js",
-            base_url() . "public/js/admin.js?v=" . $version
-        );
     }
 
     public function _remap($method, $params = array())
@@ -91,7 +76,7 @@ class Slider extends MY_Administrator
             redirect('slider', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             $this->load->model("slider_model");
-            $tin = $this->slider_model->where(array('id' => $id))->as_object()->get();
+            $tin = $this->slider_model->where(array('id' => $id))->with_image()->as_object()->get();
             $this->data['tin'] = $tin;
             //            load_chossen($this->data);
             echo $this->blade->view()->make('page/page', $this->data)->render();

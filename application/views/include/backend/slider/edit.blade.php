@@ -10,71 +10,18 @@
                 </h5>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-12">
-
+                        <div class="col-md-8">
                             <div class="form-group row">
-                                <b class="col-12 col-sm-3 col-form-label text-sm-right">Loại</b>
-                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline1" name="type" class="custom-control-input" value="1">
-                                        <label class="custom-control-label" for="customRadioInline1">Phòng sạch</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="2">
-                                        <label class="custom-control-label" for="customRadioInline2">Thiết bị</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadioInline3" name="type" class="custom-control-input" value="3">
-                                        <label class="custom-control-label" for="customRadioInline3">Nhân viên</label>
-                                    </div>
+                                <b class="col-12 col-sm-2 col-form-label">Thứ tự:<i class="text-danger">*</i></b>
+                                <div class="col-12 col-md-4 pt-1">
+                                    <input class="form-control form-control-sm" type='number' name="order" required="" placeholder="Thứ tự" />
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group row">
-                                <b class="col-12 col-sm-3 col-form-label text-sm-right">Mã:<i class="text-danger">*</i></b>
                                 <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <input class="form-control" type='text' name="string_id" required="" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <b class="col-12 col-sm-3 col-form-label text-sm-right">Tên:<i class="text-danger">*</i></b>
-                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <input class="form-control" type='text' name="name" required="" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <b class="col-12 col-sm-3 col-form-label text-sm-right">Tên tiếng anh:</b>
-                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <input class="form-control" type='text' name="name_en" required="" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <b class="col-12 col-sm-3 col-form-label text-sm-right">Nhà máy:<i class="text-danger">*</i></b>
-                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <select class="form-control" name="factory_id">
-                                        @foreach ($factory as $row)
-                                        <option value="{{$row->id}}">{{$row->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <b class="col-12 col-sm-3 col-form-label text-sm-right">Xưởng:<i class="text-danger">*</i></b>
-                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <select class="form-control" name="workshop_id">
-                                        @foreach ($workshop as $row)
-                                        <option value="{{$row->id}}">{{$row->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <b class="col-12 col-sm-3 col-form-label text-sm-right">Khu vực:<i class="text-danger">*</i></b>
-                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <select class="form-control" name="area_id">
-                                        @foreach ($area as $area)
-                                        <option value="{{$area->id}}">{{$area->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="image_ft"></div>
                                 </div>
                             </div>
                         </div>
@@ -84,12 +31,15 @@
         </form>
     </div>
 </div>
+
 <script type='text/javascript'>
     $(document).ready(function() {
-
+        $(".image_ft").imageFeature();
         var tin = <?= json_encode($tin) ?>;
         fillForm($("#form-dang-tin"), tin);
-
+        if (tin.image) {
+            $(".image_ft").imageFeature("set_image", tin.image);
+        }
         $.validator.setDefaults({
             debug: true,
             success: "valid"
