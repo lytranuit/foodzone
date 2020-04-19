@@ -75,43 +75,43 @@
                         Biểu đồ
                     </a>
                 </li>
-                <li class="app-sidebar__heading">Banner & Post</li>
+                <li class="app-sidebar__heading">Slider & Post</li>
                 <li>
-                    <a href="{{base_url()}}result/" class="">
+                    <a href="{{base_url()}}slider/" class="">
                         <i class="metismenu-icon fas fa-images"></i>
-                        Quản lý banner
+                        Quản lý slider
                     </a>
                 </li>
                 <li>
-                    <a href="{{base_url()}}limit/" class="">
+                    <a href="{{base_url()}}news/" class="">
                         <i class="metismenu-icon fas fa-newspaper"></i>
                         Quản lý tin tức
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Danh mục</li>
                 <li>
-                    <a href="{{base_url()}}limit/" class="">
+                    <a href="{{base_url()}}category/" class="">
                         <i class="metismenu-icon fas fa-list-ul"></i>
                         Danh mục
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Sản phẩm</li>
                 <li>
-                    <a href="{{base_url()}}limit/" class="">
+                    <a href="{{base_url()}}product/" class="">
                         <i class="metismenu-icon fab fa-product-hunt"></i>
                         Sản phẩm
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Đơn đặt hàng</li>
                 <li>
-                    <a href="{{base_url()}}limit/" class="">
+                    <a href="{{base_url()}}sale/" class="">
                         <i class="metismenu-icon fas fa-gift"></i>
                         Đơn đặt hàng
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Cài đặt</li>
                 <li>
-                    <a href="{{base_url()}}limit/" class="">
+                    <a href="{{base_url()}}setting/" class="">
                         <i class="metismenu-icon fas fa-wrench"></i>
                         Cài đặt chung
                     </a>
@@ -130,7 +130,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{base_url()}}group/">
+                            <a href="{{base_url()}}admin/quanlygroup">
                                 <i class="metismenu-icon"></i>
                                 Nhóm
                             </a>
@@ -139,7 +139,7 @@
 
                 </li>
                 <li>
-                    <a href="{{base_url()}}limit/" class="">
+                    <a href="{{base_url()}}language/" class="">
                         <i class="metismenu-icon fas fa-globe"></i>
                         Ngôn ngữ
                     </a>

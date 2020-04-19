@@ -1,8 +1,10 @@
 <?php
 
-class Index extends MY_Controller {
+class Index extends MY_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         ////////////////////////////////
         ////////////
@@ -18,7 +20,7 @@ class Index extends MY_Controller {
         array_push($this->data['stylesheet_tag'], base_url() . "public/lib/fastfood/style.css");
 
         $this->data['javascript_tag'] = array(
-//            base_url() . "public/lib/bootstrap/js/jquery-slim.min.js",
+            //            base_url() . "public/lib/bootstrap/js/jquery-slim.min.js",
             "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
             base_url() . "public/lib/bootstrap/js/popper.min.js",
             base_url() . "public/lib/bootstrap/js/bootstrap.min.js",
@@ -27,18 +29,21 @@ class Index extends MY_Controller {
         );
     }
 
-    public function _remap($method, $params = array()) {
+    public function _remap($method, $params = array())
+    {
         if (!method_exists($this, $method)) {
             show_404();
         }
         $this->$method($params);
     }
 
-    public function page_404() {
+    public function page_404()
+    {
         echo $this->blade->view()->make('page/404-page', $this->data)->render();
     }
 
-    public function index() {
+    public function index()
+    {
         $this->load->model("slider_model");
         $this->load->model("hinhanh_model");
 
@@ -60,17 +65,57 @@ class Index extends MY_Controller {
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
-    public function post() {
-
+    public function post()
+    {
+        $version = $this->config->item("version");
+        array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
+        
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
-    public function details() {
-
+    public function details()
+    {
+        $version = $this->config->item("version");
+        array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
+        
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
-    function login() {
+    public function category()
+    {
+
+        $version = $this->config->item("version");
+
+        array_push($this->data['javascript_tag'], base_url() . "public/lib/isotope/isotope.min.js");
+        array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
+        echo $this->blade->view()->make('page/page', $this->data)->render();
+    }
+
+    public function search()
+    {
+
+        $version = $this->config->item("version");
+        array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
+        echo $this->blade->view()->make('page/page', $this->data)->render();
+    }
+
+    public function contact()
+    {
+
+        $version = $this->config->item("version");
+        array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
+        echo $this->blade->view()->make('page/page', $this->data)->render();
+    }
+
+    public function news()
+    {
+
+        $version = $this->config->item("version");
+        array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
+        echo $this->blade->view()->make('page/page', $this->data)->render();
+    }
+    function login()
+    {
         $this->data['title'] = lang('login');
         if ($this->input->post('identity') != "" && $this->input->post('password') != "") {
             // check to see if the user is logging in
@@ -92,7 +137,8 @@ class Index extends MY_Controller {
         }
     }
 
-    function cart() {
+    function cart()
+    {
         $this->data['cart'] = sync_cart();
         //        $this->data['stylesheet_tag'] = array();
         array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
@@ -103,7 +149,8 @@ class Index extends MY_Controller {
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
-    function checkout() {
+    function checkout()
+    {
         $this->data['cart'] = sync_cart();
         $this->load->model("user_model");
         //        $this->data['stylesheet_tag'] = array();
@@ -127,7 +174,8 @@ class Index extends MY_Controller {
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
-    function complete() {
+    function complete()
+    {
         $cart = sync_cart();
         if (isset($_POST) && count($_POST) && count($cart['details'])) {
             $this->load->model("saleorder_model");
@@ -193,7 +241,8 @@ class Index extends MY_Controller {
     }
 
     // log the user out
-    function logout() {
+    function logout()
+    {
 
         $this->data['title'] = "Logout";
 
@@ -204,8 +253,8 @@ class Index extends MY_Controller {
         exit;
     }
 
-    public function success() {
+    public function success()
+    {
         echo json_encode(1);
     }
-
 }

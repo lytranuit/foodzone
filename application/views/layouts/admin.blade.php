@@ -20,9 +20,9 @@
             <!-- ============================================================== -->
             <!-- header -->
             <!-- ============================================================== -->
-            @include("include.admin.header")
+            @include("include.backend.header")
             <div class="app-main">
-                @include("include.admin.sidebar-left")
+                @include("include.backend.sidebar-left")
                 <div class="app-main__outer">
                     <div class="app-main__inner">
                         @yield("content")

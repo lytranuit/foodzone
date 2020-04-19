@@ -3,12 +3,13 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Slider_model extends MY_Model {
+class Slider_model extends MY_Model
+{
 
-    public function __construct() {
-        $this->table = 'tbl_slider';
+    public function __construct()
+    {
+        $this->table = 'fz_slider';
         $this->primary_key = 'id';
         parent::__construct();
     }
-
 }

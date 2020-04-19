@@ -6432,6 +6432,18 @@ html p a:hover {
     }
 }
 
+@media (min-width: 1400px) {
+    .shell, .container-wide, .shell-wide {
+        max-width: 1400px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .shell, .container-wide, .shell-wide {
+        max-width: 1600px;
+    }
+}
+
 @media (min-width: 1800px) {
     .container-wide, .shell-wide {
         max-width: 1800px;

@@ -1,9 +1,12 @@
 $(document).ready(function () {
     var plugins = {};
+    $document = $(document)
+    $window = $(window)
     plugins.responsiveTabs = $(".responsive-tabs")
     plugins.slick = $(".slick-slider")
     plugins.rdNavbar = $(".rd-navbar")
-
+    plugins.isotope = $(".isotope")
+    plugins.customToggle = $("[data-custom-toggle]")
     introCarousel();
     /**
   * RD Navbar
@@ -111,6 +114,106 @@ $(document).ready(function () {
 
     }
 
+    /**
+     * Isotope
+     * @description Enables Isotope plugin
+     */
+    if (plugins.isotope.length) {
+        var i, j, isogroup = [];
+        for (i = 0; i < plugins.isotope.length; i++) {
+            var isotopeItem = plugins.isotope[i],
+                filterItems = $(isotopeItem).closest('.isotope-wrap').find('[data-isotope-filter]'),
+                iso;
+
+            iso = new Isotope(isotopeItem, {
+                itemSelector: '.isotope-item',
+                layoutMode: isotopeItem.getAttribute('data-isotope-layout') ? isotopeItem.getAttribute('data-isotope-layout') : 'masonry',
+                filter: '*',
+                masonry: {
+                    columnWidth: 0.66
+                }
+            });
+
+            isogroup.push(iso);
+
+            filterItems.on("click", function (e) {
+                e.preventDefault();
+                var filter = $(this),
+                    iso = $('.isotope[data-isotope-group="' + this.getAttribute("data-isotope-group") + '"]'),
+                    filtersContainer = filter.closest(".isotope-filters");
+
+                filtersContainer
+                    .find('.active')
+                    .removeClass("active");
+                filter.addClass("active");
+
+                iso.isotope({
+                    itemSelector: '.isotope-item',
+                    layoutMode: iso.attr('data-isotope-layout') ? iso.attr('data-isotope-layout') : 'masonry',
+                    filter: this.getAttribute("data-isotope-filter") == '*' ? '*' : '[data-filter*="' + this.getAttribute("data-isotope-filter") + '"]',
+                    masonry: {
+                        columnWidth: 0.66
+                    }
+                });
+
+                $window.trigger('resize');
+
+                // If d3Charts contains in isotop, resize it on click.
+                if (filtersContainer.hasClass('isotope-has-d3-graphs') && c3ChartsArray != undefined) {
+                    setTimeout(function () {
+                        for (var j = 0; j < c3ChartsArray.length; j++) {
+                            c3ChartsArray[j].resize();
+                        }
+                    }, 500);
+                }
+
+            }).eq(0).trigger("click");
+        }
+
+        $(window).on('load', function () {
+            setTimeout(function () {
+                var i;
+                for (i = 0; i < isogroup.length; i++) {
+                    isogroup[i].element.className += " isotope--loaded";
+                    isogroup[i].layout();
+                }
+            }, 600);
+        });
+    }
+
+    /**
+     * Custom Toggles
+     */
+    if (plugins.customToggle.length) {
+        for (var i = 0; i < plugins.customToggle.length; i++) {
+            var $this = $(plugins.customToggle[i]);
+
+            $this.on('click', $.proxy(function (event) {
+                event.preventDefault();
+
+                var $ctx = $(this);
+                $($ctx.attr('data-custom-toggle')).add(this).toggleClass('active');
+            }, $this));
+
+            if ($this.attr("data-custom-toggle-hide-on-blur") === "true") {
+                $body.on("click", $this, function (e) {
+                    if (e.target !== e.data[0]
+                        && $(e.data.attr('data-custom-toggle')).find($(e.target)).length
+                        && e.data.find($(e.target)).length === 0) {
+                        $(e.data.attr('data-custom-toggle')).add(e.data[0]).removeClass('active');
+                    }
+                })
+            }
+
+            if ($this.attr("data-custom-toggle-disable-on-blur") === "true") {
+                $body.on("click", $this, function (e) {
+                    if (e.target !== e.data[0] && $(e.data.attr('data-custom-toggle')).find($(e.target)).length === 0 && e.data.find($(e.target)).length === 0) {
+                        $(e.data.attr('data-custom-toggle')).add(e.data[0]).removeClass('active');
+                    }
+                })
+            }
+        }
+    }
 })
 
 

@@ -21,10 +21,10 @@ class Ajax extends MY_Controller
     //            echo json_encode(array('success' => 0, 'code' => 501, 'msg' => lang('alert_501')));
     //        }
     //    }
-    function bestsale()
+    function images()
     {
-        $this->load->model('saleorder_model');
-        $data = $this->saleorder_model->best_sale();
+        $this->load->model('file_model');
+        $data = $this->file_model->get_all();
         echo json_encode($data);
     }
     function uploadchart()

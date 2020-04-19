@@ -15,10 +15,8 @@
                 <!-- Category-->
                 <div class="h6 text-uppercase">Our Menu</div>
                 <ul class="list list-marked list-marked-burnt-sienna list-bordered offset-top-10">
-                    <li><a class="link-default" href="#">Burgers   <span class="text-gray-light">(4)</span></a></li>
-                    <li><a class="link-default" href="#">Pizza   <span class="text-gray-light">(45)</span></a></li>
-                    <li><a class="link-default" href="#">Sandwiches   <span class="text-gray-light">(6)</span></a></li>
-                    <li><a class="link-default" href="#">Toasts  <span class="text-gray-light">(7)</span></a></li>
+                    <li><a class="link-default" href="{{base_url()}}index/category">Ready to Eat</a></li>
+                    <li><a class="link-default" href="{{base_url()}}index/category">Ready to Cook</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md-12 offset-top-50 offset-sm-top-0 offset-md-top-50">
