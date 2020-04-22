@@ -111,7 +111,7 @@
                 </li>
                 <li class="app-sidebar__heading">Cài đặt</li>
                 <li>
-                    <a href="{{base_url()}}setting/" class="">
+                    <a href="{{base_url()}}admin/settings" class="">
                         <i class="metismenu-icon fas fa-wrench"></i>
                         Cài đặt chung
                     </a>
@@ -124,13 +124,13 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="{{base_url()}}admin/quanlyuser">
+                            <a href="{{base_url()}}user/">
                                 <i class="metismenu-icon"></i>
                                 Tài khoản
                             </a>
                         </li>
                         <li>
-                            <a href="{{base_url()}}admin/quanlygroup">
+                            <a href="{{base_url()}}group/">
                                 <i class="metismenu-icon"></i>
                                 Nhóm
                             </a>
@@ -139,7 +139,7 @@
 
                 </li>
                 <li>
-                    <a href="{{base_url()}}language/" class="">
+                    <a href="{{base_url()}}admin/language" class="">
                         <i class="metismenu-icon fas fa-globe"></i>
                         Ngôn ngữ
                     </a>

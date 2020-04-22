@@ -3,15 +3,18 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Group_model extends MY_Model {
+class Group_model extends MY_Model
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->table = 'groups';
         $this->primary_key = 'id';
         parent::__construct();
     }
 
-    function create_object($data) {
+    function create_object($data)
+    {
         $array = array(
             'name', 'description', 'deleted'
         );
@@ -25,5 +28,4 @@ class Group_model extends MY_Model {
 
         return $obj;
     }
-
 }

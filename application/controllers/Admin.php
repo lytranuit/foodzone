@@ -204,7 +204,7 @@ class Admin extends MY_Administrator
      * Quan ly language
      */
 
-    public function quanlylanguage()
+    public function language()
     {
         $this->data['menu_active'] = "language";
         load_datatable($this->data);
@@ -2699,7 +2699,7 @@ class Admin extends MY_Administrator
         $translations = array();
         $arrray_lang = $this->config->item("language_list");
         foreach ($arrray_lang as $k => $row) {
-            $path = APPPATH . "language/" . $k . "/home_lang.php";
+            $path = APPPATH . "language/" . $k . "/custom_lang.php";
             //            echo $path;
             $masterModule = $this->_load_module($path);
             foreach ($masterModule as $lineNumber => $line) {
