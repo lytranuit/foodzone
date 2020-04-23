@@ -25,20 +25,7 @@ class User_model extends MY_Model {
         parent::__construct();
     }
 
-    function create_object($data) {
-        $array = array(
-            'username', 'address', 'phone', 'active', 'last_name', 'password', 'debt'
-        );
-        $obj = array();
-        foreach ($array as $key) {
-            if (isset($data[$key])) {
-                $obj[$key] = $data[$key];
-            } else
-                continue;
-        }
-
-        return $obj;
-    }
+  
 
     /**
      * logged_in

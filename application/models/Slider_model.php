@@ -14,19 +14,5 @@ class Slider_model extends MY_Model
         $this->has_one['image'] = array('foreign_model' => 'File_model', 'foreign_table' => 'fz_file', 'foreign_key' => 'id', 'local_key' => 'image_id');
  
     }
-    function create_object($data)
-    {
-        $array = array(
-            'image_id', 'order', 'deleted'
-        );
-        $obj = array();
-        foreach ($array as $key) {
-            if (isset($data[$key])) {
-                $obj[$key] = $data[$key];
-            } else
-                continue;
-        }
-
-        return $obj;
-    }
+ 
 }

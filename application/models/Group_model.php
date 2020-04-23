@@ -13,19 +13,5 @@ class Group_model extends MY_Model
         parent::__construct();
     }
 
-    function create_object($data)
-    {
-        $array = array(
-            'name', 'description', 'deleted'
-        );
-        $obj = array();
-        foreach ($array as $key) {
-            if (isset($data[$key])) {
-                $obj[$key] = $data[$key];
-            } else
-                continue;
-        }
-
-        return $obj;
-    }
+    
 }

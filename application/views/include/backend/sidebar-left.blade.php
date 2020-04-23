@@ -90,9 +90,15 @@
                 </li>
                 <li class="app-sidebar__heading">Danh mục</li>
                 <li>
-                    <a href="{{base_url()}}category/" class="">
-                        <i class="metismenu-icon fas fa-list-ul"></i>
-                        Danh mục
+                    <a href="{{base_url()}}eat/" class="">
+                        <i class="metismenu-icon fas fa-cookie-bite"></i>
+                        Menu to Eat
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base_url()}}cook/" class="">
+                        <i class="metismenu-icon fas fa-utensils"></i>
+                        Menu to Cook
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Sản phẩm</li>

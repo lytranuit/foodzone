@@ -1,6 +1,6 @@
 <?php
 
-class Dashboard extends MY_Admin {
+class Dashboard extends MY_Administrator {
 
     function __construct() {
         parent::__construct();
