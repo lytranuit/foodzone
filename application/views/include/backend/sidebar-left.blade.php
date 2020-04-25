@@ -107,6 +107,10 @@
                         <i class="metismenu-icon fab fa-product-hunt"></i>
                         Sản phẩm
                     </a>
+                    <a href="{{base_url()}}product_price/" class="">
+                        <i class="metismenu-icon fas fa-ad"></i>
+                        Giá khuyến mãi
+                    </a>
                 </li>
                 <li class="app-sidebar__heading">Đơn đặt hàng</li>
                 <li>
@@ -120,6 +124,12 @@
                     <a href="{{base_url()}}admin/settings" class="">
                         <i class="metismenu-icon fas fa-wrench"></i>
                         Cài đặt chung
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base_url()}}address" class="">
+                        <i class="metismenu-icon fas fa-map-marker-alt"></i>
+                        Địa chỉ
                     </a>
                 </li>
                 <li>

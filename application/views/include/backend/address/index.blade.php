@@ -1,18 +1,20 @@
-
+<!-- ============================================================== -->
+<!-- pageheader -->
+<!-- ============================================================== -->
 <div class="row clearfix">
     <div class="col-12">
         <section class="card card-fluid">
             <h5 class="card-header drag-handle">
-                <a class="btn btn-success btn-sm" href="{{base_url()}}user/add">Thêm User</a>
+                <a class="btn btn-success btn-sm" href="{{base_url()}}address/add">Thêm</a>
             </h5>
             <div class="card-body">
                 <table id="quanlytin" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th>Username</th>
-                            <th>Tên khách hàng</th>
-                            <th>Nhóm</th>
-                            <th>Active</th>
+                            <th>Tên</th>
+                            <th>Địa chỉ</th>
+                            <th>Kinh độ</th>
+                            <th>Vĩ độ</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -31,25 +33,24 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": path + "user/table",
+                "url": path + "address/table",
                 "dataType": "json",
                 "type": "POST",
             },
             "columns": [{
-                    "data": "username"
+                    "data": "name"
+                }, {
+                    "data": "address"
                 },
                 {
-                    "data": "last_name"
+                    "data": "longitude"
                 },
                 {
-                    "data": "groups"
-                },
-                {
-                    "data": "active"
+                    "data": "latitude"
                 },
                 {
                     "data": "action"
-                },
+                }
             ]
 
         });

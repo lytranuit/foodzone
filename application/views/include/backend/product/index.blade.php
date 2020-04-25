@@ -5,7 +5,7 @@
     <div class="col-12">
         <section class="card card-fluid">
             <h5 class="card-header drag-handle">
-                <a class="btn btn-success btn-sm" href="{{base_url()}}department/add">Thêm</a>
+                <a class="btn btn-success btn-sm" href="{{base_url()}}product/add">Thêm</a>
             </h5>
             <div class="card-body">
                 <table id="quanlytin" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
@@ -13,9 +13,7 @@
                         <tr>
                             <th>Mã</th>
                             <th>Tên</th>
-                            <th>Khu vực</th>
-                            <th>Xưởng</th>
-                            <th>Nhà máy</th>
+                            <th>Giá</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -42,16 +40,10 @@
                     "data": "code"
                 },
                 {
-                    "data": "name"
+                    "data": "name_vi"
                 },
                 {
-                    "data": "area_name"
-                },
-                {
-                    "data": "workshop_name"
-                },
-                {
-                    "data": "factory_name"
+                    "data": "price"
                 },
                 {
                     "data": "action"

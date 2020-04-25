@@ -1633,7 +1633,12 @@ class MY_Model extends CI_Model
         $obj = array();
         foreach ($array as $key) {
             if (isset($data[$key])) {
-                $obj[$key] = $data[$key];
+                if ($key == "price" || $key == "quantity") {
+                    $obj[$key] = str_replace(",", "", $data[$key]);
+
+                    $obj[$key] = (float) str_replace(" VND", "", $obj[$key]);
+                } else
+                    $obj[$key] = $data[$key];
             } else
                 continue;
         }

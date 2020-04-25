@@ -1,18 +1,22 @@
-
+<!-- ============================================================== -->
+<!-- pageheader -->
+<!-- ============================================================== -->
 <div class="row clearfix">
     <div class="col-12">
         <section class="card card-fluid">
             <h5 class="card-header drag-handle">
-                <a class="btn btn-success btn-sm" href="{{base_url()}}user/add">Thêm User</a>
+               
             </h5>
             <div class="card-body">
                 <table id="quanlytin" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th>Username</th>
+                            <th>ID</th>
+                            <th>Mã</th>
+                            <th>Ngày đặt hàng</th>
                             <th>Tên khách hàng</th>
-                            <th>Nhóm</th>
-                            <th>Active</th>
+                            <th>Status</th>
+                            <th>Tổng số tiền</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -31,25 +35,27 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": path + "user/table",
+                "url": path + "sale/table",
                 "dataType": "json",
                 "type": "POST",
             },
             "columns": [{
-                    "data": "username"
+                    "data": "id"
+                }, {
+                    "data": "code"
                 },
                 {
-                    "data": "last_name"
-                },
-                {
-                    "data": "groups"
-                },
-                {
-                    "data": "active"
+                    "data": "order_date"
+                }, {
+                    "data": "customer_name"
+                }, {
+                    "data": "status"
+                }, {
+                    "data": "total_amount"
                 },
                 {
                     "data": "action"
-                },
+                }
             ]
 
         });

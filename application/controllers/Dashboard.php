@@ -1,5 +1,6 @@
 <?php
 
+require_once("application/core/MY_Administrator.php");
 class Dashboard extends MY_Administrator {
 
     function __construct() {

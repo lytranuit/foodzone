@@ -2,17 +2,17 @@
     <div class="carousel slide" id="introCarousel">
         <ol class="carousel-indicators">
         </ol>
-        <div class="carousel-inner" role="listbox" >
-            <?php for ($i = 1; $i <= 3; $i++): ?>
-                <div class="carousel-item <?= $i == 1 ? "active" : "" ?>">
-                    <div class="carousel-background">
-                        <img alt="" src="{{base_url()}}public/image/slider/{{$i}}.jpg" width="100%"/>
-                    </div>
-                    <div class="carousel-container" >
-
-                    </div>
+        <div class="carousel-inner" role="listbox">
+            @foreach($list_silder as $key=>$row)
+            <div class="carousel-item <?= $key == 0 ? "active" : "" ?>">
+                <div class="carousel-background">
+                    <img alt="" src="{{base_url()}}{{$row->image->src}}" width="100%" />
                 </div>
-            <?php endfor ?>
+                <div class="carousel-container">
+
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -28,14 +28,14 @@
             <div class="resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0">
                 <!-- Slick Carousel-->
                 <div class="slick-tab-centered slick-slider" data-arrows="true" data-loop="true" data-dots="false" data-swipe="true" data-items="1" data-xs-items="1" data-sm-items="2" data-md-items="3" data-lg-items="3" data-xl-items="5" data-center-mode="true" data-center-padding="10">
-                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                    <?php for ($i = 1; $i <= 5; $i++) : ?>
                         <div class="item">
                             <div class="thumbnail-menu-modern">
                                 <figure><img class="img-responsive" src="{{base_url()}}public/image/{{$i}}.png" alt="">
                                 </figure>
                                 <div class="caption">
                                     <h5><a class="link link-default" href="menu-single.html" tabindex="-1">Mexican Burger</a></h5>
-                                    <p class="text-italic">This Mexican-style burger is pumped up with flavor from chili powder, cilantro, and jalapeno pepper.  Served on buns topped with lettuce.</p>
+                                    <p class="text-italic">This Mexican-style burger is pumped up with flavor from chili powder, cilantro, and jalapeno pepper. Served on buns topped with lettuce.</p>
                                     <p class="price">12.50</p><a class="btn btn-shape-circle btn-burnt-sienna offset-top-15" href="shop-single.html" tabindex="-1">Order Online</a>
                                 </div>
                             </div>
@@ -47,14 +47,14 @@
             <div class="resp-tab-content" aria-labelledby="tab_item-1">
                 <!-- Slick Carousel-->
                 <div class="slick-tab-centered slick-slider" data-arrows="true" data-loop="true" data-dots="false" data-swipe="true" data-items="1" data-xs-items="1" data-sm-items="2" data-md-items="3" data-lg-items="3" data-xl-items="5" data-center-mode="true" data-center-padding="10">
-                    <?php for ($i = 1; $i <= 7; $i++): ?>
+                    <?php for ($i = 1; $i <= 7; $i++) : ?>
                         <div class="item">
                             <div class="thumbnail-menu-modern">
                                 <figure><img class="img-responsive" src="{{base_url()}}public/image/{{$i}}.png" alt="">
                                 </figure>
                                 <div class="caption">
                                     <h5><a class="link link-default" href="menu-single.html" tabindex="-1">Mexican Burger</a></h5>
-                                    <p class="text-italic">This Mexican-style burger is pumped up with flavor from chili powder, cilantro, and jalapeno pepper.  Served on buns topped with lettuce.</p>
+                                    <p class="text-italic">This Mexican-style burger is pumped up with flavor from chili powder, cilantro, and jalapeno pepper. Served on buns topped with lettuce.</p>
                                     <p class="price">12.50</p><a class="btn btn-shape-circle btn-burnt-sienna offset-top-15" href="shop-single.html" tabindex="-1">Order Online</a>
                                 </div>
                             </div>
@@ -81,14 +81,14 @@
             <div class="resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0">
                 <!-- Slick Carousel-->
                 <div class="slick-tab-centered slick-slider" data-arrows="true" data-loop="true" data-dots="false" data-swipe="true" data-items="1" data-xs-items="1" data-sm-items="2" data-md-items="3" data-lg-items="3" data-xl-items="5" data-center-mode="true" data-center-padding="10">
-                    <?php for ($i = 1; $i <= 7; $i++): ?>
+                    <?php for ($i = 1; $i <= 7; $i++) : ?>
                         <div class="item">
                             <div class="thumbnail-menu-modern">
                                 <figure><img class="img-responsive" src="{{base_url()}}public/image/{{$i}}.png" alt="">
                                 </figure>
                                 <div class="caption">
                                     <h5><a class="link link-default" href="menu-single.html" tabindex="-1">Mexican Burger</a></h5>
-                                    <p class="text-italic">This Mexican-style burger is pumped up with flavor from chili powder, cilantro, and jalapeno pepper.  Served on buns topped with lettuce.</p>
+                                    <p class="text-italic">This Mexican-style burger is pumped up with flavor from chili powder, cilantro, and jalapeno pepper. Served on buns topped with lettuce.</p>
                                     <p class="price">12.50</p><a class="btn btn-shape-circle btn-burnt-sienna offset-top-15" href="shop-single.html" tabindex="-1">Order Online</a>
                                 </div>
                             </div>
@@ -100,14 +100,14 @@
             <div class="resp-tab-content" aria-labelledby="tab_item-1">
                 <!-- Slick Carousel-->
                 <div class="slick-tab-centered slick-slider" data-arrows="true" data-loop="true" data-dots="false" data-swipe="true" data-items="1" data-xs-items="1" data-sm-items="2" data-md-items="3" data-lg-items="3" data-xl-items="5" data-center-mode="true" data-center-padding="10">
-                    <?php for ($i = 1; $i <= 7; $i++): ?>
+                    <?php for ($i = 1; $i <= 7; $i++) : ?>
                         <div class="item">
                             <div class="thumbnail-menu-modern">
                                 <figure><img class="img-responsive" src="{{base_url()}}public/image/{{$i}}.png" alt="">
                                 </figure>
                                 <div class="caption">
                                     <h5><a class="link link-default" href="menu-single.html" tabindex="-1">Mexican Burger</a></h5>
-                                    <p class="text-italic">This Mexican-style burger is pumped up with flavor from chili powder, cilantro, and jalapeno pepper.  Served on buns topped with lettuce.</p>
+                                    <p class="text-italic">This Mexican-style burger is pumped up with flavor from chili powder, cilantro, and jalapeno pepper. Served on buns topped with lettuce.</p>
                                     <p class="price">12.50</p><a class="btn btn-shape-circle btn-burnt-sienna offset-top-15" href="shop-single.html" tabindex="-1">Order Online</a>
                                 </div>
                             </div>
@@ -124,13 +124,16 @@
     <div id="map"></div>
     <script>
         var map;
+
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: new google.maps.LatLng(13.109038, 109.297326),
                 zoom: 14
             });
 
-            setMarkers(map, [["Simba", 13.109038, 109.297326]]);
+            setMarkers(map, [
+                ["Simba", 13.109038, 109.297326]
+            ]);
         }
         /*show map*/
         /*var positions = [
@@ -183,7 +186,6 @@
             height: 400px
         }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkAZ0DefFFh1083avX5XSAu0AwzNyQ4tI&callback=initMap"
-    async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkAZ0DefFFh1083avX5XSAu0AwzNyQ4tI&callback=initMap" async defer></script>
 
 </section>

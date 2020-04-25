@@ -2,6 +2,16 @@ $(document).ready(function () {
 
     ///MOVE MODAL RA NGOÀI
     $(".app-main .modal").detach().appendTo("body");
+    ////Confirm
+    $(document).off("click", "[data-type='confirm']").on("click", "[data-type='confirm']", function (e) {
+        e.preventDefault();
+        var title = $(this).attr("title");
+        var href = $(this).attr("href");
+        if (confirm(title) == true) {
+            location.href = href;
+        }
+        return false;
+    })
 })
 
 var fillForm = function (form, data) {
@@ -9,6 +19,7 @@ var fillForm = function (form, data) {
         var type = $(this).attr('type');
         var name = $(this).attr('name');
         name = name.replace("[]", "");
+
         var value = "";
         if ($(this).hasClass("input-tmp"))
             return
@@ -17,11 +28,12 @@ var fillForm = function (form, data) {
         } else {
             return;
         }
-        
+
         switch (type) {
             case 'checkbox':
                 $(this).prop('checked', false);
-                if (value == true || value == 'true' || value == 1) {
+                var rdvalue = $(this).val();
+                if (rdvalue == value || value.indexOf(rdvalue) != -1) {
                     $(this).prop('checked', true);
                 }
                 break;
