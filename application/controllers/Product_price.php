@@ -50,9 +50,9 @@ class Product_price extends MY_Administrator
             $date = explode(" - ", $data['daterange']);
             $data['date_from'] = date("Y-m-d", strtotime($date[0]));
             $data['date_to'] = date("Y-m-d", strtotime($date[1]));
-            $this->load->model("productprice_model");
-            $data_up = $this->productprice_model->create_object($data);
-            $id = $this->productprice_model->insert($data_up);
+            $this->load->model("product_price_model");
+            $data_up = $this->product_price_model->create_object($data);
+            $id = $this->product_price_model->insert($data_up);
             redirect('product_price', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             load_daterangepicker($this->data);
@@ -67,19 +67,19 @@ class Product_price extends MY_Administrator
     { /////// trang ca nhan
         $id = $param[0];
         if (isset($_POST['dangtin'])) {
-            $this->load->model("productprice_model");
+            $this->load->model("product_price_model");
             $data = $_POST;
 
             $date = explode(" - ", $data['daterange']);
             $data['date_from'] = date("Y-m-d", strtotime($date[0]));
             $data['date_to'] = date("Y-m-d", strtotime($date[1]));
-            $data_up = $this->productprice_model->create_object($data);
-            $this->productprice_model->update($data_up, $id);
+            $data_up = $this->product_price_model->create_object($data);
+            $this->product_price_model->update($data_up, $id);
 
             redirect('product_price', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
-            $this->load->model("productprice_model");
-            $tin = $this->productprice_model->where(array('id' => $id))->with_image()->with_category()->as_object()->get();
+            $this->load->model("product_price_model");
+            $tin = $this->product_price_model->where(array('id' => $id))->with_image()->with_category()->as_object()->get();
             if (isset($tin->category)) {
                 $cate_id = array();
                 foreach ($tin->category as $key => $cate) {
@@ -98,19 +98,19 @@ class Product_price extends MY_Administrator
 
     public function remove($params)
     { /////// trang ca nhan
-        $this->load->model("productprice_model");
+        $this->load->model("product_price_model");
         $id = $params[0];
-        $this->productprice_model->update(array("deleted" => 1), $id);
+        $this->product_price_model->update(array("deleted" => 1), $id);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
     public function table()
     { /////// trang ca nhan
-        $this->load->model("productprice_model");
+        $this->load->model("product_price_model");
         $limit = $this->input->post('length');
         $start = $this->input->post('start');
         $page = ($start / $limit) + 1;
-        $where = $this->productprice_model;
+        $where = $this->product_price_model;
 
         $totalData = $where->count_rows();
         $totalFiltered = $totalData;
@@ -118,13 +118,13 @@ class Product_price extends MY_Administrator
         if (empty($this->input->post('search')['value'])) {
             //            $max_page = ceil($totalFiltered / $limit);
 
-            $where = $this->productprice_model->where(array("deleted" => 0));
+            $where = $this->product_price_model->where(array("deleted" => 0));
         } else {
             $search = $this->input->post('search')['value'];
             $sWhere = "deleted = 0";
-            $where = $this->productprice_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
+            $where = $this->product_price_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
             $totalFiltered = $where->count_rows();
-            $where = $this->productprice_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
+            $where = $this->product_price_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
         }
 
         $posts = $where->order_by("id", "DESC")->with_product()->paginate($limit, NULL, $page);

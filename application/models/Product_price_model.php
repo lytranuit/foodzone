@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Productprice_model extends MY_Model
+class Product_price_model extends MY_Model
 {
 
     public function __construct()
