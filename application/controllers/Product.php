@@ -62,14 +62,14 @@ class Product extends MY_Administrator
              * Category
              */
 
-            $this->load->model("productcategory_model");
+            $this->load->model("product_category_model");
             if (isset($data['category_list'])) {
                 foreach ($data['category_list'] as $row) {
                     $array = array(
                         'category_id' => $row,
                         'product_id' => $id
                     );
-                    $this->productcategory_model->insert($array);
+                    $this->product_category_model->insert($array);
                 }
             }
             redirect('product', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
@@ -93,8 +93,8 @@ class Product extends MY_Administrator
 
 
             /* CATEGORY */
-            $this->load->model("productcategory_model");
-            $array = $this->productcategory_model->where('product_id', $id)->as_array()->get_all();
+            $this->load->model("product_category_model");
+            $array = $this->product_category_model->where('product_id', $id)->as_array()->get_all();
             $categroy_old = array_map(function ($item) {
                 return $item['category_id'];
             }, $array);
@@ -109,14 +109,14 @@ class Product extends MY_Administrator
                     'category_id' => $row,
                     'product_id' => $id
                 );
-                $this->productcategory_model->insert($array);
+                $this->product_category_model->insert($array);
             }
             foreach ($array_delete as $row) {
                 $array = array(
                     'category_id' => $row,
                     'product_id' => $id
                 );
-                $this->productcategory_model->where($array)->delete();
+                $this->product_category_model->where($array)->delete();
             }
 
             redirect('product', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries

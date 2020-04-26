@@ -756,7 +756,7 @@ class Admin extends MY_Administrator
         if (isset($_POST['dangtin'])) {
             $data = $_POST;
             $this->load->model("product_model");
-            $this->load->model("productcategory_model");
+            $this->load->model("product_category_model");
             $data_up = $this->product_model->create_object($data);
             $id = $this->product_model->insert($data_up);
             if (isset($data['category_id'])) {
@@ -765,7 +765,7 @@ class Admin extends MY_Administrator
                         'category_id' => $row,
                         'product_id' => $id
                     );
-                    $this->productcategory_model->insert($array);
+                    $this->product_category_model->insert($array);
                 }
             }
             redirect('admin/quanlyproduct', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
@@ -1099,7 +1099,7 @@ class Admin extends MY_Administrator
         if (isset($_POST['dangtin'])) {
             $data = $_POST;
             $this->load->model("product_model");
-            $this->load->model("productcategory_model");
+            $this->load->model("product_category_model");
             $data_up = $this->product_model->create_object($data);
 
             $files = $this->input->post('id_files');
@@ -1117,7 +1117,7 @@ class Admin extends MY_Administrator
                         'category_id' => $row,
                         'product_id' => $id
                     );
-                    $this->productcategory_model->insert($array);
+                    $this->product_category_model->insert($array);
                 }
             }
 
@@ -1143,13 +1143,13 @@ class Admin extends MY_Administrator
             $data = $_POST;
             //            print_r($data);
             $this->load->model("product_model");
-            $this->load->model("productcategory_model");
+            $this->load->model("product_category_model");
             $data_up = $this->product_model->create_object($data);
             $this->product_model->update($data_up, $id);
 
 
             /* CATEGORY */
-            $array = $this->productcategory_model->where('product_id', $id)->as_array()->get_all();
+            $array = $this->product_category_model->where('product_id', $id)->as_array()->get_all();
             $categroy_old = array_map(function ($item) {
                 return $item['category_id'];
             }, $array);
@@ -1161,14 +1161,14 @@ class Admin extends MY_Administrator
                     'category_id' => $row,
                     'product_id' => $id
                 );
-                $this->productcategory_model->insert($array);
+                $this->product_category_model->insert($array);
             }
             foreach ($array_delete as $row) {
                 $array = array(
                     'category_id' => $row,
                     'product_id' => $id
                 );
-                $this->productcategory_model->where($array)->delete();
+                $this->product_category_model->where($array)->delete();
             }
 
 
@@ -1209,9 +1209,9 @@ class Admin extends MY_Administrator
 
     function sortproduct($params)
     {
-        $this->load->model("productcategory_model");
+        $this->load->model("product_category_model");
         $id = $params[0];
-        $this->productcategory_model->update(array("sort" => time()), $id);
+        $this->product_category_model->update(array("sort" => time()), $id);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }
