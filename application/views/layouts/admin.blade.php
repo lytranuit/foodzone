@@ -16,7 +16,7 @@
         <!-- ============================================================== -->
         <!-- main wrapper -->
         <!-- ============================================================== -->
-        <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        <div class="app-container app-theme-white body-tabs-shadow fixed-header">
             <!-- ============================================================== -->
             <!-- header -->
             <!-- ============================================================== -->
@@ -27,6 +27,7 @@
                     <div class="app-main__inner">
                         @yield("content")
                     </div>
+                    <div class="mt-5"></div>
                 </div>
             </div>
 

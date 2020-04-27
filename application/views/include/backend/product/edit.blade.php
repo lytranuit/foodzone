@@ -205,6 +205,9 @@
         $(".image_ft").imageFeature();
         var tin = <?= json_encode($tin) ?>;
         fillForm($("#form-dang-tin"), tin);
+        if (tin.image) {
+            $(".image_ft").imageFeature("set_image", tin.image);
+        }
         $('#price').inputmask("numeric", {
             radixPoint: ".",
             groupSeparator: ",",
