@@ -128,6 +128,8 @@ class Cook extends MY_Administrator
                 $nestedData['id'] = $post->id;
                 $nestedData['name_vi'] = $post->name_vi;
                 $nestedData['description_vi'] = $post->description_vi;
+                $nestedData['order'] = $post->order;
+                $nestedData['active']  = $post->active == 1 ? "Có" : "Không";
                 $image = isset($post->image->src) ? base_url() . $post->image->src : "";
                 $nestedData['image'] = "<img src='$image' width='100'/>";
                 $nestedData['action'] = '<a href="' . base_url() . 'cook/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="edit">'

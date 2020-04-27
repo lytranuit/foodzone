@@ -18,9 +18,9 @@
                             <figure><img class="img-responsive" src="{{base_url()}}{{$product->image->src}}" alt="">
                             </figure>
                             <div class="caption">
-                                <h5><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></h5>
+                                <h5><a class="link link-default" href="menu-single.html" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></h5>
                                 <p class="text-italic">{{ $product->{pick_language($product,'description_')} }}</p>
-                                <p><span class="price">{{number_format($product->price,0,".",",")}}</p><a class="btn btn-shape-circle btn-burnt-sienna offset-top-15" href="shop-single.html" tabindex="-1">Order Online</a>
+                                <p class="price">12.50</p><a class="btn btn-shape-circle btn-burnt-sienna offset-top-15" href="shop-single.html" tabindex="-1">Order Online</a>
                             </div>
                         </div>
                     </div>

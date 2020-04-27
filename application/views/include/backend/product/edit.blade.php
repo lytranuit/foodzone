@@ -31,6 +31,30 @@
                                     <input class="form-control form-control-sm" type='text' name="volume" placeholder="Quy cách" />
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <b class="col-12 col-lg-2 col-form-label">Xuất xứ:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <input class="form-control form-control-sm" type='text' name="origin" placeholder="Xuất xứ" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <b class="col-12 col-lg-2 col-form-label">Hiển thị:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <div class="switch-button switch-button-xs switch-button-success">
+                                        <input type="hidden" class="input-tmp" checked="" name="active" value="0">
+                                        <input type="checkbox" checked="" id="switch2" name="active" value="1">
+                                        <span>
+                                            <label for="switch2"></label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <b class="col-12 col-lg-2 col-form-label">Sắp xếp:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <input id="price" class="form-control form-control-sm" type='number' name="order" />
+                                </div>
+                            </div>
+
                         </div>
                         <div class="col-md-4">
                             <div class="form-group row">

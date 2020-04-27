@@ -10,7 +10,35 @@
                 </h5>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-lg-8">
+                            <div class="form-group row">
+                                <b class="col-12 col-lg-2 col-form-label">Hiển thị:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <div class="switch-button switch-button-xs switch-button-success">
+                                        <input type="hidden" class="input-tmp" checked="" name="active" value="0">
+                                        <input type="checkbox" checked="" id="switch2" name="active" value="1">
+                                        <span>
+                                            <label for="switch2"></label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <b class="col-12 col-lg-2 col-form-label">Sắp xếp:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <input id="price" class="form-control form-control-sm" type='number' name="order" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group row">
+                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
+                                    <div class="image_ft"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
@@ -69,13 +97,6 @@
                                 </div>
                             </div>
 
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group row">
-                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <div class="image_ft"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

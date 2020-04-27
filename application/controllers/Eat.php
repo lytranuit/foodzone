@@ -73,6 +73,9 @@ class Eat extends MY_Administrator
         if (isset($_POST['dangtin'])) {
             $this->load->model("category_model");
             $data = $_POST;
+            // echo "<pre>";
+            // print_r($data);
+            // die();
             $data_up = $this->category_model->create_object($data);
             $this->category_model->update($data_up, $id);
             redirect('eat', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
@@ -121,6 +124,8 @@ class Eat extends MY_Administrator
                 $nestedData['id'] = $post->id;
                 $nestedData['name_vi'] = $post->name_vi;
                 $nestedData['description_vi'] = $post->description_vi;
+                $nestedData['order'] = $post->order;
+                $nestedData['active']  = $post->active == 1 ? "Có" : "Không";
                 $image = isset($post->image->src) ? base_url() . $post->image->src : "";
                 $nestedData['image'] = "<img src='$image' width='100'/>";
                 $nestedData['action'] = '<a href="' . base_url() . 'eat/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="edit">'

@@ -99,9 +99,9 @@ class Widget
         $this->CI->load->model("category_model");
         $this->CI->load->model("product_category_model");
         $this->CI->load->model("product_model");
-        $list_category = $this->CI->category_model->where(array('deleted' => 0, 'menu_id' => 1))->get_all();
+        $list_category = $this->CI->category_model->where(array('deleted' => 0, 'active' => 1, 'menu_id' => 1))->order_by('order', 'ASC')->get_all();
         foreach ($list_category as &$row) {
-            $row->product = $this->CI->product_model->where("deleted = 0 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->limit(20)->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_image()->get_all();
+            $row->product = $this->CI->product_model->where("deleted = 0 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_image()->limit(20)->get_all();
         }
         // echo "<pre>";
         // print_r($list_category);
@@ -114,9 +114,9 @@ class Widget
         $this->CI->load->model("category_model");
         $this->CI->load->model("product_category_model");
         $this->CI->load->model("product_model");
-        $list_category = $this->CI->category_model->where(array('deleted' => 0, 'menu_id' => 2))->get_all();
+        $list_category = $this->CI->category_model->where(array('deleted' => 0, 'active' => 1, 'menu_id' => 2))->order_by('order', 'ASC')->get_all();
         foreach ($list_category as &$row) {
-            $row->product = $this->CI->product_model->where("deleted = 0 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->limit(20)->with_image()->get_all();
+            $row->product = $this->CI->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'ASC')->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_image()->limit(20)->get_all();
         }
         $this->data['list_category'] = $list_category;
         echo $this->blade->view()->make('widget/index_cook', $this->data)->render();

@@ -13,6 +13,8 @@
                         <tr>
                             <th>Danh mục</th>
                             <th>Mô tả</th>
+                            <th>Hiển thị</th>
+                            <th>Thứ tự</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -39,6 +41,10 @@
                     "data": "name_vi"
                 }, {
                     "data": "description_vi"
+                }, {
+                    "data": "active"
+                }, {
+                    "data": "order"
                 },
                 {
                     "data": "action"
