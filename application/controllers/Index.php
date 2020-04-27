@@ -44,15 +44,6 @@ class Index extends MY_Controller
 
     public function index()
     {
-        $this->load->model("slider_model");
-
-        $arr_slider = $this->slider_model->where(array('deleted' => 0))->with_image()->get_all();
-        // foreach ($arr_slider as &$slider) {
-        //     $slider['hinh'] = $hinh[0];
-        // }
-        $this->data['list_silder'] = $arr_slider;
-
-
         $version = $this->config->item("version");
 
 

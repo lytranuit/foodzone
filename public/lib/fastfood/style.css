@@ -20372,8 +20372,9 @@ table a:hover {
     color: #ec5353;
 }
 
-.thumbnail-menu-modern .price:before {
-    content: "$";
+.thumbnail-menu-modern .price:after {
+    content: "đ";
+    margin-left: 2px;
     display: inline-block;
 }
 
