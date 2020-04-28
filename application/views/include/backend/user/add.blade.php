@@ -1,11 +1,11 @@
 <div class="row clearfix">
     <div class="col-12">
         <form method="POST" action="" id="form-dang-tin">
-            <input type="hidden" name="parent" value="0" />
+            <input type="hidden" name="dangtin" value="1" />
             <section class="card card-fluid">
                 <h5 class="card-header">
                     <div class="d-inline-block w-100">
-                        <button type="submit" name="dangtin" class="btn btn-sm btn-primary float-right">Save</button>
+                        <button type="submit" class="btn btn-sm btn-primary float-right">Save</button>
                     </div>
                 </h5>
                 <div class="card-body">
@@ -22,6 +22,18 @@
                                 <b class="col-12 col-sm-3 col-form-label text-sm-right">Tên:<i class="text-danger">*</i></b>
                                 <div class="col-12 col-sm-8 col-lg-6 pt-1">
                                     <input type="text" class="form-control" value="" name="last_name" minlength="3" required="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <b class="col-12 col-sm-3 col-form-label text-sm-right">Mât khẩu:<i class="text-danger">*</i></b>
+                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
+                                    <input type="password" class="form-control" name="newpassword" minlength="6" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <b class="col-12 col-sm-3 col-form-label text-sm-right">Xác nhận mật khẩu:<i class="text-danger">*</i></b>
+                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
+                                    <input type="password" class="form-control" name="confirmpassword" minlength="6" required="" aria-required="true">
                                 </div>
                             </div>
 
@@ -66,6 +78,7 @@
                                     </select>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -73,6 +86,7 @@
         </form>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
         $("select[name='groups[]']").chosen();
@@ -101,6 +115,7 @@
                     success: function(data) {
                         if (data.success == 1) {
                             form.submit();
+                            return false;
                         } else {
                             alert(data.msg);
                         }

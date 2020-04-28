@@ -55,10 +55,21 @@ class User extends MY_Administrator
     { /////// trang ca nhan
         if (isset($_POST['dangtin'])) {
             $data = $_POST;
-            $data['user_id'] = $this->session->userdata('user_id');
             $this->load->model("user_model");
             $data_up = $this->user_model->create_object($data);
             $id = $this->user_model->insert($data_up);
+
+            $result = $this->ion_auth_model->reset_password($_POST['username'], $_POST['newpassword']);
+            if (isset($data['groups'])) {
+                $this->load->model("usergroup_model");
+                foreach ($data['groups'] as $row) {
+                    $array = array(
+                        'group_id' => $row,
+                        'user_id' => $id
+                    );
+                    $this->usergroup_model->insert($array);
+                }
+            }
 
             redirect('user', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
@@ -68,7 +79,6 @@ class User extends MY_Administrator
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
     }
-
     public function edit($param)
     { /////// trang ca nhan
         $id = $param[0];
@@ -161,7 +171,7 @@ class User extends MY_Administrator
             foreach ($posts as $post) {
                 $groups = "";
                 foreach ($post->groups as $row) {
-                    $groups .= "<p>$row->description</p>";
+                    $groups .= "<p>$row->name</p>";
                 }
                 $nestedData['username'] = $post->username;
                 $nestedData['last_name'] = $post->last_name;

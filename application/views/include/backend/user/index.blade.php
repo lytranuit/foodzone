@@ -1,4 +1,3 @@
-
 <div class="row clearfix">
     <div class="col-12">
         <section class="card card-fluid">
@@ -10,7 +9,7 @@
                     <thead>
                         <tr>
                             <th>Username</th>
-                            <th>Tên khách hàng</th>
+                            <th>Tên</th>
                             <th>Nhóm</th>
                             <th>Active</th>
                             <th>Hành động</th>
