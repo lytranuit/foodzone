@@ -2,11 +2,14 @@ $(document).ready(function () {
     var plugins = {};
     $document = $(document)
     $window = $(window)
+    $body = $("body");
     plugins.responsiveTabs = $(".responsive-tabs")
     plugins.slick = $(".slick-slider")
     plugins.rdNavbar = $(".rd-navbar")
     plugins.isotope = $(".isotope")
     plugins.customToggle = $("[data-custom-toggle]")
+    plugins.easyzoom = $('.easyzoom');
+
     introCarousel();
     /**
   * RD Navbar
@@ -113,7 +116,9 @@ $(document).ready(function () {
 
 
     }
-
+    if (plugins.easyzoom.length) {
+        plugins.easyzoom.easyZoom();
+    }
     /**
      * Isotope
      * @description Enables Isotope plugin

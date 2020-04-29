@@ -24,8 +24,9 @@ class Index extends MY_Controller
             "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
             base_url() . "public/lib/bootstrap/js/popper.min.js",
             base_url() . "public/lib/bootstrap/js/bootstrap.min.js",
-            base_url() . "public/lib/rd_nav/js/jquery.rd-navbar.min.js",
-            base_url() . "public/js/main.js?v=$version"
+
+            base_url() . "public/lib/rd_nav/js/jquery.rd-navbar.min.js", // navbar
+            // base_url() . "public/js/main.js?v=$version"
         );
     }
 
@@ -47,9 +48,9 @@ class Index extends MY_Controller
         $version = $this->config->item("version");
 
 
-        array_push($this->data['javascript_tag'], base_url() . "public/lib/swiper/jquery.touchSwiper.js");
-        array_push($this->data['javascript_tag'], base_url() . "public/lib/easy_responsive_tabs/js/easyResponsiveTabs.js");
-        array_push($this->data['javascript_tag'], base_url() . "public/lib/slick/slick.min.js");
+        load_slick($this->data);
+        load_swiper($this->data);
+        load_easyResponsiveTabs($this->data);
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
@@ -58,21 +59,50 @@ class Index extends MY_Controller
     {
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
-        
+
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
-    public function details()
+    public function details($params)
     {
+        $id = $params[0];
         $version = $this->config->item("version");
+        $this->load->model("product_model");
+        $this->data['product'] = $this->product_model->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_category()->get($id);
+        load_easyzoom($this->data);
+        load_easyResponsiveTabs($this->data);
+        load_froala_view($this->data);
+        $this->data['product']->str_list_category = implode(" / ", array_map(function ($item) {
+            return $item->{pick_language($item, "name_")};
+        }, array_values((array) $this->data['product']->category)));
+        if (!empty($this->data['product']->price_km)) {
+            $price_km = array_values((array) $this->data['product']->price_km);
+            $this->data['product']->km_price = $price_km[0]->price;
+        }
+        // echo "<pre>";
+        // print_r($this->data['product']);
+        // die();
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
-        
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
-    public function category()
+    public function category($params)
     {
+        $id = $params[0];
+        if ($id == 1) {
+            $this->data['title'] = "Ready to Eat";
+        } else {
+            $this->data['title'] = "Ready to Cook";
+        }
 
+        $this->load->model("category_model");
+        $this->load->model("product_category_model");
+        $this->load->model("product_model");
+        $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'menu_id' => $id))->order_by('order', 'ASC')->get_all();
+        foreach ($list_category as &$row) {
+            $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'ASC')->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_image()->limit(20)->get_all();
+        }
+        $this->data['list_category'] = $list_category;
         $version = $this->config->item("version");
 
         array_push($this->data['javascript_tag'], base_url() . "public/lib/isotope/isotope.min.js");

@@ -39,6 +39,52 @@ if (!function_exists('load_daterangepicker')) {
     }
 }
 
+if (!function_exists('load_easyzoom')) {
+
+    function load_easyzoom(&$data)
+    {
+        array_push($data['stylesheet_tag'], base_url() . "public/lib/easyzoom/css/easyzoom.css");
+
+        array_push($data['javascript_tag'], base_url() . "public/lib/easyzoom/js/easyzoom.js");
+    }
+}
+
+if (!function_exists('load_slick')) {
+
+    function load_slick(&$data)
+    {
+        array_push($data['javascript_tag'], base_url() . "public/lib/slick/slick.min.js");
+    }
+}
+
+
+if (!function_exists('load_easyResponsiveTabs')) {
+
+    function load_easyResponsiveTabs(&$data)
+    {
+        array_push($data['javascript_tag'], base_url() . "public/lib/easy_responsive_tabs/js/easyResponsiveTabs.js");
+    }
+}
+
+if (!function_exists('load_swiper')) {
+
+    function load_swiper(&$data)
+    {
+        array_push($data['javascript_tag'], base_url() . "public/lib/swiper/jquery.touchSwiper.js");
+    }
+}
+
+
+
+if (!function_exists('load_froala_view')) {
+
+    function load_froala_view(&$data)
+    {
+        array_push($data['stylesheet_tag'], base_url() . "public/lib/froala_editor/froala_style.min.css");
+    }
+}
+
+
 
 
 if (!function_exists('load_editor')) {
