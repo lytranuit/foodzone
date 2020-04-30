@@ -25,8 +25,8 @@
                             <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a class="navbar-icon restaurant-icon-19" href="#">Menu</a>
                                 <!-- RD Navbar Dropdown-->
                                 <ul class="rd-navbar-dropdown menu-img-wrap rd-navbar-open-right">
-                                    <li class="menu-img"><a href="{{base_url()}}index/category"><img src="{{base_url()}}public/image/5.png" alt="" width="88" height="60"><span>Ready to Eat</span></a></li>
-                                    <li class="menu-img"><a href="{{base_url()}}index/category"><img src="{{base_url()}}public/image/8.png" alt="" width="88" height="60"><span>Ready to Cook</span></a></li>
+                                    <li class="menu-img"><a href="{{base_url()}}index/category/1"><img src="{{base_url()}}public/image/5.png" alt="" width="88" height="60"><span>Ready to Eat</span></a></li>
+                                    <li class="menu-img"><a href="{{base_url()}}index/category/2"><img src="{{base_url()}}public/image/8.png" alt="" width="88" height="60"><span>Ready to Cook</span></a></li>
                                 </ul>
                             </li>
                             <li>
