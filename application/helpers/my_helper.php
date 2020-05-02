@@ -4,7 +4,8 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 if (!function_exists('sendMessage')) {
 
-    function sendMessage($chatID, $messaggio) {
+    function sendMessage($chatID, $messaggio)
+    {
         $token = "606461497:AAH68TUT1mB3adaIxlud48-r-7fi2vADkRU";
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatID;
         $url = $url . "&text=" . urlencode($messaggio);
@@ -17,11 +18,11 @@ if (!function_exists('sendMessage')) {
         $result = curl_exec($ch);
         curl_close($ch);
     }
-
 }
 if (!function_exists("input_params")) {
 
-    function input_params($params) {
+    function input_params($params)
+    {
         $type = $params['type'];
         $selector = $params['selector'];
 
@@ -89,11 +90,11 @@ if (!function_exists("input_params")) {
         }
         return $params;
     }
-
 }
 if (!function_exists('getRandomColor')) {
 
-    function getRandomColor() {
+    function getRandomColor()
+    {
         $letters = '0123456789ABCDEF';
         $color = '#';
         //        echo rand(0, 16) . "<br>";
@@ -104,11 +105,11 @@ if (!function_exists('getRandomColor')) {
         }
         return $color;
     }
-
 }
 if (!function_exists('is_Date')) {
 
-    function is_Date($str) {
+    function is_Date($str)
+    {
         $str = str_replace('/', '-', $str);
         $stamp = strtotime($str);
         if (is_numeric($stamp)) {
@@ -119,20 +120,20 @@ if (!function_exists('is_Date')) {
         }
         return false;
     }
-
 }
 if (!function_exists('config_item')) {
 
-    function config_item($str) {
+    function config_item($str)
+    {
         $CI = &get_instance();
         $item = $CI->config->item($str);
         return $item;
     }
-
 }
 if (!function_exists('sluggable')) {
 
-    function sluggable($str) {
+    function sluggable($str)
+    {
         $str = trim(mb_strtolower($str));
         $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
         $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);
@@ -145,11 +146,11 @@ if (!function_exists('sluggable')) {
         $str = preg_replace('/([\s]+)/', '-', $str);
         return $str;
     }
-
 }
 if (!function_exists('get_url_seo')) {
 
-    function get_url_seo($func, $param = array()) {
+    function get_url_seo($func, $param = array())
+    {
         $url = $func;
         $CI = &get_instance();
         $CI->load->model('page_model');
@@ -173,12 +174,12 @@ if (!function_exists('get_url_seo')) {
         }
         return base_url() . $url;
     }
-
 }
 
 if (!function_exists('get_option')) {
 
-    function get_option($key) {
+    function get_option($key)
+    {
         $value = "";
         $CI = &get_instance();
         $CI->load->model('option_model');
@@ -188,11 +189,11 @@ if (!function_exists('get_option')) {
         }
         return $value;
     }
-
 }
 if (!function_exists('get_url_page')) {
 
-    function get_url_page($id) {
+    function get_url_page($id)
+    {
         $url = "";
         $CI = &get_instance();
         $CI->load->model('pageweb_model');
@@ -203,29 +204,29 @@ if (!function_exists('get_url_page')) {
         }
         return base_url() . $url;
     }
-
 }
 
 if (!function_exists('get_url_product')) {
 
-    function get_url_product($id, $title) {
+    function get_url_product($id, $title)
+    {
         $url = "product/$id-" . sluggable($title) . ".html";
         return base_url() . $url;
     }
-
 }
 
 if (!function_exists('get_url_category')) {
 
-    function get_url_category($id, $title) {
+    function get_url_category($id, $title)
+    {
         $url = "category/$id-" . sluggable($title) . ".html";
         return base_url() . $url;
     }
-
 }
 if (!function_exists('language_current')) {
 
-    function language_current() {
+    function language_current()
+    {
         $CI = &get_instance();
         $language_current = $CI->config->item('language');
         if (isset($_SESSION['language_current'])) {
@@ -233,12 +234,12 @@ if (!function_exists('language_current')) {
         }
         return $language_current;
     }
-
 }
 
 if (!function_exists('short_language_current')) {
 
-    function short_language_current() {
+    function short_language_current()
+    {
         $CI = &get_instance();
         $language_current = $CI->config->item('language');
         $arr_lang = $CI->config->item('language_list');
@@ -248,12 +249,12 @@ if (!function_exists('short_language_current')) {
 
         return $arr_lang[$language_current];
     }
-
 }
 
 if (!function_exists('pick_language')) {
 
-    function pick_language($data, $struct = 'name_') {
+    function pick_language($data, $struct = 'name_')
+    {
         $CI = &get_instance();
         $short_lang = short_language_current();
         $data = (array) $data;
@@ -263,12 +264,12 @@ if (!function_exists('pick_language')) {
             return $struct . 'vi';
         }
     }
-
 }
 
 if (!function_exists('strtofloat')) {
 
-    function strtofloat($str) {
+    function strtofloat($str)
+    {
         $str = str_replace(".", "", $str); // replace dots (thousand seps) with blancs 
         $str = str_replace(",", ".", $str); // replace ',' with '.'
         if (preg_match("#([0-9\.]+)#", $str, $match)) { // search for number that may contain '.' 
@@ -277,22 +278,22 @@ if (!function_exists('strtofloat')) {
             return floatval($str); // take some last chances with floatval 
         }
     }
-
 }
 if (!function_exists('split_string')) {
 
-    function split_string($str, $length) {
+    function split_string($str, $length)
+    {
         $str = strip_tags($str);
         if (strlen($str) > $length) {
             $str = mb_substr($str, 0, $length) . "...";
         }
         return $str;
     }
-
 }
 if (!function_exists('is_permission')) {
 
-    function is_permission($func) {
+    function is_permission($func)
+    {
         $array_permission = $_SESSION['permission'];
         $role = $_SESSION['role'];
         if ($role == 1 || in_array($func, $array_permission)) {
@@ -301,12 +302,12 @@ if (!function_exists('is_permission')) {
             return false;
         }
     }
-
 }
 
 if (!function_exists('has_permission')) {
 
-    function has_permission($func) {
+    function has_permission($func)
+    {
         $CI = &get_instance();
         $CI->load->model('permission_model');
         $permission = $CI->permission_model->where(array("function" => $func, 'deleted' => 0))->as_array()->get_all();
@@ -316,12 +317,12 @@ if (!function_exists('has_permission')) {
             return false;
         }
     }
-
 }
 
 if (!function_exists('nestable')) {
 
-    function nestable($array, $column, $parent) {
+    function nestable($array, $column, $parent)
+    {
         $return = array_filter($array, function ($item) use ($column, $parent) {
             return $item[$column] == $parent;
         });
@@ -331,12 +332,12 @@ if (!function_exists('nestable')) {
 
         return $return;
     }
-
 }
 
 if (!function_exists('array_child_category')) {
 
-    function array_child_category($array, $parent) {
+    function array_child_category($array, $parent)
+    {
         $return = array_filter($array, function ($item) use ($parent) {
             return $item['parent_id'] == $parent;
         });
@@ -349,11 +350,11 @@ if (!function_exists('array_child_category')) {
 
         return $data;
     }
-
 }
 if (!function_exists('html_menu')) {
 
-    function html_menu() {
+    function html_menu()
+    {
         $CI = &get_instance();
         $CI->load->model('category_model');
         $category = $CI->category_model->where(array("active" => 1, 'deleted' => 0, 'is_menu' => 1))->order_by('sort', "ASC")->as_array()->get_all();
@@ -361,11 +362,11 @@ if (!function_exists('html_menu')) {
         //        print_r($)
         echo html_menu_lv1($category, 0);
     }
-
 }
 if (!function_exists('html_menu_lv1')) {
 
-    function html_menu_lv1($array, $parent) {
+    function html_menu_lv1($array, $parent)
+    {
         $html = "";
         $return = array_filter($array, function ($item) use ($parent) {
             return $item['parent_id'] == $parent;
@@ -395,11 +396,11 @@ if (!function_exists('html_menu_lv1')) {
 
         return $html;
     }
-
 }
 if (!function_exists('html_menu_lv2')) {
 
-    function html_menu_lv2($array, $parent) {
+    function html_menu_lv2($array, $parent)
+    {
         $html = "";
         $return = array_filter($array, function ($item) use ($parent) {
             return $item['parent_id'] == $parent;
@@ -447,11 +448,11 @@ if (!function_exists('html_menu_lv2')) {
         }
         return $html;
     }
-
 }
 if (!function_exists('html_menu_lv3')) {
 
-    function html_menu_lv3($array, $parent) {
+    function html_menu_lv3($array, $parent)
+    {
         $html = "";
         $return = array_filter($array, function ($item) use ($parent) {
             return $item['parent_id'] == $parent;
@@ -473,13 +474,13 @@ if (!function_exists('html_menu_lv3')) {
         }
         return $html;
     }
-
 }
 
 
 if (!function_exists('html_select_category')) {
 
-    function html_select_category($array, $column, $parent) {
+    function html_select_category($array, $column, $parent)
+    {
         $html = "";
         $return = array_filter($array, function ($item) use ($column, $parent) {
             return $item[$column] == $parent;
@@ -496,12 +497,12 @@ if (!function_exists('html_select_category')) {
 
         return $html;
     }
-
 }
 
 if (!function_exists('html_nestable')) {
 
-    function html_nestable($array, $column, $parent) {
+    function html_nestable($array, $column, $parent)
+    {
         $html = "";
         $return = array_filter($array, function ($item) use ($column, $parent) {
             return $item[$column] == $parent;
@@ -553,11 +554,11 @@ if (!function_exists('html_nestable')) {
 
         return $html;
     }
-
 }
 if (!function_exists('html_page_footer')) {
 
-    function html_page_footer() {
+    function html_page_footer()
+    {
         $html = "";
         $CI = &get_instance();
         $CI->load->model('pageweb_model');
@@ -567,11 +568,11 @@ if (!function_exists('html_page_footer')) {
         }
         return $html;
     }
-
 }
 if (!function_exists('breadcrumbs_category')) {
 
-    function breadcrumbs_category($id, $name, $parent) {
+    function breadcrumbs_category($id, $name, $parent)
+    {
         $html = "";
         if ($parent == 0) {
             $html .= '<a href="' . get_url_category($id, $name) . '" class="ty-breadcrumbs__a">' . $name . '</a>';
@@ -584,11 +585,11 @@ if (!function_exists('breadcrumbs_category')) {
         }
         return $html;
     }
-
 }
 if (!function_exists('sync_cart')) {
 
-    function sync_cart() {
+    function sync_cart()
+    {
 
         $CI = &get_instance();
         $items = array(
@@ -671,11 +672,11 @@ if (!function_exists('sync_cart')) {
         }
         return $items;
     }
-
 }
 if (!function_exists('sync_wishlist')) {
 
-    function sync_wishlist() {
+    function sync_wishlist()
+    {
 
         $CI = &get_instance();
         $CI->load->model('product_model');
@@ -700,11 +701,11 @@ if (!function_exists('sync_wishlist')) {
         }
         return $items;
     }
-
 }
 if (!function_exists('is_wishlist')) {
 
-    function is_wishlist($product_id) {
+    function is_wishlist($product_id)
+    {
         $wish_list = array();
         if (get_cookie("WISHLIST") && get_cookie("WISHLIST") != "") {
             $wish_list = json_decode(get_cookie("WISHLIST"), true);
@@ -715,12 +716,12 @@ if (!function_exists('is_wishlist')) {
         //            die();
         return in_array($product_id, $wish_list);
     }
-
 }
 
 if (!function_exists('html_img_second')) {
 
-    function html_img_second($product_id) {
+    function html_img_second($product_id)
+    {
 
         $db = &DB();
         $where = "WHERE a.product_id = $product_id";
@@ -740,5 +741,36 @@ if (!function_exists('html_img_second')) {
 
         return $html;
     }
+}
 
+if (!function_exists('time_elapsed_string')) {
+    function time_elapsed_string($datetime, $full = false)
+    {
+        $now = new DateTime;
+        $ago = new DateTime($datetime);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
+    }
 }

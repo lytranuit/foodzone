@@ -15,10 +15,14 @@
                             <div class="text-subline offset-top-15"></div>
                             <div class="offset-top-25">
                                 <ul class="list-inline" style="font-size: 25px;">
-                                    <li><a class="link-darkest icon icon-xxs-mod-1 fab fa-facebook" href="#"></a></li>
-                                    <li><a class="link-darkest icon icon-xxs-mod-1 fab fa-twitter" href="#"></a></li>
-                                    <li><a class="link-darkest icon icon-xxs-mod-1 fab fa-google-plus" href="#"></a></li>
-                                    <li><a class="link-darkest icon icon-xxs-mod-1 fab fa-pinterest" href="#"></a></li>
+                                    <li><a target="_blank" class="link-darkest icon icon-xxs-mod-1 fab fa-facebook" href="http://www.facebook.com/sharer/sharer.php?u={{current_url()}}"></a></li>
+                                    <li><a target="_blank" class="link-darkest icon icon-xxs-mod-1 fab fa-twitter" href="https://twitter.com/intent/tweet?text=Link&url={{current_url()}}"></a></li>
+
+                                    <li class="zalo-share-button" data-href="{{current_url()}}" data-oaid="579745863508352884" data-layout="2" data-color="blue" data-customize=true>
+                                        <a href='#' class="link-darkest icon icon-xxs-mod-1 zalo">
+                                            <i></i>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -29,7 +33,7 @@
                                 <div class="offset-top-25">
                                     <div class="unit unit-horizontal unit-middle unit-spacing-xs">
                                         <div class="unit-left"><span class="icon icon-xs icon-primary text-middle mdi mdi-phone"></span></div>
-                                        <div class="unit-body"><a class="link-default" href="tel:#">1-800-1234-567</a></div>
+                                        <div class="unit-body"><a class="link-default" href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +44,7 @@
                                 <div class="text-subline offset-top-15"></div>
                                 <div class="offset-top-25 unit unit-horizontal unit-spacing-xs">
                                     <div class="unit-left"><span class="icon icon-xs icon-primary text-middle mdi mdi-map-marker"></span></div>
-                                    <div class="unit-body"><a class="link-default" href="#">4578 Marmora St, San Francisco D04 89GR</a></div>
+                                    <div class="unit-body"><a class="link-default" href="#">{{$options['dia_chi']}}</a></div>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +54,7 @@
                                 <div class="text-subline offset-top-15"></div>
                                 <div class="offset-top-25 unit unit-horizontal unit-spacing-xs">
                                     <div class="unit-left"><span class="icon icon-xs icon-primary mdi mdi-clock text-middle"></span></div>
-                                    <div class="unit-body"><span class="text-dark inset-left-5">9:00am-7:00pm</span></div>
+                                    <div class="unit-body"><span class="text-dark inset-left-5">{{$options['hour_open']}}</span></div>
                                 </div>
                             </div>
                         </div>

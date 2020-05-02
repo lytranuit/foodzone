@@ -23,17 +23,16 @@ class Widget
 
     public function header()
     {
-        $this->data['is_login'] = $this->CI->ion_auth->logged_in();
-        $this->data['is_admin'] = $this->CI->ion_auth->is_admin();
-        $this->data['userdata'] = $this->CI->session->userdata();
 
+        $this->CI->load->model("option_model");
+        $this->data['options'] = $this->CI->option_model->all_option();
         echo $this->blade->view()->make('widget/header', $this->data)->render();
     }
 
     public function footer()
     {
-        $this->CI->load->model("pageweb_model");
-        $this->data['all_page'] = $this->CI->pageweb_model->where(array("deleted" => 0, 'active' => 1))->as_array()->get_all();
+        $this->CI->load->model("option_model");
+        $this->data['options'] = $this->CI->option_model->all_option();
         echo $this->blade->view()->make('widget/footer', $this->data)->render();
     }
 

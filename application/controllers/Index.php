@@ -26,6 +26,7 @@ class Index extends MY_Controller
             base_url() . "public/lib/bootstrap/js/bootstrap.min.js",
 
             base_url() . "public/lib/rd_nav/js/jquery.rd-navbar.min.js", // navbar
+            "https://sp.zalo.me/plugins/sdk.js",
             // base_url() . "public/js/main.js?v=$version"
         );
     }
@@ -55,11 +56,21 @@ class Index extends MY_Controller
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
-    public function post()
+    public function post($params)
     {
+        $id = $params[0];
+        $this->load->model("news_model");
+        $post = $this->news_model->where(array('id' => $id, 'deleted' => 0))->with_user()->with_image()->get();
+        if (empty($post))
+            show_404();
+        $this->data['post'] = $post;
+        // echo "<pre>";
+        // print_r($post);
+        // die();
+        $this->data['title'] = $post->title;
+        load_froala_view($this->data);
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
-
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
@@ -68,7 +79,11 @@ class Index extends MY_Controller
         $id = $params[0];
         $version = $this->config->item("version");
         $this->load->model("product_model");
-        $this->data['product'] = $this->product_model->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_category()->get($id);
+        $product = $this->product_model->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_category()->get($id);
+        if (empty($product))
+            show_404();
+        $this->data['title'] = $product->{pick_language($product, 'name_')};
+        $this->data['product'] = $product;
         load_easyzoom($this->data);
         load_easyResponsiveTabs($this->data);
         load_froala_view($this->data);
@@ -121,6 +136,9 @@ class Index extends MY_Controller
     public function contact()
     {
 
+
+        $this->load->model("option_model");
+        $this->data['options'] = $this->option_model->all_option();
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
@@ -128,7 +146,10 @@ class Index extends MY_Controller
 
     public function news()
     {
+        $this->load->model("news_model");
+        $list = $this->news_model->where(array('deleted' => 0))->with_user()->with_image()->order_by('id', 'DESC')->get_all();
 
+        $this->data['list'] = $list;
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();

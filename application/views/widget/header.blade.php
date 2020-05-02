@@ -44,7 +44,7 @@
                             <li><a class="unit unit-horizontal unit-middle unit-spacing-xxs link-default" href="tel:#">
                                     <div class="unit-left"><span class="icon icon-md icon-primary thin-icon-phone-call text-middle" style="font-size: 33px;line-height: 33px;"></span></div>
                                     <div class="unit-body">
-                                        <address class="contact-info"><span class="text-bold big">+1 (409) 987–5874</span></address>
+                                        <address class="contact-info"><span class="text-bold big">{{$options['hot_line']}}</span></address>
                                     </div>
                                 </a></li>
                             <li><a class="unit unit-horizontal unit-middle unit-spacing-xxs link-gray-light" href="shop-cart.html">

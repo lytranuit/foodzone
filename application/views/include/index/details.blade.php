@@ -24,9 +24,13 @@
                 </div>
                 <div class="offset-top-15">
                     <div class="group-sm">
-                        <a class="bg-facebook" href="" target="_blank"><span class="fab fa-facebook"></span> Share</a>
-                        <a class="bg-twitter" href="" target="_blank"><span class="fab fa-twitter"></span> Tweet</a>
-                        <a class="bg-google-plus" href="" target="_blank"><span class="fab fa-google-plus"></span> Google+</a>
+                        <a class="bg-facebook" href="http://www.facebook.com/sharer/sharer.php?u={{current_url()}}" target="_blank"><span class="fab fa-facebook"></span> Share</a>
+                        <a class="bg-twitter" href="https://twitter.com/intent/tweet?text=Link&url={{current_url()}}" target="_blank"><span class="fab fa-twitter"></span> Tweet</a>
+                        <div class="zalo-share-button" data-href="{{current_url()}}" data-oaid="579745863508352884" data-layout="2" data-color="blue" data-customize=true href='#'>
+                            <a class="zalo" href="#">
+                                <i></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -55,9 +59,9 @@
 </section>
 
 <section class="text-left pb-5">
-    <div class="responsive-tabs responsive-tabs-horizontal responsive-tabs-horizontal-background" style="display: block; width: 100%;">
+    <div class="responsive-tabs responsive-tabs-horizontal responsive-tabs-horizontal-background" style="display: block; width: 100%;color:black;">
         <ul class="resp-tabs-list container">
-            <li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab">Mổ tả</li>
+            <li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab">Mô tả</li>
             <li class="resp-tab-item" aria-controls="tab_item-1" role="tab">Thành phần nguyên liệu</li>
             <li class="resp-tab-item" aria-controls="tab_item-2" role="tab">Hướng dẫn sử dụng</li>
         </ul>

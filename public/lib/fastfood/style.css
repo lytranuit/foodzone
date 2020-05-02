@@ -283,7 +283,7 @@ html {
 }
 
 body {
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.71429;
     color: #9b9b9b;
@@ -380,7 +380,7 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: "Changa One", cursive;
+    font-family: "Literata", cursive;
     font-weight: 400;
     line-height: 1.2;
     color: #2b2c2f;
@@ -716,7 +716,7 @@ address {
 }
 
 code, kbd, pre, samp {
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-family: Menlo, Monaco, Consolas, "Literata", monospace;
 }
 
 code {
@@ -5554,7 +5554,7 @@ button.close {
     position: absolute;
     z-index: 11;
     display: block;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
@@ -5688,7 +5688,7 @@ button.close {
     display: none;
     max-width: 276px;
     padding: 1px;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: normal;
@@ -8990,11 +8990,11 @@ h1 .label-custom, h2 .label-custom, h3 .label-custom, h4 .label-custom, h5 .labe
 }
 
 .font-default {
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
 }
 
 .font-secondary {
-    font-family: "Changa One", cursive;
+    font-family: "Literata", cursive;
 }
 
 h4.font-default {
@@ -9067,7 +9067,7 @@ h4, .h4 {
 h5, .h5 {
     font-size: 20px;
     line-height: 1.5;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     font-weight: 700;
 }
 
@@ -9081,7 +9081,7 @@ h5, .h5 {
 h6, .h6 {
     font-size: 17px;
     line-height: 1.5;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     font-weight: 700;
 }
 
@@ -10728,69 +10728,69 @@ a:hover > .icon-google.icon-circle {
     border-color: #e75854;
 }
 
-.page .icon-xxs {
+.icon-xxs {
     font-size: 19px;
     line-height: 19px;
 }
 
-.page .icon-xxs-mod-1 {
+.icon-xxs-mod-1 {
     font-size: 15px;
     line-height: 15px;
 }
 
-.page .icon-xs {
+.icon-xs {
     font-size: 20px;
     line-height: 24px;
 }
 
-.page .icon-xs.icon-circle {
+.icon-xs.icon-circle {
     width: 41px;
     height: 41px;
     line-height: 38px;
 }
 
-.page .icon-sm {
+.icon-sm {
     font-size: 25px;
     line-height: 25px;
 }
 
-.page .icon-sm.icon-circle {
+Literata.icon-sm.icon-circle {
     width: 41px;
     height: 41px;
     line-height: 38px;
 }
 
-.page .icon-sm-mod-1 {
+Literata.icon-sm-mod-1 {
     font-size: 28px;
     line-height: 28px;
 }
 
-.page .icon-md {
+Literata.icon-md {
     font-size: 33px;
     line-height: 33px;
 }
 
-.page .icon-md-mod-1 {
+Literata.icon-md-mod-1 {
     font-size: 30px;
     line-height: 30px;
 }
 
-.page .icon-lg {
+Literata.icon-lg {
     font-size: 50px;
     line-height: 50px;
 }
 
-.page .icon-xl {
+Literata.icon-xl {
     font-size: 80px;
     line-height: 80px;
 }
 
-.page .icon-xxl {
+Literata.icon-xxl {
     font-size: 88px;
     line-height: 88px;
 }
 
-.page .icon-social.icon-circle {
+Literata.icon-social.icon-circle {
     width: 44px;
     height: 44px;
     line-height: 40px;
@@ -17109,28 +17109,28 @@ html .page .offset-top-100 {
     }
 }
 
-.page .link-darkest, .page .link-darkest:active, .page .link-darkest:focus {
+.link-darkest, .link-darkest:active, .link-darkest:focus {
     color: #434345;
 }
 
-.page .link-darkest:hover {
+.link-darkest:hover {
     color: #f9b129;
 }
 
-.page .rd-navbar-shop .label-inline {
+.rd-navbar-shop .label-inline {
     display: inline-block;
     vertical-align: text-top;
 }
 
-.page .rd-navbar-shop .label-inline:before, .page .rd-navbar-shop .label-inline:after {
+.rd-navbar-shop .label-inline:before, .rd-navbar-shop .label-inline:after {
     display: inline-block;
 }
 
-.page .rd-navbar-shop .label-inline:before {
+.rd-navbar-shop .label-inline:before {
     content: "(";
 }
 
-.page .rd-navbar-shop .label-inline:after {
+.rd-navbar-shop .label-inline:after {
     content: ')';
 }
 
@@ -19905,7 +19905,7 @@ table a:hover {
     font-size: 14px;
     line-height: 32px;
     font-weight: 600;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     background-color: #fff;
     border: 1px solid #d9d9d9;
     color: #333;
@@ -20008,7 +20008,7 @@ table a:hover {
     font-size: 14px;
     line-height: 32px;
     font-weight: 600;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     background-color: #fff;
     border: 1px solid #d9d9d9;
     color: #333;
@@ -26165,7 +26165,7 @@ html:not(.lt-ie10) .not-animated {
 }
 
 .rd-navbar-static .rd-navbar-search .form-control, .rd-navbar-static .rd-navbar-search .form-label {
-    font-family: "Changa One", cursive;
+    font-family: "Literata", cursive;
     font-size: 26px;
     font-weight: 700;
     color: #23201e;
@@ -28465,7 +28465,7 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 
     .responsive-tabs-button .resp-tabs-list > li {
         padding: 10px 36px;
-        font: 700 14px/24px "Lato", Helvetica, Arial, sans-serif;
+        font: 700 14px/24px 'Literata', Helvetica, Arial, sans-serif;
         text-transform: uppercase;
         letter-spacing: .075em;
         color: #9b9b9b;
@@ -29745,7 +29745,7 @@ span.search {
     margin: 0;
     padding: 0;
     text-align: center;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     font-size: 14px !important;
     position: absolute;
     text-transform: uppercase;
@@ -29786,7 +29786,7 @@ span.search {
     font-size: 17px;
     text-align: center;
     font-weight: bold;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -30272,7 +30272,7 @@ span.search {
     border: 1px solid #f5f5f5;
     border-radius: 35px;
     color: #2b2c2f;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     font-size: 14px;
     outline: 0;
 }
@@ -30282,7 +30282,7 @@ span.search {
     border: 1px solid #f5f5f5;
     border-radius: 35px;
     color: #2b2c2f;
-    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-family: "Literata", Helvetica, Arial, sans-serif;
     font-size: 14px;
 }
 

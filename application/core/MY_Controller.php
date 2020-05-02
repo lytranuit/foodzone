@@ -50,6 +50,10 @@ class MY_Controller extends CI_Controller
 
         $this->data['host'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         //        print_r($this->data['template']);
+
+        // echo "<pre>";
+        // print_r($this->data['options']);
+        // die();
     }
 
     ////////////
