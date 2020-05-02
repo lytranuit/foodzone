@@ -16,8 +16,8 @@ class Index extends MY_Controller
             base_url() . "public/lib/bootstrap/css/bootstrap.css",
             base_url() . "public/css/style.css?v=$version"
         );
-        array_push($this->data['stylesheet_tag'], base_url() . "public/lib/fastfood/font.css");
-        array_push($this->data['stylesheet_tag'], base_url() . "public/lib/fastfood/style.css");
+        array_push($this->data['stylesheet_tag'], base_url() . "public/lib/fastfood/font.css?v=$version");
+        array_push($this->data['stylesheet_tag'], base_url() . "public/lib/fastfood/style.css?v=$version");
 
         $this->data['javascript_tag'] = array(
             //            base_url() . "public/lib/bootstrap/js/jquery-slim.min.js",
