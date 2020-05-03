@@ -100,7 +100,13 @@ class Index extends MY_Controller
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
+    public function set_language($params)
+    {
+        $language = $params[0];
+        $_SESSION['language_current'] = $language;
 
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
     public function category($params)
     {
         $id = $params[0];

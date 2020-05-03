@@ -28497,7 +28497,7 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
     }
 
     .responsive-tabs-horizontal .resp-tab-content {
-        padding: 30px 0 26px;
+        /*padding: 30px 0 26px;*/
     }
 
     .responsive-tabs-horizontal.responsive-tabs-condensed .resp-tab-content {
@@ -29199,7 +29199,7 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 
 @media (min-width: 768px) {
     .responsive-tabs-carousel .resp-tab-content {
-        padding: 50px 0 26px;
+        /*padding: 50px 0 26px;*/
     }
 }
 

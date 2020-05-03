@@ -13,7 +13,8 @@ class MY_Controller extends CI_Controller
         $this->load->library(array('widget', 'ion_auth'));
         $this->load->model("page_model");
         //        $this->load->model("user_model");
-        //        echo language_current();
+            //    echo language_current();
+            //    die();
         ////// set langue
         $this->config->set_item('language', language_current());
         $this->lang->load(array('home'));

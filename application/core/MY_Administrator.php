@@ -61,7 +61,7 @@ class MY_Administrator extends CI_Controller
                         base_url() . 'public/lib/jquery-ui/jquery-ui.js',
                         base_url() . "public/assets/scripts/main.js",
                         base_url() . "public/lib/jquery-validation/jquery.validate.js",
-                        base_url() . "public/lib/image_feature/jquery.image.js",
+                        base_url() . "public/lib/image_feature/jquery.image.js?v=" . $version,
                         base_url() . "public/lib/mustache/mustache.min.js",
                         base_url() . "public/lib/inputmask/js/jquery.inputmask.bundle.js",
                         base_url() . "public/lib/moment/moment.js",

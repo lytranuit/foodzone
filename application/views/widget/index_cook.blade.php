@@ -1,6 +1,6 @@
-<section class="section-50 section-sm-top-80 section-sm-bottom-100 bg-gray-lighter text-center">
+<section class="section-20 bg-gray-lighter text-center">
     <h3>Ready to Cook</h3>
-    <div class="responsive-tabs responsive-tabs-button responsive-tabs-horizontal responsive-tabs-carousel offset-top-40">
+    <div class="responsive-tabs responsive-tabs-button responsive-tabs-horizontal responsive-tabs-carousel offset-top-20">
         <ul class="resp-tabs-list">
             @foreach($list_category as $key=>$row)
             <li class="resp-tab-item @if($key == 0) resp-tab-active @endif" aria-controls="tab_item-{{$key}}" role="tab">{{ $row->{pick_language($row,'name_')} }}</li>
@@ -18,8 +18,8 @@
                             <figure><img class="img-responsive" src="{{base_url()}}{{$product->image->src}}" alt="">
                             </figure>
                             <div class="caption">
-                                <h5><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></h5>
-                                <p class="text-italic">{{ $product->{pick_language($product,'description_')} }}</p>
+                                <h6><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></h6>
+                                <p class="text-italic">{{ split_string($product->{pick_language($product,'description_')},100) }}</p>
                                 <p><span class="price">{{number_format($product->price,0,",",".")}}</p><a class="btn btn-shape-circle btn-burnt-sienna offset-top-15" href="shop-single.html" tabindex="-1">Order Online</a>
                             </div>
                         </div>

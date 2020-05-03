@@ -1,10 +1,17 @@
 <div class="row clearfix">
     <div class="col-12">
         <form method="POST" action="" id="form-dang-tin">
-            <input type="hidden" name="parent_id" value="0" />
             <section class="card card-fluid">
                 <h5 class="card-header">
-                    <div class="d-inline-block w-100">
+                    <div>
+                        <select class="chosen" id="product_simba">
+                            <option value="0">Lấy Sản phẩm từ Simba</option>
+                            @foreach($product_simba as $row)
+                            <option value="{{$row->id}}">{{$row->code}} - {{$row->name_vi}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div style="margin-left:auto">
                         <button type="submit" name="dangtin" class="btn btn-sm btn-primary float-right">Save</button>
                     </div>
                 </h5>
@@ -35,7 +42,11 @@
                             <div class="form-group row">
                                 <b class="col-12 col-lg-2 col-form-label">Xuất xứ:</b>
                                 <div class="col-12 col-lg-4 pt-1">
-                                    <input class="form-control form-control-sm" type='text' name="origin" placeholder="Xuất xứ" />
+                                    <select name="origin_id" class="form-control form-control-sm">
+                                        @foreach($origin as $row)
+                                        <option value="{{$row->id}}">{{$row->name_vi}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -76,6 +87,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu2">Tiếng Nhật</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#menu5">Sản phẩm liên quan</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu3">Ready to Eat</a>
@@ -214,6 +229,18 @@
 
                                     </div>
                                 </div>
+                                <div id="menu5" class=" tab-pane fade">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="text-danger">Sản phẩm liên quan</label>
+                                            <select class="chosen" name="related[]" style="width: 200px;" multiple>
+                                                @foreach($product as $row)
+                                                <option value="{{$row->id}}">{{$row->code}} - {{$row->name_vi}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -226,6 +253,32 @@
 
 <script type='text/javascript'>
     $(document).ready(function() {
+        $(".chosen").chosen({
+            width: "400px"
+        });
+        $("#product_simba").change(function() {
+            let val = $(this).val();
+            $.ajax({
+                url: path + "product/get_simba/" + val,
+                dataType: "JSON",
+                success: function(data) {
+                    data['origin_id'] = data['origin_country_id'];
+                    data['price'] = data['retail_price'];
+                    fillForm($("#form-dang-tin"), data);
+                    if (data.image) {
+                        $(".image_ft").imageFeature("set_image", data.image);
+                    }
+                    $('[name=detail_vi]').froalaEditor('html.set', data['detail_vi'])
+                    $('[name=detail_en]').froalaEditor('html.set', data['detail_en'])
+                    $('[name=detail_jp]').froalaEditor('html.set', data['detail_jp'])
+
+                    $('[name=guide_vi]').froalaEditor('html.set', data['guide_vi'])
+                    $('[name=guide_en]').froalaEditor('html.set', data['guide_en'])
+                    $('[name=guide_jp]').froalaEditor('html.set', data['guide_jp'])
+
+                }
+            })
+        })
         $(".image_ft").imageFeature();
         $('#price').inputmask("numeric", {
             radixPoint: ".",

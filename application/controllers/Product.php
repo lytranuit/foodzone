@@ -49,7 +49,13 @@ class Product extends MY_Administrator
         $json_data = $this->product_model->where(array('id' => $id))->as_object()->get();
         echo json_encode($json_data);
     }
-
+    public function get_simba($params)
+    {
+        $id = $params[0];
+        $this->load->model("product_simba_model");
+        $json_data = $this->product_simba_model->where(array('id' => $id))->with_image()->as_object()->get();
+        echo json_encode($json_data);
+    }
     public function add()
     { /////// trang ca nhan
         if (isset($_POST['dangtin'])) {
@@ -72,12 +78,35 @@ class Product extends MY_Administrator
                     $this->product_category_model->insert($array);
                 }
             }
+
+            /*
+             * SP lien quan
+             */
+
+            $this->load->model("product_related_model");
+            if (isset($data['related'])) {
+                foreach ($data['related'] as $row) {
+                    $array = array(
+                        'product_related_id' => $row,
+                        'product_id' => $id
+                    );
+                    $this->product_related_model->insert($array);
+                }
+            }
             redirect('product', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             load_editor($this->data);
+            load_chossen($this->data);
             $this->load->model("category_model");
+            $this->load->model("origin_model");
+            $this->load->model("product_simba_model");
+            $this->load->model("product_model");
+
+            $this->data['product'] = $this->product_model->where(array("deleted" => 0))->get_all();
             $this->data['eat'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 1))->get_all();
             $this->data['cook'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 2))->get_all();
+            $this->data['origin'] = $this->origin_model->get_all();
+            $this->data['product_simba'] = $this->product_simba_model->where(array("status" => 1))->get_all();
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
     }
@@ -95,15 +124,15 @@ class Product extends MY_Administrator
             /* CATEGORY */
             $this->load->model("product_category_model");
             $array = $this->product_category_model->where('product_id', $id)->as_array()->get_all();
-            $categroy_old = array_map(function ($item) {
+            $related_old = array_map(function ($item) {
                 return $item['category_id'];
             }, $array);
-            $categroy_new = array();
+            $related_new = array();
             if (isset($data['category_list'])) {
-                $categroy_new = array_merge($categroy_new, $data['category_list']);
+                $related_new = array_merge($related_new, $data['category_list']);
             }
-            $array_delete = array_diff($categroy_old, $categroy_new);
-            $array_add = array_diff($categroy_new, $categroy_old);
+            $array_delete = array_diff($related_old, $related_new);
+            $array_add = array_diff($related_new, $related_old);
             foreach ($array_add as $row) {
                 $array = array(
                     'category_id' => $row,
@@ -119,23 +148,67 @@ class Product extends MY_Administrator
                 $this->product_category_model->where($array)->delete();
             }
 
+            /* SP lien quan */
+            $this->load->model("product_related_model");
+            $array = $this->product_related_model->where('product_id', $id)->as_array()->get_all();
+            $related_old = array_map(function ($item) {
+                return $item['product_related_id'];
+            }, $array);
+            $related_new = array();
+            if (isset($data['related'])) {
+                $related_new = array_merge($related_new, $data['related']);
+            }
+            $array_delete = array_diff($related_old, $related_new);
+            $array_add = array_diff($related_new, $related_old);
+            foreach ($array_add as $row) {
+                $array = array(
+                    'product_related_id' => $row,
+                    'product_id' => $id
+                );
+                $this->product_related_model->insert($array);
+            }
+            foreach ($array_delete as $row) {
+                $array = array(
+                    'product_related_id' => $row,
+                    'product_id' => $id
+                );
+                $this->product_related_model->where($array)->delete();
+            }
             redirect('product', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             $this->load->model("product_model");
-            $tin = $this->product_model->where(array('id' => $id))->with_image()->with_category()->as_object()->get();
-            if (isset($tin->category)) {
+            $this->load->model("product_related_model");
+            $this->load->model("product_category_model");
+            $tin = $this->product_model->where(array('id' => $id))->with_image()->as_object()->get();
+            $product_related = $this->product_related_model->where(array('product_id' => $id))->as_object()->get_all();
+            $category = $this->product_category_model->where(array('product_id' => $id))->as_object()->get_all();
+            if (!empty($category)) {
                 $cate_id = array();
-                foreach ($tin->category as $key => $cate) {
-                    $cate_id[] = $key;
+                foreach ($category as $key => $cate) {
+                    $cate_id[] = $cate->category_id;
                 }
                 $tin->category_list = $cate_id;
+            }
+            if (!empty($product_related)) {
+                $related_id = array();
+                foreach ($product_related as $key => $related) {
+                    $related_id[] = $related->product_related_id;
+                }
+                $tin->related = $related_id;
             }
             $this->data['tin'] = $tin;
 
             load_editor($this->data);
+            load_chossen($this->data);
             $this->load->model("category_model");
+            $this->load->model("origin_model");
+            $this->load->model("product_simba_model");
+
+            $this->data['product'] = $this->product_model->where(array("deleted" => 0))->get_all();
             $this->data['eat'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 1))->get_all();
             $this->data['cook'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 2))->get_all();
+            $this->data['origin'] = $this->origin_model->get_all();
+            $this->data['product_simba'] = $this->product_simba_model->where(array("status" => 1))->get_all();
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
     }

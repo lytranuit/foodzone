@@ -115,8 +115,10 @@
             })
         },
         set_image: function (image) {
+            let id = image.id;
             let src = path + image.src;
             $(this.image).attr("src", src)
+            $(this.input).val(id);
         }
     });
 })(jQuery);

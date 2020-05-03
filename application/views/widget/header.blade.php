@@ -32,7 +32,9 @@
                             <li>
                                 <a class="navbar-icon thin-icon-tag" href="{{base_url()}}index/news">News</a>
                             </li>
-                            <li><a class="navbar-icon thin-icon-map-marker" href="{{base_url()}}index/contact">Contacts</a></li>
+                            <!-- <li><a class="navbar-icon thin-icon-map-marker" href="{{base_url()}}index/contact">Contacts</a></li> -->
+
+
                             <li><a class="navbar-icon thin-icon-email-search" href="#" style="font-size: 30px;
                                    line-height: 12px;
                                    text-align: center;
@@ -41,6 +43,11 @@
 
                         <!-- RD Navbar Shop-->
                         <ul class="rd-navbar-shop list-inline">
+                            <li>
+                                <a class="text-center" href="{{base_url()}}index/set_language/vietnamese"><img src="http://simbaeshop.com/flag/vi.png"></a>
+                                <a class="text-center" href="{{base_url()}}index/set_language/english"><img src="http://simbaeshop.com/flag/en.png"></a>
+                                <a class="text-center" href="{{base_url()}}index/set_language/japanese"><img src="http://simbaeshop.com/flag/jp.png"></a>
+                            </li>
                             <li><a class="unit unit-horizontal unit-middle unit-spacing-xxs link-default" href="tel:#">
                                     <div class="unit-left"><span class="icon icon-md icon-primary thin-icon-phone-call text-middle" style="font-size: 33px;line-height: 33px;"></span></div>
                                     <div class="unit-body">
