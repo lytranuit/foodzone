@@ -31,7 +31,7 @@
                     @foreach($row->product as $product)
                     <div class="col-12 col-sm-6 col-md-4 isotope-item" data-filter="Category {{$key}}" style="position: absolute; left: 0px; top: 0px;">
                         <div class="thumbnail-menu-modern">
-                            <figure><img class="img-responsive" src="{{base_url()}}{{$product->image->src}}" alt="" width="310" height="260">
+                            <figure><img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="" width="310" height="260">
                             </figure>
                             <div class="caption">
                                 <h5><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></h5>

@@ -5,8 +5,8 @@
         <div class="row justify-content-xs-center">
             <div class="col-sm-6 text-lg-left">
                 <div class="easyzoom easyzoom--adjacent">
-                    <a href="{{base_url()}}{{$product->image->src}}">
-                        <img src="{{base_url()}}{{$product->image->src}}" class='img-responsive' />
+                    <a href="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif">
+                        <img src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" class='img-responsive' />
                     </a>
                 </div>
             </div>

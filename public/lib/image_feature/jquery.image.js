@@ -117,6 +117,9 @@
         set_image: function (image) {
             let id = image.id;
             let src = path + image.src;
+            if (image.type == 2) {
+                src = "http://simbaeshop.com" + image.src;
+            }
             $(this.image).attr("src", src)
             $(this.input).val(id);
         }
