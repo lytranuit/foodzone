@@ -22798,8 +22798,9 @@ fieldset[disabled] .one-screen-page .btn-primary {
         transform: translateY(0);
     }
 
-    .thumbnail-menu-modern:hover figure img {
+    .thumbnail-menu-modern:hover figure {
         /* height: 320px; */
+        Padding-top: 10px;
     }
 }
 

@@ -30,7 +30,12 @@
                             // print_r($product->price_km);
                             // die();
                             if (!empty($product->price_km)) {
-                                $price_km = array_values((array) $product->price_km);
+                                $price_km = array();
+                                foreach ($product->price_km as $row1) {
+                                    $now =  date("Y-m-d H:i:s");
+                                    if ($row1->date_from < $now && $row1->date_to > $now)
+                                        $price_km[] = $row1;
+                                }
                                 $product->km_price = $price_km[0]->price;
                             }
                             ?>
