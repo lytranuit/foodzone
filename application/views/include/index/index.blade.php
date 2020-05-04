@@ -1,7 +1,5 @@
 <?= $widget->index_slider() ?>
 <?= $widget->index_eat() ?>
-<section class="bg-image-5" style="padding:200px;">
-</section>
 <?= $widget->index_cook() ?>
 <section>
     <div id="map"></div>

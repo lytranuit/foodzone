@@ -88,7 +88,7 @@ class Widget
     public function index_slider()
     {
         $this->CI->load->model("slider_model");
-        $this->data['list_silder'] = $this->CI->slider_model->where(array('deleted' => 0))->with_image()->get_all();
+        $this->data['list_slider'] = $this->CI->slider_model->where(array('deleted' => 0))->with_image()->get_all();
 
         echo $this->blade->view()->make('widget/index_slider', $this->data)->render();
     }
@@ -99,11 +99,16 @@ class Widget
         $this->CI->load->model("product_category_model");
         $this->CI->load->model("product_model");
         $list_category = $this->CI->category_model->where(array('deleted' => 0, 'active' => 1, 'menu_id' => 1))->order_by('order', 'ASC')->get_all();
+        $count = 0;
+        // echo "<pre>";
         foreach ($list_category as &$row) {
-            $row->product = $this->CI->product_model->where("deleted = 0 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_image()->limit(20)->get_all();
+            $row->product = $this->CI->product_model->where("deleted = 0 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->with_image()->with_price_km('order_inside:date_from desc')->get_all();
+            // print_r($row->product);
+
+            $count += count($row->product);
         }
         // echo "<pre>";
-        // print_r($list_category);
+        // print_r($count);
         // die();
         $this->data['list_category'] = $list_category;
         echo $this->blade->view()->make('widget/index_eat', $this->data)->render();

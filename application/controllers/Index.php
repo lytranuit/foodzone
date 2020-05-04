@@ -13,11 +13,11 @@ class Index extends MY_Controller
         $version = $this->config->item("version");
         $this->data['stylesheet_tag'] = array(
             base_url() . "public/lib/fonts/fontawesome/css/fontawesome-all.css",
-            base_url() . "public/lib/bootstrap/css/bootstrap.css",
-            base_url() . "public/css/style.css?v=$version"
+            base_url() . "public/lib/bootstrap/css/bootstrap.css"
         );
         array_push($this->data['stylesheet_tag'], base_url() . "public/lib/fastfood/font.css?v=$version");
         array_push($this->data['stylesheet_tag'], base_url() . "public/lib/fastfood/style.css?v=$version");
+        array_push($this->data['stylesheet_tag'], base_url() . "public/css/style.css?v=$version");
 
         $this->data['javascript_tag'] = array(
             //            base_url() . "public/lib/bootstrap/js/jquery-slim.min.js",
@@ -90,6 +90,7 @@ class Index extends MY_Controller
         $this->data['product']->str_list_category = implode(" / ", array_map(function ($item) {
             return $item->{pick_language($item, "name_")};
         }, array_values((array) $this->data['product']->category)));
+        
         if (!empty($this->data['product']->price_km)) {
             $price_km = array_values((array) $this->data['product']->price_km);
             $this->data['product']->km_price = $price_km[0]->price;

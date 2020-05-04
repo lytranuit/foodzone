@@ -12,12 +12,25 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group row">
-                                <b class="col-12 col-sm-2 col-form-label">Thứ tự:<i class="text-danger">*</i></b>
-                                <div class="col-12 col-md-4 pt-1">
-                                    <input class="form-control form-control-sm" type='number' name="order" required="" placeholder="Thứ tự" />
+                                <b class="col-12 col-lg-2 col-form-label">Thứ tự:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <input class="form-control form-control-sm" type='number' name="order" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <b class="col-12 col-lg-2 col-form-label">Text:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <input class="form-control form-control-sm" type='text' name="text" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <b class="col-12 col-lg-2 col-form-label">Liên kết</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <input class="form-control form-control-sm" type='text' name="url" />
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-4">
                             <div class="form-group row">
                                 <div class="col-12 col-sm-8 col-lg-6 pt-1">
