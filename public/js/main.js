@@ -13,7 +13,7 @@ $(document).ready(function () {
         $(".index_product", section).html(spinner);
         let product = await $.ajax({
             url: path + "ajax/product",
-            data: { category_id: id, menu_id: id, limit: 30 },
+            data: { category_id: id, menu_id: menu_id, limit: 30 },
             dataType: "HTML"
         });
         $(".index_product", section).html(product);
