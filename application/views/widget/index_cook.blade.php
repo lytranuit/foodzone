@@ -9,7 +9,7 @@
                         </a>
                         <div style="margin-left:auto;font-size:13px;">
                             <div class="d-none d-sm-block">
-                                <ul class="nav-custom index_category" data-id="1">
+                                <ul class="nav-custom index_category" data-id="2">
                                     <li>
                                         <a href="#" class="active" data-id="0">Tất cả</a>
                                     </li>
