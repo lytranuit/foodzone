@@ -4,7 +4,7 @@
             <div class="col-12">
                 <div class="card card-custom">
                     <h5 class="card-header">
-                        <span>
+                        <span class="text-warning">
                             Ready to cook
                         </span>
                         <div style="margin-left:auto;font-size:13px;">

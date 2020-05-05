@@ -31475,7 +31475,9 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 
 @media (min-width: 768px) {
     .responsive-tabs-horizontal .resp-tabs-list {
-        margin-top: -10px;
+        border-bottom: 1px solid #d2d1d1;
+        margin: 0;
+        padding: 0;
     }
 
     .responsive-tabs-horizontal .resp-tabs-list > li {
@@ -32102,11 +32104,6 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 
 .details .price,
 .details .icon,
-.details li:before {
-    vertical-align: middle;
-    transition: 350ms;
-}
-
 .details .price {
     font-size: 24px;
     color: #ec5353;
@@ -32130,60 +32127,13 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
     font-size: 14px;
 }
 
-.details li {
-    padding: 0 24px 0 0;
-}
-
-.details li + li {
-    position: relative;
-    margin-left: 24px;
-}
-
-.details li + li:before {
-    position: absolute;
-    left: -26px;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    content: "or";
-    display: inline-block;
-    pointer-events: none;
-}
-
-.details li.resp-tab-active .price {
-    font-weight: 700;
-}
-
-.details li:hover .price,
-.details li.resp-tab-active .price,
-.details .resp-accordion.resp-tab-active .price {
-    color: #ec5353;
-}
-
-.details li:hover .icon,
-.details li.resp-tab-active .icon,
-.details .resp-accordion.resp-tab-active .icon {
-    color: #fff;
-    border-color: #f9b129;
-    background-color: #f9b129;
-}
-
-.details .resp-accordion {
-    margin-top: -1px;
-    border-top: 1px solid #e5e7e9;
-    border-bottom: 1px solid #e5e7e9;
-}
-
-.details * + .resp-accordion {
-    margin-top: 10px;
-}
 .details .price.price-prev {
     color: #e5e7e9;
     text-decoration: line-through;
 }
 .responsive-tabs.responsive-tabs-horizontal-background .resp-tabs-list li {
-    padding: 10px 55px 5px;
-    font-size: 18px;
+    padding: 10px 20px 5px 10px;
+    font-size: 16px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
 }
@@ -32194,13 +32144,13 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 
 .responsive-tabs.responsive-tabs-horizontal-background .resp-tabs-list li:hover,
 .responsive-tabs.responsive-tabs-horizontal-background .resp-tabs-list li.resp-tab-active {
-    color: #2b2c2f;
-    background-color: #f2f3f8;
+    color: #e09c1c;
+    border-bottom: 2px solid;
 }
 
 @media (min-width: 768px) {
     .responsive-tabs.responsive-tabs-horizontal-background .resp-tabs-container {
-        background-color: #f2f3f8;
+        
     }
 }
 
@@ -32210,7 +32160,7 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 
 @media (min-width: 1200px) {
     .responsive-tabs.responsive-tabs-horizontal-background .resp-tab-content {
-        padding: 46px 0 85px;
+        /* padding: 46px 0 85px; */
         max-width: 1170px;
         margin-left: auto;
         margin-right: auto;

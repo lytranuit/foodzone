@@ -41,7 +41,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-md-3 offset-top-60 offset-md-top-0">
+            <div class="col-md-3 offset-top-20 offset-md-top-0">
                 <?= $widget->right() ?>
             </div>
         </div>
