@@ -14,8 +14,9 @@
                             <button class="isotope-filters-toggle btn btn-primary-lighter btn-shape-circle" data-custom-toggle="#isotope-1" data-custom-toggle-disable-on-blur="true">Filter<span class="caret"></span></button>
                             <div class="isotope-filters isotope-filters-buttons" id="isotope-1">
                                 <ul class="inline-list">
+                                    <li><a class="btn-shape-circle btn active" data-isotope-filter="*" data-isotope-group="gallery" href="#">Tất cả</a></li>
                                     @foreach($list_category as $key=>$row)
-                                    <li><a class="btn-shape-circle btn @if($key == 0) active @endif" data-isotope-filter="Category {{$key}}" data-isotope-group="gallery" href="#">{{ $row->{pick_language($row,'name_')} }}</a></li>
+                                    <li><a class="btn-shape-circle btn" data-isotope-filter="Category {{$key}}" data-isotope-group="gallery" href="#">{{ $row->{pick_language($row,'name_')} }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -29,14 +30,37 @@
 
                     @foreach($list_category as $key=>$row)
                     @foreach($row->product as $product)
-                    <div class="col-12 col-sm-6 col-md-4 isotope-item" data-filter="Category {{$key}}" style="position: absolute; left: 0px; top: 0px;">
-                        <div class="thumbnail-menu-modern">
-                            <figure><img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="" width="310" height="260">
+                    <div class="col-6 col-md-4 col-lg-3 isotope-item" data-filter="Category {{$key}}" style="position: absolute; left: 0px; top: 0px;">
+                        <?php
+                        // print_r($product->price_km);
+                        // die();
+                        if (!empty($product->price_km)) {
+                            $price_km = array();
+                            foreach ($product->price_km as $row1) {
+                                $now =  date("Y-m-d H:i:s");
+                                if ($row1->date_from < $now && $row1->date_to > $now)
+                                    $price_km[] = $row1;
+                            }
+                            $product->km_price = $price_km[0]->price;
+                        }
+                        ?>
+                        <div class="thumbnail-menu-modern border border-light">
+                            <figure>
+                                <a href="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" class="fancybox">
+                                    <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
+                                </a>
                             </figure>
                             <div class="caption">
-                                <h5><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></h5>
-                                <p class="text-italic">{{ split_string($product->{pick_language($product,'description_')},100) }}</p>
-                                <p><span class="price">{{number_format($product->price,0,",",".")}}</p><a class="btn btn-shape-circle btn-burnt-sienna offset-top-15" href="shop-single.html" tabindex="-1">Order Online</a>
+                                <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></div>
+                                <div>
+
+                                    @if(!isset($product->price_km) || empty($product->price_km))
+                                    <span class="price">{{number_format($product->price,0,",",".")}}đ</span>
+                                    @else
+                                    <span class="price price-prev">{{number_format($product->price,0,",",".")}}đ</span>
+                                    <span class="price">{{ number_format($product->km_price,0,",",".") }}đ</span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

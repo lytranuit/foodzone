@@ -9,6 +9,7 @@ $(document).ready(function () {
     plugins.isotope = $(".isotope")
     plugins.customToggle = $("[data-custom-toggle]")
     plugins.easyzoom = $('.easyzoom');
+    plugins.fancybox = $('.fancybox');
 
     introCarousel();
     /**
@@ -118,6 +119,9 @@ $(document).ready(function () {
     }
     if (plugins.easyzoom.length) {
         plugins.easyzoom.easyZoom();
+    }
+    if (plugins.fancybox.length) {
+        plugins.fancybox.fancybox();
     }
     /**
      * Isotope

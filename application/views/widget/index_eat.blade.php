@@ -4,17 +4,19 @@
             <div class="col-12">
                 <div class="card card-custom">
                     <h5 class="card-header">
-                        <span class="text-warning">
+                        <a href="{{base_url()}}index/category/1" class="text-warning">
                             Ready to eat
-                        </span>
+                        </a>
                         <div style="margin-left:auto;font-size:13px;">
                             <div class="d-none d-sm-block">
-                                <ul class="nav-custom">
+                                <ul class="nav-custom index_category" data-id="1">
                                     <li>
-                                        <a href="#" class="active">Tất cả</a>
+                                        <a href="#" class="active" data-id="0">Tất cả</a>
                                     </li>
                                     @foreach($list_category as $key=>$row)
-                                    <li> <a href="#">{{ $row->{pick_language($row,'name_')} }}</a></li>
+                                    <li>
+                                        <a href="#" data-id="{{$row->id}}">{{ $row->{pick_language($row,'name_')} }}</a>
+                                    </li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -23,41 +25,10 @@
                     </h5>
 
                     <div class="card-body mt-2">
-                        <div class="row no-gutters">
-                            @foreach($list_category as $key=>$row)
-                            @foreach($row->product as $product)
-                            <?php
-                            // print_r($product->price_km);
-                            // die();
-                            if (!empty($product->price_km)) {
-                                $price_km = array();
-                                foreach ($product->price_km as $row1) {
-                                    $now =  date("Y-m-d H:i:s");
-                                    if ($row1->date_from < $now && $row1->date_to > $now)
-                                        $price_km[] = $row1;
-                                }
-                                $product->km_price = $price_km[0]->price;
-                            }
-                            ?>
-                            <div class="thumbnail-menu-modern col-6 col-lg-2 border border-light">
-                                <figure><img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
-                                </figure>
-                                <div class="caption">
-                                    <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></div>
-                                    <div>
-
-                                        @if(!isset($product->price_km) || empty($product->price_km))
-                                        <span class="price">{{number_format($product->price,0,",",".")}}đ</span>
-                                        @else
-                                        <span class="price price-prev">{{number_format($product->price,0,",",".")}}đ</span>
-                                        <span class="price">{{ number_format($product->km_price,0,",",".") }}đ</span>
-                                        @endif
-                                    </div>
-                                </div>
+                        <div class="row no-gutters index_product" style="min-height: 400px;">
+                            <div class="text-center col-12 h4">
+                                <i class="fas fa-circle-notch fa-spin"></i>
                             </div>
-
-                            @endforeach
-                            @endforeach
                         </div>
 
                     </div>

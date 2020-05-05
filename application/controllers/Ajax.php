@@ -48,7 +48,7 @@ class Ajax extends MY_Controller
         $config['max_size'] = '10000';
         $this->load->library('upload', $config);
         $files = $_FILES;
-        
+
         $ext = pathinfo($files['file']['name'], PATHINFO_EXTENSION);
         $_FILES['file']['name'] = time() . "." . $ext;
         $real_name = $files['file']['name'];
@@ -415,25 +415,21 @@ class Ajax extends MY_Controller
     function product()
     {
         $this->load->model("product_model");
-        $this->load->model("categorysimba_model");
-        $category = $this->input->get("category");
+        $this->load->model("product_category_model");
+        $category = $this->input->get("category_id");
+        $menu_id = $this->input->get("menu_id");
         $search = $this->input->get("search");
         $page = $this->input->get("page");
         $limit = $this->input->get("limit");
         $page = $page != "" ? $page : 1;
         $limit = $limit != "" ? $limit : 10;
-        $sql_where = "deleted = 0";
+        $sql_where = "deleted = 0 and active = 1";
         if ($category > 0) {
-            $category = $this->categorysimba_model->where('id', $category)->with_product()->as_array()->get();
-            //            echo "<pre>";
-            //            print_r($category);
-            //            die();
-            if (isset($category['product']) && count($category['product'])) {
-                $array_product = array_keys($category['product']);
-                $str_product = implode(",", $array_product);
-                $sql_where .= " AND id_product IN ($str_product)";
-            }
+            $sql_where .= " AND id IN (SELECT product_id FROM fz_product_category WHERE category_id = $category)";
+        } else {
+            $sql_where .= " AND id IN (SELECT product_id FROM fz_product_category WHERE category_id IN(SELECT  id FROM fz_category WHERE menu_id = 1 ))";
         }
+
         if ($search != "") {
             $short_language = short_language_current();
             $sql_where .= " AND (name_" . $short_language . " like '%" . $search . "%' OR (name_vi like '%" . $search . "%' AND name_" . $short_language . " IN(NULL,'')))";
@@ -446,7 +442,7 @@ class Ajax extends MY_Controller
         /*
          * LAY DATA
          */
-        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->order_by("date", "DESC")->with_files()->as_array()->paginate($limit, NULL, $page);
+        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->order_by("order", "ASC")->with_image()->with_price_km()->paginate($limit, NULL, $page);
         //        echo "<pre>";
         //        print_r($count);
         //        print_r($limit);

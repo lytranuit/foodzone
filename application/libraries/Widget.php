@@ -44,6 +44,9 @@ class Widget
 
     public function right()
     {
+
+        $this->CI->load->model("news_model");
+        $this->data['news'] = $this->CI->news_model->where(array('deleted' => 0))->with_image()->order_by("id", "DESC")->limit(5)->get_all();
         echo $this->blade->view()->make('widget/right', $this->data)->render();
     }
 

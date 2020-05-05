@@ -27,7 +27,7 @@ class Index extends MY_Controller
 
             base_url() . "public/lib/rd_nav/js/jquery.rd-navbar.min.js", // navbar
             "https://sp.zalo.me/plugins/sdk.js",
-            // base_url() . "public/js/main.js?v=$version"
+            base_url() . "public/js/main.js?v=$version"
         );
     }
 
@@ -49,6 +49,7 @@ class Index extends MY_Controller
         $version = $this->config->item("version");
 
 
+        load_fancybox($this->data);
         load_slick($this->data);
         load_swiper($this->data);
         load_easyResponsiveTabs($this->data);
@@ -84,17 +85,21 @@ class Index extends MY_Controller
             show_404();
         $this->data['title'] = $product->{pick_language($product, 'name_')};
         $this->data['product'] = $product;
-        load_easyzoom($this->data);
+        // load_easyzoom($this->data);
+        load_fancybox($this->data);
         load_easyResponsiveTabs($this->data);
         load_froala_view($this->data);
+        load_slick($this->data);
         $this->data['product']->str_list_category = implode(" / ", array_map(function ($item) {
             return $item->{pick_language($item, "name_")};
         }, array_values((array) $this->data['product']->category)));
-        
+
         if (!empty($this->data['product']->price_km)) {
             $price_km = array_values((array) $this->data['product']->price_km);
             $this->data['product']->km_price = $price_km[0]->price;
         }
+        $this->data['product_related'] = $this->product_model->where("deleted = 0 and id IN(SELECT product_related_id FROM fz_product_related WHERE product_id = $id)", null, null, null, null, true)->with_image()->with_price_km('order_inside:date_from desc')->get_all();
+
         // echo "<pre>";
         // print_r($this->data['product']);
         // die();
@@ -122,11 +127,11 @@ class Index extends MY_Controller
         $this->load->model("product_model");
         $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'menu_id' => $id))->order_by('order', 'ASC')->get_all();
         foreach ($list_category as &$row) {
-            $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'ASC')->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_image()->limit(20)->get_all();
+            $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'ASC')->with_price_km()->with_image()->limit(20)->get_all();
         }
         $this->data['list_category'] = $list_category;
         $version = $this->config->item("version");
-
+        load_fancybox($this->data);
         array_push($this->data['javascript_tag'], base_url() . "public/lib/isotope/isotope.min.js");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();

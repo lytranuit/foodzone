@@ -17,7 +17,7 @@
                                     <div class="unit unit-horizontal unit-spacing-xxs">
                                         <div class="unit-left"><span class="text-base">Date:</span></div>
                                         <div class="unit-body">
-                                            <time datetime="2019-01-01">{{date('F j,Y',strtotime($post->date))}}</time>
+                                            <time>{{date('F j,Y',strtotime($post->date))}}</time>
                                         </div>
                                     </div>
                                 </li>

@@ -28,6 +28,15 @@ if (!function_exists('load_datatable')) {
 }
 
 
+if (!function_exists('load_fancybox')) {
+
+    function load_fancybox(&$data)
+    {
+        array_push($data['stylesheet_tag'], base_url() . "public/lib/fancybox/jquery.fancybox.min.css");
+
+        array_push($data['javascript_tag'], base_url() . "public/lib/fancybox/jquery.fancybox.min.js");
+    }
+}
 if (!function_exists('load_daterangepicker')) {
 
     function load_daterangepicker(&$data)

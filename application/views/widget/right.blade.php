@@ -17,8 +17,8 @@
                     <div class="card-body">
                         <!-- Category-->
                         <ul class="list list-marked list-marked-burnt-sienna list-bordered">
-                            <li><a class="link-default" href="{{base_url()}}index/category">Ready to Eat</a></li>
-                            <li><a class="link-default" href="{{base_url()}}index/category">Ready to Cook</a></li>
+                            <li><a class="link-default" href="{{base_url()}}index/category/1">Ready to Eat</a></li>
+                            <li><a class="link-default" href="{{base_url()}}index/category/2">Ready to Cook</a></li>
                         </ul>
                     </div>
                 </div>
@@ -26,35 +26,21 @@
             <div class="col-sm-6 col-md-12 offset-top-50 offset-sm-top-0 offset-md-top-50">
                 <!-- Archive-->
                 <div class="card card-custom">
-                    <div class="text-uppercase card-header">Popular posts</div>
+                    <div class="text-uppercase card-header">New posts</div>
                     <div class="card-body">
+                        @foreach($news as $row)
                         <div class="unit unit-horizontal unit-spacing-xs">
-                            <div class="unit-left"><img class="img-rounded" src="images/aside-blog-01-70x70.jpg" alt="" width="70" height="70">
+                            <div class="unit-left">
+                                <img class="img-rounded" src="{{base_url()}}{{$row->image->src}}" alt="" width="70" height="70">
                             </div>
-                            <div class="unit-body"><a class="link-default" href="blog-post.html"> Classic American Burger is Available Now!</a>
+                            <div class="unit-body"><a class="link-default" href="{{base_url()}}/index/post/{{$row->id}}">{{$row->title}}</a>
                                 <div>
-                                    <time datetime="2019">Feb 4, 2019</time> <span>/</span> <span>1 Comment</span>
+                                    <time>{{date('F j,Y',strtotime($row->date))}}</time>
                                 </div>
                             </div>
                         </div>
-                        <div class="unit unit-horizontal unit-spacing-xs offset-top-15">
-                            <div class="unit-left"><img class="img-rounded" src="images/aside-blog-02-70x70.jpg" alt="" width="70" height="70">
-                            </div>
-                            <div class="unit-body"><a class="link-default" href="blog-post.html"> 5 Classic NYC Burgers You Have to Eat</a>
-                                <div>
-                                    <time datetime="2019">Feb 4, 2019</time> <span>/</span> <span>2 Comment</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="unit unit-horizontal unit-spacing-xs offset-top-15">
-                            <div class="unit-left"><img class="img-rounded" src="images/aside-blog-03-70x70.jpg" alt="" width="70" height="70">
-                            </div>
-                            <div class="unit-body"><a class="link-default" href="blog-post.html"> Top 5 New Burgers from Our Chef</a>
-                                <div>
-                                    <time datetime="2019">Feb 4, 2019</time> <span>/</span> <span>0 Comment</span>
-                                </div>
-                            </div>
-                        </div>
+                        <hr class="my-2">
+                        @endforeach
                     </div>
                 </div>
             </div>
