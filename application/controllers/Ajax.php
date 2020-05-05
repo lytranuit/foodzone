@@ -427,7 +427,7 @@ class Ajax extends MY_Controller
         if ($category > 0) {
             $sql_where .= " AND id IN (SELECT product_id FROM fz_product_category WHERE category_id = $category)";
         } else {
-            $sql_where .= " AND id IN (SELECT product_id FROM fz_product_category WHERE category_id IN(SELECT  id FROM fz_category WHERE menu_id = 1 ))";
+            $sql_where .= " AND id IN (SELECT product_id FROM fz_product_category WHERE category_id IN(SELECT  id FROM fz_category WHERE menu_id = $menu_id ))";
         }
 
         if ($search != "") {
