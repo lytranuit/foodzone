@@ -20,7 +20,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <a class="d-block d-sm-none" href="#">Xem thêm</a>
+                            <a class="d-block d-sm-none" href="{{base_url()}}index/category/1">Xem thêm</a>
                         </div>
                     </h5>
 
