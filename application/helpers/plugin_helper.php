@@ -28,6 +28,13 @@ if (!function_exists('load_datatable')) {
 }
 
 
+if (!function_exists('load_autonumberic')) {
+
+    function load_autonumberic(&$data)
+    {
+        array_push($data['javascript_tag'], base_url() . "public/lib/autoNumberic/autoNumberic.js");
+    }
+}
 if (!function_exists('load_fancybox')) {
 
     function load_fancybox(&$data)

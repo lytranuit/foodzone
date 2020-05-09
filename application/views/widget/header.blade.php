@@ -27,7 +27,7 @@
                                 <a class="" href="#">Category</a>
                                 <ul class="rd-navbar-dropdown rd-navbar-open-right">
                                     @foreach($list_cate as $row)
-                                    <li><a href="">{{$row->name_vi}}</a></li>
+                                    <li><a href="{{base_url()}}index/category/{{$row->id}}">{{ $row->{pick_language($row,'name_')} }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -35,7 +35,7 @@
                                 <a class="" href="#">Topics</a>
                                 <ul class="rd-navbar-dropdown rd-navbar-open-right">
                                     @foreach($list_topics as $row)
-                                    <li><a href="">{{$row->name_vi}}</a></li>
+                                    <li><a href="{{base_url()}}index/category/{{$row->id}}">{{ $row->{pick_language($row,'name_')} }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>

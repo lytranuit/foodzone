@@ -27870,7 +27870,7 @@ html:not(.lt-ie10) .not-animated {
 }
 
 html.rd-navbar-fixed-linked .page {
-    padding-top: 28px;
+    padding-top: 56px;
 }
 
 @media (min-width: 1200px) {

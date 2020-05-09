@@ -1,71 +1,164 @@
-<?= $widget->post_header($title) ?>
-
-<section class="section-50 section-sm-100">
-    <div class="container isotope-wrap">
-        <div class="row justify-content-sm-center">
-            <div class="col-12">
-                <div class="col-box text-center">
-                    <ul class="isotope-filters-responsive">
-                        <li>
-                            <p>Choose your category:</p>
-                        </li>
-                        <li class="block-top-level">
-                            <!-- Isotope Filters-->
-                            <button class="isotope-filters-toggle btn btn-primary-lighter btn-shape-circle" data-custom-toggle="#isotope-1" data-custom-toggle-disable-on-blur="true">Filter<span class="caret"></span></button>
-                            <div class="isotope-filters isotope-filters-buttons" id="isotope-1">
-                                <ul class="inline-list">
-                                    <li><a class="btn-shape-circle btn active" data-isotope-filter="*" data-isotope-group="gallery" href="#">Tất cả</a></li>
-                                    @foreach($list_category as $key=>$row)
-                                    <li><a class="btn-shape-circle btn" data-isotope-filter="Category {{$key}}" data-isotope-group="gallery" href="#">{{ $row->{pick_language($row,'name_')} }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-12 offset-top-40">
-                <!-- Isotope Content-->
-                <div class="row isotope isotope-menu" data-isotope-layout="fitRows" data-isotope-group="gallery" data-lightgallery="group" style="position: relative; height: 998.4px;">
-
-                    @foreach($list_category as $key=>$row)
-                    @foreach($row->product as $product)
-                    <div class="col-6 col-md-4 col-lg-3 isotope-item" data-filter="Category {{$key}}" style="position: absolute; left: 0px; top: 0px;">
-                        <?php
-                        // print_r($product->price_km);
-                        // die();
-                        if (!empty($product->price_km)) {
-                            $price_km = array();
-                            foreach ($product->price_km as $row1) {
-                                $now =  date("Y-m-d H:i:s");
-                                if ($row1->date_from < $now && $row1->date_to > $now)
-                                    $price_km[] = $row1;
-                            }
-                            $product->km_price = $price_km[0]->price;
-                        }
-                        ?>
-                        <div class="thumbnail-menu-modern border border-light">
-                            <figure>
-                                <a href="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" class="fancybox">
-                                    <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
-                                </a>
-                            </figure>
-                            <div class="caption">
-                                <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></div>
-                                <div>
-
-                                    @if(!isset($product->price_km) || empty($product->price_km))
-                                    <span class="price">{{number_format($product->price,0,",",".")}}đ</span>
-                                    @else
-                                    <span class="price price-prev">{{number_format($product->price,0,",",".")}}đ</span>
-                                    <span class="price">{{ number_format($product->km_price,0,",",".") }}đ</span>
-                                    @endif
-                                </div>
-                            </div>
+<section class="section-20 bg-gray-lighter">
+    <div class="container-wide">
+        <div class="row">
+            <div class="col-lg-3 mb-4">
+                <div class="card card-custom">
+                    <div class="card-header">
+                        Bộ lọc
+                        <div style="margin-left:auto;font-size:11px;text-transform: none;">
+                            <a href="#">Loại bỏ</a>
                         </div>
                     </div>
-                    @endforeach
-                    @endforeach
+                </div>
+                <div class="card card-custom offset-top-20">
+                    <div class="card-header">
+                        Sắp xếp
+                        <div style="margin-left:auto;font-size:11px;text-transform: none;">
+                            <a href="#">Loại bỏ</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav-sort-orders">
+                            <li class="active ">
+                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Price: Low to High</a></div>
+                            </li>
+                            <li class="active selected">
+                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Price: High to Low</a></div>
+                            </li>
+                            <li class="active ">
+                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Newest</a></div>
+                            </li>
+                            <li class="active ">
+                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Newest Last</a></div>
+                            </li>
+                            <li class="active ">
+                                <div class="collection-name"><a href="#" class="text-black"><i slass="check-icon"></i> A-Z</a></div>
+                            </li>
+                            <li class="active ">
+                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Z-A</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="card card-custom">
+                    <h5 class="card-header">
+                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black">
+                            {{ $row->{pick_language($row,'name_')} }}
+                        </a>
+                        <div style="margin-left:auto;font-size:13px;">
+
+                        </div>
+                    </h5>
+
+                    <div class="card-body mt-2">
+                        <div class="row no-gutters" style="min-height: 400px;">
+                            @if(!empty($row->product))
+                            @foreach($row->product as $product)
+                            <?php
+                            // print_r($product->price_km);
+                            // die();
+                            if (!empty($product->price_km)) {
+                                $price_km = array();
+                                foreach ($product->price_km as $row1) {
+                                    $now =  date("Y-m-d H:i:s");
+                                    if ($row1->date_from < $now && $row1->date_to > $now)
+                                        $price_km[] = $row1;
+                                }
+                                $product->km_price = $price_km[0]->price;
+                            }
+                            ?>
+                            <div class="thumbnail-menu-modern col-6 col-lg-2 border border-light product">
+                                <input type="hidden" value="1" class="number" />
+                                <figure>
+                                    <a href="{{base_url()}}index/details/{{$product->id}}">
+                                        <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
+                                    </a>
+                                </figure>
+                                <div class="caption">
+                                    <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></div>
+                                    <div>
+
+                                        @if(!isset($product->price_km) || empty($product->price_km))
+                                        <span class="price">{{number_format($product->price,0,",",".")}}đ</span>
+                                        @else
+                                        <span class="price price-prev">{{number_format($product->price,0,",",".")}}đ</span>
+                                        <span class="price">{{ number_format($product->km_price,0,",",".") }}đ</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="sale">
+                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-lg btn-danger ">Add to cart</button>
+                                        @if(!empty($product->units))
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            </button>
+
+                                            <div class="dropdown-menu unit_list" aria-labelledby="btnGroupDrop1">
+                                                @foreach($product->units as $key=>$unit)
+                                                <a class="dropdown-item unit_product @if(array_keys($product->units)[0] == $key) btn-primary active @endif" href="#">
+                                                    {{ $unit->{pick_language($unit,'name_')} }}
+                                                </a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        @endif
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            @endforeach
+                            @endif
+                            <!-- <div class="text-center col-12 h4">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="card-footer bg-white">
+                        @if($max_page > 1)
+                        <div class="col-12 text-center">
+                            <ul class="pagination" style="font-size:14px;">
+                                @if($current_page > 1)
+                                <li>
+                                    <a class="page_prev" href="{{$site}}page={{$current_page - 1}}" tabindex="-1"><i class="fa fa-angle-left"></i></a>
+                                </li>
+                                @endif
+                                <li class='<?= 1 == $current_page ? "active" : "" ?>'>
+                                    <a class='page_link' href="{{$site}}page=1" tabindex="-1">1</a>
+                                </li>
+                                @if($current_page > 3)
+                                <li class="disabled"><span class="">...</span></li>
+                                @endif
+
+                                @if($current_page > 2)
+                                <li class=""><a class="page_link" href="{{$site}}page={{$current_page - 1}}">{{$current_page - 1}}</a></li>
+                                @endif
+
+                                @if($current_page > 1 && $current_page < $max_page) <li class="active"><a class="page_link" href="#">{{$current_page}}</a></li>
+                                    @endif
+                                    @if($current_page <= $max_page - 2) <li class=""><a class="page_link" href="{{$site}}page={{$current_page + 1}}">{{$current_page + 1}}</a></li>
+                                        @endif
+                                        @if($current_page <= $max_page - 3) <li class="disabled"><span class="">...</span></li>
+                                            @endif
+
+                                            <li class='<?= $max_page == $current_page ? "active" : "" ?>'>
+                                                <a class='page_link' href="{{$site}}page={{$max_page}}" tabindex="-1">{{$max_page}}</a>
+                                            </li>
+
+                                            @if($current_page != $max_page)
+                                            <li class="">
+                                                <a class="page_next" href="{{$site}}page={{$current_page + 1}}"><i class=" fa fa-angle-right"></i></a>
+                                            </li>
+                                            @endif
+
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

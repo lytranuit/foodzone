@@ -52,48 +52,17 @@ class Widget
 
     public function right()
     {
-
+        $this->CI->load->model("category_model");
+        $list_category = $this->CI->category_model->where(array('deleted' => 0, 'active' => 1))->order_by('order', 'ASC')->get_all();
+        $this->data['list_cate'] = array_filter($list_category, function ($item) {
+            return $item->menu_id == 1;
+        });
+        $this->data['list_topics'] = array_filter($list_category, function ($item) {
+            return $item->menu_id == 2;
+        });
         $this->CI->load->model("news_model");
         $this->data['news'] = $this->CI->news_model->where(array('deleted' => 0))->with_image()->order_by("id", "DESC")->limit(5)->get_all();
         echo $this->blade->view()->make('widget/right', $this->data)->render();
-    }
-
-    public function nav_menu_mobile()
-    {
-        $this->CI->load->model("category_model");
-        $all_category = $this->CI->category_model->where(array("deleted" => 0, 'is_menu' => 1, 'active' => 1))->order_by('sort', "ASC")->with_hinhanh()->as_array()->get_all();
-
-        $cate_level1 = array_values(array_filter($all_category, function ($item) {
-            return $item['parent_id'] == 0;
-        }));
-        foreach ($cate_level1 as &$cate) {
-            $cate_id = $cate['id'];
-            $child = array_values(array_filter($all_category, function ($item) use ($cate_id) {
-                return $item['parent_id'] == $cate_id;
-            }));
-            $cate['child'] = $child;
-        }
-        $this->data['cate_level1'] = $cate_level1;
-        echo $this->blade->view()->make('widget/nav_menu_mobile', $this->data)->render();
-    }
-
-    public function nav_menu()
-    {
-        $this->CI->load->model("category_model");
-        $all_category = $this->CI->category_model->where(array("deleted" => 0, 'is_menu' => 1, 'active' => 1))->order_by('sort', "ASC")->with_hinhanh()->as_array()->get_all();
-
-        $cate_level1 = array_values(array_filter($all_category, function ($item) {
-            return $item['parent_id'] == 0;
-        }));
-        foreach ($cate_level1 as &$cate) {
-            $cate_id = $cate['id'];
-            $child = array_values(array_filter($all_category, function ($item) use ($cate_id) {
-                return $item['parent_id'] == $cate_id;
-            }));
-            $cate['child'] = $child;
-        }
-        $this->data['cate_level1'] = $cate_level1;
-        echo $this->blade->view()->make('widget/nav_menu', $this->data)->render();
     }
 
     public function index_slider()
@@ -155,23 +124,7 @@ class Widget
         echo $this->blade->view()->make('widget/index_product', $this->data)->render();
     }
 
-    function index_lookbook()
-    {
-        $this->CI->load->model("lookbook_model");
-        $this->data['all_obj'] = $this->CI->lookbook_model->where(array("deleted" => 0, 'active' => 1))->order_by('date', "DESC")->with_hinhanh()->as_object()->get_all();
 
-        echo $this->blade->view()->make('widget/index_lookbook', $this->data)->render();
-    }
-
-    public function index_contact()
-    {
-        echo $this->blade->view()->make('widget/index_contact', $this->data)->render();
-    }
-
-    function seen()
-    {
-        echo $this->blade->view()->make('widget/widget_seen', $this->data)->render();
-    }
 
     function page()
     {

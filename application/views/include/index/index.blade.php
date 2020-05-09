@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="card card-custom">
                     <h5 class="card-header">
-                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-warning">
+                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black">
                             {{ $row->{pick_language($row,'name_')} }}
                         </a>
                         <div style="margin-left:auto;font-size:13px;">
@@ -33,8 +33,9 @@
                             }
                             ?>
                             <div class="thumbnail-menu-modern col-6 col-lg-2 border border-light product">
+                                <input type="hidden" value="1" class="number" />
                                 <figure>
-                                    <a href="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" class="fancybox">
+                                    <a href="{{base_url()}}index/details/{{$product->id}}">
                                         <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
                                     </a>
                                 </figure>
@@ -53,14 +54,21 @@
                                 <div class="sale">
                                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                         <button type="button" class="btn btn-lg btn-danger ">Add to cart</button>
+                                        @if(!empty($product->units))
                                         <div class="btn-group" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                <a class="dropdown-item" href="#">Dropdown link</a>
-                                                <a class="dropdown-item" href="#">Dropdown link</a>
+
+                                            <div class="dropdown-menu unit_list" aria-labelledby="btnGroupDrop1">
+                                                @foreach($product->units as $key=>$unit)
+                                                <a class="dropdown-item unit_product @if(array_keys($product->units)[0] == $key) btn-primary active @endif" href="#">
+                                                    {{ $unit->{pick_language($unit,'name_')} }}
+                                                </a>
+                                                @endforeach
                                             </div>
                                         </div>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>

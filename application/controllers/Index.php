@@ -51,15 +51,16 @@ class Index extends MY_Controller
         $version = $this->config->item("version");
         load_fancybox($this->data);
         load_slick($this->data);
-        load_swiper($this->data);
-        load_easyResponsiveTabs($this->data);
+        // load_swiper($this->data);
+        // load_easyResponsiveTabs($this->data);
+        // load_autonumberic($this->data);
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
 
         $this->load->model("category_model");
         $this->load->model("product_model");
         $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1))->order_by('order', 'ASC')->get_all();
         foreach ($list_category as &$row) {
-            $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'ASC')->with_price_km()->with_image()->limit(12)->get_all();
+            $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'ASC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
         }
         $this->data['category'] = $list_category;
         echo $this->blade->view()->make('page/page', $this->data)->render();
@@ -88,7 +89,7 @@ class Index extends MY_Controller
         $id = $params[0];
         $version = $this->config->item("version");
         $this->load->model("product_model");
-        $product = $this->product_model->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_category()->get($id);
+        $product = $this->product_model->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_category()->get($id);
         if (empty($product))
             show_404();
         $this->data['title'] = $product->{pick_language($product, 'name_')};
@@ -98,16 +99,24 @@ class Index extends MY_Controller
         load_easyResponsiveTabs($this->data);
         load_froala_view($this->data);
         load_slick($this->data);
-        $this->data['product']->str_list_category = implode(" / ", array_map(function ($item) {
+        load_autonumberic($this->data);
+        $list_category = array_map(function ($item) {
             return $item->{pick_language($item, "name_")};
-        }, array_values((array) $this->data['product']->category)));
+        }, array_values((array) $this->data['product']->category));
+
+        $list_category_id = array_map(function ($item) {
+            return $item->id;
+        }, array_values((array) $this->data['product']->category));
+        $this->data['product']->str_list_category = implode(" / ", $list_category);
 
         if (!empty($this->data['product']->price_km)) {
             $price_km = array_values((array) $this->data['product']->price_km);
             $this->data['product']->km_price = $price_km[0]->price;
         }
-        $this->data['product_related'] = $this->product_model->where("deleted = 0 and id IN(SELECT product_related_id FROM fz_product_related WHERE product_id = $id)", null, null, null, null, true)->with_image()->with_price_km('order_inside:date_from desc')->get_all();
-
+        $this->data['product_related'] = $this->product_model->where("deleted = 0 and id IN(SELECT product_related_id FROM fz_product_related WHERE product_id = $id)", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
+        if (!count($this->data['product_related'])) {
+            $this->data['product_related'] = $this->product_model->where("deleted = 0 and id IN(SELECT product_id FROM fz_product_category WHERE category_id IN(" . implode(",", $list_category_id) . "))", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
+        }
         // echo "<pre>";
         // print_r($this->data['product']);
         // die();
@@ -124,20 +133,32 @@ class Index extends MY_Controller
     public function category($params)
     {
         $id = $params[0];
-        if ($id == 1) {
-            $this->data['title'] = "Ready to Eat";
-        } else {
-            $this->data['title'] = "Ready to Cook";
-        }
-
+        $page = $this->input->get("page");
+        $limit = $this->input->get("limit");
+        $page = $page != "" ? $page : 1;
+        $limit = $limit != "" ? $limit : 30;
         $this->load->model("category_model");
-        $this->load->model("product_category_model");
         $this->load->model("product_model");
-        $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'menu_id' => $id))->order_by('order', 'ASC')->get_all();
-        foreach ($list_category as &$row) {
-            $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'ASC')->with_price_km()->with_image()->limit(20)->get_all();
-        }
-        $this->data['list_category'] = $list_category;
+        $row =  $this->category_model->get($id);
+        $sql_where = "deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)";
+        /*
+         * TINH COUNT
+         */
+        $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->count_rows();
+        $max_page = ceil($count / $limit);
+
+        $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('order', 'ASC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
+        $row->product = $data;
+        $this->data['row'] = $row;
+        // echo "<pre>";
+        // print_r($limit);
+        // print_r($page);
+        // print_r($data);
+        // die();
+        $this->data['count'] = $count;
+        $this->data['current_page'] = $page;
+        $this->data['max_page'] = $max_page;
+        $this->data['site'] = base_url() . "index/category/$id?";
         $version = $this->config->item("version");
         load_fancybox($this->data);
         array_push($this->data['javascript_tag'], base_url() . "public/lib/isotope/isotope.min.js");

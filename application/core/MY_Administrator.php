@@ -59,6 +59,7 @@ class MY_Administrator extends CI_Controller
                 $this->data['javascript_tag'] = array(
                         base_url() . 'public/assets/scripts/jquery.min.js',
                         base_url() . 'public/lib/jquery-ui/jquery-ui.js',
+                        
                         base_url() . "public/assets/scripts/main.js",
                         base_url() . "public/lib/jquery-validation/jquery.validate.js",
                         base_url() . "public/lib/image_feature/jquery.image.js?v=" . $version,

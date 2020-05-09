@@ -56,6 +56,24 @@ class Product extends MY_Administrator
         $json_data = $this->product_simba_model->where(array('id' => $id))->with_image()->as_object()->get();
         echo json_encode($json_data);
     }
+    public function save_dvt()
+    {
+        if (isset($_POST['cap_nhat'])) {
+            $data = $_POST;
+            $id = $data['id'];
+            $this->load->model("product_unit_model");
+            $data_up = $this->product_unit_model->create_object($data);
+            if ($id > 0)
+                $this->product_unit_model->update($data_up, $id);
+            else {
+                if (isset($data_up['id']))
+                    unset($data_up['id']);
+                $id = $this->product_unit_model->insert($data_up);
+            }
+            $unit =  $this->product_unit_model->get($id);
+            echo json_encode($unit);
+        }
+    }
     public function add()
     { /////// trang ca nhan
         if (isset($_POST['dangtin'])) {
@@ -93,10 +111,27 @@ class Product extends MY_Administrator
                     $this->product_related_model->insert($array);
                 }
             }
+            /*
+             * DVT
+             */
+
+            $this->load->model("product_unit_model");
+            // print_r($data['dvt']);
+            // die();
+            if (isset($data['dvt'])) {
+                foreach ($data['dvt'] as $row) {
+                    $array = array(
+                        'product_id' => $id,
+                        'deleted' => 0,
+                    );
+                    $this->product_unit_model->update($array, $row);
+                }
+            }
             redirect('product', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             load_editor($this->data);
             load_chossen($this->data);
+            load_datatable($this->data);
             $this->load->model("category_model");
             $this->load->model("origin_model");
             $this->load->model("product_simba_model");
@@ -174,12 +209,28 @@ class Product extends MY_Administrator
                 );
                 $this->product_related_model->where($array)->delete();
             }
+            /*
+             * DVT
+             */
+
+            $this->load->model("product_unit_model");
+            // print_r($data['dvt']);
+            // die();
+            if (isset($data['dvt'])) {
+                foreach ($data['dvt'] as $row) {
+                    $array = array(
+                        'product_id' => $id,
+                        'deleted' => 0,
+                    );
+                    $this->product_unit_model->update($array, $row);
+                }
+            }
             redirect('product', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             $this->load->model("product_model");
             $this->load->model("product_related_model");
             $this->load->model("product_category_model");
-            $tin = $this->product_model->where(array('id' => $id))->with_image()->as_object()->get();
+            $tin = $this->product_model->where(array('id' => $id))->with_units()->with_image()->as_object()->get();
             $product_related = $this->product_related_model->where(array('product_id' => $id))->as_object()->get_all();
             $category = $this->product_category_model->where(array('product_id' => $id))->as_object()->get_all();
             if (!empty($category)) {
@@ -196,9 +247,13 @@ class Product extends MY_Administrator
                 }
                 $tin->related = $related_id;
             }
+            if (!empty($tin->units)) {
+                $tin->units = array_values((array) $tin->units);
+            }
             $this->data['tin'] = $tin;
 
             load_editor($this->data);
+            load_datatable($this->data);
             load_chossen($this->data);
             $this->load->model("category_model");
             $this->load->model("origin_model");

@@ -10,20 +10,38 @@
             </div>
             <button class="form-search-submit" type="submit"><span class="mdi mdi-magnify"></span></button>
         </form>
-        <div class="row offset-top-50">
+        <div class="row offset-top-20">
             <div class="col-sm-6 col-md-12">
                 <div class="card card-custom">
-                    <div class="text-uppercase card-header">Our Menu</div>
+                    <div class="text-uppercase card-header">Danh mục</div>
                     <div class="card-body">
                         <!-- Category-->
                         <ul class="list list-marked list-marked-burnt-sienna list-bordered">
-                            <li><a class="link-default" href="{{base_url()}}index/category/1">Ready to Eat</a></li>
-                            <li><a class="link-default" href="{{base_url()}}index/category/2">Ready to Cook</a></li>
+                            @foreach($list_cate as $row)
+                            <li><a class="link-default" href="{{base_url()}}index/category/{{$row->id}}">{{ $row->{pick_language($row,'name_')} }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-12 offset-top-50 offset-sm-top-0 offset-md-top-50">
+        </div>
+        <div class="row offset-top-20">
+            <div class="col-sm-6 col-md-12">
+                <div class="card card-custom">
+                    <div class="text-uppercase card-header">Topics</div>
+                    <div class="card-body">
+                        <!-- Category-->
+                        <ul class="list list-marked list-marked-burnt-sienna list-bordered">
+                            @foreach($list_topics as $row)
+                            <li><a class="link-default" href="{{base_url()}}index/category/{{$row->id}}">{{ $row->{pick_language($row,'name_')} }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row offset-top-20">
+            <div class="col-sm-6 col-md-12">
                 <!-- Archive-->
                 <div class="card card-custom">
                     <div class="text-uppercase card-header">New posts</div>

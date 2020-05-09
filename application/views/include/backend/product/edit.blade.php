@@ -29,17 +29,6 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <b class="col-12 col-lg-2 col-form-label">Đơn vị tính:</b>
-                                <div class="col-12 col-lg-4 pt-1">
-                                    <input class="form-control form-control-sm" type='text' name="DVT" placeholder="Đơn vị tính" />
-                                </div>
-                                <b class="col-12 col-lg-2 col-form-label">Quy cách:</b>
-                                <div class="col-12 col-lg-4 pt-1">
-                                    <input class="form-control form-control-sm" type='text' name="volume" placeholder="Quy cách" />
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <b class="col-12 col-lg-2 col-form-label">Xuất xứ:</b>
                                 <div class="col-12 col-lg-4 pt-1">
                                     <select name="origin_id" class="form-control form-control-sm">
@@ -88,15 +77,17 @@
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu2">Tiếng Nhật</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#menu6">Đơn bị tính</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu5">Sản phẩm liên quan</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#menu3">Ready to Eat</a>
+                                    <a class="nav-link" data-toggle="tab" href="#menu3">Danh mục</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#menu4">Ready to Cook</a>
+                                    <a class="nav-link" data-toggle="tab" href="#menu4">Topics</a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->
@@ -241,6 +232,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="menu6" class=" tab-pane fade">
+                                    <div class="row clearfix">
+                                        <div class="col-12">
+                                            <section class="card card-fluid">
+                                                <h5 class="card-header drag-handle">
+                                                    <a class="btn btn-success btn-sm text-white" data-target="#dvt-modal" data-toggle="modal">Thêm</a>
+                                                </h5>
+                                                <div class="card-body">
+                                                    <table id="quanly" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Tiếng Việt</th>
+                                                                <th>Tiếng Anh</th>
+                                                                <th>Tiếng Nhật</th>
+                                                                <th>Đơn vị</th>
+                                                                <th>Hành động</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -252,6 +270,52 @@
 </div>
 
 
+<div aria-hidden="true" aria-labelledby="dvt-modalLabel" class="modal fade" id="dvt-modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="comment-modalLabel">
+                    Đơn vị tính
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="main">
+                    <!--<p>Sign up once and watch any of our free demos.</p>-->
+                    <form id="form-dvt">
+                        <input type="hidden" value="0" name="id" />
+                        <div class="form-group">
+                            <b class="form-label">Tiếng Việt:<i class="text-danger">*</i></b>
+                            <div class="form-line">
+                                <input name="name_vi" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <b class="form-label">Tiếng Anh</b>
+                            <div class="form-line">
+                                <input name="name_en" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <b class="form-label">Tiếng Nhật</b>
+                            <div class="form-line">
+                                <input name="name_jp" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <b class="form-label">Đơn vị:<i class="text-danger">*</i></b>
+                            <div class="form-line">
+                                <input name="special_unit" type="number" required class="form-control">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary waves-effect" type="submit" name="cap_nhat">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script type='text/javascript'>
     $(document).ready(function() {
         $(".image_ft").imageFeature();
@@ -260,8 +324,38 @@
         if (tin.image) {
             $(".image_ft").imageFeature("set_image", tin.image);
         }
+
+        $('#quanly').DataTable({
+            "lengthMenu": [
+                [-1],
+                ["All"]
+            ],
+            "columns": [{
+                    "data": "name_vi"
+                },
+                {
+                    "data": "name_en"
+                },
+                {
+                    "data": "name_jp"
+                },
+                {
+                    "data": "special_unit"
+                },
+                {
+                    "data": "action"
+                }
+            ]
+        });
+        if (tin.units) {
+            for (let i = 0; i < tin.units.length; i++) {
+                let data = tin.units[i];
+                data['action'] = '<a href="#" class="btn btn-warning btn-sm dvt_edit mr-2" data-target="#dvt-modal" data-toggle="modal" data-id="' + data['id'] + '"><i class="fas fa-pencil-alt"></i></a><a href="#" class="btn btn-danger btn-sm dvt_remove" data-id="' + data['id'] + '"><i class="far fa-trash-alt"></i></a>';
+                $('#quanly').dataTable().fnAddData(data);
+            }
+        }
         $(".chosen").chosen({
-            width: "400px"
+            width: "100%"
         });
         $("#product_simba").change(function() {
             let val = $(this).val();
@@ -323,9 +417,84 @@
                 $(element).parents('.form-group').append(error);
             },
             submitHandler: function(form) {
+                let data_dvt = $('#quanly').dataTable().fnGetData();
+                let append = "";
+                for (let i = 0; i < data_dvt.length; i++) {
+                    let id = data_dvt[i].id;
+                    append += "<input type='hidden' name='dvt[]' value='" + id + "' />";
+                }
+                $(form).append(append);
                 form.submit();
                 return false;
             }
         });
+
+        $("#form-dvt").validate({
+            highlight: function(input) {
+                $(input).parents('.form-line').addClass('error');
+            },
+            unhighlight: function(input) {
+                $(input).parents('.form-line').removeClass('error');
+            },
+            errorPlacement: function(error, element) {
+                $(element).parents('.form-group').append(error);
+            },
+            submitHandler: function(form) {
+                $.ajax({
+                    url: path + "product/save_dvt",
+                    data: $(form).serialize(),
+                    dataType: "JSON",
+                    type: "POST",
+                    success: function(data) {
+                        $('#dvt-modal').trigger('click');
+                        data['action'] = '<a href="#" class="btn btn-warning btn-sm dvt_edit mr-2" data-target="#dvt-modal" data-toggle="modal" data-id="' + data['id'] + '"><i class="fas fa-pencil-alt"></i></a><a href="#" class="btn btn-danger btn-sm dvt_remove" data-id="' + data['id'] + '"><i class="far fa-trash-alt"></i></a>';
+
+                        if ($("[name=id]").val() > 0) {
+                            let data_dvt = $('#quanly').dataTable().fnGetData();
+                            for (let i = 0; i < data_dvt.length; i++) {
+                                if (data_dvt[i]['id'] == data['id']) {
+                                    $('#quanly').dataTable().fnUpdate(data, i);
+                                    break;
+                                }
+                            }
+
+                        } else {
+                            $('#quanly').dataTable().fnAddData(data);
+                        }
+                        form.reset();
+                        // $("#quanly tbody").append(rendered);
+                    }
+                });
+                return false;
+            }
+        });
+        $(document).on("click", ".dvt_edit", function() {
+            let id = $(this).data("id");
+            let data_dvt = $('#quanly').dataTable().fnGetData();
+            let data = null;
+            for (let i = 0; i < data_dvt.length; i++) {
+                if (data_dvt[i]['id'] == id) {
+                    data = data_dvt[i];
+                    break;
+                }
+            }
+            fillForm($("#form-dvt"), data);
+        });
+
+        $(document).on("click", ".dvt_remove", function() {
+            let parent = $(this).parents("tr").get(0);
+            $('#quanly').dataTable().fnDeleteRow($('#quanly').dataTable().fnGetPosition(parent));
+            let id = $(this).data("id");
+            $.ajax({
+                url: path + "product/save_dvt",
+                data: {
+                    id: id,
+                    product_id: 0,
+                    cap_nhat: true
+                },
+                dataType: "JSON",
+                type: "POST"
+            });
+        })
     });
 </script>

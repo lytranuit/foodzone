@@ -39,4 +39,18 @@
       .nav-custom li a.active {
         color: #f9b129; }
 
+.btn-burnt-sienna {
+  color: #fff;
+  background-color: #ec5353;
+  border-color: #ec5353;
+  transition: 0.3s ease-out;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  border-width: 3px;
+  padding: 10px 28px;
+  border-radius: 35px; }
+
 /*# sourceMappingURL=style.css.map */

@@ -14,6 +14,8 @@ class Product_model extends MY_Model
         parent::__construct();
         $this->has_one['image'] = array('foreign_model' => 'File_model', 'foreign_table' => 'fz_file', 'foreign_key' => 'id', 'local_key' => 'image_id');
         $this->has_many['price_km'] = array('foreign_model' => 'product_price_model', 'foreign_table' => 'fz_product_price', 'foreign_key' => 'product_id', 'local_key' => 'id');
+        $this->has_many['units'] = array('foreign_model' => 'product_unit_model', 'foreign_table' => 'fz_product_unit', 'foreign_key' => 'product_id', 'local_key' => 'id');
+
         $this->has_many_pivot['category'] = array(
             'foreign_model' => 'Category_model',
             'pivot_table' => 'fz_product_category',

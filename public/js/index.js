@@ -11,6 +11,50 @@ $(document).ready(function () {
     plugins.easyzoom = $('.easyzoom');
     plugins.fancybox = $('.fancybox');
 
+    plugins.number = $(".number-widget");
+    plugins.units = $(".unit_list");
+    /**
+  * NUMBER
+  * @description Enables NUMBER plugin
+  */
+    if (plugins.number.length) {
+        $(".number", plugins.number).autoNumeric('init', { vMin: 1, mDec: 0 });
+        $(".number", plugins.number).change(function () {
+            if ($(this).autoNumeric("get") < 1) {
+                $(this).val(1);
+            }
+        })
+        $(".down", plugins.number).click(function () {
+            let parent = $(this).parent();
+            console.log(parent);
+            let numberEl = $(".number", parent);
+            var amount = parseInt(numberEl.autoNumeric("get"));
+            if (amount > 1) {
+                amount--;
+                numberEl.val(amount);
+            }
+        });
+        $(".up", plugins.number).click(function () {
+            let parent = $(this).parent();
+            let numberEl = $(".number", parent);
+            var amount = parseInt(numberEl.autoNumeric("get"));
+            amount++;
+            numberEl.val(amount);
+        });
+
+    }
+    /**
+  * UNIT
+  * @description Enables UNIT plugin
+  */
+    if (plugins.units.length) {
+        $(".unit_product", plugins.units).click(function (e) {
+            e.preventDefault();
+            let parent = $(this).parent();
+            $(".unit_product", parent).removeClass("btn-primary active");
+            $(this).addClass("btn-primary active");
+        })
+    }
     /**
   * RD Navbar
   * @description Enables RD Navbar plugin
