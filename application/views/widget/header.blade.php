@@ -22,15 +22,25 @@
                         <!-- RD Navbar Nav-->
                         <!-- RD Navbar Nav-->
                         <ul class="rd-navbar-nav">
-                            <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a class="navbar-icon restaurant-icon-19" href="#">Menu</a>
-                                <!-- RD Navbar Dropdown-->
-                                <ul class="rd-navbar-dropdown menu-img-wrap rd-navbar-open-right">
-                                    <li class="menu-img"><a href="{{base_url()}}index/category/1"><img src="{{base_url()}}public/image/5.png" alt="" width="88" height="60"><span>Ready to Eat</span></a></li>
-                                    <li class="menu-img"><a href="{{base_url()}}index/category/2"><img src="{{base_url()}}public/image/8.png" alt="" width="88" height="60"><span>Ready to Cook</span></a></li>
+
+                            <li class="rd-navbar--has-dropdown rd-navbar-submenu">
+                                <a class="" href="#">Category</a>
+                                <ul class="rd-navbar-dropdown rd-navbar-open-right">
+                                    @foreach($list_cate as $row)
+                                    <li><a href="">{{$row->name_vi}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            <li class="rd-navbar--has-dropdown rd-navbar-submenu">
+                                <a class="" href="#">Topics</a>
+                                <ul class="rd-navbar-dropdown rd-navbar-open-right">
+                                    @foreach($list_topics as $row)
+                                    <li><a href="">{{$row->name_vi}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li>
-                                <a class="navbar-icon thin-icon-tag" href="{{base_url()}}index/news">News</a>
+                                <a class="" href="{{base_url()}}index/news">News</a>
                             </li>
                             <!-- <li><a class="navbar-icon thin-icon-map-marker" href="{{base_url()}}index/contact">Contacts</a></li> -->
 

@@ -26,6 +26,14 @@ class Widget
 
         $this->CI->load->model("option_model");
         $this->data['options'] = $this->CI->option_model->all_option();
+        $this->CI->load->model("category_model");
+        $list_category = $this->CI->category_model->where(array('deleted' => 0, 'active' => 1))->order_by('order', 'ASC')->get_all();
+        $this->data['list_cate'] = array_filter($list_category, function ($item) {
+            return $item->menu_id == 1;
+        });
+        $this->data['list_topics'] = array_filter($list_category, function ($item) {
+            return $item->menu_id == 2;
+        });
         echo $this->blade->view()->make('widget/header', $this->data)->render();
     }
 

@@ -92,13 +92,18 @@
                 <li>
                     <a href="{{base_url()}}eat/" class="">
                         <i class="metismenu-icon fas fa-cookie-bite"></i>
-                        Menu to Eat
+                        Danh mục
                     </a>
                 </li>
                 <li>
                     <a href="{{base_url()}}cook/" class="">
                         <i class="metismenu-icon fas fa-utensils"></i>
-                        Menu to Cook
+                        Topics
+                    </a>
+
+                    <a href="{{base_url()}}product_sale/" class="">
+                        <i class="metismenu-icon fas fa-shopping-bag"></i>
+                        Sản phẩm mua cùng
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Sản phẩm</li>

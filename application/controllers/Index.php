@@ -25,6 +25,8 @@ class Index extends MY_Controller
             base_url() . "public/lib/bootstrap/js/popper.min.js",
             base_url() . "public/lib/bootstrap/js/bootstrap.min.js",
 
+            // base_url() . "public/lib/UItoTop/easing.js",
+            // base_url() . "public/lib/UItoTop/jquery.ui.totop.js",
             base_url() . "public/lib/rd_nav/js/jquery.rd-navbar.min.js", // navbar
             "https://sp.zalo.me/plugins/sdk.js",
             base_url() . "public/js/main.js?v=$version"
@@ -47,13 +49,19 @@ class Index extends MY_Controller
     public function index()
     {
         $version = $this->config->item("version");
-
-
         load_fancybox($this->data);
         load_slick($this->data);
         load_swiper($this->data);
         load_easyResponsiveTabs($this->data);
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
+
+        $this->load->model("category_model");
+        $this->load->model("product_model");
+        $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1))->order_by('order', 'ASC')->get_all();
+        foreach ($list_category as &$row) {
+            $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'ASC')->with_price_km()->with_image()->limit(12)->get_all();
+        }
+        $this->data['category'] = $list_category;
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 

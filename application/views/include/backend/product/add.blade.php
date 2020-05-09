@@ -88,15 +88,17 @@
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu2">Tiếng Nhật</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#menu6">Đơn bị tính</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu5">Sản phẩm liên quan</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#menu3">Ready to Eat</a>
+                                    <a class="nav-link" data-toggle="tab" href="#menu3">Danh mục</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#menu4">Ready to Cook</a>
+                                    <a class="nav-link" data-toggle="tab" href="#menu4">Topics</a>
                                 </li>
                             </ul>
                             <!-- Tab panes -->
@@ -241,6 +243,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="menu6" class=" tab-pane fade">
+                                   
+                                </div>
                             </div>
 
                         </div>
@@ -254,7 +259,7 @@
 <script type='text/javascript'>
     $(document).ready(function() {
         $(".chosen").chosen({
-            width: "400px"
+            width: "100%"
         });
         $("#product_simba").change(function() {
             let val = $(this).val();

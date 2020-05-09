@@ -11,7 +11,6 @@ $(document).ready(function () {
     plugins.easyzoom = $('.easyzoom');
     plugins.fancybox = $('.fancybox');
 
-    introCarousel();
     /**
   * RD Navbar
   * @description Enables RD Navbar plugin

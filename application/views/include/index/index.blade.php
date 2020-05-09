@@ -1,72 +1,81 @@
 <?= $widget->index_slider() ?>
-<?= $widget->index_eat() ?>
-<?= $widget->index_cook() ?>
-<section>
-    <div id="map"></div>
-    <script>
-        var map;
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(13.109038, 109.297326),
-                zoom: 14
-            });
+@foreach($category as $row)
+<section class="section-20 bg-gray-lighter">
+    <div class="container-wide">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-custom">
+                    <h5 class="card-header">
+                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-warning">
+                            {{ $row->{pick_language($row,'name_')} }}
+                        </a>
+                        <div style="margin-left:auto;font-size:13px;">
+                            <a class="" href="{{base_url()}}index/category/{{$row->id}}">Xem thêm</a>
+                        </div>
+                    </h5>
 
-            setMarkers(map, [
-                ["Simba", 13.109038, 109.297326]
-            ]);
-        }
-        /*show map*/
-        /*var positions = [
-         ['Sườn Cây Hồ Biểu Chánh',  10.749744, 106.699453, 15],
-         ['Sườn Cây Cộng Hòa',  10.704714, 106.733620, 2],
-         ['Sườn Cây Phan Đăng Lưu',  10.738458, 106.713445, 3],
-         ['Sườn Cây Kinh Dương Vương',  10.737704, 106.727647, 4],
-         ['Sườn Cây Quang Trung',  10.730004, 106.700103, 5],
-         ['Sườn Cây Vũng Tàu',  10.738871, 106.719464, 6],
-         ];
-         */
-        function setMarkers(map, locations) {
-            var image = {
-                url: path + "public/image/icon_googlemarker.png",
-                size: new google.maps.Size(100, 73),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(0, 32)
-            };
-            var shape = {
-                coords: [1, 1, 1, 20, 18, 20, 18, 1],
-                type: 'poly'
-            };
-            for (var i = 0; i < locations.length; i++) {
-                var loc = locations[i];
-                var myLatLng = new google.maps.LatLng(loc[1], loc[2]);
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map,
-                    icon: image,
-                    shape: shape,
-                    title: loc[0],
-                    infoWindowText: loc[0],
-                    zIndex: 12
-                });
-            }
-        }
+                    <div class="card-body mt-2">
+                        <div class="row no-gutters" style="min-height: 400px;">
+                            @if(!empty($row->product))
+                            @foreach($row->product as $product)
+                            <?php
+                            // print_r($product->price_km);
+                            // die();
+                            if (!empty($product->price_km)) {
+                                $price_km = array();
+                                foreach ($product->price_km as $row1) {
+                                    $now =  date("Y-m-d H:i:s");
+                                    if ($row1->date_from < $now && $row1->date_to > $now)
+                                        $price_km[] = $row1;
+                                }
+                                $product->km_price = $price_km[0]->price;
+                            }
+                            ?>
+                            <div class="thumbnail-menu-modern col-6 col-lg-2 border border-light product">
+                                <figure>
+                                    <a href="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" class="fancybox">
+                                        <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
+                                    </a>
+                                </figure>
+                                <div class="caption">
+                                    <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></div>
+                                    <div>
 
-        function showpostion(pos) {
-            var positions = [pos];
-            var mapOptions = {
-                zoom: 17,
-                center: new google.maps.LatLng(pos[1], pos[2])
-            }
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-            setMarkers(map, positions);
-        }
-    </script>
-    <style>
-        #map {
-            height: 400px
-        }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkAZ0DefFFh1083avX5XSAu0AwzNyQ4tI&callback=initMap" async defer></script>
+                                        @if(!isset($product->price_km) || empty($product->price_km))
+                                        <span class="price">{{number_format($product->price,0,",",".")}}đ</span>
+                                        @else
+                                        <span class="price price-prev">{{number_format($product->price,0,",",".")}}đ</span>
+                                        <span class="price">{{ number_format($product->km_price,0,",",".") }}đ</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="sale">
+                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-lg btn-danger ">Add to cart</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            @endforeach
+                            @endif
+                            <!-- <div class="text-center col-12 h4">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                            </div> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+@endforeach
