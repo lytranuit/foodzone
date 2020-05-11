@@ -13,6 +13,8 @@ class Product_model extends MY_Model
         $this->before_create[] = 'create_date';
         parent::__construct();
         $this->has_one['image'] = array('foreign_model' => 'File_model', 'foreign_table' => 'fz_file', 'foreign_key' => 'id', 'local_key' => 'image_id');
+        $this->has_one['origin'] = array('foreign_model' => 'Origin_model', 'foreign_table' => 'origin_country', 'foreign_key' => 'id', 'local_key' => 'origin_id');
+        $this->has_one['preservation'] = array('foreign_model' => 'Preservation_model', 'foreign_table' => 'preservation', 'foreign_key' => 'id', 'local_key' => 'preservation_id');
         $this->has_many['price_km'] = array('foreign_model' => 'product_price_model', 'foreign_table' => 'fz_product_price', 'foreign_key' => 'product_id', 'local_key' => 'id');
         $this->has_many['units'] = array('foreign_model' => 'product_unit_model', 'foreign_table' => 'fz_product_unit', 'foreign_key' => 'product_id', 'local_key' => 'id');
 
@@ -25,6 +27,18 @@ class Product_model extends MY_Model
               doesn't respect the format of "singularlocaltable_primarykey", then you must set it. In the next title
               you will see how a pivot table should be set, if you want to  skip these keys */
             'pivot_foreign_key' => 'category_id', /* this is also optional, the same as above, but for foreign table's keys */
+            'foreign_key' => 'id',
+            'get_relate' => TRUE /* another optional setting, which is explained below */
+        );
+        $this->has_many_pivot['other_image'] = array(
+            'foreign_model' => 'File_model',
+            'pivot_table' => 'fz_product_image',
+            'local_key' => 'id',
+            'pivot_local_key' => 'product_id', /* this is the related key in the pivot table to the local key
+              this is an optional key, but if your column name inside the pivot table
+              doesn't respect the format of "singularlocaltable_primarykey", then you must set it. In the next title
+              you will see how a pivot table should be set, if you want to  skip these keys */
+            'pivot_foreign_key' => 'image_id', /* this is also optional, the same as above, but for foreign table's keys */
             'foreign_key' => 'id',
             'get_relate' => TRUE /* another optional setting, which is explained below */
         );

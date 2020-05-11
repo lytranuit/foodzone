@@ -134,6 +134,7 @@ class Product extends MY_Administrator
             load_datatable($this->data);
             $this->load->model("category_model");
             $this->load->model("origin_model");
+            $this->load->model("preservation_model");
             $this->load->model("product_simba_model");
             $this->load->model("product_model");
 
@@ -141,6 +142,7 @@ class Product extends MY_Administrator
             $this->data['eat'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 1))->get_all();
             $this->data['cook'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 2))->get_all();
             $this->data['origin'] = $this->origin_model->get_all();
+            $this->data['preservation'] = $this->preservation_model->get_all();
             $this->data['product_simba'] = $this->product_simba_model->where(array("status" => 1))->get_all();
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
@@ -257,12 +259,14 @@ class Product extends MY_Administrator
             load_chossen($this->data);
             $this->load->model("category_model");
             $this->load->model("origin_model");
+            $this->load->model("preservation_model");
             $this->load->model("product_simba_model");
 
             $this->data['product'] = $this->product_model->where(array("deleted" => 0))->get_all();
             $this->data['eat'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 1))->get_all();
             $this->data['cook'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 2))->get_all();
             $this->data['origin'] = $this->origin_model->get_all();
+            $this->data['preservation'] = $this->preservation_model->get_all();
             $this->data['product_simba'] = $this->product_simba_model->where(array("status" => 1))->get_all();
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }

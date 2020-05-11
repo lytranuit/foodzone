@@ -74,7 +74,7 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả:</b>
                                         <div class="col-lg-10">
-                                            <textarea class="form-control" name="description_vi" placeholder="Mô tả"></textarea>
+                                            <textarea class="form-contro edit" name="description_vi" placeholder="Mô tả"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả:</b>
                                         <div class="col-lg-10">
-                                            <textarea class="form-control" name="description_en" placeholder="Mô tả - Tiếng Anh"></textarea>
+                                            <textarea class="form-control edit" name="description_en" placeholder="Mô tả - Tiếng Anh"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả:</b>
                                         <div class="col-lg-10">
-                                            <textarea class="form-control" name="description_jp" placeholder="Mô tả - Tiếng Nhật"></textarea>
+                                            <textarea class="form-control edit" name="description_jp" placeholder="Mô tả - Tiếng Nhật"></textarea>
                                         </div>
                                     </div>
                                 </div>

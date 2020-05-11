@@ -2,7 +2,7 @@
     <section class="section-50">
         <div class="container-wide">
             <div class="row border-left-cell">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-9">
                     <a class="brand brand-inverse" href="index.html">
                         <svg x="0px" y="0px" width="157px" height="41px" viewBox="0 0 157 41">
                             <text transform="matrix(1 0 0 1 1.144409e-004 32)" fill="#2C2D2F" font-family="'Grand Hotel'" font-size="45.22">QuickFood</text>
@@ -17,18 +17,6 @@
                        margin: 10px 0px;">Công Ty Cổ Phần Thương Mại Sim Ba</p>
                     <p>Trụ sở chính: {{$options['dia_chi']}}</p>
                     <p>Điện thoại liên hệ: <a style="color: #fdaf17;" href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</span></p>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <h4 class="text-uppercase" style="color: #fdaf17;
-                       font-weight: bold;
-                       font-size: 33px;
-                       padding: 5px 0 10px;
-                       text-transform: uppercase;
-                       margin: 10px 0px;">Our menu</h4>
-                    <ul class="list-tags offset-top-15">
-                        <li class="text-gray-light"><a class="link-gray-light" href="{{base_url()}}index/category/1">Ready To Eat</a></li>
-                        <li class="text-gray-light"><a class="link-gray-light" href="{{base_url()}}index/category/2">Ready To Cook</a></li>
-                    </ul>
                 </div>
                 <div class="col-sm-12 col-md-3">
                     <ul class="list-inline" style="font-size: 25px;">

@@ -37,6 +37,20 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <b class="col-12 col-lg-2 col-form-label">Bảo quản:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <select name="preservation_id" class="form-control form-control-sm">
+                                        @foreach($preservation as $row)
+                                        <option value="{{$row->id}}">{{$row->name_vi}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <b class="col-12 col-lg-2 col-form-label">Hạn sử dụng:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <input class="form-control form-control-sm" type='text' name="expiry_date" />
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <b class="col-12 col-lg-2 col-form-label">Hiển thị:</b>
@@ -79,6 +93,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu6">Đơn bị tính</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#menu7">Hình ảnh khác</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu5">Sản phẩm liên quan</a>
@@ -259,6 +276,30 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="menu7" class=" tab-pane fade">
+                                    <div class="row clearfix">
+                                        <div class="col-12">
+                                            <section class="card card-fluid">
+                                                <h5 class="card-header drag-handle">
+                                                    <a class="btn btn-success btn-sm text-white">Thêm</a>
+                                                </h5>
+                                                <div class="card-body">
+                                                    <table id="quanlyimage" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <tH>Hình ảnh</tH>
+                                                                <th>Hành động</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -333,6 +374,19 @@
                 },
                 {
                     "data": "special_unit"
+                },
+                {
+                    "data": "action"
+                }
+            ]
+        })
+        $('#quanlyimage').DataTable({
+            "lengthMenu": [
+                [-1],
+                ["All"]
+            ],
+            "columns": [{
+                    "data": "image"
                 },
                 {
                     "data": "action"

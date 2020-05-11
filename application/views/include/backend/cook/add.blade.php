@@ -74,7 +74,7 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả:</b>
                                         <div class="col-lg-10">
-                                            <textarea class="form-control" name="description_vi" placeholder="Mô tả"></textarea>
+                                            <textarea class="form-control edit" name="description_vi" placeholder="Mô tả"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả:</b>
                                         <div class="col-lg-10">
-                                            <textarea class="form-control" name="description_en" placeholder="Mô tả - Tiếng Anh"></textarea>
+                                            <textarea class="form-control edit" name="description_en" placeholder="Mô tả - Tiếng Anh"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả:</b>
                                         <div class="col-lg-10">
-                                            <textarea class="form-control" name="description_jp" placeholder="Mô tả - Tiếng Nhật"></textarea>
+                                            <textarea class="form-control edit" name="description_jp" placeholder="Mô tả - Tiếng Nhật"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +118,18 @@
 <script type='text/javascript'>
     $(document).ready(function() {
         $(".image_ft").imageFeature();
-
+        $('.edit').froalaEditor({
+            heightMin: 200,
+            heightMax: 500, // Set the image upload URL.
+            imageUploadURL: '<?= base_url() ?>admin/uploadimage',
+            // Set request type.
+            imageUploadMethod: 'POST',
+            // Set max image size to 5MB.
+            imageMaxSize: 5 * 1024 * 1024,
+            // Allow to upload PNG and JPG.
+            imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif'],
+            htmlRemoveTags: [],
+        });
         $.validator.setDefaults({
             debug: true,
             success: "valid"

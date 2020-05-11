@@ -89,7 +89,7 @@ class Index extends MY_Controller
         $id = $params[0];
         $version = $this->config->item("version");
         $this->load->model("product_model");
-        $product = $this->product_model->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_category()->get($id);
+        $product = $this->product_model->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_preservation()->with_origin()->with_category()->get($id);
         if (empty($product))
             show_404();
         $this->data['title'] = $product->{pick_language($product, 'name_')};
@@ -160,6 +160,8 @@ class Index extends MY_Controller
         $this->data['max_page'] = $max_page;
         $this->data['site'] = base_url() . "index/category/$id?";
         $version = $this->config->item("version");
+
+        load_froala_view($this->data);
         load_fancybox($this->data);
         array_push($this->data['javascript_tag'], base_url() . "public/lib/isotope/isotope.min.js");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);

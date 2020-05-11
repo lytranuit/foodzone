@@ -1,7 +1,16 @@
 <section class="section-20 bg-gray-lighter">
+    <div class="container text-black">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="fr-view">
+                    <?= $row->{pick_language($row, 'description_')} ?>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container-wide">
         <div class="row">
-            <div class="col-lg-3 mb-4">
+            <div class="col-lg-2 mb-4">
                 <div class="card card-custom">
                     <div class="card-header">
                         Bộ lọc
@@ -41,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-10">
                 <div class="card card-custom">
                     <h5 class="card-header">
                         <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black">

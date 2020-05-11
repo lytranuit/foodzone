@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="offset-top-15">
                                     <p>
-                                        {{$product->str_list_category}}
+                                        {{$product->code}}
                                     </p>
                                 </div>
                                 <div class="offset-top-15">
@@ -70,10 +70,21 @@
                                     </div>
                                 </div>
                                 <div class="offset-top-30">
-
+                                    @if(isset($product->origin) && !empty($product->origin))
                                     <div>
-                                        {{ $product->{pick_language($product,'description_')} }}
+                                        - Xuất xứ: {{ $product->origin->{pick_language($product->origin,'name_')} }}
                                     </div>
+                                    @endif
+                                    @if(isset($product->preservation) && !empty($product->preservation))
+                                    <div>
+                                        - Bảo quản: {{ $product->preservation->{pick_language($product->preservation,'name_')} }}
+                                    </div>
+                                    @endif
+                                    @if(isset($product->origin) && $product->expiry_date != "")
+                                    <div>
+                                        - Hạn sử dụng: {{ $product->expiry_date }}
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -121,7 +132,7 @@
                     </div>
                     <div class="card-body">
                         <div class="responsive">
-                        @if(!empty($product_related))
+                            @if(!empty($product_related))
                             @foreach($product_related as $product)
                             <?php
                             // print_r($product->price_km);
@@ -179,7 +190,7 @@
 
                             @endforeach
                             @endif
-                            
+
                         </div>
                     </div>
                 </div>
