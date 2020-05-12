@@ -20,6 +20,7 @@
                                             <img class="product-featured-image img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" data-zoom-image="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif">
                                         </a>
                                     </div>
+                                    @if(!empty($product->other_image))
                                     @foreach($product->other_image as $row)
                                     <div class="item">
                                         <a href="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif" class="fancybox">
@@ -27,13 +28,16 @@
                                         </a>
                                     </div>
                                     @endforeach
+                                    @endif
                                 </div>
+                                @if(!empty($product->other_image))
                                 <div class="slider-nav">
                                     <div class="item m-2 border">
                                         <a href="javascript:void(0)" data-image="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" data-zoom-image="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif">
                                             <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" data-zoom-image="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif">
                                         </a>
                                     </div>
+
                                     @foreach($product->other_image as $row)
                                     <div class="item m-2 border">
                                         <a href="javascript:void(0)" data-image="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif" data-zoom-image="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif">
@@ -41,7 +45,9 @@
                                         </a>
                                     </div>
                                     @endforeach
+
                                 </div>
+                                @endif
                             </div>
                             <div class="col-lg-6 text-sm-left offset-top-10 offset-sm-top-0">
                                 <div class="reveal-xs-flex justify-content-xs-center align-content-xs-center justify-content-sm-start">
