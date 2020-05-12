@@ -4,6 +4,8 @@
     $.widget('dt.imageFeature', {
         options: {
             lazyLoad: false,
+            multiple: false,
+            id: null
         },
         _create: function () {
             var el = this.element;
@@ -15,9 +17,15 @@
             this._namespaceID = this.eventNamespace || ('wigo' + wigoID);
             this._id = wigoID
             wigoID++;
-            this.input = $('<input class="form-control form-control-sm" type="hidden" name="image_id" required="" />').appendTo(el);
-            this.image = $('<img style="max-width:100%;cursor:pointer; "data-target="#image-modal" data-toggle="modal" src="' + path + 'public/image/temp.png" class="image_feature" />').appendTo(el);
-            this.modal = $('<div aria-hidden="true" aria-labelledby="image-modalLabel" class="modal fade" id="image-modal" role="dialog" tabindex="-1">'
+            if (opt.id)
+                wigoID = opt.id
+            if (opt.multiple == false) {
+                this.input = $('<input class="form-control form-control-sm" type="hidden" name="image_id" required="" />').appendTo(el);
+                this.image = $('<img style="max-width:100%;cursor:pointer; "data-target="#image-modal-' + wigoID + '" data-toggle="modal" src="' + path + 'public/image/temp.png" class="image_feature" />').appendTo(el);
+            } else {
+                $(el).attr("data-target", "#image-modal-multi").attr("data-toggle", "modal");
+            }
+            this.modal = $('<div aria-hidden="true" aria-labelledby="image-modalLabel" class="modal fade" id="image-modal-' + wigoID + '" role="dialog" tabindex="-1">'
                 + '<div class="modal-dialog modal-xl" role="document">'
                 + '    <div class="modal-content">'
                 + '        <div class="modal-header">'
@@ -28,7 +36,7 @@
                 + '            <input id="input-upload" type="file" accept="image/*" class="d-none" />'
                 + '        </div>'
                 + '        <div class="modal-body">'
-                + '            <div id="image-main" class="row">'
+                + '            <div class="image-main row">'
                 + '            </div>'
                 + '        </div>'
                 + '        <div class="modal-footer">'
@@ -54,23 +62,39 @@
             var opt = this.options;
             var event_remove;
             // window.addEventListener('paste', ... or
-            $(".select_image", self.modal).click(function () {
-                let active_image = $(".image_tmp.border-info", self.modal);
-                let id = active_image.data("id");
-                let src = active_image.data("src");
-                $(self.image).attr("src", src);
-                $(self.input).val(id);
-            });
-            $(this.modal).off("dblclick", ".image_tmp").on("dblclick", ".image_tmp", function () {
-                $(".select_image", self.modal).trigger("click");
-            });
-            $(this.modal).off("click", ".image_tmp").on("click", ".image_tmp", function () {
-                $(".image_tmp", this.modal).removeClass("border-info");
-                $(this).addClass("border-info");
-            })
-            $(this.image).click(function () {
-                self.load_images();
-            });
+            if (opt.multiple == false) {
+                $(".select_image", self.modal).click(function () {
+                    let active_image = $(".image_tmp.border-info", self.modal);
+                    let id = active_image.data("id");
+                    let src = active_image.data("src");
+                    $(self.image).attr("src", src);
+                    $(self.input).val(id);
+                });
+                $(this.modal).off("dblclick", ".image_tmp").on("dblclick", ".image_tmp", function () {
+                    $(".select_image", self.modal).trigger("click");
+                });
+                $(this.modal).off("click", ".image_tmp").on("click", ".image_tmp", function () {
+                    $(".image_tmp", this.modal).removeClass("border-info");
+                    $(this).addClass("border-info");
+                })
+                $(this.image).click(function () {
+                    self.load_images();
+                });
+            } else {
+                $(el).click(function () {
+                    self.load_images();
+                });
+                $(".select_image", self.modal).click(function () {
+                    let data = $(".image_tmp.border-info", self.modal).map(function () {
+                        return { image_id: $(this).data("id"), image: $(this).data("src") };
+                    }).get();
+                    console.log(data);
+                    $(el).trigger("done", data);
+                });
+                $(this.modal).off("click", ".image_tmp").on("click", ".image_tmp", function () {
+                    $(this).toggleClass("border-info");
+                });
+            }
             $("#input-upload", this.modal).change(function () {
                 let file = $(this)[0].files[0];
                 let m_data = new FormData;
@@ -103,15 +127,14 @@
                 dataType: "JSON",
 
             }).then(function (data) {
-                $("#image-main", this.modal).empty();
+                $(".image-main", self.modal).empty();
                 html = "";
                 for (let i = 0; i < data.length; i++) {
                     let data_image = data[i];
-                    console.log(self.template);
                     let rendered = Mustache.render(self.template, data_image);
                     html += rendered;
                 }
-                $("#image-main", this.modal).html(html);
+                $(".image-main", self.modal).html(html);
             })
         },
         set_image: function (image) {

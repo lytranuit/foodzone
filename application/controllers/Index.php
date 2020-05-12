@@ -89,7 +89,7 @@ class Index extends MY_Controller
         $id = $params[0];
         $version = $this->config->item("version");
         $this->load->model("product_model");
-        $product = $this->product_model->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_preservation()->with_origin()->with_category()->get($id);
+        $product = $this->product_model->with_other_image()->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_preservation()->with_origin()->with_category()->get($id);
         if (empty($product))
             show_404();
         $this->data['title'] = $product->{pick_language($product, 'name_')};

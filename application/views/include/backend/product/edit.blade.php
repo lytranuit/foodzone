@@ -281,7 +281,7 @@
                                         <div class="col-12">
                                             <section class="card card-fluid">
                                                 <h5 class="card-header drag-handle">
-                                                    <a class="btn btn-success btn-sm text-white">Thêm</a>
+                                                    <a class="btn btn-success btn-sm text-white multiple_image">Thêm</a>
                                                 </h5>
                                                 <div class="card-body">
                                                     <table id="quanlyimage" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
@@ -365,7 +365,19 @@
         if (tin.image) {
             $(".image_ft").imageFeature("set_image", tin.image);
         }
+        $(".multiple_image").imageFeature({
+            multiple: true,
+            id: 'multi'
+        }).on("done", function(event, ...data) {
+            for (let i = 0; i < data.length; i++) {
+                let row = data[i];
+                row['image'] = '<img src="' + row['image'] + '" width="200"/>';
 
+                row['action'] = '<a href="#" class="btn btn-danger btn-sm image_remove" data-id="' + row['image_id'] + '"><i class="far fa-trash-alt"></i></a>';
+
+                $('#quanlyimage').dataTable().fnAddData(row);
+            }
+        });
         $('#quanly').DataTable({
             "lengthMenu": [
                 [-1],
@@ -407,6 +419,18 @@
                 let data = tin.units[i];
                 data['action'] = '<a href="#" class="btn btn-warning btn-sm dvt_edit mr-2" data-target="#dvt-modal" data-toggle="modal" data-id="' + data['id'] + '"><i class="fas fa-pencil-alt"></i></a><a href="#" class="btn btn-danger btn-sm dvt_remove" data-id="' + data['id'] + '"><i class="far fa-trash-alt"></i></a>';
                 $('#quanly').dataTable().fnAddData(data);
+            }
+        }
+
+        if (tin.other_image) {
+            for (let i = 0; i < tin.other_image.length; i++) {
+                let row = tin.other_image[i];
+                let src = row['type'] == 2 ? row['src'] : path + row['src'];
+                row['image'] = '<img src="' + src + '" width="200"/>';
+                row['image_id'] = row['id'];
+                row['action'] = '<a href="#" class="btn btn-danger btn-sm image_remove" data-id="' + row['id'] + '"><i class="far fa-trash-alt"></i></a>';
+
+                $('#quanlyimage').dataTable().fnAddData(row);
             }
         }
         $(".chosen").chosen({
@@ -487,6 +511,17 @@
                     append += "<input type='hidden' name='dvt[]' value='" + id + "' />";
                 }
                 $(form).append(append);
+
+
+                let data_image = $('#quanlyimage').dataTable().fnGetData();
+                // console.log(data_image);
+                // return;
+                append = "";
+                for (let i = 0; i < data_image.length; i++) {
+                    let id = data_image[i].image_id;
+                    append += "<input type='hidden' name='image_other[]' value='" + id + "' />";
+                }
+                $(form).append(append);
                 form.submit();
                 return false;
             }
@@ -558,6 +593,12 @@
                 dataType: "JSON",
                 type: "POST"
             });
+        })
+
+
+        $(document).on("click", ".image_remove", function() {
+            let parent = $(this).parents("tr").get(0);
+            $('#quanlyimage').dataTable().fnDeleteRow($('#quanlyimage').dataTable().fnGetPosition(parent));
         })
     });
 </script>

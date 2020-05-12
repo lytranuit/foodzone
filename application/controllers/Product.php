@@ -227,12 +227,30 @@ class Product extends MY_Administrator
                     $this->product_unit_model->update($array, $row);
                 }
             }
+            /*
+             * Image_other
+             */
+
+            $this->load->model("product_image_model");
+            // print_r($data['dvt']);
+            // die();
+            $this->product_image_model->where(array('product_id' => $id))->delete();
+            if (isset($data['image_other'])) {
+                foreach ($data['image_other'] as $row) {
+                    $array = array(
+                        'product_id' => $id,
+                        'image_id' => $row
+                    );
+                    $this->product_image_model->insert($array);
+                }
+                // die();
+            }
             redirect('product', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             $this->load->model("product_model");
             $this->load->model("product_related_model");
             $this->load->model("product_category_model");
-            $tin = $this->product_model->where(array('id' => $id))->with_units()->with_image()->as_object()->get();
+            $tin = $this->product_model->where(array('id' => $id))->with_other_image()->with_units()->with_image()->as_object()->get();
             $product_related = $this->product_related_model->where(array('product_id' => $id))->as_object()->get_all();
             $category = $this->product_category_model->where(array('product_id' => $id))->as_object()->get_all();
             if (!empty($category)) {
@@ -251,6 +269,12 @@ class Product extends MY_Administrator
             }
             if (!empty($tin->units)) {
                 $tin->units = array_values((array) $tin->units);
+            }
+            if (!empty($tin->other_image)) {
+                $tin->other_image = array_values((array) $tin->other_image);
+                // echo "<pre>";
+                // print_r($tin->other_image);
+                // die();
             }
             $this->data['tin'] = $tin;
 

@@ -1798,8 +1798,6 @@ select[multiple].input-lg,
     }
 }
 
-
-
 .fade {
     opacity: 0;
     -webkit-transition: opacity 0.15s linear;
@@ -21108,7 +21106,15 @@ fieldset[disabled] .one-screen-page .btn-primary {
     text-align: center;
     background-color: #fff;
 }
-
+.thumbnail-menu-modern .link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 20px;
+    max-height: 40px;
+}
 .thumbnail-menu-modern .price {
     font-size: 24px;
     color: #ec5353;
@@ -21183,7 +21189,7 @@ fieldset[disabled] .one-screen-page .btn-primary {
 
     .thumbnail-menu-modern:hover figure {
         /* height: 320px; */
-        Padding-top: 10px;
+        padding-top: 10px;
     }
 }
 
@@ -30533,7 +30539,6 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 
 @media (min-width: 768px) {
     .responsive-tabs.responsive-tabs-horizontal-background .resp-tabs-container {
-        
     }
 }
 

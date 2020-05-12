@@ -13,6 +13,28 @@ $(document).ready(function () {
 
     plugins.number = $(".number-widget");
     plugins.units = $(".unit_list");
+    plugins.image_view = $('.area_image');
+
+    ////
+    if (plugins.image_view.length > 0) {
+        $('.slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.slider-nav'
+        });
+        $('.slider-nav').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            dots: false,
+            focusOnSelect: true,
+            infinite: false,
+        });
+    }
+
+
     /**
   * NUMBER
   * @description Enables NUMBER plugin
