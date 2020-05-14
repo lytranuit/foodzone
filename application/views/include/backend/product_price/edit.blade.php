@@ -9,33 +9,41 @@
                     </div>
                 </h5>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group row">
-                                <b class="col-12 col-lg-1 col-form-label">Sản phẩm:<i class="text-danger">*</i></b>
-                                <div class="col-12 col-lg-3 pt-1">
-                                    <select name="product_id" class="form-control">
-                                        @foreach($products as $row)
-                                        <option value="{{$row->id}}">
-                                            {{$row->code}} - {{$row->name_vi}}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <b class="col-12 col-lg-1 col-form-label">Giá bán:<i class="text-danger">*</i></b>
-                                <div class="col-12 col-lg-3 pt-1">
-                                    <input id="price" class="form-control form-control-sm" type='text' name="price" required placeholder="Giá bán" />
-                                </div>
-                                <b class="col-12 col-lg-1 col-form-label">Thời gian:<i class="text-danger">*</i></b>
-                                <div class="col-12 col-lg-3 pt-1">
-                                    <input type="text" class="form-control" id="daterange" name="daterange" value="" required>
-                                </div>
-                            </div>
-
+                    <div class="form-group row">
+                        <b class="col-12 col-lg-1 col-form-label">Sản phẩm:<i class="text-danger">*</i></b>
+                        <div class="col-12 col-lg-3 pt-1">
+                            <select name="product_id" class="form-control">
+                                @foreach($products as $row)
+                                <option value="{{$row->id}}">
+                                    {{$row->code}} - {{$row->name_vi}}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="col-md-4">
-
+                        <b class="col-12 col-lg-2 col-form-label">Đơn vị tính:(Nếu có)<i class="text-danger">*</i></b>
+                        <div class="col-12 col-lg-1 pt-1">
+                            <select name="unit_id" class="form-control">
+                                @foreach($units as $row)
+                                <option value="{{$row->id}}">
+                                   {{$row->name_vi}}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <b class="col-12 col-lg-1 col-form-label">Giá bán:<i class="text-danger">*</i></b>
+                        <div class="col-12 col-lg-3 pt-1">
+                            <input id="price" class="form-control form-control-sm" type='text' name="price" required placeholder="Giá bán" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <b class="col-12 col-lg-1 col-form-label">Thời gian:<i class="text-danger">*</i></b>
+                        <div class="col-12 col-lg-3 pt-1">
+                            <input type="text" class="form-control" id="daterange" name="daterange" value="" required>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -43,14 +51,31 @@
     </div>
 </div>
 
+
 <script type='text/javascript'>
     $(document).ready(function() {
         var tin = <?= json_encode($tin) ?>;
         fillForm($("#form-dang-tin"), tin);
         $("select[name='product_id']").chosen();
         $('#daterange').daterangepicker({
+            startDate: moment(tin['date_from']),
+            endDate: moment(tin['date_to']),
         }, function(start, end, label) {
 
+        });
+        $("select[name='product_id']").change(function() {
+            let product_id = $(this).val();
+            $.ajax({
+                url: path + "product_price/get_units/" + product_id,
+                dataType: "JSON",
+                success: function(data) {
+                    let append = "";
+                    for (let i = 0; i < data.length; i++) {
+                        append += "<option value='" + data[i]['id'] + "'>" + data[i]['name_vi'] + "</option>";
+                    }
+                    $("[name=unit_id]").html(append);
+                }
+            });
         });
         $('#price').inputmask("numeric", {
             radixPoint: ".",

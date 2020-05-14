@@ -48,4 +48,18 @@ class Product_model extends MY_Model
         $data['date'] = date("Y-m-d H:i:s");
         return $data;
     }
+    function get_max_order()
+    {
+        $sql = "SELECT MAX(`order`) as max FROM fz_product";
+        //        echo $sql;
+        //        die();
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        if (empty($result)) {
+            $data = 1;
+        } else {
+            $data = (int) $result[0]->max + 1;
+        }
+        return $data;
+    }
 }

@@ -42,7 +42,13 @@ class Product_price extends MY_Administrator
         load_datatable($this->data);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
-
+    public function get_units($params)
+    {
+        $id = $params[0];
+        $this->load->model("product_unit_model");
+        $json_data = $this->product_unit_model->where(array('product_id' => $id))->as_object()->get_all();
+        echo json_encode($json_data);
+    }
     public function add()
     { /////// trang ca nhan
         if (isset($_POST['dangtin'])) {
@@ -79,6 +85,7 @@ class Product_price extends MY_Administrator
             redirect('product_price', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             $this->load->model("product_price_model");
+            $this->load->model("product_model");
             $tin = $this->product_price_model->where(array('id' => $id))->with_image()->with_category()->as_object()->get();
             if (isset($tin->category)) {
                 $cate_id = array();
@@ -87,10 +94,13 @@ class Product_price extends MY_Administrator
                 }
                 $tin->category_list = $cate_id;
             }
+            $product = $this->product_model->where(array("id" => $tin->product_id))->with_units()->get();
+            // print_r($product);
+            // die();
+            $this->data['units'] = $product->units;
             $this->data['tin'] = $tin;
             load_daterangepicker($this->data);
             load_chossen($this->data);
-            $this->load->model("product_model");
             $this->data['products'] = $this->product_model->where(array("deleted" => 0))->get_all();
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
@@ -127,7 +137,7 @@ class Product_price extends MY_Administrator
             $where = $this->product_price_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
         }
 
-        $posts = $where->order_by("id", "DESC")->with_product()->paginate($limit, NULL, $page);
+        $posts = $where->order_by("id", "DESC")->with_unit()->with_product()->paginate($limit, NULL, $page);
         //        echo "<pre>";
         //        print_r($posts);
         //        die();
@@ -137,6 +147,7 @@ class Product_price extends MY_Administrator
                 $nestedData['id'] = $post->id;
                 $nestedData['code'] = isset($post->product->code) ? $post->product->code : "";
                 $nestedData['name_vi'] = isset($post->product->name_vi) ? $post->product->name_vi : "";
+                $nestedData['unit_name'] = isset($post->unit->name_vi) ? $post->unit->name_vi : "";
                 $nestedData['price'] = number_format($post->price, 0, ",", ".") . " VND";
                 $nestedData['date_from'] = date("d/m/Y", strtotime($post->date_from));
                 $nestedData['date_to'] = date("d/m/Y", strtotime($post->date_to));

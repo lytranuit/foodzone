@@ -25,7 +25,7 @@
                                 </div>
                                 <b class="col-12 col-lg-2 col-form-label">Giá bán:<i class="text-danger">*</i></b>
                                 <div class="col-12 col-lg-4 pt-1">
-                                    <input id="price" class="form-control form-control-sm" type='text' name="price" required placeholder="Giá bán" />
+                                    <input id="price" class="form-control form-control-sm price" type='text' name="price" required placeholder="Giá bán" />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -63,9 +63,13 @@
                                         </span>
                                     </div>
                                 </div>
-                                <b class="col-12 col-lg-2 col-form-label">Sắp xếp:</b>
+                                <b class="col-12 col-lg-2 col-form-label">
+                                    Sắp xếp:
+                                    <a class="btn btn-sm btn-success text-white up_order" data-max="{{$max_order}}">Up</a>
+
+                                </b>
                                 <div class="col-12 col-lg-4 pt-1">
-                                    <input id="price" class="form-control form-control-sm" type='number' name="order" />
+                                    <input class="form-control form-control-sm order" type='number' name="order" />
                                 </div>
                             </div>
 
@@ -263,7 +267,7 @@
                                                                 <th>Tiếng Việt</th>
                                                                 <th>Tiếng Anh</th>
                                                                 <th>Tiếng Nhật</th>
-                                                                <th>Đơn vị</th>
+                                                                <th>Giá</th>
                                                                 <th>Hành động</th>
                                                             </tr>
                                                         </thead>
@@ -281,7 +285,7 @@
                                         <div class="col-12">
                                             <section class="card card-fluid">
                                                 <h5 class="card-header drag-handle">
-                                                    <a class="btn btn-success btn-sm text-white">Thêm</a>
+                                                    <a class="btn btn-success btn-sm text-white multiple_image">Thêm</a>
                                                 </h5>
                                                 <div class="card-body">
                                                     <table id="quanlyimage" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
@@ -341,9 +345,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <b class="form-label">Đơn vị:<i class="text-danger">*</i></b>
+                            <b class="form-label">Giá:<i class="text-danger">*</i></b>
                             <div class="form-line">
-                                <input name="special_unit" type="number" required class="form-control">
+                                <input name="price" type='text' required class="price form-control" placeholder="Giá">
                             </div>
                         </div>
                         <div class="text-center">
@@ -373,7 +377,7 @@
                     "data": "name_jp"
                 },
                 {
-                    "data": "special_unit"
+                    "data": "price"
                 },
                 {
                     "data": "action"
@@ -393,9 +397,27 @@
                 }
             ]
         })
+
+        $(".multiple_image").imageFeature({
+            multiple: true,
+            id: 'multi'
+        }).on("done", function(event, ...data) {
+            for (let i = 0; i < data.length; i++) {
+                let row = data[i];
+                row['image'] = '<img src="' + row['image'] + '" width="200"/>';
+
+                row['action'] = '<a href="#" class="btn btn-danger btn-sm image_remove" data-id="' + row['image_id'] + '"><i class="far fa-trash-alt"></i></a>';
+
+                $('#quanlyimage').dataTable().fnAddData(row);
+            }
+        });
         $(".chosen").chosen({
             width: "100%"
         });
+        $(".up_order").click(function() {
+            let max = $(this).data("max");
+            $(".order").val(max);
+        })
         $("#product_simba").change(function() {
             let val = $(this).val();
             $.ajax({
@@ -420,15 +442,12 @@
             })
         })
         $(".image_ft").imageFeature();
-        $('#price').inputmask("numeric", {
+        $('.price').inputmask("numeric", {
             radixPoint: ".",
             groupSeparator: ",",
             autoGroup: true,
             suffix: ' VND', //No Space, this will truncate the first character
-            rightAlign: false,
-            oncleared: function() {
-                self.Value('');
-            }
+            rightAlign: false
         });
         $('.edit').froalaEditor({
             heightMin: 200,
@@ -501,6 +520,7 @@
                             $('#quanly').dataTable().fnAddData(data);
                         }
                         form.reset();
+                        $("[name=id]").val(0);
                         // $("#quanly tbody").append(rendered);
                     }
                 });
@@ -534,6 +554,11 @@
                 dataType: "JSON",
                 type: "POST"
             });
+        })
+
+        $(document).on("click", ".image_remove", function() {
+            let parent = $(this).parents("tr").get(0);
+            $('#quanlyimage').dataTable().fnDeleteRow($('#quanlyimage').dataTable().fnGetPosition(parent));
         })
     });
 </script>

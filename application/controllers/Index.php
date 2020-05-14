@@ -60,7 +60,7 @@ class Index extends MY_Controller
         $this->load->model("product_model");
         $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1))->order_by('order', 'ASC')->get_all();
         foreach ($list_category as &$row) {
-            $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'ASC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
+            $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
         }
         $this->data['category'] = $list_category;
         echo $this->blade->view()->make('page/page', $this->data)->render();
@@ -147,7 +147,7 @@ class Index extends MY_Controller
         $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->count_rows();
         $max_page = ceil($count / $limit);
 
-        $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('order', 'ASC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
+        $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
         $row->product = $data;
         $this->data['row'] = $row;
         // echo "<pre>";

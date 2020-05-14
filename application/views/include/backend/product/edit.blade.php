@@ -25,7 +25,7 @@
                                 </div>
                                 <b class="col-12 col-lg-2 col-form-label">Giá bán:<i class="text-danger">*</i></b>
                                 <div class="col-12 col-lg-4 pt-1">
-                                    <input id="price" class="form-control form-control-sm" type='text' name="price" required placeholder="Giá bán" />
+                                    <input class="form-control form-control-sm price" type='text' name="price" required placeholder="Giá bán" />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -63,9 +63,13 @@
                                         </span>
                                     </div>
                                 </div>
-                                <b class="col-12 col-lg-2 col-form-label">Sắp xếp:</b>
+                                <b class="col-12 col-lg-2 col-form-label">
+                                    Sắp xếp:
+                                    <a class="btn btn-sm btn-success text-white up_order" data-max="{{$max_order}}">Up</a>
+
+                                </b>
                                 <div class="col-12 col-lg-4 pt-1">
-                                    <input id="price" class="form-control form-control-sm" type='number' name="order" />
+                                    <input class="form-control form-control-sm order" type='number' name="order" />
                                 </div>
                             </div>
 
@@ -254,7 +258,7 @@
                                         <div class="col-12">
                                             <section class="card card-fluid">
                                                 <h5 class="card-header drag-handle">
-                                                    <a class="btn btn-success btn-sm text-white" data-target="#dvt-modal" data-toggle="modal">Thêm</a>
+                                                    <a class="btn btn-success btn-sm text-white dvt_add" data-target="#dvt-modal" data-toggle="modal">Thêm</a>
                                                 </h5>
                                                 <div class="card-body">
                                                     <table id="quanly" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
@@ -263,7 +267,7 @@
                                                                 <th>Tiếng Việt</th>
                                                                 <th>Tiếng Anh</th>
                                                                 <th>Tiếng Nhật</th>
-                                                                <th>Đơn vị</th>
+                                                                <th>Giá</th>
                                                                 <th>Hành động</th>
                                                             </tr>
                                                         </thead>
@@ -323,7 +327,7 @@
                 <div class="main">
                     <!--<p>Sign up once and watch any of our free demos.</p>-->
                     <form id="form-dvt">
-                        <input type="hidden" value="0" name="id" />
+                        <input type="hidden" name="id" />
                         <div class="form-group">
                             <b class="form-label">Tiếng Việt:<i class="text-danger">*</i></b>
                             <div class="form-line">
@@ -343,9 +347,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <b class="form-label">Đơn vị:<i class="text-danger">*</i></b>
+                            <b class="form-label">Giá:<i class="text-danger">*</i></b>
                             <div class="form-line">
-                                <input name="special_unit" type="number" required class="form-control">
+                                <input name="price" type='text' required class="price form-control" placeholder="Giá">
                             </div>
                         </div>
                         <div class="text-center">
@@ -393,7 +397,7 @@
                     "data": "name_jp"
                 },
                 {
-                    "data": "special_unit"
+                    "data": "price"
                 },
                 {
                     "data": "action"
@@ -436,6 +440,11 @@
         $(".chosen").chosen({
             width: "100%"
         });
+
+        $(".up_order").click(function() {
+            let max = $(this).data("max");
+            $(".order").val(max);
+        })
         $("#product_simba").change(function() {
             let val = $(this).val();
             $.ajax({
@@ -467,15 +476,12 @@
                 }
             })
         })
-        $('#price').inputmask("numeric", {
+        $('.price').inputmask("numeric", {
             radixPoint: ".",
             groupSeparator: ",",
             autoGroup: true,
             suffix: ' VND', //No Space, this will truncate the first character
-            rightAlign: false,
-            oncleared: function() {
-                self.Value('');
-            }
+            rightAlign: false
         });
         $('.edit').froalaEditor({
             heightMin: 200,
@@ -565,6 +571,11 @@
                 });
                 return false;
             }
+        });
+
+        $(document).on("click", ".dvt_add", function() {
+            $("#form-dvt")[0].reset();
+            $("#form-dvt [name=id]").val(0);
         });
         $(document).on("click", ".dvt_edit", function() {
             let id = $(this).data("id");

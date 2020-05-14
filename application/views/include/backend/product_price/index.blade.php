@@ -13,6 +13,7 @@
                         <tr>
                             <th>Mã</th>
                             <th>Tên</th>
+                            <th>Đơn vi tính</th>
                             <th>Giá</th>
                             <th>Ngày bắt đầu</th>
                             <th>Ngày kết thúc</th>
@@ -43,6 +44,9 @@
                 },
                 {
                     "data": "name_vi"
+                },
+                {
+                    "data": "unit_name"
                 },
                 {
                     "data": "price"

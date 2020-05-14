@@ -127,6 +127,23 @@ class Product extends MY_Administrator
                     $this->product_unit_model->update($array, $row);
                 }
             }
+            /*
+             * Image_other
+             */
+
+            $this->load->model("product_image_model");
+            // print_r($data['dvt']);
+            // die();
+            if (isset($data['image_other'])) {
+                foreach ($data['image_other'] as $row) {
+                    $array = array(
+                        'product_id' => $id,
+                        'image_id' => $row
+                    );
+                    $this->product_image_model->insert($array);
+                }
+                // die();
+            }
             redirect('product', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             load_editor($this->data);
@@ -137,7 +154,7 @@ class Product extends MY_Administrator
             $this->load->model("preservation_model");
             $this->load->model("product_simba_model");
             $this->load->model("product_model");
-
+            $this->data['max_order'] = $this->product_model->get_max_order();
             $this->data['product'] = $this->product_model->where(array("deleted" => 0))->get_all();
             $this->data['eat'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 1))->get_all();
             $this->data['cook'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 2))->get_all();
@@ -286,6 +303,7 @@ class Product extends MY_Administrator
             $this->load->model("preservation_model");
             $this->load->model("product_simba_model");
 
+            $this->data['max_order'] = $this->product_model->get_max_order();
             $this->data['product'] = $this->product_model->where(array("deleted" => 0))->get_all();
             $this->data['eat'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 1))->get_all();
             $this->data['cook'] = $this->category_model->where(array("deleted" => 0, 'menu_id' => 2))->get_all();
@@ -321,7 +339,7 @@ class Product extends MY_Administrator
             $where = $this->product_model->where(array("deleted" => 0));
         } else {
             $search = $this->input->post('search')['value'];
-            $sWhere = "deleted = 0";
+            $sWhere = "deleted = 0 AND (LOWER(code) LIKE LOWER('%$search%'))";
             $where = $this->product_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
             $totalFiltered = $where->count_rows();
             $where = $this->product_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
