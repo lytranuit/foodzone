@@ -11,14 +11,14 @@
     <div class="container-wide">
         <div class="row">
             <div class="col-lg-2 mb-4">
-                <div class="card card-custom">
+                <!-- <div class="card card-custom">
                     <div class="card-header">
                         Bộ lọc
                         <div style="margin-left:auto;font-size:11px;text-transform: none;">
                             <a href="#">Loại bỏ</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="card card-custom offset-top-20">
                     <div class="card-header">
                         Sắp xếp
