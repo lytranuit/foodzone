@@ -1974,19 +1974,8 @@ tbody.collapse.in {
     left: auto;
 }
 
-.dropup .caret,
-.navbar-fixed-bottom .dropdown .caret {
-    border-top: 0;
-    border-bottom: 4px dashed;
-    border-bottom: 4px solid \9;
-    content: "";
-}
-
-.dropup .dropdown-menu,
-.navbar-fixed-bottom .dropdown .dropdown-menu {
-    top: auto;
-    bottom: 100%;
-    margin-bottom: 2px;
+.dropup .dropdown-menu {
+    left: -100px !important;
 }
 
 @media (min-width: 768px) {
@@ -21116,7 +21105,7 @@ fieldset[disabled] .one-screen-page .btn-primary {
     max-height: 40px;
 }
 .thumbnail-menu-modern .price {
-    font-size: 24px;
+    font-size: 18px !important;
     color: #ec5353;
     padding-right: 8px;
 }
@@ -21124,7 +21113,9 @@ fieldset[disabled] .one-screen-page .btn-primary {
     color: #e5e7e9;
     text-decoration: line-through;
 }
-
+.thumbnail-menu-modern .price.price-prev:empty {
+    padding-right: 0;
+}
 .thumbnail-menu-modern .caption {
     max-width: 275px;
     margin-left: auto;
@@ -30519,6 +30510,9 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 .details .price.price-prev {
     color: #e5e7e9;
     text-decoration: line-through;
+}
+.details .price.price-prev:empty {
+    padding-right: 0;
 }
 .responsive-tabs.responsive-tabs-horizontal-background .resp-tabs-list li {
     padding: 10px 20px 5px 10px;

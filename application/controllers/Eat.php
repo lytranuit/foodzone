@@ -39,7 +39,11 @@ class Eat extends MY_Administrator
 
     public function index()
     { /////// trang ca nhan
-        load_datatable($this->data);
+        // load_datatable($this->data);
+        load_sort_nest($this->data);
+        $this->load->model("category_model");
+        $category = $this->category_model->where(array('deleted' => 0, 'menu_id' => $this->menu_id))->order_by('order', "ASC")->as_array()->get_all();
+        $this->data['html_nestable'] = html_nestable($category, 'parent_id', 0);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
@@ -60,7 +64,7 @@ class Eat extends MY_Administrator
             $data_up = $this->category_model->create_object($data);
             $id = $this->category_model->insert($data_up);
 
-            redirect('eat', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+            redirect('cook', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             load_editor($this->data);
             echo $this->blade->view()->make('page/page', $this->data)->render();
@@ -73,12 +77,9 @@ class Eat extends MY_Administrator
         if (isset($_POST['dangtin'])) {
             $this->load->model("category_model");
             $data = $_POST;
-            // echo "<pre>";
-            // print_r($data);
-            // die();
             $data_up = $this->category_model->create_object($data);
             $this->category_model->update($data_up, $id);
-            redirect('eat', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+            redirect('cook', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             $this->load->model("category_model");
             $tin = $this->category_model->where(array('id' => $id))->with_image()->as_object()->get();
@@ -113,6 +114,13 @@ class Eat extends MY_Administrator
         //            $max_page = ceil($totalFiltered / $limit);
 
         $where = $this->category_model->where(array("deleted" => 0, 'menu_id' => $this->menu_id));
+        // } else {
+        //     $search = $this->input->post('search')['value'];
+        //     $sWhere = "deleted = 0";
+        //     $where = $this->category_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
+        //     $totalFiltered = $where->count_rows();
+        //     $where = $this->category_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
+        // }
 
         $posts = $where->order_by("id", "DESC")->with_image()->paginate($limit, NULL, $page);
         //        echo "<pre>";
@@ -128,11 +136,11 @@ class Eat extends MY_Administrator
                 $nestedData['active']  = $post->active == 1 ? "Có" : "Không";
                 $image = isset($post->image->src) ? base_url() . $post->image->src : "";
                 $nestedData['image'] = "<img src='$image' width='100'/>";
-                $nestedData['action'] = '<a href="' . base_url() . 'eat/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="edit">'
+                $nestedData['action'] = '<a href="' . base_url() . 'cook/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="edit">'
                     . '<i class="fas fa-pencil-alt">'
                     . '</i>'
                     . '</a>'
-                    . '<a href="' . base_url() . 'eat/remove/' . $post->id . '" class="btn btn-danger btn-sm" data-type="confirm" title="remove">'
+                    . '<a href="' . base_url() . 'cook/remove/' . $post->id . '" class="btn btn-danger btn-sm" data-type="confirm" title="remove">'
                     . '<i class="far fa-trash-alt">'
                     . '</i>'
                     . '</a>';
@@ -149,5 +157,31 @@ class Eat extends MY_Administrator
         );
 
         echo json_encode($json_data);
+    }
+
+    function saveordercategory()
+    {
+        $this->load->model("category_model");
+        $data = json_decode($this->input->post('data'), true);
+        foreach ($data as $key => $row) {
+            if (isset($row['id'])) {
+                $id = $row['id'];
+                $parent_id = isset($row['parent_id']) && $row['parent_id'] != "" ? $row['parent_id'] : 0;
+                $array = array(
+                    'parent_id' => $parent_id,
+                    'order' => $key
+                );
+                $this->category_model->update($array, $id);
+            }
+        }
+    }
+
+    function savecategory()
+    {
+        $this->load->model("category_model");
+        $data = json_decode($this->input->post('data'), true);
+        $id = $data['id'];
+        $data_up = $this->category_model->create_object($data);
+        $this->category_model->update($data_up, $id);
     }
 }

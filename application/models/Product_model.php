@@ -62,4 +62,43 @@ class Product_model extends MY_Model
         }
         return $data;
     }
+    function format($product)
+    {
+        // echo "<pre>";
+        $price_km = isset($product->price_km) ?  array_values((array) $product->price_km) : array();
+        // print_r($price_km);
+        // print_r($product->price);
+        if (!empty($product->units)) {
+            foreach ($product->units as $key => &$unit) {
+                $unit_id = $unit->id;
+                $unit_km = array_filter($price_km, function ($item) use ($unit_id) {
+                    return $item->unit_id == $unit_id;
+                });
+                if (!empty($unit_km)) {
+                    $unit->km_price = $unit_km[0]->price;
+                    $unit->prev_price = $unit->price;
+                    $unit->price = $unit->km_price;
+                }
+
+                // print_r($unit);
+            }
+        } else {
+
+            $list_km = array();
+            foreach ($price_km as $row1) {
+                $now =  date("Y-m-d H:i:s");
+                if ($row1->date_from <= $now && $row1->date_to >= $now)
+                    $list_km[] = $row1;
+            }
+            if (isset($list_km[0]->price)) {
+                $product->km_price = $list_km[0]->price;
+                $product->prev_price = $product->price;
+                $product->price = $product->km_price;
+            }
+        }
+        
+        // print_r($product->prev_price);
+        // die();
+        return $product;
+    }
 }

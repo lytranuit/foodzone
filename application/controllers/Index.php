@@ -58,10 +58,21 @@ class Index extends MY_Controller
 
         $this->load->model("category_model");
         $this->load->model("product_model");
-        $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1))->order_by('order', 'ASC')->get_all();
+        $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1, 'parent_id' => 0, 'menu_id' => 1))->order_by('order', 'ASC')->get_all();
         foreach ($list_category as &$row) {
             $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
+            foreach ($row->product as &$row_format) {
+                $row_format = $this->product_model->format($row_format);
+            }
         }
+        $list_topics = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1, 'parent_id' => 0, 'menu_id' => 2))->with_image()->order_by('order', 'ASC')->get_all();
+        // foreach ($list_category as &$row) {
+        //     $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
+        //     foreach ($row->product as &$row_format) {
+        //         $row_format = $this->product_model->format($row_format);
+        //     }
+        // }
+        $this->data['topics'] = $list_topics;
         $this->data['category'] = $list_category;
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
@@ -89,36 +100,30 @@ class Index extends MY_Controller
         $id = $params[0];
         $version = $this->config->item("version");
         $this->load->model("product_model");
-        $product = $this->product_model->with_other_image()->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to')->with_preservation()->with_origin()->with_category()->get($id);
+        $product = $this->product_model->with_other_image()->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to and deleted = 0')->with_preservation()->with_origin()->with_category()->get($id);
         if (empty($product))
             show_404();
         $this->data['title'] = $product->{pick_language($product, 'name_')};
-        $this->data['product'] = $product;
+        $this->data['product'] = $this->product_model->format($product);
         // load_easyzoom($this->data);
         load_fancybox($this->data);
         load_easyResponsiveTabs($this->data);
         load_froala_view($this->data);
         load_slick($this->data);
         load_autonumberic($this->data);
-        $list_category = array_map(function ($item) {
-            return $item->{pick_language($item, "name_")};
-        }, array_values((array) $this->data['product']->category));
-
         $list_category_id = array_map(function ($item) {
             return $item->id;
         }, array_values((array) $this->data['product']->category));
-        $this->data['product']->str_list_category = implode(" / ", $list_category);
-
-        if (!empty($this->data['product']->price_km)) {
-            $price_km = array_values((array) $this->data['product']->price_km);
-            $this->data['product']->km_price = $price_km[0]->price;
-        }
+        // die();
         $this->data['product_related'] = $this->product_model->where("deleted = 0 and id IN(SELECT product_related_id FROM fz_product_related WHERE product_id = $id)", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
         if (!count($this->data['product_related'])) {
             $this->data['product_related'] = $this->product_model->where("deleted = 0 and id IN(SELECT product_id FROM fz_product_category WHERE category_id IN(" . implode(",", $list_category_id) . "))", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
         }
+        foreach ($this->data['product_related'] as &$row_format) {
+            $row_format = $this->product_model->format($row_format);
+        }
         // echo "<pre>";
-        // print_r($this->data['product']);
+        // print_r($this->data['product_related']);
         // die();
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();

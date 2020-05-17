@@ -27,7 +27,19 @@
                                 <a class="" href="#">Category</a>
                                 <ul class="rd-navbar-dropdown rd-navbar-open-right">
                                     @foreach($list_cate as $row)
-                                    <li><a href="{{base_url()}}index/category/{{$row->id}}">{{ $row->{pick_language($row,'name_')} }}</a></li>
+                                    <li>
+                                        <a href="{{base_url()}}index/category/{{$row->id}}">{{ $row->{pick_language($row,'name_')} }}</a>
+                                        @if(isset($row->child) && count($row->child) > 0)
+                                        <ul class="rd-navbar-dropdown rd-navbar-open-right">
+                                            @foreach($row->child as $row1)
+                                            <li>
+                                                <a href="{{base_url()}}index/category/{{$row1->id}}">{{ $row1->{pick_language($row1,'name_')} }}</a>
+
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                        @endif
+                                    </li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -35,7 +47,19 @@
                                 <a class="" href="#">Topics</a>
                                 <ul class="rd-navbar-dropdown rd-navbar-open-right">
                                     @foreach($list_topics as $row)
-                                    <li><a href="{{base_url()}}index/category/{{$row->id}}">{{ $row->{pick_language($row,'name_')} }}</a></li>
+                                    <li>
+                                        <a href="{{base_url()}}index/category/{{$row->id}}">{{ $row->{pick_language($row,'name_')} }}</a>
+                                        @if(isset($row->child) && count($row->child) > 0)
+                                        <ul class="rd-navbar-dropdown rd-navbar-open-right">
+                                            @foreach($row->child as $row1)
+                                            <li>
+                                                <a href="{{base_url()}}index/category/{{$row1->id}}">{{ $row1->{pick_language($row1,'name_')} }}</a>
+
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                        @endif
+                                    </li>
                                     @endforeach
                                 </ul>
                             </li>

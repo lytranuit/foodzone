@@ -516,31 +516,11 @@ if (!function_exists('html_nestable')) {
         $html .= '<ol class="dd-list" ' . $id_nestable . '>';
         ///Content
         foreach ($return as $row) {
-            $is_home = $row['is_home'] ? "checked" : "";
-            $is_menu = $row['is_menu'] ? "checked" : "";
             $html .= '<li class="dd-item" id="menuItem_' . $row['id'] . '" data-id="' . $row['id'] . '">
                             <div class="dd-handle"> <span class="drag-indicator"></span>
-                                <div>' . $row['name'] . '</div>
+                                <div>' . $row['name_vi'] . '</div>
                                 <div class="dd-nodrag btn-group ml-auto">
-                                    <div class="btn btn-sm btn-outline-light">
-                                        <span>Home</span>
-                                        <div class="switch-button switch-button-xs switch-button-success">
-                                            <input type="checkbox" ' . $is_home . ' id="show' . $row['id'] . '" value="1">
-                                            <span>
-                                                <label for="show' . $row['id'] . '"></label>
-                                            </span>
-                                        </div>   
-                                    </div>
-                                    <div class="btn btn-sm btn-outline-light">
-                                        <span>Menu</span>
-                                        <div class="switch-button switch-button-xs switch-button-success">
-                                            <input type="checkbox"  ' . $is_menu . ' id="switch' . $row['id'] . '" value="1">
-                                            <span>
-                                                <label for="switch' . $row['id'] . '"></label>
-                                            </span>
-                                        </div>   
-                                    </div>
-                                    <a class="btn btn-sm btn-outline-light" href="' . base_url() . 'admin/editcategory/' . $row['id'] . '">Edit</a> 
+                                    <a class="btn btn-sm btn-outline-light" href="' . base_url() . 'cook/edit/' . $row['id'] . '">Edit</a> 
                                     <button class="btn btn-sm btn-outline-light dd-item-delete">
                                         <i class="far fa-trash-alt"></i>
                                     </button>

@@ -39,7 +39,11 @@ class Cook extends MY_Administrator
 
     public function index()
     { /////// trang ca nhan
-        load_datatable($this->data);
+        // load_datatable($this->data);
+        load_sort_nest($this->data);
+        $this->load->model("category_model");
+        $category = $this->category_model->where(array('deleted' => 0, 'menu_id' => $this->menu_id))->order_by('order', "ASC")->as_array()->get_all();
+        $this->data['html_nestable'] = html_nestable($category, 'parent_id', 0);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
@@ -153,5 +157,31 @@ class Cook extends MY_Administrator
         );
 
         echo json_encode($json_data);
+    }
+
+    function saveordercategory()
+    {
+        $this->load->model("category_model");
+        $data = json_decode($this->input->post('data'), true);
+        foreach ($data as $key => $row) {
+            if (isset($row['id'])) {
+                $id = $row['id'];
+                $parent_id = isset($row['parent_id']) && $row['parent_id'] != "" ? $row['parent_id'] : 0;
+                $array = array(
+                    'parent_id' => $parent_id,
+                    'order' => $key
+                );
+                $this->category_model->update($array, $id);
+            }
+        }
+    }
+
+    function savecategory()
+    {
+        $this->load->model("category_model");
+        $data = json_decode($this->input->post('data'), true);
+        $id = $data['id'];
+        $data_up = $this->category_model->create_object($data);
+        $this->category_model->update($data_up, $id);
     }
 }
