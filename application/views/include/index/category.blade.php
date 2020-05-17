@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="card card-custom offset-top-20">
+                <div class="card card-custom">
                     <div class="card-header">
                         Sắp xếp
                         <div style="margin-left:auto;font-size:11px;text-transform: none;">
