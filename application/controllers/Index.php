@@ -24,6 +24,7 @@ class Index extends MY_Controller
             "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
             base_url() . "public/lib/bootstrap/js/popper.min.js",
             base_url() . "public/lib/bootstrap/js/bootstrap.min.js",
+            base_url() . "public/lib/cookie/jquery.cookies.2.2.0.min.js",
 
             // base_url() . "public/lib/UItoTop/easing.js",
             // base_url() . "public/lib/UItoTop/jquery.ui.totop.js",
@@ -229,11 +230,14 @@ class Index extends MY_Controller
     {
         $this->data['cart'] = sync_cart();
         //        $this->data['stylesheet_tag'] = array();
-        array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
+        // array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
 
-        //        echo "<pre>";
-        //        print_r($this->data['']);
-        //        die();
+        // echo "<pre>";
+        // print_r($this->data['cart']);
+        // die();
+
+        $version = $this->config->item("version");
+        array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 
@@ -242,7 +246,7 @@ class Index extends MY_Controller
         $this->data['cart'] = sync_cart();
         $this->load->model("user_model");
         //        $this->data['stylesheet_tag'] = array();
-        array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
+        // array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
 
         //        echo "<pre>";
         //        print_r($this->data['userdata']);

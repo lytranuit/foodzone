@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row no-gutters">
             <div class="col-lg-9">
-                <div class="card card-customer product">
+                <div class="card card-customer product" data-id="{{$product->id}}">
                     <div class="card-body">
                         <div class="row justify-content-xs-center">
                             <div class="col-lg-6 text-lg-left area_image">
@@ -82,7 +82,7 @@
                                     <span>ĐVT:</span>
                                     <div class="unit_list">
                                         @foreach($product->units as $key=>$unit)
-                                        <button class="mr-2 btn btn-lg unit_product @if(array_keys($product->units)[0] == $key) btn-primary active @endif" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
+                                        <button class="mr-2 btn btn-lg unit_product @if(array_keys($product->units)[0] == $key) btn-primary active @endif" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
                                             {{ $unit->{pick_language($unit,'name_')} }}
                                         </button>
                                         @endforeach
@@ -99,7 +99,7 @@
                                                 <span class="stepper-arrow down">
                                                 </span>
                                             </div>
-                                        </div><a class="text-top btn btn-burnt-sienna btn-shape-circle" href="shop-cart.html"><span>Add to Cart</span></a>
+                                        </div><a class="text-top btn btn-burnt-sienna btn-shape-circle add-cart" href="#"><span>Add to Cart</span></a>
                                     </div>
                                 </div>
                                 <div class="offset-top-30">

@@ -575,70 +575,47 @@ if (!function_exists('sync_cart')) {
         $items = array(
             'details' => array(),
             'count_product' => 0,
-            'amount_product' => 0,
-            'debt' => 0
+            'amount_product' => 0
         );
         $CI->load->helper(array('cookie'));
         $CI->load->model('product_model');
         $CI->load->model('user_model');
 
-        $user_id = $CI->session->userdata('user_id');
-        if ($user_id > 0) {
-            $user = $CI->user_model->where(array('id' => $user_id))->as_object()->get();
-            $items['debt'] = $user->debt;
-        }
         $cart = array();
-        if (get_cookie("CART") && get_cookie("CART") != "") {
-            $cart = json_decode(get_cookie("CART"), true);
+        if (get_cookie("DATA_CART") && get_cookie("DATA_CART") != "") {
+            $cart = json_decode(get_cookie("DATA_CART"), true);
         }
-        if (count($cart) > 0) {
+        if (isset($cart['details']) && count($cart['details']) > 0) {
             //            echo "<pre>";
             //            print_r($cart);
             //            die();
-            foreach ($cart as $key => $item) {
+            // $cart =
+            foreach ($cart['details'] as $key => $item) {
                 $data = array();
-                if (!isset($item['product_id']) || !isset($item['qty'])) {
+                if (!isset($item['id']) || !isset($item['qty'])) {
                     continue;
                 }
                 $qty = $item['qty'];
-                $id = $item['product_id'];
+                $id = $item['id'];
+                $unit_id = isset($item['unit']) ? $item['unit'] : 0;
 
-                $color_name = isset($item['color']) ? "-" . $item['color'] : "";
-                $product = $CI->product_model->where(array('id' => $id))->with_hinhanh()->with_size()->as_array()->get();
-
-                $data['product_id'] = $product['id'];
-                $data['image_url'] = isset($product['hinhanh']->src) ? $product['hinhanh']->src : "";
-                $data['code'] = $product['code'];
-                $data['name'] = $product['name'] . $color_name;
-                $data['price'] = $product['price'];
-                $data['size_name'] = $product['size']->name;
-
-                $data['color'] = isset($item['color']) ? $item['color'] : "";
-                $data['qty'] = $qty;
-                $data['product_parent'] = $product['parent'] > 0 ? $product['parent'] : $product['id'];
-                $data['amount_product'] = $qty * $product['price'];
-
-
-                $items['count_product'] += $qty;
-                $items['amount_product'] += $qty * $product['price'];
-
-                $parent = $product['parent'] > 0 ? $product['parent'] : $id;
-                $variant = $CI->product_model->where(array('parent' => $parent))->with_size()->as_object()->get_all();
-                $parent = $CI->product_model->where(array('id' => $parent))->with_colors()->with_size()->as_object()->get();
-                array_unshift($variant, $parent);
-                $array_size = array();
-                //                echo "<pre>";
-                //                print_r($variant);
-                //                die();
-                foreach ($variant as $key1 => $row) {
-                    if (isset($row->size->id) && !isset($array_size[$row->size->id])) {
-                        $array_size[$row->size->id] = array('product_id' => $row->id, 'size_id' => $row->size->id, 'size_name' => $row->size->name);
+                $product = $CI->product_model->where(array('id' => $id))->with_units()->with_image()->with_price_km()->get();
+                $product = $CI->product_model->format($product);
+                $price_this = $product->price;
+                if ($unit_id > 0) {
+                    foreach ($product->units as $row) {
+                        if ($row->id == $unit_id) {
+                            $price_this = $row->price;
+                        }
                     }
                 }
-                $data['sizes'] = $array_size;
-                $data['colors'] = $parent->colors;
+                $product->qty = $qty;
+                $product->unit_id = $unit_id;
+                $product->amount = $qty * $price_this;
+                $items['count_product'] += $qty;
+                $items['amount_product'] += $qty * $price_this;
 
-                $items['details'][] = $data;
+                $items['details'][] = $product;
             }
             //            echo "<pre>";
             //            print_r($items);
