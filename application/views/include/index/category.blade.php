@@ -65,7 +65,7 @@
                         <div class="row no-gutters" style="min-height: 400px;">
                             @if(!empty($row->product))
                             @foreach($row->product as $product)
-                            <div class="thumbnail-menu-modern col-6 col-lg-2 border border-light product">
+                            <div class="thumbnail-menu-modern col-6 col-lg-3 border border-light product">
                                 <input type="hidden" value="1" class="number" />
                                 <figure>
                                     <a href="{{base_url()}}index/details/{{$product->id}}">
