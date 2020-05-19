@@ -6,7 +6,7 @@
             @foreach($topics as $row)
             <div class="item m-2">
                 <a class="" href="{{base_url()}}index/category/{{$row->id}}">
-                    <img class="img-responsive" src="{{$row->image->src}}" alt="">
+                    <img class="img-responsive" src="@if(isset($row->image)){{$row->image->src}}@endif" alt="">
                     <div class="caption text-center">
                         <p>
                             {{ $row->{pick_language($row,'name_')} }}
