@@ -1,5 +1,5 @@
 <?php
-
+// use Hybridauth\Hybridauth; 
 class Index extends MY_Controller
 {
 
@@ -331,5 +331,51 @@ class Index extends MY_Controller
     public function success()
     {
         echo json_encode(1);
+    }
+    public function login_connect()
+    {
+        //First step is to build a configuration array to pass to `Hybridauth\Hybridauth`
+        $config = [
+            //Location where to redirect users once they authenticate with a provider
+            'callback' => 'http://foodzone.local/callback',
+
+            //Providers specifics
+            'providers' => [
+                'Twitter' => [
+                    'enabled' => true,     //Optional: indicates whether to enable or disable Twitter adapter. Defaults to false
+                    'keys' => [
+                        'key'    => '...', //Required: your Twitter consumer key
+                        'secret' => '...'  //Required: your Twitter consumer secret
+                    ]
+                ],
+                'Google'   => ['enabled' => true, 'keys' => ['id'  => '16945869109-vu353bmb6cmufgdgb46u1pldhsdl9gs6.apps.googleusercontent.com', 'secret' => 'Eb5N8lKTmy8ErDfodVhnX4dK']], //To populate in a similar way to Twitter
+                'Facebook' => ['enabled' => true, 'keys' => ['id'  => '854767185024890', 'secret' => '367b0ee2f1f2b36efb5c520b3c00be3a']]  //And so on
+            ]
+        ];
+
+        try {
+            //Feed configuration array to Hybridauth
+            $hybridauth = new Hybridauth\Hybridauth($config);
+
+            //Then we can proceed and sign in with Twitter as an example. If you want to use a diffirent provider, 
+            //simply replace 'Twitter' with 'Google' or 'Facebook'.
+
+            //Attempt to authenticate users with a provider by name
+            $adapter = $hybridauth->authenticate('Google');
+
+            //Returns a boolean of whether the user is connected with Twitter
+            $isConnected = $adapter->isConnected();
+
+            //Retrieve the user's profile
+            $userProfile = $adapter->getUserProfile();
+
+            //Inspect profile's public attributes
+            var_dump($userProfile);
+
+            //Disconnect the adapter 
+            $adapter->disconnect();
+        } catch (\Exception $e) {
+            echo 'Oops, we ran into an issue! ' . $e->getMessage();
+        }
     }
 }
