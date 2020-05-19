@@ -99,7 +99,10 @@
                                                 <span class="stepper-arrow down">
                                                 </span>
                                             </div>
-                                        </div><a class="text-top btn btn-burnt-sienna btn-shape-circle add-cart" href="#"><span>Add to Cart</span></a>
+                                        </div>
+                                        <a class="text-top btn btn-burnt-sienna btn-shape-circle add-cart" href="#">
+                                            <span>Add to Cart</span>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="offset-top-30">

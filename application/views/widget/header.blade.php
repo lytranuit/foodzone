@@ -10,10 +10,7 @@
                         <button class="rd-navbar-toggle toggle-original" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                         <!-- RD Navbar Brand--><a class="rd-navbar-brand brand" href="{{base_url()}}">
                             <div class="brand-logo">
-                                <svg x="0px" y="0px" width="157px" height="41px" viewBox="0 0 157 41">
-                                    <text transform="matrix(1 0 0 1 1.144409e-004 32)" fill="white" font-family="'Grand Hotel'" font-size="45.22">QuickFood</text>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#EB5453" d="M43.743,2.954c2.606,0,4.719,2.091,4.719,4.672  c0,2.58-2.113,4.672-4.719,4.672c-2.606,0-4.719-2.091-4.719-4.672C39.024,5.045,41.137,2.954,43.743,2.954z"></path>
-                                </svg>
+                                <img src="{{base_url()}}public/image/logo.png" width="200"/>
                             </div>
                         </a>
                     </div>

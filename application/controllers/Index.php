@@ -244,25 +244,8 @@ class Index extends MY_Controller
     function checkout()
     {
         $this->data['cart'] = sync_cart();
-        $this->load->model("user_model");
-        //        $this->data['stylesheet_tag'] = array();
-        // array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
-
-        //        echo "<pre>";
-        //        print_r($this->data['userdata']);
-        //        die();
-        if (!isset($this->data['userdata']['user_id'])) {
-            $this->data['userdata']['user_id'] = 0;
-            $this->data['userdata']['name'] = "";
-            $this->data['userdata']['email'] = "";
-            $this->data['userdata']['address'] = "";
-            $this->data['userdata']['phone'] = "";
-        } else {
-            $user_id = $this->data['userdata']['user_id'];
-            $this->data['userdata'] = $this->user_model->where(array("id" => $user_id))->as_array()->get();
-            $this->data['userdata']['user_id'] = $user_id;
-            $this->data['userdata']['name'] = $this->data['userdata']['last_name'];
-        }
+        $version = $this->config->item("version");
+        array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 

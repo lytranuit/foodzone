@@ -114,9 +114,9 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="text-center border-0">
-                                        <button class="btn btn-danger btn-lg">
-                                            Đặt hàng
-                                        </button>
+                                        <a class="text-top btn btn-burnt-sienna btn-shape d-inline-block" href="{{base_url()}}/index/checkout">
+                                            <span>Đặt hàng</span>
+                                        </a>
                                     </td>
                                 </tr>
                             </tbody>
