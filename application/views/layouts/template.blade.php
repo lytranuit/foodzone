@@ -21,7 +21,7 @@
 
     <link rel="canonical" href="{{base_url()}}" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>public/img/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>public/image/favicon.jpg" />
     <title>
         @section("title")
         {{$project_name}}
