@@ -85,7 +85,7 @@
                                         <address class="contact-info"><span class="text-bold big">{{$options['hot_line']}}</span></address>
                                     </div>
                                 </a></li>
-                            <li><a class="unit unit-horizontal unit-middle unit-spacing-xxs link-gray-light" href="shop-cart.html">
+                            <li><a class="unit unit-horizontal unit-middle unit-spacing-xxs link-gray-light cart_icon" href="{{base_url()}}index/cart">
                                     <div class="unit-left"><span class="icon icon-md icon-primary thin-icon-cart" style="font-size: 33px;line-height: 33px;"></span></div>
                                     <div class="unit-body"><span class="label-inline big">2</span></div>
                                 </a></li>

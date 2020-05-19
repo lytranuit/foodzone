@@ -345,7 +345,7 @@ $(document).ready(function () {
         //        var count = $('.shop-cart .cart_count span');
         var product = $(this).closest(".product");
         var id = product.data("id");
-        var qty = parseInt($(".stepper-input", product).val());
+        var qty = parseInt($(".number", product).val());
         var unit = $(".unit_product.active", product).data("id");
         var index = -1;
         $.each(cart, function (i, v) {
@@ -363,9 +363,9 @@ $(document).ready(function () {
         // init_table()
 
 
-        // var cart = $('.fa-shopping-cart:visible').last();
+        // var cart = $('.cart_icon').last();
         // var imgtodrag = product.find("img").eq(0);
-        // if (imgtodrag.length) {
+        // if (imgtodrag.length && !detectMob()) {
         //     var imgclone = imgtodrag.clone()
         //         .offset({
         //             top: imgtodrag.offset().top,
@@ -384,7 +384,7 @@ $(document).ready(function () {
         //             'left': cart.offset().left + 10,
         //             'width': 75,
         //             'height': 75
-        //         }, 1000, 'easeInOutExpo');
+        //         }, 1000);
 
         //     //            setTimeout(function () {
         //     //                cart.effect("shake", {
@@ -399,6 +399,7 @@ $(document).ready(function () {
         //         $(this).detach()
         //     });
         // }
+        alert("Đã thêm vào giỏ hàng!")
         return false;
     });
     $('.btn-up').click(function (e) {
@@ -603,4 +604,7 @@ function number_format(number, decimals, decPoint, thousandsSep) { // eslint-dis
     }
 
     return s.join(dec)
+}
+function detectMob() {
+    return (window.innerWidth <= 800);
 }

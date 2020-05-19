@@ -170,7 +170,7 @@
                         <div class="responsive">
                             @if(!empty($product_related))
                             @foreach($product_related as $row)
-                            <div class="thumbnail-menu-modern border border-light product">
+                            <div class="thumbnail-menu-modern border border-light product" data-id="{{$row->id}}">
                                 <input type="hidden" value="1" class="number" />
                                 <figure>
                                     <a href="{{base_url()}}index/details/{{$row->id}}">
@@ -188,7 +188,7 @@
                                 </div>
                                 <div class="sale">
                                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                        <button type="button" class="btn btn-lg btn-danger ">Add to cart</button>
+                                        <button type="button" class="btn btn-lg btn-danger add-cart">Add to cart</button>
                                         @if(!empty($row->units))
                                         <div class="btn-group dropup" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -196,7 +196,7 @@
 
                                             <div class="dropdown-menu unit_list" aria-labelledby="btnGroupDrop1">
                                                 @foreach($row->units as $key=>$unit)
-                                                <a class="dropdown-item unit_product @if(array_keys($row->units)[0] == $key) btn-primary active @endif" href="#" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
+                                                <a class="dropdown-item unit_product @if(array_keys($row->units)[0] == $key) btn-primary active @endif" href="#" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
                                                     {{ $unit->{pick_language($unit,'name_')} }}
                                                 </a>
                                                 @endforeach

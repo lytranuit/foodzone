@@ -78,7 +78,7 @@
                                                 <div>Code:{{$row->code}}</div>
                                             </td>
                                             <td class="product__price">
-                                                <span class="order-summary__emphasis">{{number_format($row->amount,0,",",".")}} đ</span>
+                                                <span class="order-summary__emphasis">{{number_format($row->amount,0,",",".")}}đ</span>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -91,7 +91,7 @@
                                                 <th class="total-line__name" scope="row">Tổng tiền</th>
                                                 <td class="text-right">
                                                     <span class="font-weight-bold" data-amount="{{$cart['amount_product']}}">
-                                                        {{number_format($cart['amount_product'],0,",",".")}} đ
+                                                        {{number_format($cart['amount_product'],0,",",".")}}đ
                                                     </span>
                                                 </td>
                                             </tr>
@@ -113,7 +113,7 @@
                                                 </th>
                                                 <td class="text-right">
                                                     <span class="font-weight-bold" style="font-size:20px;">
-                                                        {{number_format($cart['amount_product'],0,",",".")}} đ
+                                                        {{number_format($cart['amount_product'],0,",",".")}}đ
                                                     </span>
                                                 </td>
                                             </tr>

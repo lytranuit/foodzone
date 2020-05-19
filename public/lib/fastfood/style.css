@@ -16,9 +16,9 @@ html {
 
 .loading-modal {
     background: #fff url(images/loader.gif) center 14px no-repeat;
-    border: 1px solid rgba(0,0,0,0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     position: fixed;
-    top: 50%!important;
+    top: 50% !important;
     bottom: auto;
     left: 50% !important;
     right: auto;
@@ -30,9 +30,9 @@ html {
     padding: 0;
     text-align: center;
     text-indent: -999em;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -27535,7 +27535,7 @@ html:not(.lt-ie10) .not-animated {
 
 .rd-navbar-fixed .rd-navbar-brand {
     position: fixed;
-    top: 8px;
+    top: 3px;
     left: 64px;
     z-index: 17;
     display: block;
@@ -35863,40 +35863,148 @@ footer .bocongthuong img {
     ColorBox Core Style:
     The following CSS is consistent between example themes and should not be altered.
 */
-#colorbox, #cboxOverlay, #cboxWrapper{position: absolute; top: 0; left: 0; z-index: 9999; overflow: hidden;}
-#cboxOverlay{position: fixed; width: 100%; height: 100%;}
-#cboxMiddleLeft, #cboxBottomLeft{clear: left;}
-#cboxContent{position: relative;}
-#cboxLoadedContent{overflow: hidden;}
-#cboxTitle{margin: 0;}
-#cboxLoadingOverlay, #cboxLoadingGraphic{position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
-#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor: pointer;}
-.cboxPhoto{float: left; margin: auto; border: 0; display: block; max-width: none;}
-.cboxIframe{width: 100%; height: 100%; display: block; border: 0;}
-#colorbox, #cboxContent, #cboxLoadedContent{box-sizing: content-box;}
+#colorbox,
+#cboxOverlay,
+#cboxWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    overflow: hidden;
+}
+#cboxOverlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+#cboxMiddleLeft,
+#cboxBottomLeft {
+    clear: left;
+}
+#cboxContent {
+    position: relative;
+}
+#cboxLoadedContent {
+    overflow: hidden;
+}
+#cboxTitle {
+    margin: 0;
+}
+#cboxLoadingOverlay,
+#cboxLoadingGraphic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#cboxPrevious,
+#cboxNext,
+#cboxClose,
+#cboxSlideshow {
+    cursor: pointer;
+}
+.cboxPhoto {
+    float: left;
+    margin: auto;
+    border: 0;
+    display: block;
+    max-width: none;
+}
+.cboxIframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+}
+#colorbox,
+#cboxContent,
+#cboxLoadedContent {
+    box-sizing: content-box;
+}
 
 /*
     User Style:
     Change the following styles to modify the appearance of ColorBox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
 */
-#cboxOverlay{ background: rgba(0,0,0,0.8);}
-#colorbox{}
-#cboxContent{margin-top: 32px; overflow: visible;}
-.cboxIframe{ background: #ffffff; }
-#cboxLoadingGraphic{background: url(//cdn.shopify.com/s/files/1/1811/9827/t/6/assets/loading.gif?526750004657131523) no-repeat center center;}
-#cboxLoadingOverlay{ background: #ffffff; }
-#cboxTitle{position: absolute; top: -22px; left: 0;}
-#cboxCurrent{position: absolute; top: -22px; right: 205px; text-indent: -9999px;}
-#cboxSlideshow, #cboxPrevious, #cboxNext, #cboxClose{text-indent: -9999px; width: 20px; height: 20px; position: absolute; top: -20px; background: url(//cdn.shopify.com/s/files/1/1811/9827/t/6/assets/controls.png?526750004657131523) no-repeat 0 0;}
-#cboxPrevious{background-position: 0px 0px; right: 44px;}
-#cboxPrevious:hover{background-position: 0px -25px;}
-#cboxNext{background-position: -25px 0px; right: 22px;}
-#cboxNext:hover{background-position: -25px -25px;}
-#cboxClose{background-position: -50px 0px; right: 0;}
-#cboxClose:hover{background-position: -50px -25px;}
-.cboxSlideshow_on #cboxPrevious, .cboxSlideshow_off #cboxPrevious{right: 66px;}
-.cboxSlideshow_on #cboxSlideshow{background-position: -75px -25px; right: 44px;}
-.cboxSlideshow_on #cboxSlideshow:hover{background-position: -100px -25px;}
-.cboxSlideshow_off #cboxSlideshow{background-position: -100px 0px; right: 44px;}
-.cboxSlideshow_off #cboxSlideshow:hover{background-position: -75px -25px;}
+#cboxOverlay {
+    background: rgba(0, 0, 0, 0.8);
+}
+#colorbox {
+}
+#cboxContent {
+    margin-top: 32px;
+    overflow: visible;
+}
+.cboxIframe {
+    background: #ffffff;
+}
+#cboxLoadingGraphic {
+    background: url(//cdn.shopify.com/s/files/1/1811/9827/t/6/assets/loading.gif?526750004657131523) no-repeat center
+        center;
+}
+#cboxLoadingOverlay {
+    background: #ffffff;
+}
+#cboxTitle {
+    position: absolute;
+    top: -22px;
+    left: 0;
+}
+#cboxCurrent {
+    position: absolute;
+    top: -22px;
+    right: 205px;
+    text-indent: -9999px;
+}
+#cboxSlideshow,
+#cboxPrevious,
+#cboxNext,
+#cboxClose {
+    text-indent: -9999px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -20px;
+    background: url(//cdn.shopify.com/s/files/1/1811/9827/t/6/assets/controls.png?526750004657131523) no-repeat 0 0;
+}
+#cboxPrevious {
+    background-position: 0px 0px;
+    right: 44px;
+}
+#cboxPrevious:hover {
+    background-position: 0px -25px;
+}
+#cboxNext {
+    background-position: -25px 0px;
+    right: 22px;
+}
+#cboxNext:hover {
+    background-position: -25px -25px;
+}
+#cboxClose {
+    background-position: -50px 0px;
+    right: 0;
+}
+#cboxClose:hover {
+    background-position: -50px -25px;
+}
+.cboxSlideshow_on #cboxPrevious,
+.cboxSlideshow_off #cboxPrevious {
+    right: 66px;
+}
+.cboxSlideshow_on #cboxSlideshow {
+    background-position: -75px -25px;
+    right: 44px;
+}
+.cboxSlideshow_on #cboxSlideshow:hover {
+    background-position: -100px -25px;
+}
+.cboxSlideshow_off #cboxSlideshow {
+    background-position: -100px 0px;
+    right: 44px;
+}
+.cboxSlideshow_off #cboxSlideshow:hover {
+    background-position: -75px -25px;
+}
