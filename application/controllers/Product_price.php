@@ -120,7 +120,7 @@ class Product_price extends MY_Administrator
         $limit = $this->input->post('length');
         $start = $this->input->post('start');
         $page = ($start / $limit) + 1;
-        $where = $this->product_price_model;
+        $where = $this->product_price_model->where(array("deleted" => 0));
 
         $totalData = $where->count_rows();
         $totalFiltered = $totalData;

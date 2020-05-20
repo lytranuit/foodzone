@@ -434,10 +434,17 @@
                     $('[name=detail_en]').froalaEditor('html.set', data['detail_en'])
                     $('[name=detail_jp]').froalaEditor('html.set', data['detail_jp'])
 
+                    $('[name=element_vi]').froalaEditor('html.set', data['description_vi'])
+                    $('[name=element_en]').froalaEditor('html.set', data['description_en'])
+                    $('[name=element_jp]').froalaEditor('html.set', data['description_jp'])
+
                     $('[name=guide_vi]').froalaEditor('html.set', data['guide_vi'])
                     $('[name=guide_en]').froalaEditor('html.set', data['guide_en'])
                     $('[name=guide_jp]').froalaEditor('html.set', data['guide_jp'])
 
+                    $('[name=description_vi]').val('')
+                    $('[name=description_en]').val('')
+                    $('[name=description_jp]').val('')
                 }
             })
         })

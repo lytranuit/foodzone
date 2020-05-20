@@ -66,14 +66,24 @@ class Product_model extends MY_Model
     {
         // echo "<pre>";
         $price_km = isset($product->price_km) ?  array_values((array) $product->price_km) : array();
+        $price_km = array_values(array_filter($price_km, function ($item) {
+            return $item->deleted ==  0;
+        }));
+        // echo "<pre>";
         // print_r($price_km);
+        // die();
         // print_r($product->price);
         if (!empty($product->units)) {
             foreach ($product->units as $key => &$unit) {
+                if ($unit->deleted == 1) {
+                    unset($product->units[$key]);
+                    break;
+                }
                 $unit_id = $unit->id;
-                $unit_km = array_filter($price_km, function ($item) use ($unit_id) {
+
+                $unit_km = array_values(array_filter($price_km, function ($item) use ($unit_id) {
                     return $item->unit_id == $unit_id;
-                });
+                }));
                 if (!empty($unit_km)) {
                     $unit->km_price = $unit_km[0]->price;
                     $unit->prev_price = $unit->price;
@@ -96,7 +106,7 @@ class Product_model extends MY_Model
                 $product->price = $product->km_price;
             }
         }
-        
+
         // print_r($product->prev_price);
         // die();
         return $product;
