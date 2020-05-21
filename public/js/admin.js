@@ -25,7 +25,7 @@ var fillForm = function (form, data) {
         var value = "";
         if ($(this).hasClass("input-tmp"))
             return
-        if ($.type(data[name]) !== "undefined") {
+        if ($.type(data[name]) !== "undefined" && $.type(data[name]) !== "null") {
             value = data[name];
         } else {
             return;
