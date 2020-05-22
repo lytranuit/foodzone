@@ -129,6 +129,29 @@ class Index extends MY_Controller
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
+    public function register()
+    {
+        if (isset($_POST['dangtin'])) {
+            $data = $_POST;
+            $this->load->model("user_model");
+            $this->load->model("usergroup_model");
+            $data_up = $this->user_model->create_object($data);
+            $id = $this->user_model->insert($data_up);
+
+            $result = $this->ion_auth_model->reset_password($_POST['username'], $_POST['newpassword']);
+            $array = array(
+                'group_id' => 2, //// MEMBER
+                'user_id' => $id
+            );
+            $this->usergroup_model->insert($array);
+            redirect('/index/login', 'refresh');
+        } else {
+            $version = $this->config->item("version");
+
+            array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
+            echo $this->blade->view()->make('page/page', $this->data)->render();
+        }
+    }
     public function set_language($params)
     {
         $language = $params[0];
