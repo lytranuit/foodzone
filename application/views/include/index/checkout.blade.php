@@ -17,7 +17,7 @@
                                         <div class="card-body">
                                             <p class="layout-flex__item">
                                                 <span aria-hidden="true">Bạn đã có tài khoản?</span>
-                                                <a href="{{base_url()}}/account/login" class="link">
+                                                <a href="{{base_url()}}/index/login?next={{current_url()}}" class="link">
                                                     Đăng nhập
                                                 </a>
                                             </p>

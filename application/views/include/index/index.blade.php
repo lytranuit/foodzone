@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="sale">
                                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                        <button type="button" class="btn btn-lg btn-danger add-cart">Add to cart</button>
+                                        <button type="button" class="btn btn-danger add-cart">Add to cart</button>
                                         @if(!empty($product->units))
                                         <div class="btn-group dropup" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

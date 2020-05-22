@@ -209,9 +209,14 @@ class Index extends MY_Controller
         if ($this->input->post('identity') != "" && $this->input->post('password') != "") {
             // check to see if the user is logging in
             // check for "remember me"
+            $next = $this->input->post('next');
             $remember = (bool) $this->input->post('remember');
             if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember)) {
-                redirect('/admin', 'refresh');
+                if ($next != "") {
+                    redirect($next, 'refresh');
+                } else {
+                    redirect('', 'refresh');
+                }
             } else {
                 // if the login was un-successful
                 // redirect them back to the login page
@@ -221,11 +226,34 @@ class Index extends MY_Controller
         } else {
             // the user is not logging in so display the login page
             // set the flash data error message if there is one
+
+            $this->data['next'] = $this->input->get('next');
+            $this->data['message'] = $this->session->flashdata('message');
+            echo $this->blade->view()->make('page/page', $this->data)->render();
+        }
+    }
+    function login_admin()
+    {
+        $this->data['title'] = lang('login');
+        if ($this->input->post('identity') != "" && $this->input->post('password') != "") {
+            // check to see if the user is logging in
+            // check for "remember me"
+            $remember = (bool) $this->input->post('remember');
+            if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember)) {
+                redirect('/admin', 'refresh');
+            } else {
+                // if the login was un-successful
+                // redirect them back to the login page
+                $this->session->set_flashdata('message', lang('alert_501'));
+                redirect('index/login_admin', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+            }
+        } else {
+            // the user is not logging in so display the login page
+            // set the flash data error message if there is one
             $this->data['message'] = $this->session->flashdata('message');
             echo $this->blade->view()->make('page/login', $this->data)->render();
         }
     }
-
     function cart()
     {
         $this->data['cart'] = sync_cart();
