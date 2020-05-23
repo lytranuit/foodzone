@@ -20787,7 +20787,7 @@ fieldset[disabled] .one-screen-page .btn-primary {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     line-height: 20px;
-    max-height: 40px;
+    height: 40px;
 }
 .thumbnail-menu-modern .price {
     font-size: 18px !important;
@@ -26833,7 +26833,7 @@ html:not(.lt-ie10) .not-animated {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    padding: 20px 0;
+    padding:  0;
     text-align: left;
     font-size: 0;
     max-width: 1200px;
@@ -26841,7 +26841,7 @@ html:not(.lt-ie10) .not-animated {
 
 @media (min-width: 1200px) {
     .rd-navbar-static .rd-navbar-inner {
-        padding: 29px 0;
+        padding: 0;
         text-align: left;
     }
 }

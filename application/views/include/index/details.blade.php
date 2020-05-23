@@ -127,7 +127,7 @@
                     </div>
                 </div>
 
-                <section class="py-5">
+                <section class="pt-5">
                     <div class="card card-custom">
                         <div class="card-body">
                             <div class="responsive-tabs responsive-tabs-horizontal responsive-tabs-horizontal-background" style="display: block; width: 100%;color:black;">
@@ -157,101 +157,103 @@
                         </div>
                     </div>
                 </section>
+
+                <section class="pt-5">
+                    <div class="card card-custom">
+                        <div class="card-header">
+                            Sản phẩm liên quan
+                        </div>
+                        <div class="card-body">
+                            <div class="responsive">
+                                @if(!empty($product_related))
+                                @foreach($product_related as $row)
+                                <div class="thumbnail-menu-modern border border-light product" data-id="{{$row->id}}">
+                                    <input type="hidden" value="1" class="number" />
+                                    <figure>
+                                        <a href="{{base_url()}}index/details/{{$row->id}}">
+                                            <img class="img-responsive" src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" alt="">
+                                        </a>
+                                    </figure>
+                                    <div class="caption">
+                                        <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$row->id}}" tabindex="-1">{{ $row->{pick_language($row,'name_')} }}</a></div>
+                                        <div>
+                                            <span class="price price-prev">@if(isset($row->prev_price) && $row->prev_price > 0)
+                                                {{ number_format($row->prev_price,0,",",".") }}đ
+                                                @endif</span>
+                                            <span class="price price-km">{{ number_format($row->price,0,",",".") }}đ</span>
+                                        </div>
+                                    </div>
+                                    <div class="sale">
+                                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                            <button type="button" class="btn btn-danger add-cart">Add to cart</button>
+                                            @if(!empty($row->units))
+                                            <div class="btn-group dropup" role="group">
+                                                <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                </button>
+
+                                                <div class="dropdown-menu unit_list" aria-labelledby="btnGroupDrop1">
+                                                    @foreach($row->units as $key=>$unit)
+                                                    <a class="dropdown-item unit_product @if(array_keys($row->units)[0] == $key) btn-primary active @endif" href="#" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
+                                                        {{ $unit->{pick_language($unit,'name_')} }}
+                                                    </a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            @endif
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @endforeach
+                                @endif
+
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('.responsive').slick({
+                                dots: false,
+                                infinite: false,
+                                speed: 300,
+                                slidesToShow: 4,
+                                slidesToScroll: 4,
+                                responsive: [{
+                                        breakpoint: 1024,
+                                        settings: {
+                                            slidesToShow: 3,
+                                            slidesToScroll: 3,
+                                            infinite: true,
+                                            dots: true
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 600,
+                                        settings: {
+                                            slidesToShow: 2,
+                                            slidesToScroll: 2
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 480,
+                                        settings: {
+                                            slidesToShow: 2,
+                                            slidesToScroll: 2
+                                        }
+                                    }
+                                    // You can unslick at a given breakpoint now by adding:
+                                    // settings: "unslick"
+                                    // instead of a settings object
+                                ]
+                            });
+                        });
+                    </script>
+                </section>
+
             </div>
             <div class="col-lg-3 offset-top-20 offset-md-top-0">
                 <?= $widget->right() ?>
-            </div>
-            <div class="col-lg-12 offset-top-20">
-                <div class="card card-custom">
-                    <div class="card-header">
-                        Sản phẩm liên quan
-                    </div>
-                    <div class="card-body">
-                        <div class="responsive">
-                            @if(!empty($product_related))
-                            @foreach($product_related as $row)
-                            <div class="thumbnail-menu-modern border border-light product" data-id="{{$row->id}}">
-                                <input type="hidden" value="1" class="number" />
-                                <figure>
-                                    <a href="{{base_url()}}index/details/{{$row->id}}">
-                                        <img class="img-responsive" src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" alt="">
-                                    </a>
-                                </figure>
-                                <div class="caption">
-                                    <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$row->id}}" tabindex="-1">{{ $row->{pick_language($row,'name_')} }}</a></div>
-                                    <div>
-                                        <span class="price price-prev">@if(isset($row->prev_price) && $row->prev_price > 0)
-                                            {{ number_format($row->prev_price,0,",",".") }}đ
-                                            @endif</span>
-                                        <span class="price price-km">{{ number_format($row->price,0,",",".") }}đ</span>
-                                    </div>
-                                </div>
-                                <div class="sale">
-                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                        <button type="button" class="btn btn-danger add-cart">Add to cart</button>
-                                        @if(!empty($row->units))
-                                        <div class="btn-group dropup" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            </button>
-
-                                            <div class="dropdown-menu unit_list" aria-labelledby="btnGroupDrop1">
-                                                @foreach($row->units as $key=>$unit)
-                                                <a class="dropdown-item unit_product @if(array_keys($row->units)[0] == $key) btn-primary active @endif" href="#" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
-                                                    {{ $unit->{pick_language($unit,'name_')} }}
-                                                </a>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                        @endif
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            @endforeach
-                            @endif
-
-                        </div>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        $('.responsive').slick({
-                            dots: false,
-                            infinite: false,
-                            speed: 300,
-                            slidesToShow: 4,
-                            slidesToScroll: 4,
-                            responsive: [{
-                                    breakpoint: 1024,
-                                    settings: {
-                                        slidesToShow: 3,
-                                        slidesToScroll: 3,
-                                        infinite: true,
-                                        dots: true
-                                    }
-                                },
-                                {
-                                    breakpoint: 600,
-                                    settings: {
-                                        slidesToShow: 2,
-                                        slidesToScroll: 2
-                                    }
-                                },
-                                {
-                                    breakpoint: 480,
-                                    settings: {
-                                        slidesToShow: 2,
-                                        slidesToScroll: 2
-                                    }
-                                }
-                                // You can unslick at a given breakpoint now by adding:
-                                // settings: "unslick"
-                                // instead of a settings object
-                            ]
-                        });
-                    });
-                </script>
             </div>
         </div>
     </div>

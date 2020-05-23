@@ -22,10 +22,13 @@
                                                 </a>
                                             </p>
                                             <div class="form-group">
-                                                <input type="text" name="email" required="" placeholder="Email" title="Email" class="form-control">
+                                                <input type="email" name="email" required="" placeholder="Email" title="Email" class="form-control">
                                             </div>
                                         </div>
                                     </div>
+                                    @else
+                                    <input type="hidden" name="email" value="{{$userdata['email']}}">
+                                    <input type="hidden" name="user_id" value="{{$userdata['user_id']}}">
                                     @endif
                                 </div>
 
@@ -35,13 +38,13 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <input type="text" name="name" required="" placeholder="Tên người nhận hàng" title="Tên người nhận hàng" class="form-control">
+                                            <input type="text" name="name" value="{{ $userdata['name'] or '' }}" required="" placeholder="Tên người nhận hàng" title="Tên người nhận hàng" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="phone" required="" placeholder="Số điện thoại" title="Số điện thoại" class="form-control">
+                                            <input type="text" name="phone" value="{{ $userdata['phone'] or '' }}" required="" placeholder="Số điện thoại" title="Số điện thoại" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="address" required="" placeholder="Địa chỉ" title="Địa chỉ" class="form-control">
+                                            <input type="text" name="address" value="{{ $userdata['address'] or '' }}" required="" placeholder="Địa chỉ" title="Địa chỉ" class="form-control">
                                         </div>
 
                                         <div class="form-group">

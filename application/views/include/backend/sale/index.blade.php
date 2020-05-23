@@ -5,16 +5,17 @@
     <div class="col-12">
         <section class="card card-fluid">
             <h5 class="card-header drag-handle">
-               
+
             </h5>
             <div class="card-body">
                 <table id="quanlytin" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Mã</th>
                             <th>Ngày đặt hàng</th>
                             <th>Tên khách hàng</th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
                             <th>Status</th>
                             <th>Tổng số tiền</th>
                             <th>Hành động</th>
@@ -40,14 +41,16 @@
                 "type": "POST",
             },
             "columns": [{
-                    "data": "id"
-                }, {
                     "data": "code"
                 },
                 {
                     "data": "order_date"
                 }, {
-                    "data": "customer_name"
+                    "data": "name"
+                }, {
+                    "data": "phone"
+                }, {
+                    "data": "address"
                 }, {
                     "data": "status"
                 }, {

@@ -10,6 +10,7 @@ class Index extends MY_Controller
         ////////////
         $this->data['is_login'] = $this->ion_auth->logged_in();
         $this->data['userdata'] = $this->session->userdata();
+        // print_r( $this->data['userdata']);die();
         $version = $this->config->item("version");
         $this->data['stylesheet_tag'] = array(
             base_url() . "public/lib/fonts/fontawesome/css/fontawesome-all.css",
@@ -252,6 +253,8 @@ class Index extends MY_Controller
 
             $this->data['next'] = $this->input->get('next');
             $this->data['message'] = $this->session->flashdata('message');
+            $version = $this->config->item("version");
+            array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
     }
@@ -304,62 +307,35 @@ class Index extends MY_Controller
     {
         $cart = sync_cart();
         if (isset($_POST) && count($_POST) && count($cart['details'])) {
-            $this->load->model("saleorder_model");
-            $this->load->model("saleorderline_model");
-            $array = array(
-                'order_date' => date("Y-m-d H:i:s"),
-                'customer_name' => $_POST['name'],
-                'customer_phone' => $_POST['phone'],
-                'customer_email' => $_POST['email'],
-                'customer_address' => $_POST['address'],
-                'user_id' => $_POST['user_id'],
-                'notes' => $_POST['notes'],
-                'amount' => $cart['amount_product'],
-                'total_amount' => $cart['amount_product']
-            );
-            $order_id = $this->saleorder_model->insert($array);
+            $this->load->model("sale_model");
+            $this->load->model("saleline_model");
+            $array = $_POST;
+            $array['amount'] = $cart['amount_product'];
+            $array['total_amount'] = $cart['amount_product'] + 0;
+            $array['data'] = json_encode($cart);
+            $data = $this->sale_model->create_object($array);
+            // echo "<pre>";
+            // print_r($data);
+            // die();
+            $order_id = $this->sale_model->insert($data);
+            $this->sale_model->where("id", $order_id)->update(array("code" => "FZ-$order_id"));
             foreach ($cart['details'] as $row) {
                 $data_up = array(
                     'order_id' => $order_id,
-                    'product_id' => $row['product_id'],
-                    'image_url' => $row['image_url'],
-                    'code' => $row['code'],
-                    'name' => $row['name'],
-                    'quantity' => $row['qty'],
-                    'price' => $row['price'],
-                    'amount' => $row['qty'] * $row['price']
+                    'product_id' => $row->id,
+                    'quantity' => $row->qty,
+                    'unit_id' => $row->unit_id,
+                    'data' => json_encode($row)
                 );
-                $this->saleorderline_model->insert($data_up);
-            }
-            /*
-             * NEW DEBT
-             */
-            if ($_POST['user_id'] > 0) {
-                $user_id = $_POST['user_id'];
-                $this->load->model("debtpaid_model");
-                $this->load->model("user_model");
-                $data['date'] = time();
-                $data['user_id'] = $user_id;
-                $data['paid_amount'] = 0 - $cart['amount_product'];
-                $data['note'] = "Đơn hàng #$order_id";
-                $data_up = $this->debtpaid_model->create_object($data);
-                $this->debtpaid_model->insert($data_up);
-                $tin = $this->user_model->where(array('id' => $user_id))->with_paids()->as_object()->get();
-                $total_paid_amount = 0;
-                if ($tin->paids) {
-                    foreach ($tin->paids as $row) {
-                        $total_paid_amount += $row->paid_amount;
-                    }
-                }
-                $data['debt'] = $total_paid_amount;
-                $data_up = $this->user_model->create_object($data);
-                $this->user_model->update($data_up, $user_id);
+                $this->saleline_model->insert($data_up);
             }
             /////////////////
-            $this->data['cart'] = $cart;
             $this->load->helper('cookie');
-            delete_cookie("CART");
-            array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
+            delete_cookie("DATA_CART");
+            
+            $this->data['cart'] = $cart;
+            $version = $this->config->item("version");
+            array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
             echo $this->blade->view()->make('page/page', $this->data)->render();
         } else {
             redirect("index", 'refresh');

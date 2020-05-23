@@ -69,11 +69,18 @@ class Sale extends MY_Administrator
             $this->sale_model->update($data_up, $id);
             redirect('sale', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
+            $this->data['menu_active'] = "order";
             $this->load->model("sale_model");
-            $tin = $this->sale_model->where(array('id' => $id))->with_image()->as_object()->get();
+            ///INFO
+            $tin = $this->sale_model->where(array('id' => $id))->as_object()->get();
+            $tin->data = json_decode($tin->data);
             $this->data['tin'] = $tin;
-            load_editor($this->data);
-            //            load_chossen($this->data);
+                    //    echo "<pre>";
+                    //    print_r($tin);
+                    //    die();
+            ///CHILD PRODUCT
+            //            $this->data['child'] = $child;
+            load_datatable($this->data);
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
     }
@@ -93,7 +100,7 @@ class Sale extends MY_Administrator
         $limit = $this->input->post('length');
         $start = $this->input->post('start');
         $page = ($start / $limit) + 1;
-        $where = $this->sale_model;
+        $where = $this->sale_model->where(array("deleted" => 0));
 
         $totalData = $where->count_rows();
         $totalFiltered = $totalData;
@@ -110,27 +117,44 @@ class Sale extends MY_Administrator
             $where = $this->sale_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
         }
 
-        $posts = $where->order_by("id", "DESC")->with_image()->paginate($limit, NULL, $page);
+        $posts = $where->order_by("id", "DESC")->paginate($limit, NULL, $page);
         //        echo "<pre>";
         //        print_r($posts);
         //        die();
+        $array_status = array(
+            "1" => "Mới đặt hàng",
+            "2" => "Đã xác nhận",
+            "3" => "Đang vận chuyển",
+            "4" => "<span class='text-success'>Đã thanh toán<span>",
+            "5" => "<span class='text-danger'>Ghi nợ<span>"
+        );
         $data = array();
         if (!empty($posts)) {
             foreach ($posts as $post) {
                 $nestedData['id'] = $post->id;
-                $nestedData['title'] = $post->title;
-                $image = isset($post->image->src) ? base_url() . $post->image->src : "";
-                $nestedData['image'] = "<img src='$image' width='100'/>";
-                $nestedData['date'] =  date("d/m/Y", strtotime($post->date));
-                $nestedData['action'] = '<a href="' . base_url() . 'sale/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="edit">'
+                $nestedData['code'] = $post->code;
+                $nestedData['name'] = $post->name;
+                $nestedData['phone'] = $post->phone;
+                $nestedData['address'] = $post->address;
+                $nestedData['total_amount'] = number_format($post->total_amount, 0, ",", ".") . "đ";
+                $nestedData['status'] = $array_status[$post->status];
+                $nestedData['order_date'] =  date("d/m/Y", strtotime($post->order_date));
+
+                $action = '<a href="' . base_url() . 'sale/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="Sửa">'
                     . '<i class="fas fa-pencil-alt">'
                     . '</i>'
                     . '</a>'
-                    . '<a href="' . base_url() . 'sale/remove/' . $post->id . '" class="btn btn-danger btn-sm" data-type="confirm" title="remove">'
+                    . '<a href="' . base_url() . 'sale/remove/' . $post->id . '" class="btn btn-danger btn-sm" data-type="confirm" title="Xóa">'
                     . '<i class="far fa-trash-alt">'
                     . '</i>'
                     . '</a>';
-
+                if ($post->status != 4) {
+                    $action .= '<a href="#" class="btn btn-success btn-xs mx-1 add_paid btn-sm" data-order_id="' . $post->id . '" title="Thanh toán">'
+                        . '<i class="fas fa-hand-holding-usd">'
+                        . '</i>'
+                        . '</a>';
+                }
+                $nestedData['action'] = $action;
                 $data[] = $nestedData;
             }
         }

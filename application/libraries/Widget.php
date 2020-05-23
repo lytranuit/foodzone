@@ -13,8 +13,6 @@ class Widget
         $this->CI = &get_instance();
         $this->CI->lang->load(array('home'));
         //        $this->CI->load->model("user_model");
-        //        $this->data['is_login'] = $this->CI->user_model->logged_in();
-        //        $this->data['userdata'] = $this->CI->session->userdata();
         ////////////////////////////////
         $views = APPPATH . "views/";
         $cache = APPPATH . "cache/";
@@ -23,7 +21,10 @@ class Widget
 
     public function header()
     {
+        $this->CI->load->model("user_model");
 
+        $this->data['is_login'] = $this->CI->user_model->logged_in();
+        $this->data['userdata'] = $this->CI->session->userdata();
         $this->CI->load->model("option_model");
         $this->data['options'] = $this->CI->option_model->all_option();
         $this->CI->load->model("category_model");

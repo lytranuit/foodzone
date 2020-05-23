@@ -3,14 +3,7 @@
     <aside class="text-left">
         <!-- Search Form-->
         <!-- RD Search Form-->
-        <form class="form-search rd-search" action="search-results.html" method="GET">
-            <div class="form-group">
-                <label class="form-label form-search-label form-label-sm rd-input-label" for="blog-sidebar-2-form-search-widget">Search</label>
-                <input class="form-search-input form-control #{inputClass}" id="blog-sidebar-2-form-search-widget" type="text" name="s" autocomplete="off">
-            </div>
-            <button class="form-search-submit" type="submit"><span class="mdi mdi-magnify"></span></button>
-        </form>
-        <div class="row offset-top-20">
+        <div class="row">
             <div class="col-sm-6 col-md-12">
                 <div class="card card-custom">
                     <div class="text-uppercase card-header">Danh mục</div>
