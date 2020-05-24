@@ -239,7 +239,11 @@ class Index extends MY_Controller
                 if ($next != "") {
                     redirect($next, 'refresh');
                 } else {
-                    redirect('', 'refresh');
+                    if ($this->ion_auth->is_admin()) {
+                        redirect('/admin', 'refresh');
+                    } else {
+                        redirect('', 'refresh');
+                    }
                 }
             } else {
                 // if the login was un-successful
@@ -308,7 +312,7 @@ class Index extends MY_Controller
         $cart = sync_cart();
         if (isset($_POST) && count($_POST) && count($cart['details'])) {
             $this->load->model("sale_model");
-            $this->load->model("saleline_model");
+            $this->load->model("sale_line_model");
             $array = $_POST;
             $array['amount'] = $cart['amount_product'];
             $array['total_amount'] = $cart['amount_product'] + 0;
@@ -327,12 +331,12 @@ class Index extends MY_Controller
                     'unit_id' => $row->unit_id,
                     'data' => json_encode($row)
                 );
-                $this->saleline_model->insert($data_up);
+                $this->sale_line_model->insert($data_up);
             }
             /////////////////
             $this->load->helper('cookie');
             delete_cookie("DATA_CART");
-            
+
             $this->data['cart'] = $cart;
             $version = $this->config->item("version");
             array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);

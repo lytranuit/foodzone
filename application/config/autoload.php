@@ -118,7 +118,7 @@ $autoload['config'] = array('recaptcha');
   | "codeigniter_lang.php" would be referenced as array('codeigniter');
   |
  */
-$autoload['language'] = array();
+$autoload['language'] = array('custom');
 
 /*
   | -------------------------------------------------------------------

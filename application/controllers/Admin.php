@@ -217,7 +217,7 @@ class Admin extends MY_Administrator
     {
         $data = json_decode($_POST['data'], true);
         foreach ($data as $lang => $row) {
-            $path = APPPATH . "language/" . $lang . "/home_lang.php";
+            $path = APPPATH . "language/" . $lang . "/custom_language.php";
             // Backup original file
             if (is_file($path)) {
                 $slaveModule = $this->_load_module($path);

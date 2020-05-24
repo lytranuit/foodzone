@@ -273,12 +273,12 @@
         <div class="menu-bar hidden-md hidden-lg">
             <img src="//theme.hstatic.net/1000372774/1000494897/14/menu-bar.png?v=2064" alt="menu bar">
         </div>
-        <div class="icon-cart-mobile hidden-md hidden-lg f-left absolute" onclick="window.location.href='/cart'">
+        <a href="{{base_url()}}index/cart" class="icon-cart-mobile hidden-md hidden-lg f-left text-dark absolute">
             <div class="icon relative">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="cartCount count_item_pr">0</span>
             </div>
-        </div>
+        </a>
     </div>
     <nav class="rd-navbar rd-navbar-original rd-navbar-static" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-stick-up-clone="false" data-md-stick-up-offset="100px" data-lg-stick-up-offset="100px">
         <div class="container-wide">
@@ -345,7 +345,12 @@
                             </form>
                         </div>
                     </div>
-
+                    <a href="{{base_url()}}index/cart" class="text-white absolute d-none cart-bag">
+                        <div class="icon relative">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="cartCount count_item_pr">0</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

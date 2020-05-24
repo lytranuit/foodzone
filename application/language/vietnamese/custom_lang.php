@@ -12,4 +12,6 @@ $lang['remember_me'] = 'Ghi nhớ';
 $lang['widget_header_page'] = 'Bạn cần biết';
 $lang['widget_header_product_new'] = 'Hàng mới về';
 $lang['widget_header_seen'] = 'Mua sản phẩm đã xem';
+$lang['mo_ta'] = 'Mô tả';
+$lang['huong_dan'] = 'Hướng dẫn sử dụng';
 ?>
