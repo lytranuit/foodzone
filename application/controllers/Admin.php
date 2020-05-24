@@ -217,7 +217,7 @@ class Admin extends MY_Administrator
     {
         $data = json_decode($_POST['data'], true);
         foreach ($data as $lang => $row) {
-            $path = APPPATH . "language/" . $lang . "/custom_language.php";
+            $path = APPPATH . "language/" . $lang . "/custom_lang.php";
             // Backup original file
             if (is_file($path)) {
                 $slaveModule = $this->_load_module($path);
@@ -665,80 +665,6 @@ class Admin extends MY_Administrator
         exit;
     }
 
-    /*
-     * Category
-     */
-
-    public function quanlycategory()
-    {
-        $this->data['menu_active'] = "category";
-        $this->load->model("category_model");
-        $category = $this->category_model->where(array('deleted' => 0))->order_by('sort', "ASC")->as_array()->get_all();
-        $this->data['html_nestable'] = html_nestable($category, 'parent_id', 0);
-        //        echo "<pre>";
-        //        print_r($this->data['nestable']);
-        //        die();
-        load_sort_nest($this->data);
-        echo $this->blade->view()->make('page/page', $this->data)->render();
-    }
-
-    public function themcategory()
-    { ////////// Trang dang tin
-        if (isset($_POST['dangtin'])) {
-            $data = $_POST;
-            $this->load->model("category_model");
-            $data_up = $this->category_model->create_object($data);
-            $this->category_model->insert($data_up);
-            redirect('admin/quanlycategory', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
-        } else {
-            $this->data['menu_active'] = "category";
-            load_inputfile($this->data);
-            load_editor($this->data);
-            echo $this->blade->view()->make('page/page', $this->data)->render();
-        }
-    }
-
-    function editcategory($param)
-    {
-        $id = $param[0];
-        $this->load->model("category_model");
-        if (isset($_POST['dangtin'])) {
-            $data = $_POST;
-            $data_up = $this->category_model->create_object($data);
-            $this->category_model->update($data_up, $id);
-            redirect('admin/quanlycategory', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
-        } else {
-            $this->data['menu_active'] = "category";
-            $this->load->model("product_model");
-            $this->data['tin'] = $this->category_model->where(array('id' => $id))->with_hinhanh()->as_object()->get();
-
-            //            echo "<pre>";
-            //            print_r($this->data['tin']);
-            //            die();
-            load_inputfile($this->data);
-            load_editor($this->data);
-            load_datatable($this->data);
-            echo $this->blade->view()->make('page/page', $this->data)->render();
-        }
-    }
-
-    function updatecategory($params)
-    {
-        $this->load->model("category_model");
-        $id = $params[0];
-        $this->category_model->update(array("date" => time()), $id);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
-    }
-
-    function removecategory($params)
-    {
-        $this->load->model("category_model");
-        $id = $params[0];
-        $this->category_model->update(array("deleted" => 1), $id);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
-    }
 
     /*
      * ORDER

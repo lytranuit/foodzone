@@ -13,11 +13,11 @@ class MY_Controller extends CI_Controller
         $this->load->library(array('widget', 'ion_auth'));
         $this->load->model("page_model");
         //        $this->load->model("user_model");
-            //    echo language_current();
-            //    die();
+        //    echo language_current();
+        //    die();
         ////// set langue
         $this->config->set_item('language', language_current());
-        $this->lang->load(array('home'));
+        $this->lang->load(array('home', 'custom'));
         ////
         $this->data['widget'] = $this->widget;
         $this->data['project_name'] = $this->config->item("project_name");

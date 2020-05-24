@@ -11,6 +11,10 @@ $lang['remember_me'] = '';
 $lang['widget_header_page'] = '';
 $lang['widget_header_product_new'] = '';
 $lang['widget_header_seen'] = '';
+$lang['header_quick_order'] = '';
+$lang['details_mo_ta'] = '';
+$lang['details_huong_dan'] = '';
+$lang['details_sp_lien_quan'] = '';
 
 
 ?>

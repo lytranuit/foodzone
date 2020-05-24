@@ -1043,11 +1043,17 @@ header nav .nav-item.active > a {
   line-height: 30px; }
 
 @media (max-width: 991px) {
+  .header {
+    position: sticky;
+    top: 0px;
+    background: white;
+    z-index: 1000; }
+
   .head-menu {
     color: #333;
     padding: 20px 15px 15px;
     font-size: 15px;
-    border-bottom: 1px solid #ebebeb; }
+    padding: 5px 0px; }
 
   .head-menu .list-inline {
     margin-left: 0; }
@@ -1064,9 +1070,7 @@ header nav .nav-item.active > a {
   .head-menu .li-search .header_search {
     padding: 0;
     width: 100%;
-    margin: 0;
-    margin-top: 16px;
-    margin-bottom: 10px; }
+    margin: 0; }
 
   .header-content {
     padding-top: 20px;

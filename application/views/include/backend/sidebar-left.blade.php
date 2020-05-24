@@ -100,7 +100,15 @@
                         <i class="metismenu-icon fas fa-utensils"></i>
                         Topics
                     </a>
+                </li>
+                <li>
+                    <a href="{{base_url()}}menu_header" class="">
+                        <i class="metismenu-icon fas fa-wrench"></i>
+                        Menu Header
+                    </a>
+                </li>
 
+                <li>
                     <a href="{{base_url()}}product_sale/" class="">
                         <i class="metismenu-icon fas fa-shopping-bag"></i>
                         Sản phẩm mua cùng
@@ -131,12 +139,7 @@
                         Cài đặt chung
                     </a>
                 </li>
-                <li>
-                    <a href="{{base_url()}}address" class="">
-                        <i class="metismenu-icon fas fa-map-marker-alt"></i>
-                        Địa chỉ
-                    </a>
-                </li>
+
                 <li>
                     <a href="#">
                         <i class="metismenu-icon fa fa-lock"></i>

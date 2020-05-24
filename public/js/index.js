@@ -15,7 +15,18 @@ $(document).ready(function () {
     plugins.units = $(".unit_list");
     plugins.image_view = $('.area_image');
     plugins.topics_view = $('.responsive1');
-
+    plugins.menu_bar = $(".menu-bar");
+    if (plugins.menu_bar.length > 0) {
+        $(plugins.menu_bar).click(function () {
+            $(".rd-navbar-nav-wrap").addClass("active");
+        })
+        $(".exits-bar").click(function () {
+            $(".rd-navbar-nav-wrap").removeClass("active");
+        });
+        $(document).scroll(function () {
+            
+        })
+    }
     if (plugins.topics_view.length > 0) {
         plugins.topics_view.slick({
             dots: false,

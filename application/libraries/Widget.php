@@ -27,25 +27,27 @@ class Widget
         $this->data['userdata'] = $this->CI->session->userdata();
         $this->CI->load->model("option_model");
         $this->data['options'] = $this->CI->option_model->all_option();
-        $this->CI->load->model("category_model");
-        $list_category = $this->CI->category_model->where(array('deleted' => 0, 'active' => 1))->order_by('order', 'ASC')->get_all();
-        $this->data['list_cate'] = array_filter($list_category, function ($item) {
-            return $item->menu_id == 1 && $item->parent_id == 0;
+        $this->CI->load->model("menu_header_model");
+        $list_menu = $this->CI->menu_header_model->where(array('deleted' => 0))->order_by('order', 'ASC')->get_all();
+        $list_parent = array_filter($list_menu, function ($item) {
+            return $item->parent_id == 0;
         });
-        foreach ($this->data['list_cate'] as &$cate) {
-            $cate->child = array_filter($list_category, function ($item) use ($cate) {
-                return $item->parent_id == $cate->id;
+        foreach ($list_parent as &$row) {
+            $child = array_filter($list_menu, function ($item) use ($row) {
+                return $item->parent_id == $row->id;
             });
+            foreach ($child as &$row2) {
+                $child2 = array_filter($list_menu, function ($item) use ($row2) {
+                    return $item->parent_id == $row2->id;
+                });
+                $row2->child = $child2;
+            }
+            $row->child = $child;
         }
-        $this->data['list_topics'] = array_filter($list_category, function ($item) {
-            return $item->menu_id == 2 && $item->parent_id == 0;
-        });
-
-        foreach ($this->data['list_topics'] as &$topic) {
-            $topic->child = array_filter($list_category, function ($item) use ($topic) {
-                return $item->parent_id == $topic->id;
-            });
-        }
+        // echo "<pre>";
+        // print_r($list_menu);
+        // die();
+        $this->data['list_menu'] = $list_parent;
         echo $this->blade->view()->make('widget/header', $this->data)->render();
     }
 

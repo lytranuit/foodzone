@@ -12,9 +12,9 @@ $lang['widget_header_page'] = 'Bạn cần biết';
 $lang['widget_header_product_new'] = 'Hàng mới về';
 $lang['widget_header_seen'] = 'Mua sản phẩm đã xem';
 $lang['header_quick_order'] = '';
+
 $lang['details_mo_ta'] = 'Mô tả';
 $lang['details_huong_dan'] = 'Hướng dẫn sử dụng';
 $lang['details_sp_lien_quan'] = 'Sản phẩm liên quan';
-
 
 ?>

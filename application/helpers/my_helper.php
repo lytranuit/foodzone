@@ -242,6 +242,7 @@ if (!function_exists('short_language_current')) {
     {
         $CI = &get_instance();
         $language_current = $CI->config->item('language');
+        // print_r($language_current);die();
         $arr_lang = $CI->config->item('language_list');
         if (isset($_SESSION['language_current'])) {
             $language_current = $_SESSION['language_current'];
@@ -501,7 +502,7 @@ if (!function_exists('html_select_category')) {
 
 if (!function_exists('html_nestable')) {
 
-    function html_nestable($array, $column, $parent)
+    function html_nestable($array, $column, $parent, $controller = '')
     {
         $html = "";
         $return = array_filter($array, function ($item) use ($column, $parent) {
@@ -516,17 +517,28 @@ if (!function_exists('html_nestable')) {
         $html .= '<ol class="dd-list" ' . $id_nestable . '>';
         ///Content
         foreach ($return as $row) {
+            $sub_html = "";
+            if ($controller == "menu_header") {
+                if ($row['type'] == 1) {
+                    $sub_html = "<span class='text-info mr-1'>[Link='" . $row['link'] . "']</span>";
+                } elseif ($row['type'] == 2) {
+                    $sub_html = "<span class='text-success mr-1'>[Category='" . $row['category']->name_vi . "']</span>";
+                } elseif ($row['type'] == 3) {
+                    $sub_html = "<span class='text-warning mr-1'>[Topic='" . $row['category']->name_vi . "']</span>";
+                }
+            }
             $html .= '<li class="dd-item" id="menuItem_' . $row['id'] . '" data-id="' . $row['id'] . '">
-                            <div class="dd-handle"> <span class="drag-indicator"></span>
+                            <div class="dd-handle">
+                             ' . $sub_html . '
                                 <div>' . $row['name_vi'] . '</div>
                                 <div class="dd-nodrag btn-group ml-auto">
-                                    <a class="btn btn-sm btn-outline-light" href="' . base_url() . 'cook/edit/' . $row['id'] . '">Edit</a> 
+                                    <a class="btn btn-sm btn-outline-light" href="' . base_url() .  "$controller/edit/" . $row['id'] . '">Edit</a> 
                                     <button class="btn btn-sm btn-outline-light dd-item-delete">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                 </div>
                             </div>';
-            $html .= html_nestable($array, $column, $row['id']);
+            $html .= html_nestable($array, $column, $row['id'], $controller);
             $html .= '</li>';
         }
         ///End Tag

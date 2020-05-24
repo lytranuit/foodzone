@@ -10,6 +10,7 @@ class Index extends MY_Controller
         ////////////
         $this->data['is_login'] = $this->ion_auth->logged_in();
         $this->data['userdata'] = $this->session->userdata();
+
         // print_r( $this->data['userdata']);die();
         $version = $this->config->item("version");
         $this->data['stylesheet_tag'] = array(

@@ -43,7 +43,7 @@ class Cook extends MY_Administrator
         load_sort_nest($this->data);
         $this->load->model("category_model");
         $category = $this->category_model->where(array('deleted' => 0, 'menu_id' => $this->menu_id))->order_by('order', "ASC")->as_array()->get_all();
-        $this->data['html_nestable'] = html_nestable($category, 'parent_id', 0);
+        $this->data['html_nestable'] = html_nestable($category, 'parent_id', 0, 'cook');
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
 

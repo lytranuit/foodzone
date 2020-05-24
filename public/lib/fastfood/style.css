@@ -26398,13 +26398,13 @@ html:not(.lt-ie10) .not-animated {
     position: absolute;
     left: 0;
     z-index: 100;
-    display: table;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr;
     table-layout: fixed;
     width: 100%;
     text-align: left;
     background: #fff;
     top: 100%;
-    margin-top: -10px;
 }
 
 .rd-navbar-static .rd-navbar-megamenu .rd-megamenu-header,
@@ -27256,6 +27256,7 @@ html:not(.lt-ie10) .not-animated {
     background: #fff;
     border-right: 1px solid #f9b129;
     z-index: 15;
+    z-index: 1001;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-transform: translateX(-120%);
@@ -27552,7 +27553,7 @@ html:not(.lt-ie10) .not-animated {
 }
 
 html.rd-navbar-fixed-linked .page {
-    padding-top: 56px;
+    /* padding-top: 56px; */
 }
 
 @media (min-width: 1200px) {
