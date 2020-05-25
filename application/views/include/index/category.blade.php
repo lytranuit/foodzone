@@ -1,63 +1,29 @@
 <section class="section-20 bg-gray-lighter">
-    <div class="container text-black">
-        <div class="row">
-            <div class="col-12 mb-4">
-                <div class="fr-view">
-                    <?= $row->{pick_language($row, 'description_')} ?>
+    @if($row->{pick_language($row, 'description_')} != "")
+    <div class="container text-black mb-4"">
+        <div class=" row">
+        <div class="col-12">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <div class="fr-view">
+                        <?= $row->{pick_language($row, 'description_')} ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-wide">
+    </div>
+    @endif
+    <div class="container">
         <div class="row">
-            <div class="col-lg-2 mb-4">
-                <!-- <div class="card card-custom">
-                    <div class="card-header">
-                        Bộ lọc
-                        <div style="margin-left:auto;font-size:11px;text-transform: none;">
-                            <a href="#">Loại bỏ</a>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="card card-custom">
-                    <div class="card-header">
-                        Sắp xếp
-                        <div style="margin-left:auto;font-size:11px;text-transform: none;">
-                            <a href="#">Loại bỏ</a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="nav-sort-orders">
-                            <li class="active ">
-                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Price: Low to High</a></div>
-                            </li>
-                            <li class="active selected">
-                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Price: High to Low</a></div>
-                            </li>
-                            <li class="active ">
-                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Newest</a></div>
-                            </li>
-                            <li class="active ">
-                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Newest Last</a></div>
-                            </li>
-                            <li class="active ">
-                                <div class="collection-name"><a href="#" class="text-black"><i slass="check-icon"></i> A-Z</a></div>
-                            </li>
-                            <li class="active ">
-                                <div class="collection-name"><a href="#" class="text-black"><i class="check-icon"></i> Z-A</a></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <div class="card card-custom">
                     <h5 class="card-header">
                         <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black">
-                            {{ $row->{pick_language($row,'name_')} }}
+
                         </a>
                         <div style="margin-left:auto;font-size:13px;">
-
+                            Sắp xếp
                         </div>
                     </h5>
 

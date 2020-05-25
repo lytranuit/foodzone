@@ -126,7 +126,7 @@ class Index extends MY_Controller
             $row_format = $this->product_model->format($row_format);
         }
         // echo "<pre>";
-        // print_r($this->data['product_related']);
+        // print_r($this->data['product']);
         // die();
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
@@ -171,6 +171,8 @@ class Index extends MY_Controller
         $this->load->model("category_model");
         $this->load->model("product_model");
         $row =  $this->category_model->get($id);
+        if (empty($row))
+            redirect("", "refresh");
         $sql_where = "deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)";
         /*
          * TINH COUNT
@@ -184,8 +186,6 @@ class Index extends MY_Controller
         // echo "<pre>";
         // print_r($limit);
         // print_r($page);
-        // print_r($data);
-        // die();
         $this->data['count'] = $count;
         $this->data['current_page'] = $page;
         $this->data['max_page'] = $max_page;

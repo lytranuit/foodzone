@@ -26230,16 +26230,6 @@ html:not(.lt-ie10) .not-animated {
     padding-bottom: 3px;
 }
 
-@media (min-width: 1200px) and (min-height: 750px) {
-    .rd-navbar-static .rd-navbar-dropdown li,
-    .rd-navbar-static .rd-navbar-megamenu .list-marked li,
-    .rd-navbar-fullwidth .rd-navbar-dropdown li,
-    .rd-navbar-fullwidth .rd-navbar-megamenu .list-marked li {
-        padding-top: 13px;
-        padding-bottom: 13px;
-    }
-}
-
 .rd-navbar-static .rd-navbar-dropdown li:before,
 .rd-navbar-static .rd-navbar-megamenu .list-marked li:before,
 .rd-navbar-fullwidth .rd-navbar-dropdown li:before,
@@ -26432,7 +26422,7 @@ html:not(.lt-ie10) .not-animated {
 @media (min-width: 1200px) {
     .rd-navbar-static .rd-navbar-megamenu > li,
     .rd-navbar-fullwidth .rd-navbar-megamenu > li {
-        padding: 31px 27px 25px 47px;
+        padding: 5px 25px;
     }
 }
 

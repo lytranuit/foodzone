@@ -133,7 +133,7 @@
                             <div class="responsive-tabs responsive-tabs-horizontal responsive-tabs-horizontal-background" style="display: block; width: 100%;color:black;">
                                 <ul class="resp-tabs-list container">
                                     <li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab">{{lang('details_mo_ta')}}</li>
-                                    <li class="resp-tab-item" aria-controls="tab_item-2" role="tab">{{lang('details_huong_dan')}}</li>
+                                    <li class="resp-tab-item" aria-controls="tab_item-1" role="tab">{{lang('details_huong_dan')}}</li>
                                 </ul>
                                 <div class="resp-tabs-container">
                                     <div class="resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0">
@@ -141,7 +141,7 @@
                                             <?= $product->{pick_language($product, 'detail_')} ?>
                                         </div>
                                     </div>
-                                    <div class="resp-tab-content" aria-labelledby="tab_item-2">
+                                    <div class="resp-tab-content" aria-labelledby="tab_item-1">
                                         <div class="fr-view">
                                             <?= $product->{pick_language($product, 'guide_')} ?>
                                         </div>
@@ -155,7 +155,7 @@
                 <section class="pt-5">
                     <div class="card card-custom">
                         <div class="card-header">
-                           {{lang('details_sp_lien_quan')}}
+                            {{lang('details_sp_lien_quan')}}
                         </div>
                         <div class="card-body">
                             <div class="responsive">
