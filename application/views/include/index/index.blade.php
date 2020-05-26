@@ -30,14 +30,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-custom">
-                    <h5 class="card-header">
-                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black">
+                    <div class="card-header">
+                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black header_title">
                             {{ $row->{pick_language($row,'name_')} }}
                         </a>
                         <div style="margin-left:auto;font-size:13px;">
                             <a class="" href="{{base_url()}}index/category/{{$row->id}}">Xem thêm</a>
                         </div>
-                    </h5>
+                    </div>
 
                     <div class="card-body mt-2">
                         <div class="row no-gutters" style="min-height: 400px;">

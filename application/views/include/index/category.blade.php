@@ -1,6 +1,4 @@
 <section class="section-20 bg-gray-lighter">
-
-
     <div class="container">
         <div class="row no-gutters">
 
@@ -19,14 +17,14 @@
                     @endif
                     <div class="col-lg-12">
                         <div class="card card-custom">
-                            <h5 class="card-header">
+                            <div class="card-header">
                                 <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black">
-
+                                   {{ $row->{pick_language($row, 'name_')} }}
                                 </a>
                                 <div style="margin-left:auto;font-size:13px;">
                                     Sắp xếp
                                 </div>
-                            </h5>
+                            </div>
 
                             <div class="card-body mt-2">
                                 <div class="row no-gutters" style="min-height: 400px;">

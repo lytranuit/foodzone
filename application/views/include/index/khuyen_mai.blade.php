@@ -7,12 +7,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card card-custom">
-                            <h5 class="card-header">
-
+                            <div class="card-header">
+                                {{lang('khuyen_mai')}}
                                 <div style="margin-left:auto;font-size:13px;">
                                     Sắp xếp
                                 </div>
-                            </h5>
+                            </div>
 
                             <div class="card-body mt-2">
                                 <div class="row no-gutters" style="min-height: 400px;">
@@ -68,7 +68,6 @@
                             </div>
                             @if($max_page > 1)
                             <div class="card-footer bg-white">
-
                                 <div class="col-12 text-center">
                                     <ul class="pagination" style="font-size:14px;">
                                         @if($current_page > 1)
@@ -106,7 +105,6 @@
 
                                     </ul>
                                 </div>
-
                             </div>
                             @endif
                         </div>
