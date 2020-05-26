@@ -72,8 +72,10 @@ class Product_model extends MY_Model
         // echo "<pre>";
         // print_r($price_km);
         // die();
-        // print_r($product->price);
+        // print_r($product->units);
+        // $product->units = array_values($product->units);
         if (!empty($product->units)) {
+            $product->units = array_values($product->units);
             foreach ($product->units as $key => &$unit) {
                 if ($unit->deleted == 1) {
                     unset($product->units[$key]);

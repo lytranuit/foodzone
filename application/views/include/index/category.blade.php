@@ -45,6 +45,9 @@
                                             {{ number_format($product->prev_price,0,",",".") }}đ
                                             @endif</span>
                                         <span class="price price-km">{{ number_format($product->price,0,",",".") }}đ</span>
+                                        @if(!empty($product->units))
+                                        <span class="dvt" style="font-size: 16px;"> / {{ $product->units[0]->{pick_language($product->units[0],'name_')} }}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="sale">
@@ -57,7 +60,7 @@
 
                                             <div class="dropdown-menu unit_list" aria-labelledby="btnGroupDrop1">
                                                 @foreach($product->units as $key=>$unit)
-                                                <a class="dropdown-item unit_product @if(array_keys($product->units)[0] == $key) btn-primary active @endif" href="#" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
+                                                <a class="dropdown-item unit_product @if($key == 0) btn-primary active @endif" href="#" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
                                                     {{ $unit->{pick_language($unit,'name_')} }}
                                                 </a>
                                                 @endforeach
