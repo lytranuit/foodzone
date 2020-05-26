@@ -15,6 +15,9 @@ $lang['header_quick_order'] = '';
 $lang['details_mo_ta'] = 'Mô tả';
 $lang['details_huong_dan'] = 'Hướng dẫn sử dụng';
 $lang['details_sp_lien_quan'] = 'Sản phẩm liên quan';
+$lang['danh_muc'] = 'Danh mục';
+$lang['topic'] = 'Chủ đề';
+$lang['post'] = 'Bài viết';
 
 
 ?>

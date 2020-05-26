@@ -3,7 +3,7 @@
         <div class="row no-gutters">
             <div class="col-xs-12 col-xl-preffix-1 col-xl-11">
                 <ul class="breadcrumbs-custom">
-                    <li><a href="{{base_url()}}">Home</a></li>
+                    <li><a href="{{base_url()}}">{{lang('home')}}</a></li>
                     <li class="active">{{$name}}</li>
                 </ul>
             </div>

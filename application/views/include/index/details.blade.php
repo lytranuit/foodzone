@@ -1,5 +1,18 @@
-<?= $widget->post_header($product->{pick_language($product, 'name_')}) ?>
-
+<section class="text-center py-3 bg-image bg-image-breadcrumbs">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-xs-12 col-xl-preffix-1 col-xl-11">
+                <ul class="breadcrumbs-custom">
+                    <li><a href="{{base_url()}}">{{lang('home')}}</a></li>
+                    @if(isset($category))
+                    <li><a href="{{base_url()}}index/category/{{$category->id}}">{{ $category->{pick_language($category, 'name_')} }}</a></li>
+                    @endif
+                    <li class="active">{{ $product->{pick_language($product, 'name_')} }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="section-50 details bg-gray-lighter">
     <div class="container">
         <div class="row no-gutters">

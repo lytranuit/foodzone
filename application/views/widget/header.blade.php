@@ -171,6 +171,10 @@
                         <li>
                             @if($row->type ==1 )
                             <a href="{{$row->link}}">{{ $row->{pick_language($row,'name_')} }}</a>
+                            @elseif($row->type ==4)
+                            <a href="{{base_url()}}index/khuyen_mai">{{ $row->{pick_language($row,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi"width="30"></a>
+                            @elseif($row->type ==5)
+                            <a href="{{base_url()}}index/news">{{ $row->{pick_language($row,'name_')} }}</a>
                             @else
                             <a href="{{base_url()}}/index/category/{{$row->category_id}}">{{ $row->{pick_language($row,'name_')} }}</a>
                             @endif
@@ -178,8 +182,12 @@
                             <ul class="rd-navbar-megamenu rd-navbar-open-right">
                                 @foreach($row->child as $row2)
                                 <li>
-                                    @if($row2->type ==1 )
+                                    @if($row2->type ==1)
                                     <a class='d-block' href="{{$row->link}}">{{ $row2->{pick_language($row2,'name_')} }}</a>
+                                    @elseif($row2->type ==4)
+                                    <a class='d-block' href="{{base_url()}}index/khuyen_mai">{{ $row2->{pick_language($row2,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi"width="30"></a>
+                                    @elseif($row2->type ==5)
+                                    <a class='d-block' href="{{base_url()}}index/news">{{ $row2->{pick_language($row2,'name_')} }}</a>
                                     @else
                                     <a class='d-block' href="{{base_url()}}index/category/{{$row2->category_id}}">{{ $row2->{pick_language($row2,'name_')} }}</a>
                                     @endif
@@ -189,6 +197,10 @@
                                         <li>
                                             @if($row3->type ==1 )
                                             <a href="{{$row->link}}">{{ $row3->{pick_language($row3,'name_')} }}</a>
+                                            @elseif($row3->type ==4)
+                                            <a href="{{base_url()}}index/khuyen_mai">{{ $row3->{pick_language($row3,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi" width="30"></a>
+                                            @elseif($row3->type ==5)
+                                            <a href="{{base_url()}}index/news">{{ $row3->{pick_language($row3,'name_')} }}</a>
                                             @else
                                             <a href="{{base_url()}}index/category/{{$row3->category_id}}">{{ $row3->{pick_language($row3,'name_')} }}</a>
                                             @endif

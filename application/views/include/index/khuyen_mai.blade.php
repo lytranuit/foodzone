@@ -1,28 +1,14 @@
 <section class="section-20 bg-gray-lighter">
 
-
     <div class="container">
         <div class="row no-gutters">
 
             <div class="col-lg-9">
                 <div class="row">
-                    @if($row->{pick_language($row, 'description_')} != "")
-                    <div class="col-12 text-black mb-4">
-                        <div class="card card-custom">
-                            <div class="card-body">
-                                <div class="fr-view">
-                                    <?= $row->{pick_language($row, 'description_')} ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
                     <div class="col-lg-12">
                         <div class="card card-custom">
                             <h5 class="card-header">
-                                <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black">
 
-                                </a>
                                 <div style="margin-left:auto;font-size:13px;">
                                     Sắp xếp
                                 </div>
@@ -30,8 +16,8 @@
 
                             <div class="card-body mt-2">
                                 <div class="row no-gutters" style="min-height: 400px;">
-                                    @if(!empty($row->product))
-                                    @foreach($row->product as $product)
+                                    @if(!empty($products))
+                                    @foreach($products as $product)
                                     <div class="thumbnail-menu-modern col-6 col-lg-3 border border-light product" data-id="{{$product->id}}">
                                         <input type="hidden" value="1" class="number" />
                                         <figure>
@@ -80,9 +66,9 @@
                             </div> -->
                                 </div>
                             </div>
-
                             @if($max_page > 1)
                             <div class="card-footer bg-white">
+
                                 <div class="col-12 text-center">
                                     <ul class="pagination" style="font-size:14px;">
                                         @if($current_page > 1)
@@ -120,6 +106,7 @@
 
                                     </ul>
                                 </div>
+
                             </div>
                             @endif
                         </div>

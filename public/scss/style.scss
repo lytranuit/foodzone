@@ -1380,3 +1380,11 @@ header nav .nav-item.active > a {
         }
     }
 }
+.img_km {
+    position: absolute;
+
+    @media (min-width: 991px) {
+        right: -20px;
+        top: -10px;
+    }
+}

@@ -1315,4 +1315,11 @@ header nav .nav-item.active > a {
     right: -20px;
     background: #f7921e; }
 
+.img_km {
+  position: absolute; }
+  @media (min-width: 991px) {
+    .img_km {
+      right: -20px;
+      top: -10px; } }
+
 /*# sourceMappingURL=style.css.map */

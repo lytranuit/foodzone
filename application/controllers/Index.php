@@ -108,6 +108,7 @@ class Index extends MY_Controller
             show_404();
         $this->data['title'] = $product->{pick_language($product, 'name_')};
         $this->data['product'] = $this->product_model->format($product);
+
         // load_easyzoom($this->data);
         load_fancybox($this->data);
         load_easyResponsiveTabs($this->data);
@@ -117,6 +118,12 @@ class Index extends MY_Controller
         $list_category_id = array_map(function ($item) {
             return $item->id;
         }, array_values((array) $this->data['product']->category));
+        if (isset($this->data['product']->category) && !empty($this->data['product']->category)) {
+            // print_r($this->data['product']->category);
+            // die();
+            $categories = array_values((array) $this->data['product']->category);
+            $this->data['category'] = $categories[0];
+        }
         // die();
         $this->data['product_related'] = $this->product_model->where("deleted = 0 and id IN(SELECT product_related_id FROM fz_product_related WHERE product_id = $id)", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
         if (!count($this->data['product_related'])) {
@@ -167,7 +174,7 @@ class Index extends MY_Controller
         $page = $this->input->get("page");
         $limit = $this->input->get("limit");
         $page = $page != "" ? $page : 1;
-        $limit = $limit != "" ? $limit : 30;
+        $limit = $limit != "" ? $limit : 20;
         $this->load->model("category_model");
         $this->load->model("product_model");
         $row =  $this->category_model->get($id);
@@ -198,7 +205,40 @@ class Index extends MY_Controller
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
+    public function khuyen_mai()
+    {
+        $page = $this->input->get("page");
+        $limit = $this->input->get("limit");
+        $page = $page != "" ? $page : 1;
+        $limit = $limit != "" ? $limit : 20;
+        $this->load->model("category_model");
+        $this->load->model("product_model");
+        $sql_where = "deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_price WHERE NOW() BETWEEN date_from AND date_to AND deleted = 0)";
+        /*
+         * TINH COUNT
+         */
 
+        $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->count_rows();
+        $max_page = ceil($count / $limit);
+
+        $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
+
+        $this->data['products'] = $data;
+        // echo "<pre>";
+        // print_r($limit);
+        // print_r($page);
+        $this->data['count'] = $count;
+        $this->data['current_page'] = $page;
+        $this->data['max_page'] = $max_page;
+        $this->data['site'] = base_url() . "index/khuyen_mai";
+        $version = $this->config->item("version");
+
+        load_froala_view($this->data);
+        load_fancybox($this->data);
+        array_push($this->data['javascript_tag'], base_url() . "public/lib/isotope/isotope.min.js");
+        array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
+        echo $this->blade->view()->make('page/page', $this->data)->render();
+    }
     public function search()
     {
 

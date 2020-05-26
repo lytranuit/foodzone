@@ -1,20 +1,26 @@
 <?= $widget->index_slider() ?>
-<section class="section-50">
+<section class="section-50 bg-gray-lighter">
     <div class="container-wide">
-        <h4 class="text-center">Topics</h4>
-        <div class="responsive1">
-            @foreach($topics as $row)
-            <div class="item m-2">
-                <a class="" href="{{base_url()}}index/category/{{$row->id}}">
-                    <img class="img-responsive" src="@if(isset($row->image)){{$row->image->src}}@endif" alt="">
-                    <div class="caption text-center">
-                        <p>
-                            {{ $row->{pick_language($row,'name_')} }}
-                        </p>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-custom">
+                    <h4 class="text-center">Topics</h4>
+                    <div class="responsive1" style="min-height: 200px;">
+                        @foreach($topics as $row)
+                        <div class="item m-2">
+                            <a class="" href="{{base_url()}}index/category/{{$row->id}}">
+                                <img class="img-responsive" src="@if(isset($row->image)){{$row->image->src}}@endif" alt="">
+                                <div class="caption text-center">
+                                    <p>
+                                        {{ $row->{pick_language($row,'name_')} }}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        @endforeach
                     </div>
-                </a>
+                </div>
             </div>
-            @endforeach
         </div>
     </div>
 </section>

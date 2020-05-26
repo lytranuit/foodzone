@@ -42,7 +42,9 @@
                                     <select class="form-control" name="type">
                                         <option value="1">Link</option>
                                         <option value="2">Danh mục</option>
-                                        <option value="3">Topics</option>
+                                        <option value="3">Chủ đề</option>
+                                        <option value="4">Khuyến mãi</option>
+                                        <option value="5">Bài viết</option>
                                     </select>
                                 </div>
 

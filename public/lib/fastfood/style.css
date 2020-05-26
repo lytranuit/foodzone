@@ -26245,25 +26245,16 @@ html:not(.lt-ie10) .not-animated {
     top: 50%;
     -webkit-transform: translateY(-55%);
     transform: translateY(-55%);
-    left: -5px;
     content: "\f105";
     font-size: 14px;
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     color: #ec5353;
-    opacity: 0;
-    visibility: hidden;
     transition: 0.33s all ease;
-    transition-delay: 0.1s;
-}
-
-@media (min-width: 1200px) and (min-height: 750px) {
-    .rd-navbar-static .rd-navbar-dropdown li a:before,
-    .rd-navbar-static .rd-navbar-megamenu .list-marked li a:before,
-    .rd-navbar-fullwidth .rd-navbar-dropdown li a:before,
-    .rd-navbar-fullwidth .rd-navbar-megamenu .list-marked li a:before {
-        font-size: 16px;
-    }
+    transition-delay: 0.1s; 
+    left: 0;
+    opacity: 1;
+    visibility: visible;
 }
 
 .rd-navbar-static .rd-navbar-dropdown li a,
@@ -26274,20 +26265,13 @@ html:not(.lt-ie10) .not-animated {
 }
 
 .rd-navbar-static .rd-navbar-dropdown li:hover > a,
-.rd-navbar-static .rd-navbar-megamenu .list-marked li:hover > a,
+.rd-navbar-static .rd-navbar-megamenu .list-marked li > a,
 .rd-navbar-fullwidth .rd-navbar-dropdown li:hover > a,
-.rd-navbar-fullwidth .rd-navbar-megamenu .list-marked li:hover > a {
+.rd-navbar-fullwidth .rd-navbar-megamenu .list-marked li > a {
     padding-left: 16px;
+    font-size:12px !important;
 }
 
-.rd-navbar-static .rd-navbar-dropdown li:hover > a:before,
-.rd-navbar-static .rd-navbar-megamenu .list-marked li:hover > a:before,
-.rd-navbar-fullwidth .rd-navbar-dropdown li:hover > a:before,
-.rd-navbar-fullwidth .rd-navbar-megamenu .list-marked li:hover > a:before {
-    left: 0;
-    opacity: 1;
-    visibility: visible;
-}
 
 .rd-navbar-static .rd-navbar-dropdown > li > a,
 .rd-navbar-static .rd-navbar-megamenu .list-marked > li > a,

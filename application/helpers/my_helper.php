@@ -525,6 +525,10 @@ if (!function_exists('html_nestable')) {
                     $sub_html = "<span class='text-success mr-1'>[Category='" . $row['category']->name_vi . "']</span>";
                 } elseif ($row['type'] == 3) {
                     $sub_html = "<span class='text-warning mr-1'>[Topic='" . $row['category']->name_vi . "']</span>";
+                } elseif ($row['type'] == 4) {
+                    $sub_html = "<span class='text-primary mr-1'>[Khuyến mãi]</span>";
+                } elseif ($row['type'] == 5) {
+                    $sub_html = "<span class='text-primary mr-1'>[Bài viết]</span>";
                 }
             }
             $html .= '<li class="dd-item" id="menuItem_' . $row['id'] . '" data-id="' . $row['id'] . '">
