@@ -115,6 +115,36 @@
         </form>
     </div>
 </div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card card-fluid">
+            <div class="card-header">
+                Sản phẩm
+            </div>
+            <div class="card-body">
+                <div class="dd" id="nestable2">
+                    <ol class="dd-list ui-sortable" id="nestable">
+                        @foreach($products as $row)
+                        <li class="dd-item ui-sortable-handle" id="menuItem_{{$row->id}}" data-id="{{$row->id}}">
+                            <div class="dd-handle">
+                                <div>{{$row->product->code}} - {{$row->product->name_vi}}</div>
+                                <div class="dd-nodrag btn-group ml-auto">
+                                    <a class="btn btn-sm btn-outline-light" href="{{base_url()}}product/edit/{{$row->product_id}}">Edit</a>
+                                    <a class="btn btn-sm btn-outline-light" href="{{base_url()}}eat/remove_product/{{$row->id}}" data-type="confirm" title="Xóa ra khỏi dạnh mục">
+                                        <i class="far fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <ol class="dd-list"></ol>
+                        </li>
+                        @endforeach
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script type='text/javascript'>
     $(document).ready(function() {
         $(".image_ft").imageFeature();
@@ -154,5 +184,28 @@
                 return false;
             }
         });
+        $('#nestable').nestedSortable({
+            forcePlaceholderSize: true,
+            items: 'li',
+            opacity: .6,
+            maxLevels: 1,
+            placeholder: 'dd-placeholder',
+        });
+        // $("#save").click(function() {
+        //     var arraied = $('#nestable').nestedSortable('toArray', {
+        //         excludeRoot: true
+        //     });
+
+        //     $.ajax({
+        //         type: "POST",
+        //         data: {
+        //             data: JSON.stringify(arraied)
+        //         },
+        //         url: path + "eat/saveordercategory",
+        //         success: function(msg) {
+        //             alert("Success!");
+        //         }
+        //     })
+        // });
     });
 </script>

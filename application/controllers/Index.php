@@ -188,6 +188,9 @@ class Index extends MY_Controller
         $max_page = ceil($count / $limit);
 
         $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
+        foreach ($data as &$row_format) {
+            $row_format = $this->product_model->format($row_format);
+        }
         $row->product = $data;
         $this->data['row'] = $row;
         // echo "<pre>";
@@ -222,7 +225,9 @@ class Index extends MY_Controller
         $max_page = ceil($count / $limit);
 
         $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
-
+        foreach ($data as &$row_format) {
+            $row_format = $this->product_model->format($row_format);
+        }
         $this->data['products'] = $data;
         // echo "<pre>";
         // print_r($limit);

@@ -85,6 +85,12 @@ class Eat extends MY_Administrator
             $tin = $this->category_model->where(array('id' => $id))->with_image()->as_object()->get();
             $this->data['tin'] = $tin;
             load_editor($this->data);
+            load_sort_nest($this->data);
+            $this->load->model("product_category_model");
+            $this->data['products'] = $this->product_category_model->where(array('category_id' => $id))->with_product()->order_by('order', "ASC")->get_all();
+            // echo "<pre>";
+            // print_r($this->data['products']);
+            // die();
             //            load_chossen($this->data);
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
@@ -95,6 +101,14 @@ class Eat extends MY_Administrator
         $this->load->model("category_model");
         $id = $params[0];
         $this->category_model->update(array("deleted" => 1), $id);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+    public function remove_product($params)
+    { /////// trang ca nhan
+        $this->load->model("product_category_model");
+        $id = $params[0];
+        $this->product_category_model->where(array("id" => $id))->delete();
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit;
     }

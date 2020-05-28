@@ -96,7 +96,7 @@
                                     <a class="nav-link" data-toggle="tab" href="#menu2">Tiếng Nhật</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#menu6">Đơn bị tính</a>
+                                    <a class="nav-link" data-toggle="tab" href="#menu6">Đơn vị tính</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu7">Hình ảnh khác</a>

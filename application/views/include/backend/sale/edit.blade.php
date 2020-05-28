@@ -67,12 +67,12 @@
                 </div>
             </section>
         </form>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12">
-                <div class="section-block">
-                    <h3 class="section-title">Sản phẩm</h3>
-                </div>
                 <div class="card card-fluid">
+                    <div class="card-header">
+                        Sản phẩm
+                    </div>
                     <div class="card-body">
                         <table id="quanlytin" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                             <thead>
@@ -89,7 +89,7 @@
                                 @foreach($tin->data->details as $row)
                                 <tr data-id='{{$row->id}}' data-price='{{$row->price}}'>
                                     <td>
-                                         <img class="img-responsive" width="100" src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" />
+                                        <img class="img-responsive" width="100" src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" />
                                     </td>
                                     <td>{{$row->name_vi}}</td>
                                     <td>{{$row->code}}</td>
