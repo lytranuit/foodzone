@@ -2203,7 +2203,6 @@ class Admin extends MY_Administrator
             echo json_encode(array("link" => base_url() . $upload_path_url . $data['file_name']));
         }
     }
-
     public function uploadhinhanh()
     {
         ini_set('post_max_size', '64M');

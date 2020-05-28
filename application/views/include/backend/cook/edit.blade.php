@@ -1,7 +1,6 @@
 <div class="row clearfix">
     <div class="col-12">
         <form method="POST" action="" id="form-dang-tin">
-            <input type="hidden" name="parent_id" value="0" />
             <section class="card card-fluid">
                 <h5 class="card-header">
                     <div class="d-inline-block w-100">
@@ -74,7 +73,7 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả:</b>
                                         <div class="col-lg-10">
-                                            <textarea class="form-contro edit" name="description_vi" placeholder="Mô tả"></textarea>
+                                            <textarea class="form-control edit" name="description_vi" placeholder="Mô tả"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -116,8 +115,53 @@
     </div>
 </div>
 
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card card-fluid">
+            <div class="card-header">
+                Sản phẩm
+                <div class="ml-auto">
+                    <select class="form-control product_add" multiple>
+                        @foreach($products_add as $row)
+                        <option value="{{$row->id}}">
+                            {{$row->code}} - {{$row->name_vi}}
+                        </option>
+                        @endforeach
+                    </select>
+                    <button class="btn btn-success add_product">
+                        Add
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="dd" id="nestable2">
+                    <ol class="dd-list ui-sortable" id="nestable">
+                        @foreach($products as $row)
+                        <li class="dd-item ui-sortable-handle" id="menuItem_{{$row->id}}" data-id="{{$row->id}}">
+                            <div class="dd-handle">
+                                <div>{{$row->product->code}} - {{$row->product->name_vi}}</div>
+                                <div class="dd-nodrag btn-group ml-auto">
+                                    <a class="btn btn-sm btn-outline-light" href="{{base_url()}}product/edit/{{$row->product_id}}">Edit</a>
+                                    <a class="btn btn-sm btn-outline-light" href="{{base_url()}}cook/remove_product/{{$row->id}}" data-type="confirm" title="Xóa ra khỏi dạnh mục">
+                                        <i class="far fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <ol class="dd-list"></ol>
+                        </li>
+                        @endforeach
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 300px">
+</div>
 <script type='text/javascript'>
     $(document).ready(function() {
+        $("select[multiple]").chosen();
+
         $(".image_ft").imageFeature();
         var tin = <?= json_encode($tin) ?>;
         fillForm($("#form-dang-tin"), tin);
@@ -151,9 +195,43 @@
                 $(element).parents('.form-group').append(error);
             },
             submitHandler: function(form) {
+                var arraied = $('#nestable').nestedSortable('toArray', {
+                    excludeRoot: true
+                });
+                console.log(arraied);
+                let append = "";
+                for (var i = 0; i < arraied.length; i++) {
+                    let id = arraied[i]['id'];
+                    append += "<input type='hidden' name='product_category[]' value='" + id + "' />";
+                }
+                $(form).append(append);
                 form.submit();
                 return false;
             }
+        });
+        $('#nestable').nestedSortable({
+            forcePlaceholderSize: true,
+            items: 'li',
+            opacity: .6,
+            maxLevels: 1,
+            placeholder: 'dd-placeholder',
+        });
+        $(".add_product").click(function() {
+
+            let product = $(".product_add").val();
+            let category_id = tin['id'];
+            $.ajax({
+                type: "POST",
+                data: {
+                    data: JSON.stringify(product),
+                    category_id: category_id,
+                },
+                url: path + "cook/add_product_category",
+                success: function(msg) {
+                    alert("Success!");
+                    location.reload();
+                }
+            })
         });
     });
 </script>

@@ -8,7 +8,8 @@ $(document).ready(function () {
         var title = $(this).attr("title");
         var href = $(this).attr("href");
         if (confirm(title) == true) {
-            location.href = href;
+            if (href)
+                location.href = href;
         }
         return false;
     })

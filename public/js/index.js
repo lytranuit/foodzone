@@ -24,7 +24,7 @@ $(document).ready(function () {
             $(".rd-navbar-nav-wrap").removeClass("active");
         });
         $(document).scroll(function () {
-            
+
         })
     }
     if (plugins.topics_view.length > 0) {
@@ -64,13 +64,13 @@ $(document).ready(function () {
         });
     }
 
-    ////
+    //// DETAILS HÌNH ẢNH SẢN PHẨM
     if (plugins.image_view.length > 0) {
         $('.slider-for').slick({
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: false,
-            fade: true,
+            fade: true, adaptiveHeight: true,
             asNavFor: '.slider-nav'
         });
         $('.slider-nav').slick({

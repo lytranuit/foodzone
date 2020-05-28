@@ -76,15 +76,32 @@ class Cook extends MY_Administrator
         $id = $param[0];
         if (isset($_POST['dangtin'])) {
             $this->load->model("category_model");
+            $this->load->model("product_category_model");
             $data = $_POST;
             $data_up = $this->category_model->create_object($data);
             $this->category_model->update($data_up, $id);
+            if (isset($data['product_category'])) {
+                foreach ($data['product_category'] as $key => $row) {
+                    $data_up = array(
+                        'order' => $key,
+                        'category_id' => $id
+                    );
+                    $this->product_category_model->update($data_up, $row);
+                }
+            }
             redirect('cook', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
         } else {
             $this->load->model("category_model");
             $tin = $this->category_model->where(array('id' => $id))->with_image()->as_object()->get();
             $this->data['tin'] = $tin;
             load_editor($this->data);
+            load_sort_nest($this->data);
+            load_chossen($this->data);
+            $this->load->model("product_category_model");
+            $this->data['products'] = $this->product_category_model->where(array('category_id' => $id))->with_product()->order_by('order', "ASC")->get_all();
+
+            $this->load->model("product_model");
+            $this->data['products_add'] = $this->product_model->where(array("deleted" => 0))->get_all();
             //            load_chossen($this->data);
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
@@ -99,6 +116,14 @@ class Cook extends MY_Administrator
         exit;
     }
 
+    public function remove_product($params)
+    { /////// trang ca nhan
+        $this->load->model("product_category_model");
+        $id = $params[0];
+        $this->product_category_model->where(array("id" => $id))->delete();
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
     public function table()
     {
         $this->load->model("category_model");
@@ -176,6 +201,33 @@ class Cook extends MY_Administrator
         }
     }
 
+    function add_product_category()
+    {
+        $this->load->model("product_category_model");
+        $data = json_decode($this->input->post('data'), true);
+        $category_id = $this->input->post('category_id');
+        $list = $this->product_category_model->where(array("category_id" => $category_id))->get_all();
+        $max_order = 0;
+        foreach ($list as $row) {
+            if ($max_order < $row->order) {
+                $max_order = $row->order;
+            }
+        }
+        $list_product = array_map(function ($item) {
+            return $item->product_id;
+        }, $list);
+        $data = array_diff($data, $list_product);
+        $max_order++;
+        foreach ($data as $key => $product_id) {
+
+            $array = array(
+                'product_id' => $product_id,
+                'category_id' => $category_id,
+                'order' => $max_order
+            );
+            $this->product_category_model->insert($array);
+        }
+    }
     function savecategory()
     {
         $this->load->model("category_model");

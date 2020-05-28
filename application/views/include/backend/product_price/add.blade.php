@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <b class="col-12 col-lg-1 col-form-label">Sản phẩm:<i class="text-danger">*</i></b>
-                        <div class="col-12 col-lg-3 pt-1">
+                        <div class="col-12 col-lg-6 pt-1">
                             <select name="product_id" class="form-control">
                                 @foreach($products as $row)
                                 <option value="{{$row->id}}">

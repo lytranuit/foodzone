@@ -108,6 +108,13 @@ class Ajax extends MY_Controller
         }
     }
 
+    public function removeimage()
+    {
+
+        $this->load->model('file_model');
+        $id = $this->input->post("id");
+        $this->file_model->update(array("deleted" => 1), $id);
+    }
     function getopencart()
     {
 

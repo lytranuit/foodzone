@@ -25,6 +25,7 @@
             forcePlaceholderSize: true,
             items: 'li',
             opacity: .6,
+            maxLevels: 3,
             placeholder: 'dd-placeholder',
         });
         $("#save").click(function() {

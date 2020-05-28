@@ -32,8 +32,12 @@
                 + '            <p class="modal-title" id="comment-modalLabel">'
                 + '                Image'
                 + '            </p>'
+                + '         <div class="ml-auto">'
                 + '            <button type="button" class="btn btn-success" id="btn-upload">Upload</button>'
+                + '            <button type="button" class="btn btn-success select_image" data-dismiss="modal">Select</button>'
+                + '            <button type="button" class="btn btn-danger delete_image" data-type="confirm" title="Remove">Remove</button>'
                 + '            <input id="input-upload" type="file" accept="image/*" class="d-none" />'
+                + '         </div>'
                 + '        </div>'
                 + '        <div class="modal-body">'
                 + '            <div class="image-main row">'
@@ -95,6 +99,19 @@
                     $(this).toggleClass("border-info");
                 });
             }
+            $(".delete_image", this.modal).click(function () {
+                $(".image_tmp.border-info", self.modal).each(function () {
+                    let id = $(this).data("id");
+                    let parent = $(this).parent();
+                    parent.remove();
+                    $.ajax({
+                        url: path + "ajax/removeimage",
+                        data: { id: id },
+                        type: 'POST'
+                    })
+                });
+
+            });
             $("#input-upload", this.modal).change(function () {
                 let file = $(this)[0].files[0];
                 let m_data = new FormData;
