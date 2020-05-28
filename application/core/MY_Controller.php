@@ -39,18 +39,18 @@ class MY_Controller extends CI_Controller
         //        die();
         $link = $module == "" ? $class . "/" . $method : $module . "/" . $class . "/" . $method;
         $page = $this->page_model->where(array("deleted" => 0, 'link' => $link))->as_array()->get_all();
-        if (count($page)) {
-            $this->data['content'] = $class . "." . $method;
-            $this->data['template'] = $page[0]['template'];
-            $this->data['title'] = $page[0]['page'];
-        } else { //////// Default
-            $this->data['content'] = $class . "." . $method;
-            $this->data['template'] = "template";
-            $this->data['title'] = "";
-        }
+        // if (count($page)) {
+        //     $this->data['content'] = $class . "." . $method;
+        //     $this->data['template'] = $page[0]['template'];
+        //     $this->data['title'] = $page[0]['page'];
+        // } else { //////// Default
+        $this->data['content'] = $class . "." . $method;
+        $this->data['template'] = "template";
+        $this->data['title'] = "";
+        // }
 
         $this->data['host'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        //        print_r($this->data['template']);
+        // print_r($this->data['template']);
 
         // echo "<pre>";
         // print_r($this->data['options']);
