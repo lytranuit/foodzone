@@ -24,7 +24,7 @@ class Ajax extends MY_Controller
     function images()
     {
         $this->load->model('file_model');
-        $data = $this->file_model->where(array("type" => 1, "deleted" => 0))->order_by("id", "desc")->get_all();
+        $data = $this->file_model->where(array("type" => 1, "deleted" => 0))->order_by("id", "desc")->as_array()->get_all();
         echo json_encode($data);
     }
 

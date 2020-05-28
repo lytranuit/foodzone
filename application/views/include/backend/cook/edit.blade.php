@@ -228,7 +228,7 @@
                 },
                 url: path + "cook/add_product_category",
                 success: function(msg) {
-                    alert("Success!");
+                    // alert("Success!");
                     location.reload();
                 }
             })

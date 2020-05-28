@@ -215,7 +215,7 @@ class Cook extends MY_Administrator
         }
         $list_product = array_map(function ($item) {
             return $item->product_id;
-        }, $list);
+        }, (array) $list);
         $data = array_diff($data, $list_product);
         $max_order++;
         foreach ($data as $key => $product_id) {

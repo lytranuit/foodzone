@@ -226,9 +226,9 @@
                     data: JSON.stringify(product),
                     category_id: category_id,
                 },
-                url: path + "eat/add_product_category",
+                url: path + "eat/addproductcategory",
                 success: function(msg) {
-                    alert("Success!");
+                    // alert("Success!");
                     location.reload();
                 }
             })

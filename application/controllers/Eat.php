@@ -187,11 +187,12 @@ class Eat extends MY_Administrator
 
         echo json_encode($json_data);
     }
-    function add_product_category()
+    public function addproductcategory()
     {
         $this->load->model("product_category_model");
         $data = json_decode($this->input->post('data'), true);
         $category_id = $this->input->post('category_id');
+
         $list = $this->product_category_model->where(array("category_id" => $category_id))->get_all();
         $max_order = 0;
         foreach ($list as $row) {
@@ -201,7 +202,7 @@ class Eat extends MY_Administrator
         }
         $list_product = array_map(function ($item) {
             return $item->product_id;
-        }, $list);
+        }, (array) $list);
         $data = array_diff($data, $list_product);
         $max_order++;
         foreach ($data as $key => $product_id) {
