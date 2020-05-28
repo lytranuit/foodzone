@@ -345,6 +345,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <b class="form-label">Hệ số:<i class="text-danger">*</i></b>
+                            <div class="form-line">
+                                <input name="special_unit" type='number' class="form-control" placeholder="Hệ số">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <b class="form-label">Giá:<i class="text-danger">*</i></b>
                             <div class="form-line">
                                 <input name="price" type='text' required class="price form-control" placeholder="Giá">

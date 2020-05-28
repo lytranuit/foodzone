@@ -79,6 +79,7 @@
                 }
             });
         })
+        $("select[name='product_id']").change();
         $.validator.setDefaults({
             debug: true,
             success: "valid"

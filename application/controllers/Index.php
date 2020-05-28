@@ -228,6 +228,9 @@ class Index extends MY_Controller
         foreach ($data as &$row_format) {
             $row_format = $this->product_model->format($row_format);
         }
+        echo "<pre>";
+        print_r($data);
+        die();
         $this->data['products'] = $data;
         // echo "<pre>";
         // print_r($limit);

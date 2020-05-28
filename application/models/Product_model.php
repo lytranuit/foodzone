@@ -86,6 +86,7 @@ class Product_model extends MY_Model
                 $unit_km = array_values(array_filter($price_km, function ($item) use ($unit_id) {
                     return $item->unit_id == $unit_id;
                 }));
+                // print_r($price_km);
                 if (!empty($unit_km)) {
                     $unit->km_price = $unit_km[0]->price;
                     $unit->prev_price = $unit->price;
