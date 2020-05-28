@@ -75,7 +75,7 @@ class Product_model extends MY_Model
         // print_r($product->units);
         // $product->units = array_values($product->units);
         if (!empty($product->units)) {
-            $product->units = array_values($product->units);
+            $product->units = array_values((array) $product->units);
             foreach ($product->units as $key => &$unit) {
                 if ($unit->deleted == 1) {
                     unset($product->units[$key]);

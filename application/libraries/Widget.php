@@ -29,15 +29,15 @@ class Widget
         $this->data['options'] = $this->CI->option_model->all_option();
         $this->CI->load->model("menu_header_model");
         $list_menu = $this->CI->menu_header_model->where(array('deleted' => 0))->order_by('order', 'ASC')->get_all();
-        $list_parent = array_filter($list_menu, function ($item) {
+        $list_parent = array_filter((array) $list_menu, function ($item) {
             return $item->parent_id == 0;
         });
         foreach ($list_parent as &$row) {
-            $child = array_filter($list_menu, function ($item) use ($row) {
+            $child = array_filter((array) $list_menu, function ($item) use ($row) {
                 return $item->parent_id == $row->id;
             });
             foreach ($child as &$row2) {
-                $child2 = array_filter($list_menu, function ($item) use ($row2) {
+                $child2 = array_filter((array) $list_menu, function ($item) use ($row2) {
                     return $item->parent_id == $row2->id;
                 });
                 $row2->child = $child2;
@@ -68,10 +68,10 @@ class Widget
     {
         $this->CI->load->model("category_model");
         $list_category = $this->CI->category_model->where(array('deleted' => 0, 'active' => 1))->order_by('order', 'ASC')->get_all();
-        $this->data['list_cate'] = array_filter($list_category, function ($item) {
+        $this->data['list_cate'] = array_filter((array) $list_category, function ($item) {
             return $item->menu_id == 1;
         });
-        $this->data['list_topics'] = array_filter($list_category, function ($item) {
+        $this->data['list_topics'] = array_filter((array) $list_category, function ($item) {
             return $item->menu_id == 2;
         });
         $this->CI->load->model("news_model");

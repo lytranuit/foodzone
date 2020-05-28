@@ -324,11 +324,11 @@ if (!function_exists('nestable')) {
 
     function nestable($array, $column, $parent)
     {
-        $return = array_filter($array, function ($item) use ($column, $parent) {
+        $return = array_filter((array) $array, function ($item) use ($column, $parent) {
             return $item[$column] == $parent;
         });
         foreach ($return as &$row) {
-            $row['child'] = nestable($array, $column, $row['id']);
+            $row['child'] = nestable((array) $array, $column, $row['id']);
         }
 
         return $return;
@@ -339,13 +339,13 @@ if (!function_exists('array_child_category')) {
 
     function array_child_category($array, $parent)
     {
-        $return = array_filter($array, function ($item) use ($parent) {
+        $return = array_filter((array) $array, function ($item) use ($parent) {
             return $item['parent_id'] == $parent;
         });
         $data = array();
         foreach ($return as $row) {
             $data[] = $row['id'];
-            $child = array_child_category($array, $row['id']);
+            $child = array_child_category((array) $array, $row['id']);
             array_merge($data, $child);
         }
 
@@ -369,7 +369,7 @@ if (!function_exists('html_menu_lv1')) {
     function html_menu_lv1($array, $parent)
     {
         $html = "";
-        $return = array_filter($array, function ($item) use ($parent) {
+        $return = array_filter((array) $array, function ($item) use ($parent) {
             return $item['parent_id'] == $parent;
         });
         ///Bebin Tag
@@ -403,7 +403,7 @@ if (!function_exists('html_menu_lv2')) {
     function html_menu_lv2($array, $parent)
     {
         $html = "";
-        $return = array_filter($array, function ($item) use ($parent) {
+        $return = array_filter((array) $array, function ($item) use ($parent) {
             return $item['parent_id'] == $parent;
         });
         if (count($return)) {
@@ -412,7 +412,7 @@ if (!function_exists('html_menu_lv2')) {
             $has_child = FALSE;
             foreach ($return as $row) {
                 $id = $row['id'];
-                $child = array_filter($array, function ($item) use ($id) {
+                $child = array_filter((array) $array, function ($item) use ($id) {
                     return $item['parent_id'] == $id;
                 });
                 if (count($child)) {
@@ -455,7 +455,7 @@ if (!function_exists('html_menu_lv3')) {
     function html_menu_lv3($array, $parent)
     {
         $html = "";
-        $return = array_filter($array, function ($item) use ($parent) {
+        $return = array_filter((array) $array, function ($item) use ($parent) {
             return $item['parent_id'] == $parent;
         });
         if (count($return)) {
@@ -483,7 +483,7 @@ if (!function_exists('html_select_category')) {
     function html_select_category($array, $column, $parent)
     {
         $html = "";
-        $return = array_filter($array, function ($item) use ($column, $parent) {
+        $return = array_filter((array) $array, function ($item) use ($column, $parent) {
             return $item[$column] == $parent;
         });
         ///Bebin Tag
@@ -505,7 +505,7 @@ if (!function_exists('html_nestable')) {
     function html_nestable($array, $column, $parent, $controller = '')
     {
         $html = "";
-        $return = array_filter($array, function ($item) use ($column, $parent) {
+        $return = array_filter((array) $array, function ($item) use ($column, $parent) {
             return $item[$column] == $parent;
         });
         ///Bebin Tag
@@ -542,7 +542,7 @@ if (!function_exists('html_nestable')) {
                                     </button>
                                 </div>
                             </div>';
-            $html .= html_nestable($array, $column, $row['id'], $controller);
+            $html .= html_nestable((array) $array, $column, $row['id'], $controller);
             $html .= '</li>';
         }
         ///End Tag
