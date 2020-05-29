@@ -122,6 +122,9 @@ $(document).ready(function () {
         $(".unit_product", plugins.units).click(function (e) {
             e.preventDefault();
             let parent = $(this).closest(".product");
+            var name = $(this).text();
+            $(".dvt", parent).text("/" + name);
+
             $(".unit_product", parent).removeClass("btn-primary active");
             $(this).addClass("btn-primary active");
 

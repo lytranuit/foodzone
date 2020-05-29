@@ -46,7 +46,7 @@ class Product_price extends MY_Administrator
     {
         $id = $params[0];
         $this->load->model("product_unit_model");
-        $json_data = $this->product_unit_model->where(array('product_id' => $id))->as_object()->get_all();
+        $json_data = $this->product_unit_model->where(array('product_id' => $id))->as_array()->get_all();
         echo json_encode($json_data);
     }
     public function add()
