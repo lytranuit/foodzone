@@ -134,6 +134,7 @@
                 </div>
             </div>
             <div class="card-body">
+                @if(!empty($products))
                 <div class="dd" id="nestable2">
                     <ol class="dd-list ui-sortable" id="nestable">
                         @foreach($products as $row)
@@ -152,6 +153,7 @@
                         @endforeach
                     </ol>
                 </div>
+                @endif
             </div>
         </div>
     </div>
