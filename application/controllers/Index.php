@@ -200,8 +200,10 @@ class Index extends MY_Controller
         $max_page = ceil($count / $limit);
 
         $data = $this->product_model->where($sql_where, null, null, null, null, true)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
-        foreach ($data as &$row_format) {
-            $row_format = $this->product_model->format($row_format);
+        if (!empty($data)) {
+            foreach ($data as &$row_format) {
+                $row_format = $this->product_model->format($row_format);
+            }
         }
         // echo "<pre>";
         // print_r($data);
