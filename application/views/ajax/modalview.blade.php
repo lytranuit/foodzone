@@ -1,4 +1,4 @@
-<main class="view_product" style="max-width: 90%;">
+<main class="view_product" style="max-width: 90%;min-width:1000px;">
     <div class="product" data-id="{{$product->id}}">
         <div class="row justify-content-xs-center">
             <div class="col-lg-4 text-lg-left area_image">

@@ -32315,12 +32315,6 @@ span.search {
     margin-bottom: 10px;
 }
 
-@media (min-width: 992px) {
-    .slick-slider {
-        margin-bottom: 60px;
-    }
-}
-
 .slick-dots {
     position: absolute;
     bottom: 0;
