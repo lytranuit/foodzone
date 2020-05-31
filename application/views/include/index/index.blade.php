@@ -1,23 +1,27 @@
 <?= $widget->index_slider() ?>
-<section class="section-50 bg-gray-lighter">
+<section class="section-20 bg-gray-lighter">
     <div class="container-wide">
         <div class="row">
             <div class="col-12">
                 <div class="card card-custom">
-                    <h4 class="text-center">Topics</h4>
-                    <div class="responsive1" style="min-height: 200px;">
-                        @foreach($topics as $row)
-                        <div class="item m-2">
-                            <a class="" href="{{base_url()}}index/category/{{$row->id}}">
-                                <img class="img-responsive" src="@if(isset($row->image)){{$row->image->src}}@endif" alt="">
-                                <div class="caption text-center">
-                                    <p>
-                                        {{ $row->{pick_language($row,'name_')} }}
-                                    </p>
-                                </div>
-                            </a>
+                    <div class="card-body">
+                        <div class="header-title">
+                            <span>{{lang("topic")}}</span>
                         </div>
-                        @endforeach
+                        <div class="responsive1" style="min-height: 200px;">
+                            @foreach($topics as $row)
+                            <div class="item m-2">
+                                <a class="" href="{{base_url()}}index/category/{{$row->id}}">
+                                    <img class="img-responsive" src="@if(isset($row->image)){{$row->image->src}}@endif" alt="">
+                                    <div class="caption text-center">
+                                        <p>
+                                            {{ $row->{pick_language($row,'name_')} }}
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,6 +53,9 @@
                                     <a href="{{base_url()}}index/details/{{$product->id}}">
                                         <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
                                     </a>
+                                    <div class="view_now d-flex align-items-center">
+                                        <a href="#" class="btn btn-danger mx-auto view_now_btn">Xem nhanh</a>
+                                    </div>
                                 </figure>
 
                                 <div class="caption">

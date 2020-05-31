@@ -84,6 +84,22 @@ class Widget
         $this->CI->load->model("slider_model");
         $this->data['list_slider'] = $this->CI->slider_model->where(array('deleted' => 0))->with_image()->get_all();
 
+
+        $this->CI->load->model("menu_slide_model");
+        $list_menu = $this->CI->menu_slide_model->where(array('deleted' => 0))->order_by('order', 'ASC')->get_all();
+        $list_parent = array_filter((array) $list_menu, function ($item) {
+            return $item->parent_id == 0;
+        });
+        foreach ($list_parent as &$row) {
+            $child = array_filter((array) $list_menu, function ($item) use ($row) {
+                return $item->parent_id == $row->id;
+            });
+            $row->child = $child;
+        }
+        // echo "<pre>";
+        // print_r($list_menu);
+        // die();
+        $this->data['list_menu'] = $list_parent;
         echo $this->blade->view()->make('widget/index_slider', $this->data)->render();
     }
     public function index_eat()

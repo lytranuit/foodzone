@@ -19,6 +19,7 @@ $lang['danh_muc'] = 'Danh mục';
 $lang['topic'] = 'Chủ đề';
 $lang['post'] = 'Bài viết';
 $lang['khuyen_mai'] = 'Siêu khuyến mãi';
+$lang['index_menu_slide'] = 'Danh mục';
 
 
 ?>

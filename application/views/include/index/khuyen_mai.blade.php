@@ -24,6 +24,9 @@
                                             <a href="{{base_url()}}index/details/{{$product->id}}">
                                                 <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
                                             </a>
+                                            <div class="view_now d-flex align-items-center">
+                                                <a href="#" class="btn btn-danger mx-auto view_now_btn">Xem nhanh</a>
+                                            </div>
                                         </figure>
                                         <div class="caption">
                                             <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></div>

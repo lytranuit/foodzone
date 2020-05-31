@@ -101,12 +101,7 @@
                         Topics
                     </a>
                 </li>
-                <li>
-                    <a href="{{base_url()}}menu_header" class="">
-                        <i class="metismenu-icon fas fa-wrench"></i>
-                        Menu Header
-                    </a>
-                </li>
+
 
                 <li>
                     <a href="{{base_url()}}product_sale/" class="">
@@ -114,6 +109,20 @@
                         Sản phẩm mua cùng
                     </a>
                 </li>
+                <li class="app-sidebar__heading">Menu</li>
+                <li>
+                    <a href="{{base_url()}}menu_header" class="">
+                        <i class="metismenu-icon fas fa-wrench"></i>
+                        Menu Header
+                    </a>
+                </li>
+                <li>
+                    <a href="{{base_url()}}menu_slide" class="">
+                        <i class="metismenu-icon fas fa-wrench"></i>
+                        Menu Slide
+                    </a>
+                </li>
+
                 <li class="app-sidebar__heading">Sản phẩm</li>
                 <li>
                     <a href="{{base_url()}}product/" class="">

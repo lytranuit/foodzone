@@ -9,6 +9,7 @@ $(document).ready(function () {
     plugins.isotope = $(".isotope")
     plugins.customToggle = $("[data-custom-toggle]")
     plugins.easyzoom = $('.easyzoom');
+
     plugins.fancybox = $('.fancybox');
 
     plugins.number = $(".number-widget");
@@ -16,6 +17,44 @@ $(document).ready(function () {
     plugins.image_view = $('.area_image');
     plugins.topics_view = $('.responsive1');
     plugins.menu_bar = $(".menu-bar");
+    plugins.view_now_btn = $(".view_now_btn");
+    if (plugins.view_now_btn.length > 0) {
+        plugins.view_now_btn.click(async function (e) {
+            e.preventDefault();
+            let product = $(this).parents(".product");
+            let id = product.data("id");
+            let html = await $.ajax({
+                url: path + "ajax/modalview/" + id,
+                dataType: "HTML",
+            });
+            $.fancybox.open(html, {
+                afterLoad: function (instance, current) {
+                    var inner = this.$content;
+                    $(".fancybox", inner).fancybox();
+                    // $(inner).off('click', '.fancybox')
+                    //     .on('click', '.say_no', function () {
+                    //         $.fancybox.close();
+                    //     });
+                    // $(".number-widget .number").autoNumeric('init', { vMin: 1, mDec: 0 });
+                    $('.slider-for-view').slick({
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        fade: true, adaptiveHeight: true,
+                        asNavFor: '.slider-nav-view'
+                    });
+                    $('.slider-nav-view').slick({
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        asNavFor: '.slider-for-view',
+                        dots: false,
+                        focusOnSelect: true,
+                        infinite: false,
+                    });
+                }
+            });
+        })
+    }
     if (plugins.menu_bar.length > 0) {
         $(plugins.menu_bar).click(function () {
             $(".rd-navbar-nav-wrap").addClass("active");
@@ -30,7 +69,6 @@ $(document).ready(function () {
     if (plugins.topics_view.length > 0) {
         plugins.topics_view.slick({
             dots: false,
-            centerMode: true,
             speed: 300,
             slidesToShow: 6,
             slidesToScroll: 1,
@@ -88,38 +126,40 @@ $(document).ready(function () {
   * NUMBER
   * @description Enables NUMBER plugin
   */
-    if (plugins.number.length) {
-        $(".number", plugins.number).autoNumeric('init', { vMin: 1, mDec: 0 });
-        $(".number", plugins.number).change(function () {
-            if ($(this).autoNumeric("get") < 1) {
-                $(this).val(1);
-            }
-        })
-        $(".down", plugins.number).click(function () {
-            let parent = $(this).parent();
-            console.log(parent);
-            let numberEl = $(".number", parent);
-            var amount = parseInt(numberEl.autoNumeric("get"));
-            if (amount > 1) {
-                amount--;
-                numberEl.val(amount);
-            }
-        });
-        $(".up", plugins.number).click(function () {
-            let parent = $(this).parent();
-            let numberEl = $(".number", parent);
-            var amount = parseInt(numberEl.autoNumeric("get"));
-            amount++;
-            numberEl.val(amount);
-        });
 
-    }
+    // if (plugins.number.length) {
+    $(".number", plugins.number).autoNumeric('init', { vMin: 1, mDec: 0 });
+    $(document).on("change", ".number", function () {
+        if ($(this).autoNumeric("get") < 1) {
+            $(this).val(1);
+        }
+    })
+    $(document).on("click", ".number-widget .down", function () {
+        console.log(12)
+        let parent = $(this).parent();
+        let numberEl = $(".number", parent);
+        var amount = parseInt(numberEl.autoNumeric("get"));
+        if (amount > 1) {
+            amount--;
+            numberEl.val(amount);
+        }
+    });
+    $(document).on("click", ".number-widget .up", function () {
+        console.log(12)
+        let parent = $(this).parent();
+        let numberEl = $(".number", parent);
+        var amount = parseInt(numberEl.autoNumeric("get"));
+        amount++;
+        numberEl.val(amount);
+    });
+
+    // }
     /**
   * UNIT
   * @description Enables UNIT plugin
   */
     if (plugins.units.length) {
-        $(".unit_product", plugins.units).click(function (e) {
+        $(document).on("click", ".unit_product", function (e) {
             e.preventDefault();
             let parent = $(this).closest(".product");
             $(".unit_product", parent).removeClass("btn-primary active");
@@ -132,7 +172,7 @@ $(document).ready(function () {
                 $(".price-prev", parent).text(number_format(prev_price, 0, ",", ".") + "đ");
             else
                 $(".price-prev", parent).empty();
-        })
+        });
         $(".unit_product.active", plugins.units).trigger("click");
     }
     /**
@@ -349,7 +389,8 @@ $(document).ready(function () {
     /*CART*/
 
     init_cart_icon()
-    $(".add-cart").click(function () {
+
+    $(document).on("click", ".add-cart", function () {
         var data_cart = $.cookies.get('DATA_CART') || {};
         var cart = data_cart['details'] || [];
         /*

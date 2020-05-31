@@ -518,7 +518,7 @@ if (!function_exists('html_nestable')) {
         ///Content
         foreach ($return as $row) {
             $sub_html = "";
-            if ($controller == "menu_header") {
+            if ($controller == "menu_header" || $controller == "menu_slide") {
                 if ($row['type'] == 1) {
                     $sub_html = "<span class='text-info mr-1'>[Link='" . $row['link'] . "']</span>";
                 } elseif ($row['type'] == 2) {

@@ -157,7 +157,7 @@
             </div>
         </a>
     </div>
-    <nav class="rd-navbar rd-navbar-original rd-navbar-static" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-stick-up-clone="false" data-md-stick-up-offset="100px" data-lg-stick-up-offset="100px">
+    <nav style="z-index:100" class="rd-navbar rd-navbar-original rd-navbar-static" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-stick-up-clone="false" data-md-stick-up-offset="100px" data-lg-stick-up-offset="100px">
         <div class="container-wide">
             <div class="rd-navbar-inner">
                 <div class="rd-navbar-nav-wrap toggle-original-elements">
@@ -172,7 +172,7 @@
                             @if($row->type ==1 )
                             <a href="{{$row->link}}">{{ $row->{pick_language($row,'name_')} }}</a>
                             @elseif($row->type ==4)
-                            <a href="{{base_url()}}index/khuyen_mai">{{ $row->{pick_language($row,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi"width="30"></a>
+                            <a href="{{base_url()}}index/khuyen_mai">{{ $row->{pick_language($row,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi" width="30"></a>
                             @elseif($row->type ==5)
                             <a href="{{base_url()}}index/news">{{ $row->{pick_language($row,'name_')} }}</a>
                             @else
@@ -185,7 +185,7 @@
                                     @if($row2->type ==1)
                                     <a class='d-block' href="{{$row->link}}">{{ $row2->{pick_language($row2,'name_')} }}</a>
                                     @elseif($row2->type ==4)
-                                    <a class='d-block' href="{{base_url()}}index/khuyen_mai">{{ $row2->{pick_language($row2,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi"width="30"></a>
+                                    <a class='d-block' href="{{base_url()}}index/khuyen_mai">{{ $row2->{pick_language($row2,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi" width="30"></a>
                                     @elseif($row2->type ==5)
                                     <a class='d-block' href="{{base_url()}}index/news">{{ $row2->{pick_language($row2,'name_')} }}</a>
                                     @else

@@ -19,7 +19,7 @@
                         <div class="card card-custom">
                             <div class="card-header">
                                 <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black">
-                                   {{ $row->{pick_language($row, 'name_')} }}
+                                    {{ $row->{pick_language($row, 'name_')} }}
                                 </a>
                                 <div style="margin-left:auto;font-size:13px;">
                                     Sắp xếp
@@ -36,6 +36,9 @@
                                             <a href="{{base_url()}}index/details/{{$product->id}}">
                                                 <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
                                             </a>
+                                            <div class="view_now d-flex align-items-center">
+                                                <a href="#" class="btn btn-danger mx-auto view_now_btn">Xem nhanh</a>
+                                            </div>
                                         </figure>
                                         <div class="caption">
                                             <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></div>

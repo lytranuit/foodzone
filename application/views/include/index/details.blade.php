@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="offset-top-15">
                                     <p>
-                                        Code:{{$product->code}}
+                                        Code: {{$product->code}}
                                     </p>
                                 </div>
                                 <div class="offset-top-15">
@@ -180,6 +180,9 @@
                                         <a href="{{base_url()}}index/details/{{$row->id}}">
                                             <img class="img-responsive" src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" alt="">
                                         </a>
+                                        <div class="view_now d-flex align-items-center">
+                                            <a href="#" class="btn btn-danger mx-auto view_now_btn">Xem nhanh</a>
+                                        </div>
                                     </figure>
                                     <div class="caption">
                                         <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$row->id}}" tabindex="-1">{{ $row->{pick_language($row,'name_')} }}</a></div>
@@ -260,7 +263,6 @@
                         });
                     </script>
                 </section>
-
             </div>
             <div class="col-lg-3 offset-top-20 offset-md-top-0">
                 <?= $widget->right() ?>

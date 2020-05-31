@@ -617,6 +617,25 @@ class Ajax extends MY_Controller
         }
     }
 
+    function modalview($params)
+    {
+        $id = $params;
+        $this->load->model("product_model");
+        $product = $this->product_model->with_other_image()->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to and deleted = 0')->with_preservation()->with_origin()->with_category()->get($id);
+        if (empty($product))
+            show_404();
+        $this->data['product'] = $this->product_model->format($product);
+
+        // load_easyzoom($this->data);
+        load_fancybox($this->data);
+        load_slick($this->data);
+        load_autonumberic($this->data);
+
+        // echo "<pre>";
+        // print_r($this->data['product']);
+        // die();
+        echo $this->blade->view()->make('ajax/modalview', $this->data)->render();
+    }
     function modalfeedback()
     {
         $this->load->model("customersimba_model");

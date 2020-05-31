@@ -34,6 +34,9 @@ class Index extends MY_Controller
             "https://sp.zalo.me/plugins/sdk.js",
             base_url() . "public/js/main.js?v=$version"
         );
+
+        load_slick($this->data);
+        load_autonumberic($this->data);
     }
 
     public function _remap($method, $params = array())
