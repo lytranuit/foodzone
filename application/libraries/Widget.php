@@ -87,14 +87,18 @@ class Widget
 
         $this->CI->load->model("menu_slide_model");
         $list_menu = $this->CI->menu_slide_model->where(array('deleted' => 0))->order_by('order', 'ASC')->get_all();
-        $list_parent = array_filter((array) $list_menu, function ($item) {
-            return $item->parent_id == 0;
-        });
-        foreach ($list_parent as &$row) {
-            $child = array_filter((array) $list_menu, function ($item) use ($row) {
-                return $item->parent_id == $row->id;
+        if (!empty($list_menu)) {
+            $list_parent = array_filter((array) $list_menu, function ($item) {
+                return $item->parent_id == 0;
             });
-            $row->child = $child;
+            foreach ($list_parent as &$row) {
+                $child = array_filter((array) $list_menu, function ($item) use ($row) {
+                    return $item->parent_id == $row->id;
+                });
+                $row->child = $child;
+            }
+        }else{
+            $list_parent = array();
         }
         // echo "<pre>";
         // print_r($list_menu);
