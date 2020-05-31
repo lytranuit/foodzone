@@ -162,6 +162,9 @@ $(document).ready(function () {
         $(document).on("click", ".unit_product", function (e) {
             e.preventDefault();
             let parent = $(this).closest(".product");
+            var name = $(this).text();
+            $(".dvt", parent).text("/" + name);
+
             $(".unit_product", parent).removeClass("btn-primary active");
             $(this).addClass("btn-primary active");
 

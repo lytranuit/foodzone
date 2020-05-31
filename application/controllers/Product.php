@@ -180,7 +180,7 @@ class Product extends MY_Administrator
             $array = $this->product_category_model->where('product_id', $id)->as_array()->get_all();
             $related_old = array_map(function ($item) {
                 return $item['category_id'];
-            }, $array);
+            }, (array) $array);
             $related_new = array();
             if (isset($data['category_list'])) {
                 $related_new = array_merge($related_new, $data['category_list']);
@@ -207,7 +207,7 @@ class Product extends MY_Administrator
             $array = $this->product_related_model->where('product_id', $id)->as_array()->get_all();
             $related_old = array_map(function ($item) {
                 return $item['product_related_id'];
-            }, $array);
+            }, (array) $array);
             $related_new = array();
             if (isset($data['related'])) {
                 $related_new = array_merge($related_new, $data['related']);

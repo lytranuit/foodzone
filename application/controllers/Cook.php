@@ -234,6 +234,7 @@ class Cook extends MY_Administrator
         $data = json_decode($this->input->post('data'), true);
         $id = $data['id'];
         $data_up = $this->category_model->create_object($data);
+        unset($data_up['id']);
         $this->category_model->update($data_up, $id);
     }
 }
