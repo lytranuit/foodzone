@@ -124,6 +124,7 @@ class Menu_slide extends MY_Administrator
         $data = json_decode($this->input->post('data'), true);
         $id = $data['id'];
         $data_up = $this->menu_slide_model->create_object($data);
+        unset($data_up['id']);
         $this->menu_slide_model->update($data_up, $id);
     }
 }

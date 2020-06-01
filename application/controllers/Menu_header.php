@@ -122,6 +122,7 @@ class Menu_header extends MY_Administrator
         $data = json_decode($this->input->post('data'), true);
         $id = $data['id'];
         $data_up = $this->menu_header_model->create_object($data);
+        unset($data_up['id']);
         $this->menu_header_model->update($data_up, $id);
     }
 }
