@@ -22,4 +22,12 @@ $lang['khuyen_mai'] = 'Siêu khuyến mãi';
 $lang['index_menu_slide'] = 'Danh mục';
 
 
-?>
+
+$lang['header_text_ship'] = 'Miễn phí vận chuyển';
+$lang['header_text_ship_sub'] = 'Đơn hàng từ 500k - Khu vực nội thành';
+
+$lang['header_text_hotline'] = 'Hỗ trợ 24/7';
+$lang['header_text_hotline_sub'] = 'Hotline: ';
+
+$lang['header_text_opening'] = 'Giờ làm việc';
+$lang['header_text_opening_sub'] = 'T2-T7 (08-18h)';

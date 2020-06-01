@@ -32,7 +32,6 @@ class Index extends MY_Controller
             // base_url() . "public/lib/UItoTop/jquery.ui.totop.js",
             base_url() . "public/lib/rd_nav/js/jquery.rd-navbar.min.js", // navbar
             "https://sp.zalo.me/plugins/sdk.js",
-            base_url() . "public/js/main.js?v=$version"
         );
 
         load_slick($this->data);
@@ -57,6 +56,7 @@ class Index extends MY_Controller
         $version = $this->config->item("version");
         load_fancybox($this->data);
         load_slick($this->data);
+        load_froala_view($this->data);
         // load_swiper($this->data);
         // load_easyResponsiveTabs($this->data);
         // load_autonumberic($this->data);
@@ -66,15 +66,19 @@ class Index extends MY_Controller
         $this->load->model("product_model");
         $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1, 'parent_id' => 0, 'menu_id' => 1))->order_by('order', 'ASC')->get_all();
         foreach ($list_category as &$row) {
-            $row->product = $this->product_model->where("deleted = 0 and active = 1 AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
-            // echo "<pre>";
-            // print_r($row->product);
-            // die();
-            if (!empty($row->product)) {
-                foreach ($row->product as &$row_format) {
-                    $row_format = $this->product_model->format($row_format);
-                }
-            }
+            // $row->product = $this->product_model->where("deleted = 0 and active = 1 AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
+            // // echo "<pre>";
+            // // print_r($row->product);
+            // // die();
+            // if (!empty($row->product)) {
+            //     foreach ($row->product as &$row_format) {
+            //         $row_format = $this->product_model->format($row_format);
+            //     }
+            // }
+            /* COUNT PRODUCT */
+            $row->count_product = $this->product_model->where("deleted = 0 and active = 1 AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->count_rows();
+            /* SUB */
+            $row->child = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'parent_id' => $row->id))->order_by('order', 'ASC')->get_all();
         }
         // echo "<pre>";
         // print_r($this->data['template']);

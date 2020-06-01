@@ -64,16 +64,13 @@
     .item {
         position: relative;
         .caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+            font-size: 0.85rem;
             background: #00a2e1;
             color: #ffffff;
             width: 100%;
             padding: 10px 20px;
             /* background: #1c223f; */
             color: #ffffff;
-            font-size: 12px;
             line-height: 1.2em;
             vertical-align: top;
             letter-spacing: 1px;
@@ -1467,5 +1464,23 @@ header nav .nav-item.active > a {
     }
     .price.price-prev:empty {
         padding-right: 0;
+    }
+}
+
+.sub_category {
+    li {
+        display: inline-block;
+        padding: 2px 10px;
+        font-weight: initial;
+        &:first-child {
+            padding-left: 0;
+        }
+        &:last-child {
+            padding-right: 0;
+        }
+        &.active {
+            border-bottom: 1px solid #f7921e;
+            font-weight: bold;
+        }
     }
 }

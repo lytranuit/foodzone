@@ -6,16 +6,7 @@
                     <div class="col-sm-6 col-md-8">
                         <ul class="list_top float-left">
                             <li>
-                                <i class="fas fa-mobile" style=" font-size: 20px; display: inline-block; position: relative; transform: translateY(2px); "></i> Hotline:
-                                <span>
-                                    <a href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</a>
-                                </span>
-                            </li>
-                            <li class="ml-2">
-                                <i class="fa fa-map-marker"></i> <b>Địa chỉ</b>:
-                                <span>
-                                    {{$options['dia_chi']}}
-                                </span>
+                                <a href="http://sakezone.vn/" class="text-white">👉 Sakezone</a>
                             </li>
                         </ul>
 
@@ -74,34 +65,34 @@
                     <div class="policy d-flex justify-content-around">
 
                         <div class="item-policy d-flex align-items-center">
-                            <a href="https://25plus.vn/pages/phi-van-chuyen-tai-25plus-vn" class="text-dark">
-                                <img src="//theme.hstatic.net/1000372774/1000494897/14/policy1.png?v=2064" alt="25PLUS - Food and Beverage Ecommerce">
+                            <a href="{{base_url()}}index/post/4" class="text-dark">
+                                <img src="{{base_url()}}public/image/policy1.png">
                             </a>
                             <div class="info a-left">
-                                <a href="https://25plus.vn/pages/phi-van-chuyen-tai-25plus-vn" class="text-dark">Miễn phí vận chuyển (Chi tiết)</a>
-                                <p>Đơn hàng từ 500k - Khu vực nội thành</p>
+                                <a href="{{base_url()}}index/post/4" class="text-dark">{{lang("header_text_ship")}}</a>
+                                <p>{{lang("header_text_ship_sub")}}</p>
                             </div>
                         </div>
 
 
                         <div class="item-policy d-flex align-items-center">
                             <a href="#">
-                                <img src="//theme.hstatic.net/1000372774/1000494897/14/policy2.png?v=2064" alt="25PLUS - Food and Beverage Ecommerce">
+                                <img src="{{base_url()}}public/image/policy2.png">
                             </a>
                             <div class="info a-left">
-                                <a href="#" class="text-dark">Hỗ trợ 24/7</a>
-                                <p>Hotline: <a href="callto:19001009" class="text-dark">{{$options['hot_line']}}</a></p>
+                                <a href="#" class="text-dark">{{lang("header_text_hotline")}}</a>
+                                <p>{{lang("header_text_hotline_sub")}}<a href="callto:19001009" class="text-dark">{{$options['hot_line']}}</a></p>
                             </div>
                         </div>
 
 
                         <div class="item-policy d-flex align-items-center">
                             <a href="#">
-                                <img src="//theme.hstatic.net/1000372774/1000494897/14/policy3.png?v=2064" alt="25PLUS - Food and Beverage Ecommerce">
+                                <img src="{{base_url()}}public/image/policy3.png">
                             </a>
                             <div class="info a-left">
-                                <a href="#" class="text-dark">Giờ làm việc</a>
-                                <p>T2 - T7 (08h: 18h)</p>
+                                <a href="#" class="text-dark">{{lang("header_text_opening")}}</a>
+                                <p>{{lang("header_text_opening_sub")}}</p>
                             </div>
                         </div>
 

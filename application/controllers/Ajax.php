@@ -434,7 +434,7 @@ class Ajax extends MY_Controller
         if ($category > 0) {
             $sql_where .= " AND id IN (SELECT product_id FROM fz_product_category WHERE category_id = $category)";
         } else {
-            $sql_where .= " AND id IN (SELECT product_id FROM fz_product_category WHERE category_id IN(SELECT  id FROM fz_category WHERE menu_id = $menu_id ))";
+            echo "";
         }
 
         if ($search != "") {
@@ -450,6 +450,11 @@ class Ajax extends MY_Controller
          * LAY DATA
          */
         $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->order_by("order", "ASC")->with_image()->with_price_km()->paginate($limit, NULL, $page);
+        if (!empty($data)) {
+            foreach ($data as &$row_format) {
+                $row_format = $this->product_model->format($row_format);
+            }
+        }
         //        echo "<pre>";
         //        print_r($count);
         //        print_r($limit);

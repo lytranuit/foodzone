@@ -17,44 +17,64 @@ $(document).ready(function () {
     plugins.image_view = $('.area_image');
     plugins.topics_view = $('.responsive1');
     plugins.menu_bar = $(".menu-bar");
-    plugins.view_now_btn = $(".view_now_btn");
-    if (plugins.view_now_btn.length > 0) {
-        plugins.view_now_btn.click(async function (e) {
-            e.preventDefault();
-            let product = $(this).parents(".product");
-            let id = product.data("id");
-            let html = await $.ajax({
-                url: path + "ajax/modalview/" + id,
-                dataType: "HTML",
-            });
-            $.fancybox.open(html, {
-                afterLoad: function (instance, current) {
-                    var inner = this.$content;
-                    $(".fancybox", inner).fancybox();
-                    // $(inner).off('click', '.fancybox')
-                    //     .on('click', '.say_no', function () {
-                    //         $.fancybox.close();
-                    //     });
-                    // $(".number-widget .number").autoNumeric('init', { vMin: 1, mDec: 0 });
-                    $('.slider-for-view').slick({
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        arrows: false,
-                        fade: true, adaptiveHeight: true,
-                        asNavFor: '.slider-nav-view'
-                    });
-                    $('.slider-nav-view').slick({
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        asNavFor: '.slider-for-view',
-                        dots: false,
-                        focusOnSelect: true,
-                        infinite: false,
-                    });
-                }
-            });
-        })
-    }
+
+    $(".index_category").click(async function (e) {
+        e.preventDefault();
+        let section = $(this).parents("section");
+        let id = $(this).data("id");
+
+        $(".index_category", section).removeClass("active");
+        $(this).addClass("active");
+
+        let spinner = "<div class='text-center h4 col-12'><i class='fas fa-circle-notch fa-spin'></i></div>";
+        $(".index_product", section).html(spinner);
+        let product = await $.ajax({
+            url: path + "ajax/product",
+            data: { category_id: id, limit: 30 },
+            dataType: "HTML"
+        });
+        $(".index_product", section).html(product);
+    });
+    ////TRIGGER
+    $(".index_category.active").trigger("click");
+    ////View NOW
+    $(document).on("click", ".view_now_btn", async function (e) {
+        e.preventDefault();
+        let product = $(this).parents(".product");
+        let id = product.data("id");
+        let html = await $.ajax({
+            url: path + "ajax/modalview/" + id,
+            dataType: "HTML",
+        });
+        $.fancybox.open(html, {
+            buttons: ["close"],
+            afterLoad: function (instance, current) {
+                var inner = this.$content;
+                $(".fancybox", inner).fancybox();
+                // $(inner).off('click', '.fancybox')
+                //     .on('click', '.say_no', function () {
+                //         $.fancybox.close();
+                //     });
+                // $(".number-widget .number").autoNumeric('init', { vMin: 1, mDec: 0 });
+                $('.slider-for-view').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    fade: true, adaptiveHeight: true,
+                    asNavFor: '.slider-nav-view'
+                });
+                $('.slider-nav-view').slick({
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    asNavFor: '.slider-for-view',
+                    dots: false,
+                    focusOnSelect: true,
+                    infinite: false,
+                });
+            }
+        });
+    })
+
     if (plugins.menu_bar.length > 0) {
         $(plugins.menu_bar).click(function () {
             $(".rd-navbar-nav-wrap").addClass("active");
@@ -123,9 +143,9 @@ $(document).ready(function () {
 
 
     /**
-  * NUMBER
-  * @description Enables NUMBER plugin
-  */
+    * NUMBER
+    * @description Enables NUMBER plugin
+    */
 
     // if (plugins.number.length) {
     $(".number", plugins.number).autoNumeric('init', { vMin: 1, mDec: 0 });
@@ -155,9 +175,9 @@ $(document).ready(function () {
 
     // }
     /**
-  * UNIT
-  * @description Enables UNIT plugin
-  */
+    * UNIT
+    * @description Enables UNIT plugin
+    */
     if (plugins.units.length) {
         $(document).on("click", ".unit_product", function (e) {
             e.preventDefault();
@@ -179,9 +199,9 @@ $(document).ready(function () {
         $(".unit_product.active", plugins.units).trigger("click");
     }
     /**
-  * RD Navbar
-  * @description Enables RD Navbar plugin
-  */
+    * RD Navbar
+    * @description Enables RD Navbar plugin
+    */
     if (plugins.rdNavbar.length) {
         plugins.rdNavbar.RDNavbar({
             stickUpClone: (plugins.rdNavbar.attr("data-stick-up-clone")) ? plugins.rdNavbar.attr("data-stick-up-clone") === 'true' : false

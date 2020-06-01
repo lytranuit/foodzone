@@ -36,15 +36,30 @@
                 <div class="card card-custom">
                     <div class="card-header">
                         <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black header_title">
-                            {{ $row->{pick_language($row,'name_')} }}
+                            {{ $row->{pick_language($row,'name_')} }} ({{$row->count_product}})
                         </a>
-                        <div style="margin-left:auto;font-size:13px;">
-                            <a class="" href="{{base_url()}}index/category/{{$row->id}}">Xem thêm</a>
+                        <div style="margin-left:auto;">
+                            <ul class="sub_category">
+                                <li class="index_category active" data-id="{{$row->id}}">
+                                    <a href="#" class="text-dark">
+                                        All
+                                    </a>
+                                </li>
+                                @if(!empty($row->child))
+                                @foreach($row->child as $child)
+                                <li class="index_category" data-id="{{$child->id}}">
+                                    <a href="#" class="text-dark">
+                                        {{ $child->{pick_language($child,'name_')} }}
+                                    </a>
+                                </li>
+                                @endforeach
+                                @endif
+                            </ul>
                         </div>
                     </div>
 
                     <div class="card-body mt-2">
-                        <div class="row no-gutters" style="min-height: 400px;">
+                        <div class="row no-gutters index_product" style="min-height: 400px;">
                             @if(!empty($row->product))
                             @foreach($row->product as $product)
                             <div class="thumbnail-menu-modern col-6 col-lg-2 border border-light product" data-id="{{$product->id}}">
@@ -91,7 +106,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             @endforeach
                             @endif
                             <!-- <div class="text-center col-12 h4">

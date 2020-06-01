@@ -118,7 +118,9 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="offset-top-30">
+
+                                <hr class="offset-top-10 veil reveal-sm-block">
+                                <div class="offset-top-10">
                                     @if(isset($product->origin) && !empty($product->origin))
                                     <div>
                                         - Xuất xứ: {{ $product->origin->{pick_language($product->origin,'name_')} }}

@@ -93,7 +93,9 @@
                         </a>
                     </div>
                 </div>
-                <div class="mt-3">
+
+                <hr class="my-2">
+                <div class="my-2">
                     @if(isset($product->origin) && !empty($product->origin))
                     <div>
                         - Xuất xứ: {{ $product->origin->{pick_language($product->origin,'name_')} }}
@@ -109,6 +111,10 @@
                         - Hạn sử dụng: {{ $product->expiry_date }}
                     </div>
                     @endif
+                </div>
+                <hr class="my-2">
+                <div class="mt-2 fr-view">
+                    <?= $product->{pick_language($product, 'detail_')} ?>
                 </div>
             </div>
         </div>
