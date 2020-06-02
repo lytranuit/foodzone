@@ -4,11 +4,11 @@
             <div>
                 <div class="row">
                     <div class="col-sm-6 col-md-8">
-                        <ul class="list_top float-left">
+                        <!-- <ul class="list_top float-left">
                             <li>
                                 <a href="http://sakezone.vn/" class="text-white">👉 Sakezone</a>
                             </li>
-                        </ul>
+                        </ul> -->
 
                     </div>
                     <div class="col-sm-6 col-md-4">
@@ -76,13 +76,13 @@
 
 
                         <div class="item-policy d-flex align-items-center">
-                            <a href="#">
-                                <img src="{{base_url()}}public/image/policy2.png">
+                            <a href="http://sakezone.vn/">
+                                <img src="{{base_url()}}public/image/sakezone.png" width="100">
                             </a>
-                            <div class="info a-left">
+                            <!-- <div class="info a-left">
                                 <a href="#" class="text-dark">{{lang("header_text_hotline")}}</a>
                                 <p>{{lang("header_text_hotline_sub")}}<a href="callto:19001009" class="text-dark">{{$options['hot_line']}}</a></p>
-                            </div>
+                            </div> -->
                         </div>
 
 
