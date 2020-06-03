@@ -4,7 +4,7 @@
             <div class="row border-left-cell">
                 <div class="col-sm-12 col-md-9">
                     <a class="brand brand-inverse" href="{{base_url()}}">
-                        <img src="{{base_url()}}public/image/logo.png" width="200" />
+                        <img src="{{base_url()}}public/image/logo2.png" width="200" />
                     </a>
                     <p style="color: #fdaf17;
                        font-weight: bold;

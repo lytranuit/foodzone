@@ -429,7 +429,7 @@ class Ajax extends MY_Controller
         $page = $this->input->get("page");
         $limit = $this->input->get("limit");
         $page = $page != "" ? $page : 1;
-        $limit = $limit != "" ? $limit : 10;
+        $limit = $limit != "" ? $limit : 12;
         $sql_where = "deleted = 0 and active = 1";
         if ($category > 0) {
             $sql_where .= " AND id IN (SELECT product_id FROM fz_product_category WHERE category_id = $category)";
