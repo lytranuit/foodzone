@@ -90,7 +90,7 @@
                                     <a class="nav-link active" data-toggle="tab" href="#menu0">Tiếng Việt</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#menu1">Tiếng anh</a>
+                                    <a class="nav-link" data-toggle="tab" href="#menu1">Tiếng Anh</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#menu2">Tiếng Nhật</a>

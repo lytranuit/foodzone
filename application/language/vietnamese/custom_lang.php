@@ -20,7 +20,7 @@ $lang['topic'] = 'Chủ đề';
 $lang['post'] = 'Bài viết';
 $lang['khuyen_mai'] = 'Siêu khuyến mãi';
 $lang['index_menu_slide'] = 'Danh mục';
-
+$lang['result_search'] = "Kết quả tìm kiếm";
 
 
 $lang['header_text_ship'] = 'Miễn phí vận chuyển';

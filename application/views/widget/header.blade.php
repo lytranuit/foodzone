@@ -76,7 +76,7 @@
 
 
                         <div class="item-policy d-flex align-items-center">
-                            <a href="http://sakezone.vn/">
+                            <a href="http://sakezone.vn/" target="_blank">
                                 <img src="{{base_url()}}public/image/sakezone.png" width="100">
                             </a>
                             <!-- <div class="info a-left">
@@ -123,7 +123,7 @@
             <ul>
                 <li class="li-search">
                     <div class="header_search search_form">
-                        <form class="input-group search-bar search_form" action="/search" method="get" role="search">
+                        <form class="input-group search-bar search_form" action="{{base_url()}}index/search" method="get" role="search">
 
                             <input type="search" name="q" value="" placeholder="Tìm sản phẩm" class="input-group-field st-default-search-input search-text form-control" autocomplete="off">
                             <input type="hidden" name="type" value="product">
@@ -209,7 +209,7 @@
                     </ul>
                     <div class="menu-search hidden-sm hidden-xs">
                         <div class="header_search search_form">
-                            <form class="input-group search-bar search_form" action="/search" method="get" role="search">
+                            <form class="input-group search-bar search_form" action="{{base_url()}}index/search" method="get" role="search">
                                 <input type="search" name="q" value="" placeholder="Tìm sản phẩm" class="input-group-field st-default-search-input search-text auto-search form-control" autocomplete="off">
                                 <span class="input-group-btn">
                                     <button class="btn icon-fallback-text">

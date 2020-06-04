@@ -267,14 +267,51 @@ class Index extends MY_Controller
 
         load_froala_view($this->data);
         load_fancybox($this->data);
-        array_push($this->data['javascript_tag'], base_url() . "public/lib/isotope/isotope.min.js");
+        // array_push($this->data['javascript_tag'], base_url() . "public/lib/isotope/isotope.min.js");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
-    public function search()
+    function search()
     {
+        $search = $this->input->get("q");
+        $this->load->model("product_model");
+        $page = $this->input->get("page");
+        $limit = $this->input->get("limit");
+        $page = $page != "" ? $page : 1;
+        $limit = $limit != "" ? $limit : 20;
+        $this->load->model("category_model");
+        $this->load->model("product_model");
 
+        $sql_where = "deleted = 0 and active = 1";
+        if ($search != "") {
+            $short_language = short_language_current();
+            $sql_where .= " AND (code like '%" . $search . "%' OR  name_" . $short_language . " like '%" . $search . "%' OR (name_vi like '%" . $search . "%' AND name_" . $short_language . " IN(NULL,'')))";
+        }
+
+        $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->count_rows();
+        $max_page = ceil($count / $limit);
+
+        $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('code', 'ASC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
+        foreach ($data as &$row_format) {
+            $row_format = $this->product_model->format($row_format);
+        }
+        $this->data['products'] = $data;
+        // echo "<pre>";
+        // print_r($limit);
+        // print_r($page);
+        $this->data['count'] = $count;
+        $this->data['current_page'] = $page;
+        $this->data['max_page'] = $max_page;
+        $this->data['site'] = base_url() . "index/search";
+        $this->data['search'] = $search;
+        //        echo "<pre>";
+        //        print_r($data);
+        //        die();
         $version = $this->config->item("version");
+
+        load_froala_view($this->data);
+        load_fancybox($this->data);
+        // array_push($this->data['javascript_tag'], base_url() . "public/lib/isotope/isotope.min.js");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
