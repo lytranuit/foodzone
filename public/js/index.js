@@ -48,8 +48,13 @@ $(document).ready(function () {
         });
         $.fancybox.open(html, {
             buttons: ["close"],
+            toolbar: true,
             afterLoad: function (instance, current) {
                 var inner = this.$content;
+                $(".fancybox-toolbar").css({
+                    visibility: 'visible',
+                    opacity: 1
+                })
                 $(".fancybox", inner).fancybox();
                 // $(inner).off('click', '.fancybox')
                 //     .on('click', '.say_no', function () {

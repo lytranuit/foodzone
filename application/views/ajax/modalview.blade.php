@@ -126,7 +126,6 @@
 </main>
 <script>
     $(document).ready(function() {
-        console.log(1);
         $(".number-widget .number").autoNumeric('init', {
             vMin: 1,
             mDec: 0
