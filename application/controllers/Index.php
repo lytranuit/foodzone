@@ -287,7 +287,7 @@ class Index extends MY_Controller
         $sql_where = "deleted = 0 and active = 1";
         if ($search != "") {
             $short_language = short_language_current();
-            $sql_where .= " AND (code like '%" . $search . "%' OR MATCH(name_" . $short_language . ") AGAINST('$search') OR (MATCH(name_vi) AGAINST('$search') AND name_" . $short_language . " IN(NULL,'')))";
+            $sql_where .= " AND (code like '%" . $search . "%' OR  name_" . $short_language . " like '%" . $search . "%' OR (name_vi like '%" . $search . "%' AND name_" . $short_language . " IN(NULL,'')))";
         }
 
         $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->count_rows();
