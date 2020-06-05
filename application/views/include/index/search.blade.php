@@ -63,6 +63,10 @@
                                     </div>
 
                                     @endforeach
+                                    @else
+                                    <div class="col-12 text-center">
+                                        {{lang("no_result")}}
+                                    </div>
                                     @endif
                                     <!-- <div class="text-center col-12 h4">
                                 <i class="fas fa-circle-notch fa-spin"></i>

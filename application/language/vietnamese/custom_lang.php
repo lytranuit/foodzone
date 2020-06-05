@@ -21,7 +21,7 @@ $lang['post'] = 'Bài viết';
 $lang['khuyen_mai'] = 'Siêu khuyến mãi';
 $lang['index_menu_slide'] = 'Danh mục';
 $lang['result_search'] = "Kết quả tìm kiếm";
-
+$lang['no_result'] = "Không tìm thấy kết quả tìm kiếm";
 
 $lang['header_text_ship'] = 'Miễn phí vận chuyển';
 $lang['header_text_ship_sub'] = 'Đơn hàng từ 500k - Khu vực nội thành';
