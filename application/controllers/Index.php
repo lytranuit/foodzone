@@ -83,7 +83,7 @@ class Index extends MY_Controller
         // echo "<pre>";
         // print_r($this->data['template']);
         // die();
-        $list_topics = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1, 'parent_id' => 0, 'menu_id' => 2))->with_image()->order_by('order', 'ASC')->get_all();
+        $list_topics = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1, 'menu_id' => 2))->where('parent_id', "!=", 0)->with_image()->order_by('order', 'ASC')->get_all();
         // foreach ($list_category as &$row) {
         //     $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
         //     foreach ($row->product as &$row_format) {

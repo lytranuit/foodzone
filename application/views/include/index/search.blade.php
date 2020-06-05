@@ -79,34 +79,34 @@
                                     <ul class="pagination" style="font-size:14px;">
                                         @if($current_page > 1)
                                         <li>
-                                            <a class="page_prev" href="{{$site}}page={{$current_page - 1}}" tabindex="-1"><i class="fa fa-angle-left"></i></a>
+                                            <a class="page_prev" href="{{$site}}?page={{$current_page - 1}}" tabindex="-1"><i class="fa fa-angle-left"></i></a>
                                         </li>
                                         @endif
                                         <li class='<?= 1 == $current_page ? "active" : "" ?>'>
-                                            <a class='page_link' href="{{$site}}page=1" tabindex="-1">1</a>
+                                            <a class='page_link' href="{{$site}}?page=1" tabindex="-1">1</a>
                                         </li>
                                         @if($current_page > 3)
                                         <li class="disabled"><span class="">...</span></li>
                                         @endif
 
                                         @if($current_page > 2)
-                                        <li class=""><a class="page_link" href="{{$site}}page={{$current_page - 1}}">{{$current_page - 1}}</a></li>
+                                        <li class=""><a class="page_link" href="{{$site}}?page={{$current_page - 1}}">{{$current_page - 1}}</a></li>
                                         @endif
 
                                         @if($current_page > 1 && $current_page < $max_page) <li class="active"><a class="page_link" href="#">{{$current_page}}</a></li>
                                             @endif
-                                            @if($current_page <= $max_page - 2) <li class=""><a class="page_link" href="{{$site}}page={{$current_page + 1}}">{{$current_page + 1}}</a></li>
+                                            @if($current_page <= $max_page - 2) <li class=""><a class="page_link" href="{{$site}}?page={{$current_page + 1}}">{{$current_page + 1}}</a></li>
                                                 @endif
                                                 @if($current_page <= $max_page - 3) <li class="disabled"><span class="">...</span></li>
                                                     @endif
 
                                                     <li class='<?= $max_page == $current_page ? "active" : "" ?>'>
-                                                        <a class='page_link' href="{{$site}}page={{$max_page}}" tabindex="-1">{{$max_page}}</a>
+                                                        <a class='page_link' href="{{$site}}?page={{$max_page}}" tabindex="-1">{{$max_page}}</a>
                                                     </li>
 
                                                     @if($current_page != $max_page)
                                                     <li class="">
-                                                        <a class="page_next" href="{{$site}}page={{$current_page + 1}}"><i class=" fa fa-angle-right"></i></a>
+                                                        <a class="page_next" href="{{$site}}?page={{$current_page + 1}}"><i class=" fa fa-angle-right"></i></a>
                                                     </li>
                                                     @endif
 
