@@ -249,8 +249,10 @@ class Index extends MY_Controller
         $max_page = ceil($count / $limit);
 
         $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
-        foreach ($data as &$row_format) {
-            $row_format = $this->product_model->format($row_format);
+        if (!empty($data)) {
+            foreach ($data as &$row_format) {
+                $row_format = $this->product_model->format($row_format);
+            }
         }
         // echo "<pre>";
         // print_r($data);
@@ -271,7 +273,7 @@ class Index extends MY_Controller
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
-    function search()
+    public function search()
     {
         $search = $this->input->get("q");
         $this->load->model("product_model");
@@ -292,8 +294,10 @@ class Index extends MY_Controller
         $max_page = ceil($count / $limit);
 
         $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('code', 'ASC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
-        foreach ($data as &$row_format) {
-            $row_format = $this->product_model->format($row_format);
+        if (!empty($data)) {
+            foreach ($data as &$row_format) {
+                $row_format = $this->product_model->format($row_format);
+            }
         }
         $this->data['products'] = $data;
         // echo "<pre>";
