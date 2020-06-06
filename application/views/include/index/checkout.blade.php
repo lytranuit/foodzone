@@ -1,4 +1,4 @@
-<?= $widget->post_header("Đơn hàng") ?>
+<?= $widget->post_header(lang("order_title")) ?>
 <section class="py-5 cart bg-gray-lighter">
 
     <form id="contactForm" name="fast_checkout_form" action="{{base_url()}}index/complete" method="post" class="cm-processed-form">
@@ -12,17 +12,17 @@
                                     @if(!$is_login)
                                     <div class="card">
                                         <div class="card-header">
-                                            Thông tin cá nhân
+                                            {{lang("info")}}
                                         </div>
                                         <div class="card-body">
                                             <p class="layout-flex__item">
-                                                <span aria-hidden="true">Bạn đã có tài khoản?</span>
+                                                <span aria-hidden="true">{{lang("cart_anwser")}}</span>
                                                 <a href="{{base_url()}}/index/login?next={{current_url()}}" class="link">
-                                                    Đăng nhập
+                                                    {{lang("login")}}
                                                 </a>
                                             </p>
                                             <div class="form-group">
-                                                <input type="email" name="email" required="" placeholder="Email" title="Email" class="form-control">
+                                                <input type="email" name="email" required="" placeholder="{{lang('login_email_label')}}" title="{{lang('login_email_label')}}" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -34,21 +34,21 @@
 
                                 <div class="card my-3">
                                     <div class="card-header">
-                                        Địa chỉ nhận hàng
+                                        {{lang("cart_info_title")}}
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <input type="text" name="name" value="{{ $userdata['name'] or '' }}" required="" placeholder="Tên người nhận hàng" title="Tên người nhận hàng" class="form-control">
+                                            <input type="text" name="name" value="{{ $userdata['name'] or '' }}" required="" placeholder="{{lang('cart_info_name')}}" title="{{lang('cart_info_name')}}" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="phone" value="{{ $userdata['phone'] or '' }}" required="" placeholder="Số điện thoại" title="Số điện thoại" class="form-control">
+                                            <input type="text" name="phone" value="{{ $userdata['phone'] or '' }}" required="" placeholder="{{lang('login_phone_label')}}" title="{{lang('login_phone_label')}}" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="address" value="{{ $userdata['address'] or '' }}" required="" placeholder="Địa chỉ" title="Địa chỉ" class="form-control">
+                                            <input type="text" name="address" value="{{ $userdata['address'] or '' }}" required="" placeholder="{{lang('login_address_label')}}" title="{{lang('login_address_label')}}" class="form-control">
                                         </div>
 
                                         <div class="form-group">
-                                            <textarea id="fast-checkout-notes" name="notes" class="form-control" rows="4" cols="72" placeholder="Ghi chú cho Shop (nếu có)" title="Ghi chú cho Shop (nếu có)"></textarea>
+                                            <textarea id="fast-checkout-notes" name="notes" class="form-control" rows="4" cols="72" placeholder="{{lang('cart_info_note')}}" title="{{lang('cart_info_note')}}"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +61,6 @@
                 <div class="col-md-6">
                     <div class="card bg-light">
                         <div class="card-body">
-
                             <div class="row">
                                 <div class="col-12">
                                     <table class="product-table table table-borderless border-bottom">
@@ -78,7 +77,7 @@
                                             </td>
                                             <td class="product__description">
                                                 <a href='' class="font-weight-bold text-black">{{ $row->{pick_language($row,'name_')} }}</a>
-                                                <div>Code:{{$row->code}}</div>
+                                                <div>{{lang("code")}}: {{$row->code}}</div>
                                             </td>
                                             <td class="product__price">
                                                 <span class="order-summary__emphasis">{{number_format($row->amount,0,",",".")}}đ</span>
@@ -91,7 +90,7 @@
                                     <table class="total-line-table table table-borderless">
                                         <tbody class="border-bottom">
                                             <tr class="total-line total-line--subtotal">
-                                                <th class="total-line__name" scope="row">Tổng tiền</th>
+                                                <th class="total-line__name" scope="row">{{lang("total")}}</th>
                                                 <td class="text-right">
                                                     <span class="font-weight-bold" data-amount="{{$cart['amount_product']}}">
                                                         {{number_format($cart['amount_product'],0,",",".")}}đ
@@ -101,7 +100,7 @@
 
 
                                             <tr class="total-line total-line--shipping">
-                                                <th class="total-line__name" scope="row">Phí giao hàng</th>
+                                                <th class="total-line__name" scope="row">{{lang("service_fee")}}</th>
                                                 <td class="text-right">
                                                     <span class="" data-checkout-total-shipping-target="0">
                                                         0
@@ -112,7 +111,7 @@
                                         <tfoot class="total-line-table__footer">
                                             <tr class="total-line">
                                                 <th class="total-line__name payment-due-label" scope="row">
-                                                    <span class="payment-due-label__total">Thành tiền</span>
+                                                    <span class="payment-due-label__total">{{lang("amount")}}</span>
                                                 </th>
                                                 <td class="text-right">
                                                     <span class="font-weight-bold" style="font-size:20px;">
@@ -123,7 +122,7 @@
                                             <tr>
                                                 <td colspan="2" class="border-0 text-center">
                                                     <button class="text-top btn btn-burnt-sienna btn-shape">
-                                                        <span>Hoàn tất đơn hàng</span>
+                                                        <span>{{lang("cart_finish")}}</span>
                                                     </button>
                                                 </td>
                                             </tr>

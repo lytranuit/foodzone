@@ -5,7 +5,7 @@
                 <div class="card-header text-center">
                     <span>{{lang('login')}}</span>
                     <div class="ml-auto" style="text-transform: none;">
-                        Bạn mới biết tới Foodzone? <a href="{{base_url()}}/index/register">Đăng kí</a>
+                        {{lang("title_login")}} <a href="{{base_url()}}/index/register">{{lang("sign_up")}}</a>
                     </div>
                 </div>
                 <div class="card-body">

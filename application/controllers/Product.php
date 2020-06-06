@@ -339,7 +339,7 @@ class Product extends MY_Administrator
             $where = $this->product_model->where(array("deleted" => 0));
         } else {
             $search = $this->input->post('search')['value'];
-            $sWhere = "deleted = 0 AND (LOWER(code) LIKE LOWER('%$search%'))";
+            $sWhere = "deleted = 0 AND (LOWER(code) LIKE LOWER('%$search%') OR name_vi like '%" . $search . "%')";
             $where = $this->product_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
             $totalFiltered = $where->count_rows();
             $where = $this->product_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);

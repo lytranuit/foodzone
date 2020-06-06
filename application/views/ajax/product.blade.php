@@ -7,7 +7,7 @@
             <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
         </a>
         <div class="view_now d-flex align-items-center">
-            <a href="#" class="btn btn-danger mx-auto view_now_btn">Xem nhanh</a>
+            <a href="#" class="btn btn-danger mx-auto view_now_btn">{{lang("view")}}</a>
         </div>
     </figure>
 
@@ -25,7 +25,7 @@
     </div>
     <div class="sale">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn btn-danger add-cart">Add to cart</button>
+            <button type="button" class="btn btn-danger add-cart">{{lang("add_to_cart")}}</button>
             @if(!empty($product->units))
             <div class="btn-group dropup" role="group">
                 <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

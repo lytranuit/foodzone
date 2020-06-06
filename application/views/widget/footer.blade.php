@@ -11,9 +11,9 @@
                        font-size: 17px;
                        padding: 5px 0 10px;
                        text-transform: uppercase;
-                       margin: 10px 0px;">Công Ty Cổ Phần Thương Mại Sim Ba</p>
-                    <p>Trụ sở chính: {{$options['dia_chi']}}</p>
-                    <p>Điện thoại liên hệ: <a style="color: #fdaf17;" href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</span></p>
+                       margin: 10px 0px;">{{$options['company_name']}}</p>
+                    <p>{{lang("footer_tru_so")}}: {{$options['dia_chi']}}</p>
+                    <p>{{lang("footer_phone")}}: <a style="color: #fdaf17;" href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</span></p>
                 </div>
                 <div class="col-sm-12 col-md-3">
                     <ul class="list-inline" style="font-size: 25px;">
@@ -26,11 +26,11 @@
                         </li>
                     </ul>
                     <div class="open-door clear">
-                        <span class="open-text">Giờ mở cửa</span>
+                        <span class="open-text">{{lang("footer_open")}}</span>
                         <span class="open-time">{{$options['hour_open']}}</span>
                     </div>
                     <div class="customer">
-                        <span>Chăm sóc khách hàng: </span>
+                        <span>{{lang("footer_customer")}}: </span>
                         <span class="phone">{{$options['hot_line']}}</span>
                     </div>
                 </div>

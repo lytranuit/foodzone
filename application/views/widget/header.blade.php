@@ -29,18 +29,18 @@
                                         {{$userdata['identity']}}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="<?= base_url() ?>admin">{{lang("info")}}</a>
+                                        <a class="dropdown-item text-dark" href="<?= base_url() ?>admin">{{lang("info")}}</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item logout" href="<?= base_url() ?>index/logout">{{lang("logout")}}</a>
+                                        <a class="dropdown-item logout text-dark" href="<?= base_url() ?>index/logout">{{lang("logout")}}</a>
                                     </div>
                                 </div>
                             </li>
                             @else
                             <li>
-                                <a href="{{base_url()}}index/login"><i class="fa fa-user"></i> Đăng nhập</a>
+                                <a href="{{base_url()}}index/login"><i class="fa fa-user"></i>{{lang("login")}}</a>
                             </li>
-                            <li><span>hoặc</span></li>
-                            <li><a href="{{base_url()}}index/register">Đăng ký</a>
+                            <li><span>{{lang("or")}}</span></li>
+                            <li><a href="{{base_url()}}index/register">{{lang("sign_up")}}</a>
                             </li>
                             @endif
                         </ul>
@@ -109,7 +109,7 @@
                                         <span class="cartCount count_item_pr hidden-lg" id="cart-total">0</span>
                                     </div>
                                     <div class="right-content hidden-md">
-                                        <span class="label">Giỏ hàng</span>
+                                        <span class="label">{{lang("cart_title")}}</span>
                                         (<span class="cartCount2">0</span>)
                                     </div>
                                 </a>
@@ -125,7 +125,7 @@
                     <div class="header_search search_form">
                         <form class="input-group search-bar search_form" action="{{base_url()}}index/search" method="get" role="search">
 
-                            <input type="search" name="q" value="" placeholder="Tìm sản phẩm" class="input-group-field st-default-search-input search-text form-control" autocomplete="off">
+                            <input type="search" name="q" value="" placeholder="{{lang('search_text')}}" class="input-group-field st-default-search-input search-text form-control" autocomplete="off">
                             <input type="hidden" name="type" value="product">
                             <span class="input-group-btn">
                                 <button class="btn icon-fallback-text">
@@ -210,7 +210,7 @@
                     <div class="menu-search hidden-sm hidden-xs">
                         <div class="header_search search_form">
                             <form class="input-group search-bar search_form" action="{{base_url()}}index/search" method="get" role="search">
-                                <input type="search" name="q" value="" placeholder="Tìm sản phẩm" class="input-group-field st-default-search-input search-text auto-search form-control" autocomplete="off">
+                                <input type="search" name="q" value="" placeholder="{{lang('search_text')}}" class="input-group-field st-default-search-input search-text auto-search form-control" autocomplete="off">
                                 <span class="input-group-btn">
                                     <button class="btn icon-fallback-text">
                                         <i class="fa fa-search"></i>

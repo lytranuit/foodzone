@@ -1,11 +1,11 @@
-<?= $widget->post_header("Đơn hàng") ?>
+<?= $widget->post_header(lang("cart_title")) ?>
 <section class="py-5 cart bg-gray-lighter">
     <div class="container">
         <div class="card d-none d-lg-block">
             <div class="card-body">
                 <div class="row no-gutters">
                     <div class="col-lg-1">
-                        <span>Sản phẩm</span>
+                        <span>{{lang("product_name")}}</span>
                     </div>
                     <div class="col-lg-11 col-9">
                         <div class="row no-gutters">
@@ -13,16 +13,16 @@
 
                             </div>
                             <div class="col-lg-2 text-center">
-                                <span>Đơn vị tính</span>
+                                <span>{{lang("product_dvt")}}</span>
                             </div>
                             <div class="col-lg-2 text-center">
-                                <span>Số lượng</span>
+                                <span>{{lang("quantity")}}</span>
                             </div>
                             <div class="col-lg-2 text-center">
-                                <span>Thành tiền</span>
+                                <span>{{lang("amount")}}</span>
                             </div>
                             <div class="col-lg-2 text-center">
-                                <span>Thao tác</span>
+                                <span>{{lang("action")}}</span>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="row no-gutters">
                             <div class="col-lg-4">
                                 <a href="{{base_url()}}index/details/{{$row->id}}" class="text-black font-weight-bold">{{ $row->{pick_language($row,'name_')} }}</a>
-                                <div>Code: <span class="font-weight-bold">{{$row->code}}</span></div>
+                                <div>{{lang("code")}}: <span class="font-weight-bold">{{$row->code}}</span></div>
                             </div>
                             <div class="col-lg-2 text-lg-center mt-3">
 
@@ -90,7 +90,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <b>Tổng tiền</b>
+                                        <b>{{lang("total")}}</b>
                                     </td>
                                     <td class="text-right">
                                         {{number_format($cart['amount_product'],0,",",".")}}đ
@@ -98,7 +98,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Phí giao hàng</b>
+                                        <b>{{lang("service_fee")}}</b>
                                     </td>
                                     <td class="text-right">
                                         0 đ
@@ -106,7 +106,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Thành tiền</b>
+                                        <b>{{lang("amount")}}</b>
                                     </td>
                                     <td class="text-right">
                                         <b class="big text-danger">{{number_format($cart['amount_product'],0,",",".")}}đ</b>
@@ -115,7 +115,7 @@
                                 <tr>
                                     <td colspan="2" class="text-center border-0">
                                         <a class="text-top btn btn-burnt-sienna btn-shape d-inline-block" href="{{base_url()}}/index/checkout">
-                                            <span>Đặt hàng</span>
+                                            <span>{{lang("order_btn")}}</span>
                                         </a>
                                     </td>
                                 </tr>

@@ -119,6 +119,10 @@
                                         <div class="col-12 col-lg-4 pt-1">
                                             <input class="form-control form-control-sm" type='text' name="name_vi" required="" placeholder="Tên" />
                                         </div>
+                                        <b class="col-12 col-lg-2 col-form-label">Qui cách:</b>
+                                        <div class="col-12 col-lg-4 pt-1">
+                                            <input class="form-control form-control-sm" type='text' name="volume_vi" />
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả sơ lược:</b>
@@ -151,6 +155,10 @@
                                         <div class="col-12 col-lg-4 pt-1">
                                             <input class="form-control form-control-sm" type='text' name="name_en" placeholder="Tên - Tiếng Anh" />
                                         </div>
+                                        <b class="col-12 col-lg-2 col-form-label">Qui cách:</b>
+                                        <div class="col-12 col-lg-4 pt-1">
+                                            <input class="form-control form-control-sm" type='text' name="volume_en" />
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả sơ lược:</b>
@@ -182,6 +190,10 @@
                                         <b class="col-12 col-lg-2 col-form-label">Tên:</b>
                                         <div class="col-12 col-lg-4 pt-1">
                                             <input class="form-control form-control-sm" type='text' name="name_jp" placeholder="Tên - Tiếng Nhật" />
+                                        </div>
+                                        <b class="col-12 col-lg-2 col-form-label">Qui cách:</b>
+                                        <div class="col-12 col-lg-4 pt-1">
+                                            <input class="form-control form-control-sm" type='text' name="volume_jp" />
                                         </div>
                                     </div>
                                     <div class="form-group row">

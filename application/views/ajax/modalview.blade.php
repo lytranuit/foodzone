@@ -43,7 +43,7 @@
                 </div>
                 <div class="offset-top-15">
                     <p>
-                        Code: {{$product->code}}
+                        {{lang("code")}}: {{$product->code}}
                     </p>
                 </div>
                 <div class="offset-top-15">
@@ -67,7 +67,7 @@
                 </div>
                 @if(!empty($product->units))
                 <div class="mt-2">
-                    <span>ĐVT:</span>
+                    <span>{{lang("dvt")}}:</span>
                     <div class="unit_list">
                         @foreach($product->units as $key=>$unit)
                         <button class="mr-2 btn unit_product @if(array_keys($product->units)[0] == $key) btn-primary active @endif" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
@@ -89,26 +89,31 @@
                             </div>
                         </div>
                         <a class="text-top btn btn-danger add-cart" href="#">
-                            <span>Add to Cart</span>
+                            <span>{{lang("add_to_cart")}}</span>
                         </a>
                     </div>
                 </div>
 
                 <hr class="my-2">
                 <div class="my-2">
+                    @if($product->{pick_language($product,"volume_")} != "")
+                    <div>
+                        - {{lang('qui_cach')}}: {{ $product->{pick_language($product,'volume_')} }}
+                    </div>
+                    @endif
                     @if(isset($product->origin) && !empty($product->origin))
                     <div>
-                        - Xuất xứ: {{ $product->origin->{pick_language($product->origin,'name_')} }}
+                        - {{lang('xuat_xu')}}: {{ $product->origin->{pick_language($product->origin,'name_')} }}
                     </div>
                     @endif
                     @if(isset($product->preservation) && !empty($product->preservation))
                     <div>
-                        - Bảo quản: {{ $product->preservation->{pick_language($product->preservation,'name_')} }}
+                        - {{lang('bao_quan')}}: {{ $product->preservation->{pick_language($product->preservation,'name_')} }}
                     </div>
                     @endif
                     @if(isset($product->origin) && $product->expiry_date != "")
                     <div>
-                        - Hạn sử dụng: {{ $product->expiry_date }}
+                        - {{lang('han_su_dung')}}: {{ $product->expiry_date }}
                     </div>
                     @endif
                 </div>

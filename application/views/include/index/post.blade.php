@@ -16,7 +16,7 @@
                                 <ul class="list-inline list-inline-md offset-top-5">
                                     <li>
                                         <div class="unit unit-horizontal unit-spacing-xxs">
-                                            <div class="unit-left"><span class="text-base">Date:</span></div>
+                                            <div class="unit-left"><span class="text-base">{{lang("date")}}:</span></div>
                                             <div class="unit-body">
                                                 <time>{{date('F j,Y',strtotime($post->date))}}</time>
                                             </div>
@@ -24,7 +24,7 @@
                                     </li>
                                     <li>
                                         <div class="unit unit-horizontal unit-spacing-xxs">
-                                            <div class="unit-left"><span class="text-base">Posted by:</span></div>
+                                            <div class="unit-left"><span class="text-base">{{lang("Posted_by")}}:</span></div>
                                             <div class="unit-body"><a class="link link-gray-light" href="blog-post.html">{{$post->user->last_name}}</a></div>
                                         </div>
                                     </li>
@@ -35,7 +35,7 @@
                                 </div>
                             </section>
                             <footer class="offset-top-50 text-sm-left clearfix">
-                                <div class="big text-bold text-base pull-sm-left">Share this post:</div>
+                                <div class="big text-bold text-base pull-sm-left">{{lang("share")}}:</div>
                                 <ul class="list-inline pull-sm-right offset-top-0 text-sm-right">
                                     <li><a target="_blank" class="link-darkest icon icon-xxs-mod-1 fab fa-facebook" href="http://www.facebook.com/sharer/sharer.php?u={{current_url()}}"></a></li>
                                     <li><a target="_blank" class="link-darkest icon icon-xxs-mod-1 fab fa-twitter" href="https://twitter.com/intent/tweet?text=Link&url={{current_url()}}"></a></li>

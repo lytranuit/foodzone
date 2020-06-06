@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="offset-top-15">
                                     <p>
-                                        Code: {{$product->code}}
+                                        {{lang("code")}}: {{$product->code}}
                                     </p>
                                 </div>
                                 <div class="offset-top-15">
@@ -92,7 +92,7 @@
                                 </div>
                                 @if(!empty($product->units))
                                 <div class="offset-top-10">
-                                    <span>ĐVT:</span>
+                                    <span>{{lang("dvt")}}:</span>
                                     <div class="unit_list">
                                         @foreach($product->units as $key=>$unit)
                                         <button class="mr-2 btn unit_product @if(array_keys($product->units)[0] == $key) btn-primary active @endif" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
@@ -114,26 +114,31 @@
                                             </div>
                                         </div>
                                         <a class="text-top btn btn-danger add-cart" href="#">
-                                            <span>Add to Cart</span>
+                                            <span>{{lang("add_to_cart")}}</span>
                                         </a>
                                     </div>
                                 </div>
 
                                 <hr class="offset-top-10 veil reveal-sm-block">
                                 <div class="offset-top-10">
+                                    @if($product->{pick_language($product,"volume_")} != "")
+                                    <div>
+                                        - {{lang('qui_cach')}}: {{ $product->{pick_language($product,'volume_')} }}
+                                    </div>
+                                    @endif
                                     @if(isset($product->origin) && !empty($product->origin))
                                     <div>
-                                        - Xuất xứ: {{ $product->origin->{pick_language($product->origin,'name_')} }}
+                                        - {{lang('xuat_xu')}}: {{ $product->origin->{pick_language($product->origin,'name_')} }}
                                     </div>
                                     @endif
                                     @if(isset($product->preservation) && !empty($product->preservation))
                                     <div>
-                                        - Bảo quản: {{ $product->preservation->{pick_language($product->preservation,'name_')} }}
+                                        - {{lang('bao_quan')}}: {{ $product->preservation->{pick_language($product->preservation,'name_')} }}
                                     </div>
                                     @endif
                                     @if(isset($product->origin) && $product->expiry_date != "")
                                     <div>
-                                        - Hạn sử dụng: {{ $product->expiry_date }}
+                                        - {{lang('han_su_dung')}}: {{ $product->expiry_date }}
                                     </div>
                                     @endif
                                 </div>
@@ -183,7 +188,7 @@
                                             <img class="img-responsive" src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" alt="">
                                         </a>
                                         <div class="view_now d-flex align-items-center">
-                                            <a href="#" class="btn btn-danger mx-auto view_now_btn">Xem nhanh</a>
+                                            <a href="#" class="btn btn-danger mx-auto view_now_btn">{{lang("view")}}</a>
                                         </div>
                                     </figure>
                                     <div class="caption">
@@ -200,7 +205,7 @@
                                     </div>
                                     <div class="sale">
                                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                            <button type="button" class="btn btn-danger add-cart">Add to cart</button>
+                                            <button type="button" class="btn btn-danger add-cart">{{lang("add_to_cart")}}</button>
                                             @if(!empty($row->units))
                                             <div class="btn-group dropup" role="group">
                                                 <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

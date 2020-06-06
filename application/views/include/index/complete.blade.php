@@ -6,10 +6,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="col-12 text-center">
-                            Đặt hàng thành công! FOODZONE sẽ liên hệ với bạn sớm nhất.
+                            {{lang("cart_text_finish")}}
+                            
                         </h5>
                         <div class="text-center">
-                            <a href="{{base_url()}}" class="btn btn-danger">Tiếp tục mua hàng</a>
+                            <a href="{{base_url()}}" class="btn btn-danger">{{lang("cart_next")}}</a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +35,7 @@
                                         </td>
                                         <td class="product__description">
                                             <a href='' class="font-weight-bold text-black">{{ $row->{pick_language($row,'name_')} }}</a>
-                                            <div>Code:{{$row->code}}</div>
+                                            <div>{{lang("code")}}:{{$row->code}}</div>
                                         </td>
                                         <td class="product__price">
                                             <span class="order-summary__emphasis">{{number_format($row->amount,0,",",".")}}đ</span>
@@ -47,7 +48,7 @@
                                 <table class="total-line-table table table-borderless">
                                     <tbody class="border-bottom">
                                         <tr class="total-line total-line--subtotal">
-                                            <th class="total-line__name" scope="row">Tổng tiền</th>
+                                            <th class="total-line__name" scope="row">{{lang("total")}}</th>
                                             <td class="text-right">
                                                 <span class="font-weight-bold" data-amount="{{$cart['amount_product']}}">
                                                     {{number_format($cart['amount_product'],0,",",".")}}đ
@@ -57,7 +58,7 @@
 
 
                                         <tr class="total-line total-line--shipping">
-                                            <th class="total-line__name" scope="row">Phí giao hàng</th>
+                                            <th class="total-line__name" scope="row">{{lang("service_fee")}}</th>
                                             <td class="text-right">
                                                 <span class="" data-checkout-total-shipping-target="0">
                                                     0
@@ -68,7 +69,7 @@
                                     <tfoot class="total-line-table__footer">
                                         <tr class="total-line">
                                             <th class="total-line__name payment-due-label" scope="row">
-                                                <span class="payment-due-label__total">Thành tiền</span>
+                                                <span class="payment-due-label__total">{{lang("amount")}}</span>
                                             </th>
                                             <td class="text-right">
                                                 <span class="font-weight-bold" style="font-size:20px;">
