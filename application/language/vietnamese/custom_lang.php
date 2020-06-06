@@ -67,6 +67,7 @@ $lang['footer_customer'] = "Chăm sóc khách hàng";
 
 $lang['search_text'] = "Tìm sản phẩm";
 $lang['or'] = "hoặc";
+$lang['no_result'] = "Không tìm thấy kết quả tìm kiếm";
 
 $lang['header_text_ship'] = 'Miễn phí vận chuyển';
 $lang['header_text_ship_sub'] = 'Đơn hàng từ 500k - Khu vực nội thành';

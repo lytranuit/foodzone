@@ -83,7 +83,7 @@ class Index extends MY_Controller
         // echo "<pre>";
         // print_r($this->data['template']);
         // die();
-        $list_topics = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1, 'parent_id' => 0, 'menu_id' => 2))->with_image()->order_by('order', 'ASC')->get_all();
+        $list_topics = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1, 'menu_id' => 2))->with_image()->order_by('order', 'ASC')->get_all();
         // foreach ($list_category as &$row) {
         //     $row->product = $this->product_model->where("deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id = $row->id)", null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
         //     foreach ($row->product as &$row_format) {
@@ -249,8 +249,10 @@ class Index extends MY_Controller
         $max_page = ceil($count / $limit);
 
         $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
-        foreach ($data as &$row_format) {
-            $row_format = $this->product_model->format($row_format);
+        if (!empty($data)) {
+            foreach ($data as &$row_format) {
+                $row_format = $this->product_model->format($row_format);
+            }
         }
         // echo "<pre>";
         // print_r($data);
@@ -271,7 +273,7 @@ class Index extends MY_Controller
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
-    function search()
+    public function search()
     {
         $search = $this->input->get("q");
         $this->load->model("product_model");
@@ -295,8 +297,10 @@ class Index extends MY_Controller
         $max_page = ceil($count / $limit);
 
         $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('code', 'ASC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
-        foreach ($data as &$row_format) {
-            $row_format = $this->product_model->format($row_format);
+        if (!empty($data)) {
+            foreach ($data as &$row_format) {
+                $row_format = $this->product_model->format($row_format);
+            }
         }
         $this->data['products'] = $data;
         // echo "<pre>";
