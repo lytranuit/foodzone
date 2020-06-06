@@ -33,15 +33,20 @@
     @foreach($stylesheet_tag as $url)
     <link href="{{$url}}" rel="stylesheet">
     @endforeach
+
     <script>
         var path = '<?= base_url() ?>';
+        var cart_alert = '<?= lang('cart_alert') ?>';
     </script>
+
     @foreach($javascript_tag as $url)
     <script src="{{$url}}"></script>
     @endforeach
+
 </head>
 <div class="loading-modal modal">Loading</div>
 <div id="cboxOverlay" style="display: none;"></div>
+
 <body class='{{$template or ""}}'>
     @include("include.header")
     <main class="page">
@@ -49,7 +54,6 @@
     </main>
     @include("include.footer")
 </body>
-
 
 
 </html>

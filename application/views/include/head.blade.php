@@ -6,7 +6,7 @@
 
 <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>public/img/favicon.png">
 <title>
-    @section("title") 
+    @section("title")
     {{$project_name}}
     @show
 </title>

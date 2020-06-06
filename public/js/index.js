@@ -481,7 +481,7 @@ $(document).ready(function () {
         //         $(this).detach()
         //     });
         // }
-        alert("Đã thêm vào giỏ hàng!")
+        alert(cart_alert);
         return false;
     });
     $('.btn-up').click(function (e) {

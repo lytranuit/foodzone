@@ -58,6 +58,7 @@ $lang['cart_info_note'] = "Ghi chú cho Shop(Nếu có)";
 $lang['cart_finish'] = "Hoàn tất đơn hàng";
 $lang['cart_text_finish'] = "Đặt hàng thành công! FOODZONE sẽ liên hệ với bạn sớm nhất.";
 $lang['cart_next'] = "Tiếp tục mua hàng";
+$lang['cart_alert'] = "Đã thêm vào giỏ hàng!";
 
 $lang['footer_tru_so'] = "Trụ sở chính";
 $lang['footer_phone'] = "Địa chỉ liên hệ";
