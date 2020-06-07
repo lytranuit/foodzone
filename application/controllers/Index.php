@@ -439,7 +439,7 @@ class Index extends MY_Controller
             // print_r($data);
             // die();
             $order_id = $this->sale_model->insert($data);
-            $this->sale_model->where("id", $order_id)->update(array("code" => "FZ-$order_id"));
+            $this->sale_model->where("id", $order_id)->update(array("code" => "FOZ-$order_id"));
             foreach ($cart['details'] as $row) {
                 $data_up = array(
                     'order_id' => $order_id,

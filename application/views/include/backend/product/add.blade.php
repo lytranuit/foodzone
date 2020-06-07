@@ -432,6 +432,7 @@
                 success: function(data) {
                     data['origin_id'] = data['origin_country_id'];
                     data['price'] = data['retail_price'];
+                    data['volume_vi'] = data['volume'];
                     fillForm($("#form-dang-tin"), data);
                     if (data.image) {
                         $(".image_ft").imageFeature("set_image", data.image);

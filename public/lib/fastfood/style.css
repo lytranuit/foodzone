@@ -26232,8 +26232,8 @@ html:not(.lt-ie10) .not-animated {
     position: absolute;
     left: 0;
     z-index: 100;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: block;
+    column-count: 3;
     table-layout: fixed;
     width: 100%;
     text-align: left;
@@ -26259,7 +26259,7 @@ html:not(.lt-ie10) .not-animated {
 .rd-navbar-static .rd-navbar-megamenu > li,
 .rd-navbar-fullwidth .rd-navbar-megamenu > li {
     position: relative;
-    display: table-cell;
+    display: block;
     padding: 23px 27px 20px 27px;
 }
 
