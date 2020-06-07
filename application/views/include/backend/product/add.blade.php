@@ -489,7 +489,22 @@
             errorPlacement: function(error, element) {
                 $(element).parents('.form-group').append(error);
             },
-            submitHandler: function(form) {
+            submitHandler: async function(form) {
+                let code = $("[name='code']").val();
+                let product_id = 0;
+                let res = $.ajax({
+                    url: path + "admin/check_product",
+                    data: {
+                        code: code,
+                        product_id: product_id
+                    },
+                    dataType: "JSON",
+                    type: "POST",
+                });
+                if (res.code != 1) {
+                    alert(res.msg);
+                    return false;
+                }
                 let data_dvt = $('#quanly').dataTable().fnGetData();
                 let append = "";
                 for (let i = 0; i < data_dvt.length; i++) {

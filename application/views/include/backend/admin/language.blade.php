@@ -43,7 +43,14 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        $.fn.dataTableExt.ofnSearch['html-input'] = function(value) {
+            return $(value).val();
+        };
         $('#quanlytin').DataTable({
+            columnDefs: [{
+                "type": "html-input",
+                "targets": [2, 3, 4]
+            }],
             "lengthMenu": [
                 [-1],
                 ["All"]
@@ -75,7 +82,10 @@
                     data: JSON.stringify(data)
                 },
                 success: function(res) {
-                    location.reload();
+                    if (res == 1) {
+                        alert("Success!");
+                        location.reload();
+                    }
                 }
             })
         })
