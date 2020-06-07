@@ -53,7 +53,7 @@ class Product extends MY_Administrator
     {
         $id = $params[0];
         $this->load->model("product_simba_model");
-        $json_data = $this->product_simba_model->where(array('id' => $id))->with_image()->as_object()->get();
+        $json_data = $this->product_simba_model->where(array('id' => $id))->with_units()->with_image()->as_object()->get();
         echo json_encode($json_data);
     }
     public function save_dvt()
@@ -76,6 +76,9 @@ class Product extends MY_Administrator
     }
     public function add()
     { /////// trang ca nhan
+        // echo "<pre>";
+        // print_r($_POST);
+        // die();
         if (isset($_POST['dangtin'])) {
             $data = $_POST;
             $data['user_id'] = $this->session->userdata('user_id');
@@ -328,7 +331,7 @@ class Product extends MY_Administrator
         $limit = $this->input->post('length');
         $start = $this->input->post('start');
         $page = ($start / $limit) + 1;
-        $where = $this->product_model;
+        $where = $this->product_model->where(array("deleted" => 0));
 
         $totalData = $where->count_rows();
         $totalFiltered = $totalData;

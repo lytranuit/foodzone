@@ -1,6 +1,7 @@
 <div class="row clearfix">
     <div class="col-12">
         <form method="POST" action="" id="form-dang-tin">
+            <input name="dangtin" value="1" type="hidden" />
             <section class="card card-fluid">
                 <h5 class="card-header">
                     <div>
@@ -12,7 +13,7 @@
                         </select>
                     </div>
                     <div style="margin-left:auto">
-                        <button type="submit" name="dangtin" class="btn btn-sm btn-primary float-right">Save</button>
+                        <button type="submit" class="btn btn-sm btn-primary float-right">Save</button>
                     </div>
                 </h5>
                 <div class="card-body">
@@ -528,7 +529,23 @@
             errorPlacement: function(error, element) {
                 $(element).parents('.form-group').append(error);
             },
-            submitHandler: function(form) {
+            submitHandler: async function(form) {
+                let code = $("[name='code']").val();
+                let product_id = tin['id'];
+                let res = await $.ajax({
+                    url: path + "admin/check_product",
+                    data: {
+                        code: code,
+                        product_id: product_id
+                    },
+                    dataType: "JSON",
+                    type: "POST",
+                });
+                if (res.code != 1) {
+                    alert(res.msg);
+                    return false;
+                }
+
                 let data_dvt = $('#quanly').dataTable().fnGetData();
                 let append = "";
                 for (let i = 0; i < data_dvt.length; i++) {

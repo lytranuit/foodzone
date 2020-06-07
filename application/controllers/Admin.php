@@ -2530,7 +2530,24 @@ class Admin extends MY_Administrator
             echo json_encode(array('success' => 0, 'msg' => "Tài khoản đã tồn tại!"));
         }
     }
-
+    public function check_product()
+    {
+        $code = $this->input->post('code');
+        $product_id = $this->input->post('product_id');
+        $this->load->model("product_model");
+        $check = $this->product_model->where(array("code" => $code, 'deleted' => 0));
+        if ($product_id > 0) {
+            $check = $check->where("id", "!=", $product_id)->get();
+        } else {
+            $check = $check->get();
+        }
+        // var_dump($check);
+        if (!$check) {
+            echo json_encode(array('code' => 1));
+        } else {
+            echo json_encode(array('code' => 2, 'msg' => "Mã sản phẩm đã tồn tại!"));
+        }
+    }
     function changepasswithout()
     {
         $id_user = $this->input->post('id_user');
