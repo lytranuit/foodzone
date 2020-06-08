@@ -526,4 +526,36 @@ class Index extends MY_Controller
             echo 'Oops, we ran into an issue! ' . $e->getMessage();
         }
     }
+    // public function sync_dvt()
+    // {
+    //     $this->load->model("product_simba_model");
+
+    //     $this->load->model("product_unit_model");
+    //     $this->load->model("product_model");
+    //     $products = $this->product_model->with_units()->fields("code,id,price")->get_all();
+    //     echo "<pre>";
+    //     foreach ($products as $product) {
+    //         // print_r($product);
+    //         if (!isset($product->units)) {
+    //             $product_simba = $this->product_simba_model->where("code", $product->code)->with_units()->fields("code,id")->get();
+    //             // print_r($product_simba);
+    //             if (isset($product_simba->units)) {
+    //                 foreach ($product_simba->units as $unit) {
+    //                     $data_up = array(
+    //                         'name_vi' => $unit->name_vi,
+    //                         'name_en' => $unit->name_en,
+    //                         'name_jp' => $unit->name_jp,
+    //                         'special_unit' => $unit->special_unit,
+    //                         'product_id' => $product->id,
+    //                         'price' => $unit->special_unit * $product->price
+    //                     );
+    //                     $this->product_unit_model->insert($data_up);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     // echo "<pre>";
+    //     // print_r($products);
+    //     // die();
+    // }
 }

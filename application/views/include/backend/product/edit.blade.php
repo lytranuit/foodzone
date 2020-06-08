@@ -416,7 +416,7 @@
                     "data": "name_jp"
                 },
                 {
-                    "data": "price"
+                    "data": "price_format"
                 },
                 {
                     "data": "action"
@@ -441,6 +441,7 @@
             for (let i = 0; i < tin.units.length; i++) {
                 let data = tin.units[i];
                 data['action'] = '<a href="#" class="btn btn-warning btn-sm dvt_edit mr-2" data-target="#dvt-modal" data-toggle="modal" data-id="' + data['id'] + '"><i class="fas fa-pencil-alt"></i></a><a href="#" class="btn btn-danger btn-sm dvt_remove" data-id="' + data['id'] + '"><i class="far fa-trash-alt"></i></a>';
+                data['price_format'] = number_format(data['price'], 0, ",", ".") + " VND";
                 $('#quanly').dataTable().fnAddData(data);
             }
         }
@@ -650,6 +651,7 @@
             type: "POST",
             success: function(data) {
                 data['action'] = '<a href="#" class="btn btn-warning btn-sm dvt_edit mr-2" data-target="#dvt-modal" data-toggle="modal" data-id="' + data['id'] + '"><i class="fas fa-pencil-alt"></i></a><a href="#" class="btn btn-danger btn-sm dvt_remove" data-id="' + data['id'] + '"><i class="far fa-trash-alt"></i></a>';
+                data['price_format'] = number_format(data['price'], 0, ",", ".") + " VND";
 
                 if ($("[name=id]").val() > 0) {
                     let data_dvt = $('#quanly').dataTable().fnGetData();

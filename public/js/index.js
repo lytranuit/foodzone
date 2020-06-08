@@ -183,26 +183,26 @@ $(document).ready(function () {
     * UNIT
     * @description Enables UNIT plugin
     */
-    if (plugins.units.length) {
-        $(document).on("click", ".unit_product", function (e) {
-            e.preventDefault();
-            let parent = $(this).closest(".product");
-            var name = $(this).text();
-            $(".dvt", parent).text("/" + name);
+    // if (plugins.units.length) {
+    $(document).on("click", ".unit_product", function (e) {
+        e.preventDefault();
+        let parent = $(this).closest(".product");
+        var name = $(this).text();
+        $(".dvt", parent).text("/" + name);
 
-            $(".unit_product", parent).removeClass("btn-primary active");
-            $(this).addClass("btn-primary active");
+        $(".unit_product", parent).removeClass("btn-primary active");
+        $(this).addClass("btn-primary active");
 
-            let price = $(this).data("price");
-            let prev_price = $(this).data("prev_price");
-            $(".price-km", parent).text(number_format(price, 0, ",", ".") + "đ");
-            if (prev_price > 0)
-                $(".price-prev", parent).text(number_format(prev_price, 0, ",", ".") + "đ");
-            else
-                $(".price-prev", parent).empty();
-        });
-        $(".unit_product.active", plugins.units).trigger("click");
-    }
+        let price = $(this).data("price");
+        let prev_price = $(this).data("prev_price");
+        $(".price-km", parent).text(number_format(price, 0, ",", ".") + "đ");
+        if (prev_price > 0)
+            $(".price-prev", parent).text(number_format(prev_price, 0, ",", ".") + "đ");
+        else
+            $(".price-prev", parent).empty();
+    });
+    $(".unit_product.active", plugins.units).trigger("click");
+    // }
     /**
     * RD Navbar
     * @description Enables RD Navbar plugin
