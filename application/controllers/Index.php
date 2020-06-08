@@ -558,4 +558,58 @@ class Index extends MY_Controller
     //     // print_r($products);
     //     // die();
     // }
+
+    public function cronjonsendmail()
+    {
+        $this->load->model("sale_model");
+        $this->load->model("option_model");
+        $sales = $this->sale_model->where(array("is_send" => 0))->as_object()->get_all();
+        if (!empty($sales)) {
+            $conf = $this->option_model->get_group("send_mail");
+            $config = array(
+                'mailtype' => 'html',
+                'protocol' => "smtp",
+                'smtp_host' => $conf['email_server'],
+                'smtp_user' => $conf['email_username'], // actual values different
+                'smtp_pass' => $conf['email_password'],
+                'charset' => "utf-8",
+                'smtp_crypto' => $conf['email_security'],
+                'wordwrap' => TRUE,
+                'smtp_port' => 465,
+                'starttls' => true,
+                'newline' => "\r\n"
+            );
+            $this->load->library("email", $config);
+            foreach ($sales as $row) {
+                $this->email->clear(TRUE);
+                echo "<pre>";
+                print_r(json_decode($row->data));
+                die();
+                $this->email->from($conf['email_email'], $conf['email_name']);
+                $this->email->to($conf['email_contact']); /// $conf['email_contact']
+                $this->email->subject("Thông báo Đơn hàng mới - New PO Alert");
+                $html = "";
+
+                $html = $this->blade->view()->make('page/mail', $this->data)->render();
+                echo $html;
+                die();
+                $this->email->message($html);
+                // if (!empty($logbook->files)) {
+                //     foreach ($logbook->files as $row) {
+                //         $this->email->attach(base_url() . $row->src);
+                //     }
+                // }
+
+
+                $this->sale_model->update(array("is_sent" => 1), $row->id);
+                if ($this->email->send()) {
+                    //                echo json_encode(array('code' => 400, 'msg' => lang('alert_400')));
+                } else {
+                    $file_log = './log_' . $row->id . '.log';
+                    file_put_contents($file_log, $this->email->print_debugger(), FILE_APPEND);
+                }
+            }
+        }
+        echo 1;
+    }
 }

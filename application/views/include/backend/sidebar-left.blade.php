@@ -148,7 +148,12 @@
                         Cài đặt chung
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{base_url()}}admin/settings_email" class="">
+                        <i class="metismenu-icon fas fa-envelope"></i>
+                        Gửi mail
+                    </a>
+                </li>
                 <li>
                     <a href="#">
                         <i class="metismenu-icon fa fa-lock"></i>

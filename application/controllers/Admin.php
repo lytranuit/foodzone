@@ -146,7 +146,29 @@ class Admin extends MY_Administrator
             header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit;
         } else {
-            $tins = $this->option_model->order_by("order", "asc")->as_object()->get_all();
+            $tins = $this->option_model->where("group", 'general')->order_by("order", "asc")->as_object()->get_all();
+            $this->data['tins'] = $tins;
+
+            load_editor($this->data);
+            //            echo "<pre>";
+            //            print_r($tins);
+            //            die();
+            echo $this->blade->view()->make('page/page', $this->data)->render();
+        }
+    }
+    public function settings_email()
+    { /////// trang ca nhan
+        $this->load->model("option_model");
+        if (isset($_POST['settings'])) {
+            $data = $_POST;
+            foreach ($data['id'] as $key => $id) {
+                $value = $data['value'][$key];
+                $this->option_model->update(array('value' => $value), $id);
+            }
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        } else {
+            $tins = $this->option_model->where("group", 'send_mail')->order_by("order", "asc")->as_object()->get_all();
             $this->data['tins'] = $tins;
 
             load_editor($this->data);
