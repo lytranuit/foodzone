@@ -552,6 +552,10 @@
                 return false;
             }
         });
+        $(document).on("click", ".dvt_add", function() {
+            $("#form-dvt")[0].reset();
+            $("#form-dvt [name=id]").val(0);
+        });
         $(document).on("click", ".dvt_edit", function() {
             let id = $(this).data("id");
             let data_dvt = $('#quanly').dataTable().fnGetData();

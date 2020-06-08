@@ -492,7 +492,22 @@
                     $('[name=description_vi]').val('')
                     $('[name=description_en]').val('')
                     $('[name=description_jp]').val('')
-
+                    $('#quanly').dataTable().fnClearTable();
+                    if (data.units) {
+                        for (let i in data.units) {
+                            let unit = data.units[i];
+                            let data_up = {
+                                cap_nhat: 1,
+                                id: 0,
+                                name_vi: unit.name_vi,
+                                name_en: unit.name_en,
+                                name_jp: unit.name_jp,
+                                special_unit: unit.special_unit,
+                                price: data.price * unit.special_unit,
+                            }
+                            save_dvt(data_up);
+                        }
+                    }
                 }
             })
         })
@@ -580,31 +595,9 @@
                 $(element).parents('.form-group').append(error);
             },
             submitHandler: function(form) {
-                $.ajax({
-                    url: path + "product/save_dvt",
-                    data: $(form).serialize(),
-                    dataType: "JSON",
-                    type: "POST",
-                    success: function(data) {
-                        $('#dvt-modal').trigger('click');
-                        data['action'] = '<a href="#" class="btn btn-warning btn-sm dvt_edit mr-2" data-target="#dvt-modal" data-toggle="modal" data-id="' + data['id'] + '"><i class="fas fa-pencil-alt"></i></a><a href="#" class="btn btn-danger btn-sm dvt_remove" data-id="' + data['id'] + '"><i class="far fa-trash-alt"></i></a>';
-
-                        if ($("[name=id]").val() > 0) {
-                            let data_dvt = $('#quanly').dataTable().fnGetData();
-                            for (let i = 0; i < data_dvt.length; i++) {
-                                if (data_dvt[i]['id'] == data['id']) {
-                                    $('#quanly').dataTable().fnUpdate(data, i);
-                                    break;
-                                }
-                            }
-
-                        } else {
-                            $('#quanly').dataTable().fnAddData(data);
-                        }
-                        form.reset();
-                        // $("#quanly tbody").append(rendered);
-                    }
-                });
+                let data = $(form).serialize();
+                $('#dvt-modal').trigger('click');
+                save_dvt(data);
                 return false;
             }
         });
@@ -648,4 +641,32 @@
             $('#quanlyimage').dataTable().fnDeleteRow($('#quanlyimage').dataTable().fnGetPosition(parent));
         })
     });
+
+    function save_dvt(data_up) {
+        $.ajax({
+            url: path + "product/save_dvt",
+            data: data_up,
+            dataType: "JSON",
+            type: "POST",
+            success: function(data) {
+                data['action'] = '<a href="#" class="btn btn-warning btn-sm dvt_edit mr-2" data-target="#dvt-modal" data-toggle="modal" data-id="' + data['id'] + '"><i class="fas fa-pencil-alt"></i></a><a href="#" class="btn btn-danger btn-sm dvt_remove" data-id="' + data['id'] + '"><i class="far fa-trash-alt"></i></a>';
+
+                if ($("[name=id]").val() > 0) {
+                    let data_dvt = $('#quanly').dataTable().fnGetData();
+                    for (let i = 0; i < data_dvt.length; i++) {
+                        if (data_dvt[i]['id'] == data['id']) {
+                            $('#quanly').dataTable().fnUpdate(data, i);
+                            break;
+                        }
+                    }
+
+                } else {
+                    $('#quanly').dataTable().fnAddData(data);
+                }
+                $("#form-dvt")[0].reset();
+                $("[name=id]").val(0);
+                // $("#quanly tbody").append(rendered);
+            }
+        });
+    }
 </script>
