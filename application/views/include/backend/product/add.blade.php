@@ -455,6 +455,7 @@
                     $('[name=description_jp]').val('')
                     //units
                     // console.log(data.units);
+                    $('#quanly').dataTable().fnClearTable();
                     if (data.units) {
                         for (let i in data.units) {
                             let unit = data.units[i];

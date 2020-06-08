@@ -63,9 +63,10 @@ class Product extends MY_Administrator
             $id = $data['id'];
             $this->load->model("product_unit_model");
             $data_up = $this->product_unit_model->create_object($data);
-            if ($id > 0)
+            if ($id > 0) {
+                unset($data_up['id']);
                 $this->product_unit_model->update($data_up, $id);
-            else {
+            } else {
                 if (isset($data_up['id']))
                     unset($data_up['id']);
                 $id = $this->product_unit_model->insert($data_up);
