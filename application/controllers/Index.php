@@ -559,7 +559,7 @@ class Index extends MY_Controller
     //     // die();
     // }
 
-    public function cronjonsendmail()
+    public function cronjobsendmail()
     {
         $this->load->model("sale_model");
         $this->load->model("option_model");
