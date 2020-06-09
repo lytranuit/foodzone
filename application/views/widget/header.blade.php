@@ -29,7 +29,8 @@
                                         {{$userdata['identity']}}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item text-dark" href="<?= base_url() ?>admin">{{lang("info")}}</a>
+                                        <a class="dropdown-item text-dark" href="<?= base_url() ?>member/">{{lang("info")}}</a>
+                                        <a class="dropdown-item text-dark" href="<?= base_url() ?>member/history_order">{{lang("history_order")}}</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item logout text-dark" href="<?= base_url() ?>index/logout">{{lang("logout")}}</a>
                                     </div>
@@ -152,12 +153,16 @@
         <div class="container-wide">
             <div class="rd-navbar-inner">
                 <div class="rd-navbar-nav-wrap toggle-original-elements">
+                    <div class="hidden-md hidden-lg head-menu">
+                        <a class="text-primary" href="{{base_url()}}index/login"><i class="fa fa-user text-dark mr-1"></i>{{lang("login")}}</a>
+                        <span class="text-dark">{{lang("or")}}</span>
+                        <a class="text-primary" href="{{base_url()}}index/register">{{lang("sign_up")}}</a>
+                        <a class="text-dark exits-bar" href="#" style="font-size:24px;display: inline-block; padding: 0;">
+                            <i class="fas fa-long-arrow-alt-left"></i>
+                        </a>
+                    </div>
                     <ul class="rd-navbar-nav">
-                        <li class="exits-bar hidden-md hidden-lg">
-                            <a href="#" style="font-size:24px;">
-                                <i class="fas fa-long-arrow-alt-left"></i>
-                            </a>
-                        </li>
+
                         @foreach($list_menu as $row)
                         <li>
                             @if($row->type ==1 )
@@ -206,6 +211,17 @@
                             @endif
                         </li>
                         @endforeach
+                    </ul>
+                    <ul class="hidden-md hidden-lg footer-menu">
+                        <li class="d-inline-block">
+                            <a class="text-center" href="{{base_url()}}index/set_language/vietnamese"><img src="http://simbaeshop.com/flag/vi.png"></a>
+                        </li>
+                        <li class="d-inline-block">
+                            <a class="text-center" href="{{base_url()}}index/set_language/english"><img src="http://simbaeshop.com/flag/en.png"></a>
+                        </li>
+                        <li class="d-inline-block">
+                            <a class="text-center" href="{{base_url()}}index/set_language/japanese"><img src="http://simbaeshop.com/flag/jp.png"></a>
+                        </li>
                     </ul>
                     <div class="menu-search hidden-sm hidden-xs">
                         <div class="header_search search_form">

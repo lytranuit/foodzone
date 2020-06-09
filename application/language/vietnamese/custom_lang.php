@@ -72,6 +72,6 @@ $lang['header_text_hotline'] = 'Hỗ trợ 24/7';
 $lang['header_text_hotline_sub'] = 'Hotline: ';
 $lang['header_text_opening'] = 'Giờ làm việc';
 $lang['header_text_opening_sub'] = 'T2-T7 (08-18h)';
-
+$lang['history_order'] = "Lịch sử đơn hàng";
 
 ?>

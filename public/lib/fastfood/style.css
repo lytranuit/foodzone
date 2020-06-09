@@ -27085,7 +27085,7 @@ html:not(.lt-ie10) .not-animated {
     bottom: 0;
     left: 0;
     width: 270px;
-    padding: 112px 0 56px;
+    padding: 55px 0 56px;
     color: #fff;
     background: #fff;
     border-right: 1px solid #f9b129;
@@ -27097,6 +27097,33 @@ html:not(.lt-ie10) .not-animated {
     transform: translateX(-120%);
 }
 
+.rd-navbar-fixed .rd-navbar-nav-wrap .head-menu{
+    color: #333;
+    padding: 20px 15px 15px;
+    font-size: 15px;
+    border-bottom: 1px solid #ebebeb;
+}
+.rd-navbar-fixed .rd-navbar-nav-wrap .footer-menu {
+    color: #333;
+    padding: 20px 15px 15px;
+    font-size: 15px;
+    border-top: 1px solid #ebebeb;
+}
+.rd-navbar-fixed .rd-navbar-nav-wrap .head-menu .exits-bar {
+    display: inline-block;
+    padding: 0;
+    margin: auto;
+    text-align: right;
+    position: absolute;
+    right: 1px;
+    top: 55px;
+    color: #252525;
+    border: 1px solid #ebebeb;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
 .rd-navbar-fixed .rd-navbar-nav-wrap.active {
     -webkit-transform: translateX(0);
     transform: translateX(0);
