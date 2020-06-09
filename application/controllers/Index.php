@@ -566,6 +566,9 @@ class Index extends MY_Controller
         $sales = $this->sale_model->where(array("is_send" => 0))->as_object()->get_all();
         if (!empty($sales)) {
             $conf = $this->option_model->get_group("send_mail");
+            // echo "<pre>";
+            // print_r($conf);
+            // die();
             $config = array(
                 'mailtype' => 'html',
                 'protocol' => "smtp",
@@ -582,17 +585,28 @@ class Index extends MY_Controller
             $this->load->library("email", $config);
             foreach ($sales as $row) {
                 $this->email->clear(TRUE);
-                echo "<pre>";
-                print_r(json_decode($row->data));
-                die();
+                // echo "<pre>";
+                // print_r(json_decode($row->data));
+                // die();
                 $this->email->from($conf['email_email'], $conf['email_name']);
                 $this->email->to($conf['email_contact']); /// $conf['email_contact']
                 $this->email->subject("Thông báo Đơn hàng mới - New PO Alert");
                 $html = "";
+                $cart = json_decode($row->data);
+                $this->data['details'] = $cart->details;
+                $this->data['total'] = $row->amount;
+                $this->data['service_fee'] = $row->service_fee;
+                $this->data['notes'] = $row->notes;
+                $this->data['code'] = $row->code;
+                $this->data['name'] = $row->name;
+                $this->data['email'] = $row->email;
+                $this->data['phone'] = $row->phone;
+                $this->data['address'] = $row->address;
+                $this->data['order_date'] = $row->order_date;
 
                 $html = $this->blade->view()->make('page/mail', $this->data)->render();
-                echo $html;
-                die();
+                // echo $html;
+                // die();
                 $this->email->message($html);
                 // if (!empty($logbook->files)) {
                 //     foreach ($logbook->files as $row) {
@@ -601,7 +615,7 @@ class Index extends MY_Controller
                 // }
 
 
-                $this->sale_model->update(array("is_sent" => 1), $row->id);
+                $this->sale_model->update(array("is_send" => 1), $row->id);
                 if ($this->email->send()) {
                     //                echo json_encode(array('code' => 400, 'msg' => lang('alert_400')));
                 } else {
