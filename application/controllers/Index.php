@@ -578,7 +578,7 @@ class Index extends MY_Controller
                 'charset' => "utf-8",
                 'smtp_crypto' => $conf['email_security'],
                 'wordwrap' => TRUE,
-                'smtp_port' => 465,
+                'smtp_port' => $conf['email_port'],
                 'starttls' => true,
                 'newline' => "\r\n"
             );
@@ -590,7 +590,9 @@ class Index extends MY_Controller
                 // die();
                 $this->email->from($conf['email_email'], $conf['email_name']);
                 $this->email->to($conf['email_contact']); /// $conf['email_contact']
-                $this->email->subject("Thông báo Đơn hàng mới - New PO Alert");
+                $this->email->subject("Thông báo Đơn hàng mới - New PO Alert")
+                    ->set_mailtype('html');
+
                 $html = "";
                 $cart = json_decode($row->data);
                 $this->data['details'] = $cart->details;
