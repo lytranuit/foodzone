@@ -41,8 +41,6 @@
 
 <p><strong>Ngày đặt hàng - Order date -&nbsp;注文日</strong>: <strong>{{$order_date}}</strong></p>
 
-<!-- <p><strong>Ng&agrave;y giao h&agrave;ng - Delivery date - 配送日</strong><strong>:&nbsp;{{delivery_date}}</strong></p> -->
-
 <p><strong><u>Thông tin đơn hàng- PO information -&nbsp;注文情報</u></strong>: <strong>{{$code}}</strong></p>
 
 <table border="1" cellpadding="5" cellspacing="0" style="width:600px">
