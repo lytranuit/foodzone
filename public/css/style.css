@@ -62,6 +62,7 @@
     width: 100%;
     padding: 10px 20px;
     /* background: #1c223f; */
+    height: 3.5rem;
     color: #ffffff;
     line-height: 1.2em;
     vertical-align: top;
@@ -1296,7 +1297,7 @@ header nav .nav-item.active > a {
 .rd-navbar--is-stuck .cart-bag {
   display: block !important;
   font-size: 24px;
-  right: -60px; }
+  right: 280px; }
   .rd-navbar--is-stuck .cart-bag .cartCount {
     display: inline-block;
     width: 24px;

@@ -21,7 +21,7 @@
                             </select>
                         </div>
                         <b class="col-12 col-lg-2 col-form-label">Đơn vị tính:(Nếu có)<i class="text-danger">*</i></b>
-                        <div class="col-12 col-lg-1 pt-1">
+                        <div class="col-12 col-lg-2 pt-1">
                             <select name="unit_id" class="form-control">
                                 @foreach($units as $row)
                                 <option value="{{$row->id}}">
