@@ -238,6 +238,7 @@ class Admin extends MY_Administrator
     public function savelanguage()
     {
         $data = json_decode($_POST['data'], true);
+        $this->load->model("language_model");
         foreach ($data as $lang => $row) {
             $path = APPPATH . "language/" . $lang . "/custom_lang.php";
             // Backup original file
@@ -251,7 +252,19 @@ class Admin extends MY_Administrator
             $master = array();
             $master[] = "<?php \n\n";
             foreach ($row as $key => $value) {
-                $master[] = '$lang[\'' . $key . '\'] = \'' . str_replace("'", "\'", $value) . '\';';
+                $language = $this->language_model->where("key", $key)->get();
+
+                $data_up = array($lang => $value, 'key' => $key);
+                if (!empty($language)) {
+                    $this->language_model->update($data_up, $language->id);
+                } else {
+                    // $data_up['key'] = $key;
+                    // print_r($data_up);
+                    $this->language_model->insert($data_up);
+                }
+
+
+                $master[] = "\$lang['" . $key . "'] = \"$value\";";
             }
             // Add closing PHP tag
             $master[] = NULL;

@@ -36,6 +36,7 @@ class Index extends MY_Controller
 
         load_slick($this->data);
         load_autonumberic($this->data);
+        load_toast($this->data);
     }
 
     public function _remap($method, $params = array())
@@ -430,6 +431,8 @@ class Index extends MY_Controller
         if (isset($_POST) && count($_POST) && count($cart['details'])) {
             $this->load->model("sale_model");
             $this->load->model("sale_line_model");
+            $this->load->model("sale_simba_model");
+            $this->load->model("sale_line_simba_model");
             $array = $_POST;
             $array['amount'] = $cart['amount_product'];
             $array['total_amount'] = $cart['amount_product'] + 0;
@@ -440,6 +443,21 @@ class Index extends MY_Controller
             // die();
             $order_id = $this->sale_model->insert($data);
             $this->sale_model->where("id", $order_id)->update(array("code" => "FOZ-$order_id"));
+
+            ///UPDATE SIMBA
+            $array['code'] = "FOZ-$order_id";
+            $array['customer_name'] = $array['name'];
+            $array['customer_phone'] =  $array['phone'];
+            $array['customer_email'] =  $array['email'];
+            $array['customer_address'] =  $array['address'];
+            $array['receiver_name'] = $array['name'];
+            $array['receiver_phone'] =  $array['phone'];
+            $array['receiver_email'] =  $array['email'];
+            $array['receiver_address'] =  $array['address'];
+
+            $data = $this->sale_simba_model->create_object($array);
+            $order_simba_id = $this->sale_simba_model->insert($data);
+
             foreach ($cart['details'] as $row) {
                 $data_up = array(
                     'order_id' => $order_id,
@@ -449,6 +467,17 @@ class Index extends MY_Controller
                     'data' => json_encode($row)
                 );
                 $this->sale_line_model->insert($data_up);
+
+                ///UPDATE SIMBA
+                $data_up = array(
+                    'order_id' => $order_simba_id,
+                    'quantity' => $row->qty,
+                    'unit_price' => $row->price,
+                    'subtotal' => $row->amount,
+                    'name' => $row->name_vi,
+                    'code' => $row->code
+                );
+                $this->sale_line_simba_model->insert($data_up);
             }
             /////////////////
             $this->load->helper('cookie');

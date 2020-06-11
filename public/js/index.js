@@ -481,7 +481,15 @@ $(document).ready(function () {
         //         $(this).detach()
         //     });
         // }
-        alert(cart_alert);
+        $.toast({
+            // heading: 'Warning',
+            text: cart_alert,
+            position: 'top-right',
+            stack: false,
+            // showHideTransition: 'plain',
+            icon: 'success'
+        })
+        // alert(cart_alert);
         return false;
     });
     $('.btn-up').click(function (e) {
