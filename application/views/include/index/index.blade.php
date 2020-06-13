@@ -33,13 +33,13 @@
     <div class="container-wide">
         <div class="row">
             <div class="col-12">
-                <div class="card card-custom">
+                <div class="card card-custom card-color">
                     <div class="card-header">
-                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black header_title">
+                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-white header_title">
                             {{ $row->{pick_language($row,'name_')} }} ({{$row->count_product}})
                         </a>
                         <div style="margin-left:auto;">
-                            <ul class="sub_category">
+                            <ul class="sub_category @if(empty($row->child)) hidden @endif">
                                 <li class="index_category active" data-id="{{$row->id}}">
                                     <a href="#" class="text-dark">
                                         {{lang("all")}}

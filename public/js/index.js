@@ -30,7 +30,7 @@ $(document).ready(function () {
         $(".index_product", section).html(spinner);
         let product = await $.ajax({
             url: path + "ajax/product",
-            data: { category_id: id, limit: 12 },
+            data: { category_id: id, limit: 10 },
             dataType: "HTML"
         });
         $(".index_product", section).html(product);

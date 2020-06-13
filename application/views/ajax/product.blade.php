@@ -1,6 +1,12 @@
 @if(!empty($data))
+<?php $count = 0; ?>
 @foreach($data as $product)
-<div class="thumbnail-menu-modern col-6 col-lg-2 border border-light product" data-id="{{$product->id}}">
+<?php $count++ ?>
+@if($count > 5)
+<?php $count = 1; ?>
+<div class="w-100 hidden-xs"></div>
+@endif
+<div class="thumbnail-menu-modern col-6 col-lg border border-light product" data-id="{{$product->id}}">
     <input type="hidden" value="1" class="number" />
     <figure>
         <a href="{{base_url()}}index/details/{{$product->id}}">

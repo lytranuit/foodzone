@@ -23,6 +23,11 @@
     align-items: center;
     padding-right: 0.625rem;
     border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0; }
+  .card.card-color .card-header {
+    background-color: #ed7325;
+    color: white; }
+  .card .text-dark:hover {
+    color: #ec5353 !important; }
 
 .nav-custom {
   display: flex; }
@@ -83,7 +88,7 @@ header .nav > li > a:hover {
   background: #70634d; }
 
 .topbar {
-  background: #223f4f;
+  background: #ed7325;
   color: #fff;
   text-align: center;
   height: 40px;
@@ -1396,5 +1401,9 @@ header nav .nav-item.active > a {
   .sub_category li.active {
     border-bottom: 1px solid #f7921e;
     font-weight: bold; }
+
+footer {
+  background: #223f4f;
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */

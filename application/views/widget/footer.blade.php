@@ -1,4 +1,4 @@
-<footer style="background: #223f4f;color: white">
+<footer>
     <section class="section-50">
         <div class="container-wide">
             <div class="row border-left-cell">

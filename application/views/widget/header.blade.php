@@ -57,7 +57,7 @@
                     <div class="logo inline-block">
 
                         <a href="/" class="logo-wrapper ">
-                            <img src="{{base_url()}}public/image/logo.png" width="200" />
+                            <img src="{{base_url()}}public/image/logo.png?v=1" width="200" />
                         </a>
 
                     </div>

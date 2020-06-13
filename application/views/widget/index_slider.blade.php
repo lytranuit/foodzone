@@ -2,7 +2,7 @@
     <div class="container-wide">
         <div class="row">
             <div class="col-lg-3 d-none d-sm-block" style="z-index: 99;">
-                <div class="card card-custom">
+                <div class="card card-custom card-color">
                     <div class="card-header">{{lang("index_menu_slide")}}</div>
                     <div class="card-body py-0">
                         <ul class="list list-marked list-bordered list-custom" style="height: 525px;">
