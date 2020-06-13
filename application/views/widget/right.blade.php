@@ -5,7 +5,7 @@
         <!-- RD Search Form-->
         <div class="row">
             <div class="col-sm-6 col-md-12">
-                <div class="card card-custom">
+                <div class="card card-custom card-color">
                     <div class="text-uppercase card-header">{{lang('danh_muc')}}</div>
                     <div class="card-body py-0" style="max-height: 400px;overflow: auto;">
                         <!-- Category-->
@@ -20,7 +20,7 @@
         </div>
         <div class="row offset-top-20">
             <div class="col-sm-6 col-md-12">
-                <div class="card card-custom">
+                <div class="card card-custom card-color">
                     <div class="text-uppercase card-header">{{lang('topic')}}</div>
                     <div class="card-body py-0" style="max-height: 400px;overflow: auto;">
                         <!-- Category-->
@@ -36,7 +36,7 @@
         <div class="row offset-top-20">
             <div class="col-sm-6 col-md-12">
                 <!-- Archive-->
-                <div class="card card-custom" style="max-height: 400px;overflow: auto;">
+                <div class="card card-custom card-color" style="max-height: 400px;overflow: auto;">
                     <div class="text-uppercase card-header">{{lang('post')}}</div>
                     <div class="card-body" style="max-height: 400px;overflow: auto;">
                         @foreach($news as $row)

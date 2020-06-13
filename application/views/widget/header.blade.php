@@ -75,16 +75,16 @@
                             </div>
                         </div>
 
-
+                        <!-- 
                         <div class="item-policy d-flex align-items-center">
                             <a href="http://sakezone.vn/" target="_blank">
                                 <img src="{{base_url()}}public/image/sakezone.png" width="100">
                             </a>
-                            <!-- <div class="info a-left">
+                            <div class="info a-left">
                                 <a href="#" class="text-dark">{{lang("header_text_hotline")}}</a>
                                 <p>{{lang("header_text_hotline_sub")}}<a href="callto:19001009" class="text-dark">{{$options['hot_line']}}</a></p>
-                            </div> -->
-                        </div>
+                            </div>
+                        </div> -->
 
 
                         <div class="item-policy d-flex align-items-center">

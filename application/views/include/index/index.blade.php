@@ -33,9 +33,9 @@
     <div class="container-wide">
         <div class="row">
             <div class="col-12">
-                <div class="card card-custom card-color">
+                <div class="card card-custom">
                     <div class="card-header">
-                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-white header_title">
+                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-dark header_title">
                             {{ $row->{pick_language($row,'name_')} }} ({{$row->count_product}})
                         </a>
                         <div style="margin-left:auto;">
