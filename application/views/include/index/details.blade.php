@@ -21,23 +21,17 @@
                     <div class="card-body">
                         <div class="row justify-content-xs-center">
                             <div class="col-lg-6 text-lg-left area_image">
-                                <!-- <div>
-                                    <a class="fancybox" href="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif">
-                                        <img src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" class='img-responsive' />
-                                    </a>
-                                </div> -->
-
                                 <div class="slider-for">
                                     <div class="item">
-                                        <a data-fancybox="gallery" href="http://simbaeshop.com{{$product->image_url}}" class="fancybox d-flex">
-                                            <img class="product-featured-image img-responsive mx-auto" src="http://simbaeshop.com{{$product->image_url}}">
+                                        <a data-fancybox="gallery" href="http://simbaeshop.com{{$row->image_url}}" class="fancybox d-flex">
+                                            <img class="product-featured-image img-responsive mx-auto" src="http://simbaeshop.com{{$row->image_url}}">
                                         </a>
                                     </div>
                                     @if(!empty($product->other_image))
                                     @foreach($product->other_image as $row)
                                     <div class="item">
-                                        <a data-fancybox="gallery" href="http://simbaeshop.com{{$row->image_url}}" class="fancybox d-flex">
-                                            <img class="product-featured-image img-responsive mx-auto" src="http://simbaeshop.com{{$row->image_url}}" data-zoom-image="http://simbaeshop.com{{$row->image_url}}">
+                                        <a data-fancybox="gallery" href="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif" class="fancybox d-flex">
+                                            <img class="product-featured-image img-responsive mx-auto" src="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif">
                                         </a>
                                     </div>
                                     @endforeach
@@ -46,15 +40,15 @@
                                 @if(!empty($product->other_image))
                                 <div class="slider-nav">
                                     <div class="item m-2 border">
-                                        <a href="javascript:void(0)" data-image="http://simbaeshop.com{{$product->image_url}}" data-zoom-image="http://simbaeshop.com{{$product->image_url}}">
-                                            <img class="img-responsive" src="http://simbaeshop.com{{$product->image_url}}" data-zoom-image="http://simbaeshop.com{{$product->image_url}}">
+                                        <a href="javascript:void(0)">
+                                            <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}">
                                         </a>
                                     </div>
 
                                     @foreach($product->other_image as $row)
                                     <div class="item m-2 border">
-                                        <a href="javascript:void(0)" data-image="http://simbaeshop.com{{$row->image_url}}" data-zoom-image="http://simbaeshop.com{{$row->image_url}}">
-                                            <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}">
+                                        <a href="javascript:void(0)" data-image="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif" data-zoom-image="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif">
+                                            <img class="img-responsive" src="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif">
                                         </a>
                                     </div>
                                     @endforeach
