@@ -23,8 +23,8 @@
                             <div class="col-lg-6 text-lg-left area_image">
                                 <div class="slider-for">
                                     <div class="item">
-                                        <a data-fancybox="gallery" href="http://simbaeshop.com{{$row->image_url}}" class="fancybox d-flex">
-                                            <img class="product-featured-image img-responsive mx-auto" src="http://simbaeshop.com{{$row->image_url}}">
+                                        <a data-fancybox="gallery" href="http://simbaeshop.com{{$product->image_url}}" class="fancybox d-flex">
+                                            <img class="product-featured-image img-responsive mx-auto" src="http://simbaeshop.com{{$product->image_url}}">
                                         </a>
                                     </div>
                                     @if(!empty($product->other_image))
@@ -41,7 +41,7 @@
                                 <div class="slider-nav">
                                     <div class="item m-2 border">
                                         <a href="javascript:void(0)">
-                                            <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}">
+                                            <img class="img-responsive" src="http://simbaeshop.com{{$product->image_url}}">
                                         </a>
                                     </div>
 
