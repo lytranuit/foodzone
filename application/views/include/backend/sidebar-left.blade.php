@@ -134,13 +134,6 @@
                         Giá khuyến mãi
                     </a>
                 </li>
-                <li class="app-sidebar__heading">Đơn đặt hàng</li>
-                <li>
-                    <a href="{{base_url()}}sale/" class="">
-                        <i class="metismenu-icon fas fa-gift"></i>
-                        Đơn đặt hàng
-                    </a>
-                </li>
                 <li class="app-sidebar__heading">Cài đặt</li>
                 <li>
                     <a href="{{base_url()}}admin/settings" class="">

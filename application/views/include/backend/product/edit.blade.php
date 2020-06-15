@@ -4,14 +4,7 @@
             <input name="dangtin" value="1" type="hidden" />
             <section class="card card-fluid">
                 <h5 class="card-header">
-                    <div>
-                        <select class="chosen" id="product_simba">
-                            <option value="0">Lấy Sản phẩm từ Simba</option>
-                            @foreach($product_simba as $row)
-                            <option value="{{$row->id}}">{{$row->code}} - {{$row->name_vi}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
                     <div style="margin-left:auto">
                         <button type="submit" class="btn btn-sm btn-primary float-right">Save</button>
                     </div>
@@ -26,7 +19,7 @@
                                 </div>
                                 <b class="col-12 col-lg-2 col-form-label">Giá bán:<i class="text-danger">*</i></b>
                                 <div class="col-12 col-lg-4 pt-1">
-                                    <input class="form-control form-control-sm price" type='text' name="price" required placeholder="Giá bán" />
+                                    <input class="form-control form-control-sm price" type='text' name="retail_price" required placeholder="Giá bán" />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -48,17 +41,11 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <b class="col-12 col-lg-2 col-form-label">Hạn sử dụng:</b>
-                                <div class="col-12 col-lg-4 pt-1">
-                                    <input class="form-control form-control-sm" type='text' name="expiry_date" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <b class="col-12 col-lg-2 col-form-label">Hiển thị:</b>
                                 <div class="col-12 col-lg-4 pt-1">
                                     <div class="switch-button switch-button-xs switch-button-success">
-                                        <input type="hidden" class="input-tmp" checked="" name="active" value="0">
-                                        <input type="checkbox" checked="" id="switch2" name="active" value="1">
+                                        <input type="hidden" class="input-tmp" checked="" name="is_foodzone" value="0">
+                                        <input type="checkbox" checked="" id="switch2" name="is_foodzone" value="1">
                                         <span>
                                             <label for="switch2"></label>
                                         </span>
@@ -70,7 +57,7 @@
 
                                 </b>
                                 <div class="col-12 col-lg-4 pt-1">
-                                    <input class="form-control form-control-sm order" type='number' name="order" />
+                                    <input class="form-control form-control-sm order" type='number' name="sort" />
                                 </div>
                             </div>
 
@@ -78,7 +65,8 @@
                         <div class="col-md-4">
                             <div class="form-group row">
                                 <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <div class="image_ft"></div>
+                                    <img src="http://simbaeshop.com{{$tin->image_url}}" class="img-responsive" width="200"/>
+                                    <input type="hidden" name="image_url" />
                                 </div>
                             </div>
                         </div>
@@ -382,12 +370,8 @@
 </div>
 <script type='text/javascript'>
     $(document).ready(function() {
-        $(".image_ft").imageFeature();
         var tin = <?= json_encode($tin) ?>;
         fillForm($("#form-dang-tin"), tin);
-        if (tin.image) {
-            $(".image_ft").imageFeature("set_image", tin.image);
-        }
         $(".multiple_image").imageFeature({
             multiple: true,
             id: 'multi'
@@ -464,53 +448,6 @@
         $(".up_order").click(function() {
             let max = $(this).data("max");
             $(".order").val(max);
-        })
-        $("#product_simba").change(function() {
-            let val = $(this).val();
-            $.ajax({
-                url: path + "product/get_simba/" + val,
-                dataType: "JSON",
-                success: function(data) {
-                    data['origin_id'] = data['origin_country_id'];
-                    data['price'] = data['retail_price'];
-                    data['volume_vi'] = data['volume'];
-                    fillForm($("#form-dang-tin"), data);
-                    if (data.image) {
-                        $(".image_ft").imageFeature("set_image", data.image);
-                    }
-                    $('[name=detail_vi]').froalaEditor('html.set', data['detail_vi'])
-                    $('[name=detail_en]').froalaEditor('html.set', data['detail_en'])
-                    $('[name=detail_jp]').froalaEditor('html.set', data['detail_jp'])
-
-                    $('[name=element_vi]').froalaEditor('html.set', data['description_vi'])
-                    $('[name=element_en]').froalaEditor('html.set', data['description_en'])
-                    $('[name=element_jp]').froalaEditor('html.set', data['description_jp'])
-
-                    $('[name=guide_vi]').froalaEditor('html.set', data['guide_vi'])
-                    $('[name=guide_en]').froalaEditor('html.set', data['guide_en'])
-                    $('[name=guide_jp]').froalaEditor('html.set', data['guide_jp'])
-
-                    $('[name=description_vi]').val('')
-                    $('[name=description_en]').val('')
-                    $('[name=description_jp]').val('')
-                    $('#quanly').dataTable().fnClearTable();
-                    if (data.units) {
-                        for (let i in data.units) {
-                            let unit = data.units[i];
-                            let data_up = {
-                                cap_nhat: 1,
-                                id: 0,
-                                name_vi: unit.name_vi,
-                                name_en: unit.name_en,
-                                name_jp: unit.name_jp,
-                                special_unit: unit.special_unit,
-                                price: data.price * unit.special_unit,
-                            }
-                            save_dvt(data_up);
-                        }
-                    }
-                }
-            })
         })
         $('.price').inputmask("numeric", {
             radixPoint: ".",

@@ -77,7 +77,7 @@ class Index extends MY_Controller
             //     }
             // }
             /* COUNT PRODUCT */
-            $row->count_product = $this->product_model->where("deleted = 0 and active = 1 AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->count_rows();
+            $row->count_product = $this->product_model->where("status = 1 and is_foodzone = 1 AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->count_rows();
             /* SUB */
             $row->child = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'parent_id' => $row->id))->order_by('order', 'ASC')->get_all();
         }
@@ -141,11 +141,11 @@ class Index extends MY_Controller
             $this->data['category'] = $categories[0];
         }
         // die();
-        $this->data['product_related'] = $this->product_model->where("deleted = 0 and id IN(SELECT product_related_id FROM fz_product_related WHERE product_id = $id)", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
+        $this->data['product_related'] = $this->product_model->where("status = 1 and is_foodzone = 1 and id IN(SELECT product_related_id FROM fz_product_related WHERE product_id = $id)", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
         // print_r($this->data['product_related']);
         // die();
         if (empty($this->data['product_related'])) {
-            $this->data['product_related'] = $this->product_model->where("deleted = 0 and id IN(SELECT product_id FROM fz_product_category WHERE category_id IN(" . implode(",", $list_category_id) . "))", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
+            $this->data['product_related'] = $this->product_model->where("status = 1 and is_foodzone = 1 and id IN(SELECT product_id FROM fz_product_category WHERE category_id IN(" . implode(",", $list_category_id) . "))", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
         }
         if (!empty($this->data['product_related'])) {
             foreach ($this->data['product_related'] as &$row_format) {
@@ -200,7 +200,7 @@ class Index extends MY_Controller
         $row =  $this->category_model->get($id);
         if (empty($row))
             redirect("", "refresh");
-        $sql_where = "deleted = 0 and active = 1 and category_id = $row->id";
+        $sql_where = "status = 1 and is_foodzone = 1 and category_id = $row->id";
         /*
          * TINH COUNT
          */
@@ -241,7 +241,7 @@ class Index extends MY_Controller
         $limit = $limit != "" ? $limit : 20;
         $this->load->model("category_model");
         $this->load->model("product_model");
-        $sql_where = "deleted = 0 and active = 1 and id IN(SELECT product_id FROM fz_product_price WHERE NOW() BETWEEN date_from AND date_to AND deleted = 0)";
+        $sql_where = "status = 1 and is_foodzone = 1 and id IN(SELECT product_id FROM fz_product_price WHERE NOW() BETWEEN date_from AND date_to AND deleted = 0)";
         /*
          * TINH COUNT
          */
@@ -249,7 +249,7 @@ class Index extends MY_Controller
         $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->count_rows();
         $max_page = ceil($count / $limit);
 
-        $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('order', 'DESC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
+        $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('sort', 'DESC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
         if (!empty($data)) {
             foreach ($data as &$row_format) {
                 $row_format = $this->product_model->format($row_format);
@@ -285,7 +285,7 @@ class Index extends MY_Controller
         $this->load->model("category_model");
         $this->load->model("product_model");
 
-        $sql_where = "deleted = 0 and active = 1";
+        $sql_where = "status = 1 and is_foodzone = 1 ";
         if ($search != "") {
             $short_language = short_language_current();
             $sql_where .= " AND (code like '%" .

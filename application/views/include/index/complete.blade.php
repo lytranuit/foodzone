@@ -27,14 +27,14 @@
                                         <td class="product__image">
                                             <div class="product-thumbnail">
                                                 <div class="product-thumbnail__wrapper">
-                                                    <img class="img-responsive" src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" />
+                                                    <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}" />
                                                 </div>
                                                 <span class="product-thumbnail__quantity" aria-hidden="true">{{$row->qty}}</span>
                                             </div>
 
                                         </td>
                                         <td class="product__description">
-                                            <a href='' class="font-weight-bold text-black">{{ $row->{pick_language($row,'name_')} }}</a>
+                                            <a href='' class="font-weight-bold text-dark">{{ $row->{pick_language($row,'name_')} }}</a>
                                             <div>{{lang("code")}}:{{$row->code}}</div>
                                         </td>
                                         <td class="product__price">

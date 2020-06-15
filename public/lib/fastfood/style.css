@@ -25172,7 +25172,7 @@ html:not(.lt-ie10) .not-animated {
 */
 .rd-navbar {
     display: none;
-    background: #ed7325;
+    background: #f7921e;
     box-shadow: none;
     box-shadow: 0px 4px 4px 1px grey;
 }
@@ -26138,7 +26138,7 @@ html:not(.lt-ie10) .not-animated {
     top: 0;
     right: 0;
     z-index: 9999;
-    background: #ed7325;
+    background: #f7921e;
 }
 
 .rd-navbar-static.rd-navbar--is-stuck .rd-navbar-megamenu,
@@ -26787,7 +26787,7 @@ html:not(.lt-ie10) .not-animated {
     right: 0;
     box-shadow: 0 0 13px -1px rgba(0, 0, 0, 0.17);
     border-bottom: 1px solid #f9b129;
-    background: #ed7325;
+    background: #f7921e;
 }
 
 .rd-navbar-fixed .rd-navbar-toggle {

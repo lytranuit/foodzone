@@ -102,7 +102,7 @@ class Eat extends MY_Administrator
             $this->data['products'] = $this->product_category_model->where(array('category_id' => $id))->with_product()->order_by('order', "ASC")->get_all();
 
             $this->load->model("product_model");
-            $this->data['products_add'] = $this->product_model->where(array("deleted" => 0))->get_all();
+            $this->data['products_add'] = $this->product_model->where(array("status" => 1, 'is_foodzone' => 1))->get_all();
             // echo "<pre>";
             // print_r($this->data['products']);
             // die();

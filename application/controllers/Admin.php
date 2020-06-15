@@ -2570,7 +2570,7 @@ class Admin extends MY_Administrator
         $code = $this->input->post('code');
         $product_id = $this->input->post('product_id');
         $this->load->model("product_model");
-        $check = $this->product_model->where(array("code" => $code, 'deleted' => 0));
+        $check = $this->product_model->where(array("code" => $code, 'status' => 1));
         if ($product_id > 0) {
             $check = $check->where("id", "!=", $product_id)->get();
         } else {

@@ -22,7 +22,7 @@
                                         <input type="hidden" value="1" class="number" />
                                         <figure>
                                             <a href="{{base_url()}}index/details/{{$product->id}}">
-                                                <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
+                                                <img class="img-responsive" src="http://simbaeshop.com{{$product->image_url}}" alt="">
                                             </a>
                                             <div class="view_now d-flex align-items-center">
                                                 <a href="#" class="btn btn-danger mx-auto view_now_btn">{{lang("view")}}</a>

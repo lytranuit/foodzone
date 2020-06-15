@@ -8,12 +8,12 @@ class Product_model extends MY_Model
 
     public function __construct()
     {
-        $this->table = 'fz_product';
+        $this->table = 'product';
         $this->primary_key = 'id';
         $this->before_create[] = 'create_date';
         parent::__construct();
-        $this->has_one['image'] = array('foreign_model' => 'File_model', 'foreign_table' => 'fz_file', 'foreign_key' => 'id', 'local_key' => 'image_id');
-        $this->has_one['origin'] = array('foreign_model' => 'Origin_model', 'foreign_table' => 'origin_country', 'foreign_key' => 'id', 'local_key' => 'origin_id');
+        // $this->has_one['image'] = array('foreign_model' => 'File_model', 'foreign_table' => 'fz_file', 'foreign_key' => 'id', 'local_key' => 'image_id');
+        $this->has_one['origin'] = array('foreign_model' => 'Origin_model', 'foreign_table' => 'origin_country', 'foreign_key' => 'id', 'local_key' => 'origin_country_id');
         $this->has_one['preservation'] = array('foreign_model' => 'Preservation_model', 'foreign_table' => 'preservation', 'foreign_key' => 'id', 'local_key' => 'preservation_id');
         $this->has_many['price_km'] = array('foreign_model' => 'product_price_model', 'foreign_table' => 'fz_product_price', 'foreign_key' => 'product_id', 'local_key' => 'id');
         $this->has_many['units'] = array('foreign_model' => 'product_unit_model', 'foreign_table' => 'fz_product_unit', 'foreign_key' => 'product_id', 'local_key' => 'id');
@@ -50,7 +50,7 @@ class Product_model extends MY_Model
     }
     function get_max_order()
     {
-        $sql = "SELECT MAX(`order`) as max FROM fz_product";
+        $sql = "SELECT MAX(`sort`) as max FROM product";
         //        echo $sql;
         //        die();
         $query = $this->db->query($sql);
@@ -74,16 +74,17 @@ class Product_model extends MY_Model
         // die();
         // print_r($product->units);
         // $product->units = array_values($product->units);
+        $product->price = $product->retail_price;
         if (!empty($product->units)) {
             $product->units = array_values((array) $product->units);
             usort($product->units, function ($a, $b) {
                 return $a->price > $b->price;
             });
             foreach ($product->units as $key => &$unit) {
-                if ($unit->deleted == 1) {
-                    unset($product->units[$key]);
-                    break;
-                }
+                // if ($unit->deleted == 1) {
+                //     unset($product->units[$key]);
+                //     break;
+                // }
                 $unit_id = $unit->id;
 
                 $unit_km = array_values(array_filter($price_km, function ($item) use ($unit_id) {

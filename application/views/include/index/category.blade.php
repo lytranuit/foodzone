@@ -5,7 +5,7 @@
             <div class="col-lg-9">
                 <div class="row">
                     @if($row->{pick_language($row, 'description_')} != "")
-                    <div class="col-12 text-black mb-4">
+                    <div class="col-12 text-dark mb-4">
                         <div class="card card-custom">
                             <div class="card-body">
                                 <div class="fr-view">
@@ -18,7 +18,7 @@
                     <div class="col-lg-12">
                         <div class="card card-custom">
                             <div class="card-header">
-                                <a href="{{base_url()}}index/category/{{$row->id}}" class="text-black">
+                                <a href="{{base_url()}}index/category/{{$row->id}}" class="text-dark">
                                     {{ $row->{pick_language($row, 'name_')} }}
                                 </a>
                                 <div style="margin-left:auto;font-size:13px;">
@@ -34,7 +34,7 @@
                                         <input type="hidden" value="1" class="number" />
                                         <figure>
                                             <a href="{{base_url()}}index/details/{{$product->id}}">
-                                                <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" alt="">
+                                                <img class="img-responsive" src="http://simbaeshop.com{{$product->image_url}}" alt="">
                                             </a>
                                             <div class="view_now d-flex align-items-center">
                                                 <a href="#" class="btn btn-danger mx-auto view_now_btn">{{lang("view")}}</a>

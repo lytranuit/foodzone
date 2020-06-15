@@ -29,15 +29,15 @@
 
                                 <div class="slider-for">
                                     <div class="item">
-                                        <a data-fancybox="gallery" href="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" class="fancybox d-flex">
-                                            <img class="product-featured-image img-responsive mx-auto" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" data-zoom-image="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif">
+                                        <a data-fancybox="gallery" href="http://simbaeshop.com{{$product->image_url}}" class="fancybox d-flex">
+                                            <img class="product-featured-image img-responsive mx-auto" src="http://simbaeshop.com{{$product->image_url}}">
                                         </a>
                                     </div>
                                     @if(!empty($product->other_image))
                                     @foreach($product->other_image as $row)
                                     <div class="item">
-                                        <a data-fancybox="gallery" href="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif" class="fancybox d-flex">
-                                            <img class="product-featured-image img-responsive mx-auto" src="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif" data-zoom-image="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif">
+                                        <a data-fancybox="gallery" href="http://simbaeshop.com{{$row->image_url}}" class="fancybox d-flex">
+                                            <img class="product-featured-image img-responsive mx-auto" src="http://simbaeshop.com{{$row->image_url}}" data-zoom-image="http://simbaeshop.com{{$row->image_url}}">
                                         </a>
                                     </div>
                                     @endforeach
@@ -46,15 +46,15 @@
                                 @if(!empty($product->other_image))
                                 <div class="slider-nav">
                                     <div class="item m-2 border">
-                                        <a href="javascript:void(0)" data-image="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" data-zoom-image="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif">
-                                            <img class="img-responsive" src="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif" data-zoom-image="@if($product->image->type == 2) http://simbaeshop.com{{$product->image->src}} @else {{base_url()}}{{$product->image->src}} @endif">
+                                        <a href="javascript:void(0)" data-image="http://simbaeshop.com{{$product->image_url}}" data-zoom-image="http://simbaeshop.com{{$product->image_url}}">
+                                            <img class="img-responsive" src="http://simbaeshop.com{{$product->image_url}}" data-zoom-image="http://simbaeshop.com{{$product->image_url}}">
                                         </a>
                                     </div>
 
                                     @foreach($product->other_image as $row)
                                     <div class="item m-2 border">
-                                        <a href="javascript:void(0)" data-image="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif" data-zoom-image="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif">
-                                            <img class="img-responsive" src="@if($row->type == 2) http://simbaeshop.com{{$row->src}} @else {{base_url()}}{{$row->src}} @endif">
+                                        <a href="javascript:void(0)" data-image="http://simbaeshop.com{{$row->image_url}}" data-zoom-image="http://simbaeshop.com{{$row->image_url}}">
+                                            <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}">
                                         </a>
                                     </div>
                                     @endforeach
@@ -136,11 +136,6 @@
                                         - {{lang('bao_quan')}}: {{ $product->preservation->{pick_language($product->preservation,'name_')} }}
                                     </div>
                                     @endif
-                                    @if(isset($product->origin) && $product->expiry_date != "")
-                                    <div>
-                                        - {{lang('han_su_dung')}}: {{ $product->expiry_date }}
-                                    </div>
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -185,7 +180,7 @@
                                     <input type="hidden" value="1" class="number" />
                                     <figure>
                                         <a href="{{base_url()}}index/details/{{$row->id}}">
-                                            <img class="img-responsive" src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" alt="">
+                                            <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}" alt="">
                                         </a>
                                         <div class="view_now d-flex align-items-center">
                                             <a href="#" class="btn btn-danger mx-auto view_now_btn">{{lang("view")}}</a>

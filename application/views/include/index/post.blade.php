@@ -34,7 +34,7 @@
                                     <?= $post->content ?>
                                 </div>
                             </section>
-                            <footer class="offset-top-50 text-sm-left clearfix">
+                            <div class="offset-top-50 text-sm-left clearfix">
                                 <div class="big text-bold text-base pull-sm-left">{{lang("share")}}:</div>
                                 <ul class="list-inline pull-sm-right offset-top-0 text-sm-right">
                                     <li><a target="_blank" class="link-darkest icon icon-xxs-mod-1 fab fa-facebook" href="http://www.facebook.com/sharer/sharer.php?u={{current_url()}}"></a></li>
@@ -46,7 +46,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </footer>
+                            </div>
                         </article>
                         <hr class="offset-top-50">
                     </div>

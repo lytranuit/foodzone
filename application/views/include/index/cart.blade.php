@@ -34,12 +34,12 @@
             <div class="card-body">
                 <div class="row no-gutters">
                     <div class="col-lg-1 col-3">
-                        <img class="img-responsive" src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" />
+                        <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}" />
                     </div>
                     <div class="col-lg-11 col-9">
                         <div class="row no-gutters">
                             <div class="col-lg-4">
-                                <a href="{{base_url()}}index/details/{{$row->id}}" class="text-black font-weight-bold">{{ $row->{pick_language($row,'name_')} }}</a>
+                                <a href="{{base_url()}}index/details/{{$row->id}}" class="text-dark font-weight-bold">{{ $row->{pick_language($row,'name_')} }}</a>
                                 <div>{{lang("code")}}: <span class="font-weight-bold">{{$row->code}}</span></div>
                             </div>
                             <div class="col-lg-2 text-lg-center mt-3">

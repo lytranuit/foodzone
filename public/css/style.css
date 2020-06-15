@@ -1,3 +1,44 @@
+.col-2dot4,
+.col-sm-2dot4,
+.col-md-2dot4,
+.col-lg-2dot4,
+.col-xl-2dot4 {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px; }
+
+.col-2dot4 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 20%;
+  flex: 0 0 20%;
+  max-width: 20%; }
+
+@media (min-width: 540px) {
+  .col-sm-2dot4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%; } }
+@media (min-width: 720px) {
+  .col-md-2dot4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%; } }
+@media (min-width: 960px) {
+  .col-lg-2dot4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%; } }
+@media (min-width: 1140px) {
+  .col-xl-2dot4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%; } }
 /* Let's get this party started */
 ::-webkit-scrollbar {
   width: 5px; }
@@ -44,7 +85,7 @@
     padding-right: 0.625rem;
     border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0; }
   .card.card-color .card-header {
-    background-color: #ed7325;
+    background-color: #f7921e;
     color: white; }
   .card .text-dark:hover {
     color: #ec5353 !important; }
@@ -108,7 +149,7 @@ header .nav > li > a:hover {
   background: #70634d; }
 
 .topbar {
-  background: #ed7325;
+  background: #f7921e;
   color: #fff;
   text-align: center;
   height: 40px;
@@ -1336,7 +1377,7 @@ header nav .nav-item.active > a {
     top: 0px;
     color: #fff;
     right: -20px;
-    background: #f7921e; }
+    background: #dc3545; }
 
 @media (min-width: 991px) {
   .list.list-marked .img_km {
@@ -1423,7 +1464,7 @@ header nav .nav-item.active > a {
     font-weight: bold; }
 
 footer {
-  background: #223f4f;
+  background: #f7921e;
   color: white; }
 
 /*# sourceMappingURL=style.css.map */
