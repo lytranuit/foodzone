@@ -379,8 +379,9 @@ class Ajax extends MY_Controller
         $page = $page != "" ? $page : 1;
         $limit = $limit != "" ? $limit : 12;
         $sql_where = "status = 1 and is_foodzone = 1 ";
+
         if ($category > 0) {
-            $sql_where .= " AND product.id IN (SELECT product_id FROM fz_product_category WHERE category_id = $category)";
+            $sql_where .= " AND fz_product_category.category_id = $category";
         } else {
             echo "";
         }
@@ -393,11 +394,11 @@ class Ajax extends MY_Controller
         /*
          * TINH COUNT
          */
-        $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->count_rows();
+        $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->count_rows();
         /*
          * LAY DATA
          */
-        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->group_by("fz_product_category.product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_image()->with_price_km()->paginate($limit, NULL, $page);
+        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_image()->with_price_km()->paginate($limit, NULL, $page);
         if (!empty($data)) {
             foreach ($data as &$row_format) {
                 $row_format = $this->product_model->format($row_format);

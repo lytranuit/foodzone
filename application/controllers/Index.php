@@ -207,7 +207,7 @@ class Index extends MY_Controller
         $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->count_rows();
         $max_page = ceil($count / $limit);
 
-        $data = $this->product_model->where($sql_where, null, null, null, null, true)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
+        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->group_by("fz_product_category.product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_image()->with_price_km()->paginate($limit, NULL, $page);
         if (!empty($data)) {
             foreach ($data as &$row_format) {
                 $row_format = $this->product_model->format($row_format);
