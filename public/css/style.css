@@ -84,9 +84,12 @@
     align-items: center;
     padding-right: 0.625rem;
     border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0; }
-  .card.card-color .card-header {
-    background-color: #f7921e;
-    color: white; }
+  .card.card-color {
+    border-radius: 0px 30px 0px 0px; }
+    .card.card-color .card-header {
+      background-color: #f7921e;
+      color: white;
+      border-radius: 0px 30px; }
   .card .text-dark:hover {
     color: #ec5353 !important; }
 

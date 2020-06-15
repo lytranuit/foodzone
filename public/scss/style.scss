@@ -98,9 +98,11 @@
     }
 
     &.card-color {
+        border-radius: 0px 30px 0px 0px;
         .card-header {
             background-color: #f7921e;
             color: white;
+            border-radius: 0px 30px;
         }
     }
     .text-dark {
