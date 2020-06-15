@@ -77,7 +77,7 @@ class Index extends MY_Controller
             //     }
             // }
             /* COUNT PRODUCT */
-            $row->count_product = $this->product_model->where("status = 1 and is_foodzone = 1 AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->count_rows();
+            $row->count_product = $this->product_model->where("status = 1 and is_foodzone = 1 AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->group_by("fz_product_category.product_id")->count_rows();
             /* SUB */
             $row->child = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'parent_id' => $row->id))->order_by('order', 'ASC')->get_all();
         }
