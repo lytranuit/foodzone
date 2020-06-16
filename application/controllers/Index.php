@@ -119,7 +119,7 @@ class Index extends MY_Controller
         $id = $params[0];
         $version = $this->config->item("version");
         $this->load->model("product_model");
-        $product = $this->product_model->with_other_image()->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to and deleted = 0')->with_preservation()->with_origin()->with_category()->get($id);
+        $product = $this->product_model->with_foodzone()->with_other_image()->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to and deleted = 0')->with_preservation()->with_origin()->with_category()->get($id);
         if (empty($product))
             show_404();
         $this->data['title'] = $product->{pick_language($product, 'name_')};
@@ -197,6 +197,9 @@ class Index extends MY_Controller
         $limit = $limit != "" ? $limit : 20;
         $this->load->model("category_model");
         $this->load->model("product_model");
+
+        // print_r($page . "<br>");
+        // print_r($limit. "<br>");
         $row =  $this->category_model->get($id);
         if (empty($row))
             redirect("", "refresh");
@@ -207,7 +210,7 @@ class Index extends MY_Controller
         $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->count_rows();
         $max_page = ceil($count / $limit);
 
-        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->group_by("fz_product_category.product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_image()->with_price_km()->paginate($limit, NULL, $page);
+        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_image()->with_price_km()->limit($limit, ($page - 1) * $limit)->get_all();
         if (!empty($data)) {
             foreach ($data as &$row_format) {
                 $row_format = $this->product_model->format($row_format);

@@ -80,10 +80,31 @@ class Product extends MY_Administrator
         $id = $param[0];
         if (isset($_POST['dangtin'])) {
             $this->load->model("product_model");
+            $this->load->model("product_fz_model");
             $data = $_POST;
+            $code = $data['code'];
+            $data_fz = array('code' => $code);
+            foreach ($data as $key => $val) {
+                if (substr($key, 0, 3) == "fz_") {
+                    $key_fz = substr($key, 3);
+                    $data_fz[$key_fz] = $val;
+                }
+            }
+            // echo "<pre>";
+            // print_r($data_fz);
+            // die();
             $data_up = $this->product_model->create_object($data);
             $this->product_model->update($data_up, $id);
 
+
+            $data_up = $this->product_fz_model->create_object($data_fz);
+            $check =  $this->product_fz_model->where(array('code' => $code))->get();
+            if (empty($check)) {
+                //Update
+                $this->product_fz_model->insert($data_up);
+            } else {
+                $this->product_fz_model->where('code', $code)->update($data_up);
+            }
 
             /* CATEGORY */
             $this->load->model("product_category_model");
@@ -176,7 +197,7 @@ class Product extends MY_Administrator
             $this->load->model("product_model");
             $this->load->model("product_related_model");
             $this->load->model("product_category_model");
-            $tin = $this->product_model->where(array('id' => $id))->with_other_image()->with_units()->with_image()->as_object()->get();
+            $tin = $this->product_model->where(array('id' => $id))->with_foodzone()->with_other_image()->with_units()->with_image()->as_object()->get();
             $product_related = $this->product_related_model->where(array('product_id' => $id))->as_object()->get_all();
             $category = $this->product_category_model->where(array('product_id' => $id))->as_object()->get_all();
             if (!empty($category)) {
@@ -202,6 +223,26 @@ class Product extends MY_Administrator
                 // print_r($tin->other_image);
                 // die();
             }
+            if (!empty($tin->foodzone)) {
+                foreach ($tin->foodzone as $key => $val) {
+                    $tin->{"fz_" . $key} = $val;
+                }
+            } else {
+                $tin->fz_description_vi = $tin->description_vi;
+                $tin->fz_description_en = $tin->description_en;
+                $tin->fz_description_jp = $tin->description_jp;
+
+                $tin->fz_detail_vi = $tin->detail_vi;
+                $tin->fz_detail_en = $tin->detail_en;
+                $tin->fz_detail_jp = $tin->detail_jp;
+
+                $tin->fz_guide_vi = $tin->guide_vi;
+                $tin->fz_guide_en = $tin->guide_en;
+                $tin->fz_guide_jp = $tin->guide_jp;
+            }
+            // echo "<pre>";
+            // print_r($tin);
+            // die();
             $this->data['tin'] = $tin;
 
             load_editor($this->data);

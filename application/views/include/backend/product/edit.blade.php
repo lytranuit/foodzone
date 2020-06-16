@@ -116,25 +116,25 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả sơ lược:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" name="description_vi" placeholder="Mô tả"></textarea>
+                                            <textarea class="form-control" name="fz_description_vi" placeholder="Mô tả"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả chi tiết:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="edit" name="detail_vi" placeholder="Tiếng việt"></textarea>
+                                            <textarea class="edit" name="fz_detail_vi" placeholder="Tiếng việt"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Thành phần nguyên liệu:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="edit" name="element_vi" placeholder="Tiếng việt"></textarea>
+                                            <textarea class="edit" name="fz_element_vi" placeholder="Tiếng việt"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Hướng dẫn sử dụng:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="edit" name="guide_vi" placeholder="Tiếng việt"></textarea>
+                                            <textarea class="edit" name="fz_guide_vi" placeholder="Tiếng việt"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -152,25 +152,25 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả sơ lược:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" name="description_en" placeholder="Mô tả - Tiếng Anh"></textarea>
+                                            <textarea class="form-control" name="fz_description_en" placeholder="Mô tả - Tiếng Anh"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả chi tiết:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="edit" name="detail_en" placeholder="Tiếng Anh"></textarea>
+                                            <textarea class="edit" name="fz_detail_en" placeholder="Tiếng Anh"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Thành phần nguyên liệu:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="edit" name="element_en" placeholder="Tiếng Anh"></textarea>
+                                            <textarea class="edit" name="fz_element_en" placeholder="Tiếng Anh"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Hướng dẫn sử dụng:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="edit" name="guide_en" placeholder="Tiếng Anh"></textarea>
+                                            <textarea class="edit" name="fz_guide_en" placeholder="Tiếng Anh"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -188,25 +188,25 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả sơ lược:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" name="description_jp" placeholder="Mô tả - Tiếng Nhật"></textarea>
+                                            <textarea class="form-control" name="fz_description_jp" placeholder="Mô tả - Tiếng Nhật"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả chi tiết:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="edit" name="detail_jp" placeholder="Tiếng nhật"></textarea>
+                                            <textarea class="edit" name="fz_detail_jp" placeholder="Tiếng nhật"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Thành phần nguyên liệu:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="edit" name="element_jp" placeholder="Tiếng nhật"></textarea>
+                                            <textarea class="edit" name="fz_element_jp" placeholder="Tiếng nhật"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Hướng dẫn sử dụng:</b>
                                         <div class="col-lg-12">
-                                            <textarea class="edit" name="guide_jp" placeholder="Tiếng nhật"></textarea>
+                                            <textarea class="edit" name="fz_guide_jp" placeholder="Tiếng nhật"></textarea>
                                         </div>
                                     </div>
                                 </div>

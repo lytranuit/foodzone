@@ -84,6 +84,7 @@
                                         @endif</span>
                                     <span class="price price-km">{{ number_format($product->price,0,",",".") }}đ</span>
                                 </div>
+
                                 @if(!empty($product->units))
                                 <div class="offset-top-10">
                                     <span>{{lang("dvt")}}:</span>
@@ -96,6 +97,7 @@
                                     </div>
                                 </div>
                                 @endif
+
                                 <div class="offset-top-10">
                                     <div class="group-sm">
                                         <div class="stepper-type-1">
@@ -131,6 +133,7 @@
                                     </div>
                                     @endif
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -147,12 +150,12 @@
                                 <div class="resp-tabs-container">
                                     <div class="resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0">
                                         <div class="fr-view">
-                                            <?= $product->{pick_language($product, 'detail_')} ?>
+                                            <?= $product->foodzone->{pick_language($product->foodzone, 'detail_')} ?>
                                         </div>
                                     </div>
                                     <div class="resp-tab-content" aria-labelledby="tab_item-1">
                                         <div class="fr-view">
-                                            <?= $product->{pick_language($product, 'guide_')} ?>
+                                            <?= $product->foodzone->{pick_language($product->foodzone, 'guide_')} ?>
                                         </div>
                                     </div>
                                 </div>
