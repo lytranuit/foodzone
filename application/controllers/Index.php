@@ -164,6 +164,24 @@ class Index extends MY_Controller
             $data = $_POST;
             $this->load->model("user_model");
             $this->load->model("usergroup_model");
+            if (!isset($data['username']) || !isset($data['email']))
+                die();
+            $username = $data['username'];
+            $email = $data['email'];
+
+            $check = $this->user_model->where(array("username" => $username))->as_array()->get();
+            // account_creation_duplicate_identity
+            // account_creation_duplicate_email
+            if (!empty($check)) {
+
+                redirect('/index/register?msg=1', 'refresh');
+                die();
+            }
+            $check = $this->user_model->where(array("email" => $email))->as_array()->get();
+            if (!empty($check)) {
+                redirect('/index/register?msg=2', 'refresh');
+                die();
+            }
             $data_up = $this->user_model->create_object($data);
             $id = $this->user_model->insert($data_up);
 
@@ -173,10 +191,14 @@ class Index extends MY_Controller
                 'user_id' => $id
             );
             $this->usergroup_model->insert($array);
+            // die();
             redirect('/index/login', 'refresh');
         } else {
             $version = $this->config->item("version");
-
+            $msg = $this->input->get("msg");
+            // print_r($msg);
+            // die();
+            $this->data['msg'] = $msg;
             array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
@@ -277,6 +299,7 @@ class Index extends MY_Controller
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
+
     public function search()
     {
         $search = $this->input->get("q");
@@ -422,6 +445,14 @@ class Index extends MY_Controller
 
     function checkout()
     {
+        if ($this->data['is_login']) {
+            $this->load->model("address_model");
+            $user_id =  $this->data['userdata']['user_id'];
+            $address = $this->address_model->where(array("user_id" => $user_id, 'deleted' => 0))->get_all();
+            // print_r($address);
+            // die();
+            $this->data['address'] = $address;
+        }
         $this->data['cart'] = sync_cart();
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
@@ -432,45 +463,51 @@ class Index extends MY_Controller
     {
         $cart = sync_cart();
         if (isset($_POST) && count($_POST) && count($cart['details'])) {
-            $this->load->model("sale_model");
+            $this->load->model("address_model");
             $this->load->model("sale_line_model");
             $this->load->model("sale_simba_model");
             $this->load->model("sale_line_simba_model");
             $array = $_POST;
+
             $array['amount'] = $cart['amount_product'];
             $array['total_amount'] = $cart['amount_product'] + 0;
-            $array['data'] = json_encode($cart);
-            $data = $this->sale_model->create_object($array);
-            // echo "<pre>";
-            // print_r($data);
-            // die();
-            $order_id = $this->sale_model->insert($data);
-            $this->sale_model->where("id", $order_id)->update(array("code" => "FOZ-$order_id"));
+            $array['data_fz'] = json_encode($cart);
+            // $data = $this->sale_model->create_object($array);
+            // // echo "<pre>";
+            // // print_r($data);
+            // // die();
+            // $order_id = $this->sale_model->insert($data);
+            // $this->sale_model->where("id", $order_id)->update(array("code" => "FOZ-$order_id"));
 
             ///UPDATE SIMBA
-            $array['code'] = "FOZ-$order_id";
+            $array['order_date'] = date("Y-m-d H:i:s");
+            $array['delivery_date'] = date("Y-m-d");
+            $array['code'] = "FOZ-" . date("YmdHisz");
             $array['customer_name'] = $array['name'];
             $array['customer_phone'] =  $array['phone'];
             $array['customer_email'] =  $array['email'];
             $array['customer_address'] =  $array['address'];
+
             $array['receiver_name'] = $array['name'];
             $array['receiver_phone'] =  $array['phone'];
             $array['receiver_email'] =  $array['email'];
             $array['receiver_address'] =  $array['address'];
 
+
+            $array['customer_id'] =  7544;
+            if (isset($array['address_id']) && $array['address_id'] > 0) {
+                // $address_id = $array['address_id'];
+                // $address = $this->address_model->get($address_id);
+
+            } else {
+                $array['user_id'] =  $this->data['userdata']['user_id'];
+                $data = $this->address_model->create_object($array);
+                $this->address_model->insert($data);
+            }
             $data = $this->sale_simba_model->create_object($array);
             $order_simba_id = $this->sale_simba_model->insert($data);
 
             foreach ($cart['details'] as $row) {
-                $data_up = array(
-                    'order_id' => $order_id,
-                    'product_id' => $row->id,
-                    'quantity' => $row->qty,
-                    'unit_id' => $row->unit_id,
-                    'data' => json_encode($row)
-                );
-                $this->sale_line_model->insert($data_up);
-
                 ///UPDATE SIMBA
                 $data_up = array(
                     'order_id' => $order_simba_id,
@@ -478,7 +515,9 @@ class Index extends MY_Controller
                     'unit_price' => $row->price,
                     'subtotal' => $row->amount,
                     'name' => $row->name_vi,
-                    'code' => $row->code
+                    'code' => $row->code,
+                    'product_id' => $row->id,
+                    'image_url' => $row->image_url
                 );
                 $this->sale_line_simba_model->insert($data_up);
             }
@@ -659,5 +698,15 @@ class Index extends MY_Controller
             }
         }
         echo 1;
+    }
+
+
+    function remove_address($params)
+    {
+        $this->load->model("address_model");
+        $id = $params[0];
+        $this->address_model->update(array("deleted" => 1), $id);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
     }
 }

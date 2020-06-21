@@ -15,7 +15,7 @@
                                 <div class="form-group row">
                                     <b class="col-12 col-sm-3 col-form-label text-sm-right">{{lang('login_identity_label')}}:<i class="text-danger">*</i></b>
                                     <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                        <input type="text" class="form-control" value="" name="{{lang('login_identity_label')}}" required="">
+                                        <input type="text" class="form-control" value="" name="username" required="">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -72,6 +72,12 @@
 
 <script>
     $(document).ready(function() {
+        let msg = <?= $msg ?>;
+        if (msg == 1) {
+            alert(dup_username);
+        } else if (msg == 2) {
+            alert(dup_email);
+        }
         $("#form-dang-tin").validate({
             highlight: function(input) {
                 $(input).parents('.form-line').addClass('error');

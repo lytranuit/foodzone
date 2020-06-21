@@ -615,7 +615,7 @@ if (!function_exists('sync_cart')) {
                 $id = $item['id'];
                 $unit_id = isset($item['unit']) ? $item['unit'] : 0;
 
-                $product = $CI->product_model->where(array('id' => $id))->with_units()->with_image()->with_price_km()->get();
+                $product = $CI->product_model->where(array('id' => $id))->with_units()->with_price_km()->get();
                 $product = $CI->product_model->format($product);
                 $price_this = $product->price;
                 if ($unit_id > 0) {

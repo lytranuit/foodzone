@@ -81,7 +81,28 @@
         @endforeach
         <div class="row">
             <div class="col-lg-6">
-
+                <div class="card mt-2">
+                    <div class="order-cart-policy">
+                        <ul class="content-block">
+                            <li>
+                                <span><i class="fa fa-bus"></i></span>
+                                <p>Miễn phí giao hàng cho đơn hàng từ <span class="text-highlight">500,000&nbsp;₫</span> trở lên</p>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-archive"></i></span>
+                                <p>Giá niêm yết bao gồm <span class="text-highlight">VAT</span></p>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-credit-card"></i></span>
+                                <p>Thanh toán bằng chuyển khoản ngân hàng hoặc tiền mặt</p>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-phone"></i></span>
+                                <p>Vui lòng gọi <span class="text-highlight">(+84) 0917 211 515</span> để biết thêm chi tiết</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-6">
                 <div class="card cart-page-footer mt-2">
