@@ -38,7 +38,7 @@
                             </li>
                             @else
                             <li>
-                                <a href="{{base_url()}}index/login"><i class="fa fa-user"></i>{{lang("login")}}</a>
+                                <a href="{{base_url()}}index/login"><i class="fa fa-user"></i> {{lang("login")}}</a>
                             </li>
                             <li><span>{{lang("or")}}</span></li>
                             <li><a href="{{base_url()}}index/register">{{lang("sign_up")}}</a>

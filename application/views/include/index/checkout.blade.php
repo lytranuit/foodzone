@@ -1,4 +1,16 @@
-<?= $widget->post_header(lang("order_title")) ?>
+<section class="text-center py-3 bg-image bg-image-breadcrumbs">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-xs-12 col-xl-preffix-1 col-xl-11">
+                <ul class="breadcrumbs-custom">
+                    <li><a href="{{base_url()}}">{{lang('home')}}</a></li>
+                    <li><a href="{{base_url()}}index/cart">{{lang("cart_title")}}</a></li>
+                    <li class="active">{{lang("order_title")}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="py-5 cart bg-gray-lighter">
 
     <form id="contactForm" name="fast_checkout_form" action="{{base_url()}}index/complete" method="post" class="cm-processed-form">
@@ -8,45 +20,86 @@
                     <div class="checkout-steps cm-save-fields clearfix" id="checkout_steps">
                         <div class="ty-step__container-active ty-step-one fast-checkout">
                             <div id="fast_checkout_body" class="ty-step__body-active babi-ty-step--body-active">
-                                <div class="section section--contact-information">
-                                    @if(!$is_login)
-                                    <div class="card">
-                                        <div class="card-header">
-                                            {{lang("info")}}
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="layout-flex__item">
-                                                <span aria-hidden="true">{{lang("cart_anwser")}}</span>
-                                                <a href="{{base_url()}}/index/login?next={{current_url()}}" class="link">
-                                                    {{lang("login")}}
-                                                </a>
-                                            </p>
-                                            <div class="form-group">
-                                                <input type="email" name="email" required="" placeholder="{{lang('login_email_label')}}" title="{{lang('login_email_label')}}" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @else
-                                    <input type="hidden" name="email" value="{{$userdata['email']}}">
-                                    <input type="hidden" name="user_id" value="{{$userdata['user_id']}}">
-                                    @endif
-                                </div>
-
-                                <div class="card my-3">
+                                <div class="card">
                                     <div class="card-header">
                                         {{lang("cart_info_title")}}
                                     </div>
                                     <div class="card-body">
-                                        <div class="form-group">
-                                            <input type="text" name="name" value="{{ $userdata['name'] or '' }}" required="" placeholder="{{lang('cart_info_name')}}" title="{{lang('cart_info_name')}}" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="phone" value="{{ $userdata['phone'] or '' }}" required="" placeholder="{{lang('login_phone_label')}}" title="{{lang('login_phone_label')}}" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="address" value="{{ $userdata['address'] or '' }}" required="" placeholder="{{lang('login_address_label')}}" title="{{lang('login_address_label')}}" class="form-control">
-                                        </div>
+                                        @if(!$is_login)
+                                        <p class="layout-flex__item">
+                                            <span aria-hidden="true">{{lang("cart_anwser")}}</span>
+                                            <a href="{{base_url()}}/index/login?next={{current_url()}}" class="link">
+                                                {{lang("login")}}
+                                            </a>
+                                        </p>
 
+                                        <div class="form-group">
+                                            <b class="small font-weight-bold">{{lang('cart_info_name')}}:</b>
+                                            <input type="text" name="name" value="{{ $userdata['name'] or '' }}" required="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <b class="small font-weight-bold">{{lang('login_email_label')}}:</b>
+                                            <input type="email" name="email" required="" value="{{ $userdata['email'] or '' }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <b class="small font-weight-bold">{{lang('login_phone_label')}}:</b>
+                                            <input type="text" name="phone" value="{{ $userdata['phone'] or '' }}" required="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <b class="small font-weight-bold">{{lang('login_address_label')}}:</b>
+                                            <input type="text" name="address" value="{{ $userdata['address'] or '' }}" required="" class="form-control">
+                                        </div>
+                                        @else
+                                        <div class="row">
+                                            <input type="hidden" name="address_id" value="" />
+                                            @foreach($address as $key=>$row)
+                                            <div class="col-12 mb-3">
+                                                <div class="border rounded p-3">
+                                                    <p class="font-weight-bold">{{$row->name}}</p>
+                                                    <div>{{lang('login_email_label')}}: {{$row->email}}</div>
+                                                    <div>{{lang('login_phone_label')}}: {{$row->phone}}</div>
+                                                    <div>{{lang('login_address_label')}}: {{$row->address}}</div>
+                                                    <div>
+                                                        <a class="btn btn-danger text-white address" data-id="{{$row->id}}" data-name="{{$row->name}}" data-phone="{{$row->phone}}" data-address="{{$row->address}}" data-email="{{$row->email}}">
+                                                            {{lang("no_selected")}}
+                                                        </a>
+                                                        <a class="btn btn-light" href="{{base_url()}}index/remove_address/{{$row->id}}">
+                                                            {{lang("remove")}}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        <p class="text-primary">
+                                            <u style="cursor: pointer;" class="new_address">{{lang("new_address")}}</u>
+                                        </p>
+                                        <div class="d-none box_address">
+                                            <div class="form-group">
+                                                <b class="small font-weight-bold">{{lang('cart_info_name')}}:</b>
+                                                <input type="text" name="name" value="{{ $userdata['name'] or '' }}" required="" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <b class="small font-weight-bold">{{lang('login_email_label')}}:</b>
+                                                <input type="email" name="email" required="" value="{{ $userdata['email'] or '' }}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <b class="small font-weight-bold">{{lang('login_phone_label')}}:</b>
+                                                <input type="text" name="phone" value="{{ $userdata['phone'] or '' }}" required="" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <b class="small font-weight-bold">{{lang('login_address_label')}}:</b>
+                                                <input type="text" name="address" value="{{ $userdata['address'] or '' }}" required="" class="form-control">
+                                            </div>
+                                        </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="card my-3">
+                                    <div class="card-header">
+                                        {{lang("cart_info_note")}}
+                                    </div>
+                                    <div class="card-body">
                                         <div class="form-group">
                                             <textarea id="fast-checkout-notes" name="notes" class="form-control" rows="4" cols="72" placeholder="{{lang('cart_info_note')}}" title="{{lang('cart_info_note')}}"></textarea>
                                         </div>
@@ -245,3 +298,29 @@
         cursor: pointer;
     }
 </style>
+<script>
+    $(document).ready(function() {
+        $(".new_address").click(function() {
+            $(".box_address").removeClass("d-none");
+            $(".address").addClass("btn-danger").removeClass("btn-success").text(no_selected);
+            $("[name=address_id]").val(0);
+        });
+        $(".address").click(function() {
+            $(".address").addClass("btn-danger").removeClass("btn-success").text(no_selected);
+            $(this).addClass("btn-success").removeClass("btn-danger").text(selected);
+            $(".box_address").addClass("d-none");
+            let id = $(this).data("id");
+            let name = $(this).data("name");
+            let email = $(this).data("email");
+            let phone = $(this).data("phone");
+            let address = $(this).data("address");
+            $("[name=address_id]").val(id);
+            $("[name=phone]").val(phone);
+            $("[name=address]").val(address);
+            $("[name=email]").val(email);
+            $("[name=name]").val(name);
+
+        });
+        $(".address").first().trigger("click");
+    })
+</script>

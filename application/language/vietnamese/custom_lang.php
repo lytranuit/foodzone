@@ -73,6 +73,10 @@ $lang['header_text_hotline_sub'] = "Hotline: ";
 $lang['header_text_opening'] = "Giờ làm việc";
 $lang['header_text_opening_sub'] = "T2-T7 (08-18h)";
 $lang['history_order'] = "Lịch sử đơn hàng";
+$lang['remove'] = "Xóa";
+$lang['selected'] = "Đã chọn";
+$lang['no_selected'] = "Chọn địa chỉ";
+$lang['new_address'] = "Địa chỉ nhận hàng mới";
 
 
 ?>

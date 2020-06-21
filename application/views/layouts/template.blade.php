@@ -37,6 +37,10 @@
     <script>
         var path = '<?= base_url() ?>';
         var cart_alert = '<?= lang('cart_alert') ?>';
+        var dup_username = '<?= lang('account_creation_duplicate_identity') ?>';
+        var dup_email = '<?= lang('account_creation_duplicate_email') ?>';
+        var no_selected = '<?= lang('no_selected') ?>';
+        var selected = '<?= lang('selected') ?>';
     </script>
 
     @foreach($javascript_tag as $url)
