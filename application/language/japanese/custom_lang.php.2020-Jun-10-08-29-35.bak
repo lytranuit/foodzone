@@ -72,7 +72,6 @@ $lang['header_text_hotline'] = '';
 $lang['header_text_hotline_sub'] = '';
 $lang['header_text_opening'] = '';
 $lang['header_text_opening_sub'] = '';
-$lang['history_order'] = '';
 
 
 ?>

@@ -1,11 +1,11 @@
 <?php 
 $lang['footer_about'] = 'Giới thiệu';
-$lang['footer_fp'] = 'Kết nối với fanpage';
+$lang['footer_fp'] = 'Kết nối với Fanpage';
 $lang['footer_page'] = 'Chính sách bán hàng';
 $lang['header_widget_page'] = 'Bạn cần biết';
 $lang['home'] = 'Trang chủ';
 $lang['login'] = 'Đăng nhập';
-$lang['info'] = 'Thông tin cá nhân';
+$lang['info'] = 'Thông tin Cá nhân';
 $lang['logout'] = 'Đăng xuất';
 $lang['sign_up'] = 'Đăng ký';
 $lang['title_login'] = 'Bạn mới biết tới Foodzone?';
@@ -34,7 +34,7 @@ $lang['qui_cach'] = 'Qui cách';
 $lang['xuat_xu'] = 'Xuất xứ';
 $lang['bao_quan'] = 'Bảo quản';
 $lang['han_su_dung'] = 'Hạn sử dụng';
-$lang['add_to_cart'] = 'Thêm vào giỏ hàng';
+$lang['add_to_cart'] = 'Thêm vào Giỏ hàng';
 $lang['code'] = 'Mã hàng';
 $lang['dvt'] = 'ĐVT';
 $lang['view'] = 'Xem nhanh';
@@ -52,17 +52,17 @@ $lang['order_btn'] = 'Đặt hàng';
 $lang['order_title'] = 'Đơn hàng';
 $lang['cart_title'] = 'Giỏ hàng';
 $lang['cart_info_title'] = 'Địa chỉ nhận hàng';
-$lang['cart_anwser'] = 'Bạn đã có tài khoản?';
+$lang['cart_anwser'] = 'Bạn đã có Tài khoản?';
 $lang['cart_info_name'] = 'Tên người nhận';
-$lang['cart_info_note'] = 'Ghi chú cho Shop(Nếu có)';
+$lang['cart_info_note'] = 'Ghi chú cho Shop (nếu có)';
 $lang['cart_finish'] = 'Hoàn tất đơn hàng';
 $lang['cart_text_finish'] = 'Đặt hàng thành công! FOODZONE sẽ liên hệ với bạn sớm nhất.';
 $lang['cart_next'] = 'Tiếp tục mua hàng';
-$lang['cart_alert'] = 'Đã thêm vào giỏ hàng!';
+$lang['cart_alert'] = 'Đã thêm vào Giỏ hàng!';
 $lang['footer_tru_so'] = 'Trụ sở chính';
 $lang['footer_phone'] = 'Địa chỉ liên hệ';
 $lang['footer_open'] = 'Giờ mở cửa';
-$lang['footer_customer'] = 'Chăm sóc khách hàng';
+$lang['footer_customer'] = 'Chăm sóc Khách hàng';
 $lang['search_text'] = 'Tìm sản phẩm';
 $lang['or'] = 'hoặc';
 $lang['no_result'] = 'Không tìm thấy kết quả tìm kiếm';
@@ -72,6 +72,6 @@ $lang['header_text_hotline'] = 'Hỗ trợ 24/7';
 $lang['header_text_hotline_sub'] = 'Hotline: ';
 $lang['header_text_opening'] = 'Giờ làm việc';
 $lang['header_text_opening_sub'] = 'T2-T7 (08-18h)';
-
+$lang['history_order'] = "Lịch sử đơn hàng";
 
 ?>
