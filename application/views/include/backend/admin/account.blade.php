@@ -80,6 +80,7 @@
 </div>
 <script>
     $(document).ready(function() {
+        
         $("button[name='edit_password']").click(function(e) {
             e.preventDefault();
             $.ajax({

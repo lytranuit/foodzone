@@ -30,7 +30,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item text-dark" href="<?= base_url() ?>member/">{{lang("info")}}</a>
-                                        <a class="dropdown-item text-dark" href="<?= base_url() ?>member/history_order">{{lang("history_order")}}</a>
+                                        <a class="dropdown-item text-dark" href="<?= base_url() ?>member/history">{{lang("history_order")}}</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item logout text-dark" href="<?= base_url() ?>index/logout">{{lang("logout")}}</a>
                                     </div>

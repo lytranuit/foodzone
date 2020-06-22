@@ -468,7 +468,9 @@ class Index extends MY_Controller
             $this->load->model("sale_simba_model");
             $this->load->model("sale_line_simba_model");
             $array = $_POST;
-
+            echo "<pre>";
+            print_r($cart['details']);
+            die();
             $array['amount'] = $cart['amount_product'];
             $array['total_amount'] = $cart['amount_product'] + 0;
             $array['data_fz'] = json_encode($cart);
@@ -495,12 +497,14 @@ class Index extends MY_Controller
 
 
             $array['customer_id'] =  7544;
+            if ($this->data['is_login']) {
+                $array['user_id'] =  $this->data['userdata']['user_id'];
+            }
             if (isset($array['address_id']) && $array['address_id'] > 0) {
                 // $address_id = $array['address_id'];
                 // $address = $this->address_model->get($address_id);
 
             } else {
-                $array['user_id'] =  $this->data['userdata']['user_id'];
                 $data = $this->address_model->create_object($array);
                 $this->address_model->insert($data);
             }
@@ -519,6 +523,18 @@ class Index extends MY_Controller
                     'product_id' => $row->id,
                     'image_url' => $row->image_url
                 );
+
+                if (isset($row->unit_id)) {
+                    $data_up['unit_id'] = $row->unit_id;
+                    $unit = array_values(array_filter($row->units, function ($item) use ($data_up) {
+                        return $item->id == $data_up['unit_id'];
+                    }));
+                    $unit = $unit[0];
+                    $data_up['special_unit'] = $unit->special_unit;
+                    $data_up['volume_order'] = $unit->name_vi;
+                    $data_up['volume_order_en'] = $unit->name_en;
+                    $data_up['volume_order_jp'] = $unit->name_jp;
+                }
                 $this->sale_line_simba_model->insert($data_up);
             }
             /////////////////

@@ -153,7 +153,48 @@ class Member extends MY_Controller
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
     }
+    function history()
+    {
+        $id_user = $this->session->userdata('user_id');
+        $this->load->model("sale_simba_model");
+        $this->load->model("sale_line_simba_model");
 
+        $data = $this->sale_simba_model->where(array('user_id' => $id_user))->get_all();
+
+        $this->data['data'] = $data;
+        //echo $this->data['content'];
+        echo $this->blade->view()->make('page/page', $this->data)->render();
+    }
+
+    function order_detail($params)
+    {
+        if (!isset($params[0])) {
+            die();
+        }
+        $code = $params[0];
+
+        $this->load->model("sale_simba_model");
+
+        $data = $this->sale_simba_model->where(array('code' => $code))->with_details()->get();
+
+        $this->data['data'] = $data;
+        // echo "<pre>";
+        // print_r($this->data['data']);
+        // die();
+        echo $this->blade->view()->make('page/page', $this->data)->render();
+    }
+
+    function huy_don($params)
+    {
+        if (!isset($params[0])) {
+            die();
+        }
+        $code = $params[0];
+
+        $this->load->model("sale_simba_model");
+        $this->sale_simba_model->where(array('code' => $code))->update(array("status" => 1));
+        redirect('member/history', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+    }
     function changepass()
     {
         $id_user = $this->session->userdata('user_id');
