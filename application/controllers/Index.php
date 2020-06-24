@@ -468,9 +468,9 @@ class Index extends MY_Controller
             $this->load->model("sale_simba_model");
             $this->load->model("sale_line_simba_model");
             $array = $_POST;
-            echo "<pre>";
-            print_r($cart['details']);
-            die();
+            // echo "<pre>";
+            // print_r($cart['details']);
+            // die();
             $array['amount'] = $cart['amount_product'];
             $array['total_amount'] = $cart['amount_product'] + 0;
             $array['data_fz'] = json_encode($cart);

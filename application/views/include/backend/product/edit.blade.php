@@ -65,7 +65,7 @@
                         <div class="col-md-4">
                             <div class="form-group row">
                                 <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                    <img src="http://simbaeshop.com{{$tin->image_url}}" class="img-responsive" width="200"/>
+                                    <img src="http://simbaeshop.com{{$tin->image_url}}" class="img-responsive" width="200" />
                                     <input type="hidden" name="image_url" />
                                 </div>
                             </div>
@@ -269,6 +269,7 @@
                                                                 <th>Tiếng Anh</th>
                                                                 <th>Tiếng Nhật</th>
                                                                 <th>Giá</th>
+                                                                <th>Chỉ trên Foodzone</th>
                                                                 <th>Hành động</th>
                                                             </tr>
                                                         </thead>
@@ -359,6 +360,18 @@
                                 <input name="price" type='text' required class="price form-control" placeholder="Giá">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <b class="form-label">Chỉ trên Foodzone:<i class="text-danger">*</i></b>
+                            <div class="form-line">
+                                <div class="switch-button switch-button-xs switch-button-success">
+                                    <input type="hidden" class="input-tmp" checked="" name="is_foodzone" value="0">
+                                    <input type="checkbox" checked="" id="switch3" name="is_foodzone" value="1">
+                                    <span>
+                                        <label for="switch3"></label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="text-center">
                             <button class="btn btn-primary waves-effect" type="submit" name="cap_nhat">Cập nhật</button>
                         </div>
@@ -401,6 +414,9 @@
                 },
                 {
                     "data": "price_format"
+                },
+                {
+                    "data": "is_foodzone"
                 },
                 {
                     "data": "action"

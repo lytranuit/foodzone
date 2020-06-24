@@ -76,10 +76,14 @@ class Product_model extends MY_Model
         // print_r($product->units);
         // $product->units = array_values($product->units);
         $product->price = $product->retail_price;
+
         if (!empty($product->units)) {
             $product->units = array_values((array) $product->units);
             usort($product->units, function ($a, $b) {
                 return $a->price > $b->price;
+            });
+            $product->units = array_filter($product->units, function ($item) {
+                return $item->is_foodzone == 1;
             });
             foreach ($product->units as $key => &$unit) {
                 // if ($unit->deleted == 1) {
