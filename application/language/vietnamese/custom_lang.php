@@ -54,6 +54,7 @@ $lang['cart_title'] = "Giỏ hàng";
 $lang['cart_info_title'] = "Địa chỉ nhận hàng";
 $lang['cart_anwser'] = "Bạn đã có Tài khoản?";
 $lang['cart_info_name'] = "Tên người nhận";
+$lang['cart_info_delivery'] = "Ngày giao hàng";
 $lang['cart_info_note'] = "Ghi chú cho Shop (nếu có)";
 $lang['cart_finish'] = "Hoàn tất đơn hàng";
 $lang['cart_text_finish'] = "Đặt hàng thành công! FOODZONE sẽ liên hệ với bạn sớm nhất.";
@@ -78,5 +79,11 @@ $lang['selected'] = "Đã chọn";
 $lang['no_selected'] = "Chọn địa chỉ";
 $lang['new_address'] = "Địa chỉ nhận hàng mới";
 
-
-?>
+$lang['my_order'] = "Đơn hàng của tôi";
+$lang['code_order'] = "Mã đơn hàng";
+$lang['date_order'] = "Ngày mua hàng";
+$lang['amount_order'] = "Tổng tiền";
+$lang['status_order'] = "Trạng thái đơn hàng";
+$lang['details_order'] = "Chi tiết đơn hàng";
+$lang['price_order'] = "Đơn giá";
+$lang['cancle_order'] = "Hủy đơn hàng";

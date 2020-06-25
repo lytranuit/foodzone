@@ -4,23 +4,23 @@
             <div class="col-12">
                 <div class="card card-fluid">
                     <div class="card-header drag-handle">
-                        Đơn hàng của tôi
+                        {{lang("my_order")}}
                     </div>
                     <div class="card-body">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>
-                                        Mã đơn hàng
+                                        {{lang("code_order")}}
                                     </th>
                                     <th>
-                                        Ngày mua hàng
+                                        {{lang("date_order")}}
                                     </th>
                                     <th>
-                                        Tổng tiền
+                                        {{lang("amount_order")}}
                                     </th>
                                     <th>
-                                        Trạng thái đơn hàng
+                                        {{lang("status_order")}}
                                     </th>
                                 </tr>
                             </thead>

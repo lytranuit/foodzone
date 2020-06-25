@@ -93,6 +93,11 @@
                                             </div>
                                         </div>
                                         @endif
+                                        <hr>
+                                        <div class="form-group">
+                                            <b class="small font-weight-bold">{{lang('cart_info_delivery')}}:</b>
+                                            <input type="date" name="delivery_date" value="{{date('Y-m-d')}}" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card my-3">
@@ -130,7 +135,8 @@
                                             </td>
                                             <td class="product__description">
                                                 <a href='' class="font-weight-bold text-dark">{{ $row->{pick_language($row,'name_')} }}</a>
-                                                <div>{{lang("code")}}: {{$row->code}}</div>
+                                                <div>{{lang("code")}}: <span class="font-weight-bold">{{$row->code}}</span> </div>
+                                                <div>{{lang('qui_cach')}}: <span class="font-weight-bold">{{ $row->{pick_language($row,'volume_')} }}</span></div>
                                             </td>
                                             <td class="product__price">
                                                 <span class="order-summary__emphasis">{{number_format($row->amount,0,",",".")}}đ</span>
@@ -170,6 +176,8 @@
                                                     <span class="font-weight-bold" style="font-size:20px;">
                                                         {{number_format($cart['amount_product'],0,",",".")}}đ
                                                     </span>
+
+                                                    <div>{{NumberToTextVN($cart['amount_product'])}}</div>
                                                 </td>
                                             </tr>
                                             <tr>

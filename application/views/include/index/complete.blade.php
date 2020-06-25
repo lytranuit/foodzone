@@ -7,7 +7,7 @@
                     <div class="card-body">
                         <h5 class="col-12 text-center">
                             {{lang("cart_text_finish")}}
-                            
+
                         </h5>
                         <div class="text-center">
                             <a href="{{base_url()}}" class="btn btn-danger">{{lang("cart_next")}}</a>
@@ -35,7 +35,8 @@
                                         </td>
                                         <td class="product__description">
                                             <a href='' class="font-weight-bold text-dark">{{ $row->{pick_language($row,'name_')} }}</a>
-                                            <div>{{lang("code")}}:{{$row->code}}</div>
+                                            <div>{{lang("code")}}: <span class="font-weight-bold">{{$row->code}}</span> </div>
+                                            <div>{{lang('qui_cach')}}: <span class="font-weight-bold">{{ $row->{pick_language($row,'volume_')} }}</span></div>
                                         </td>
                                         <td class="product__price">
                                             <span class="order-summary__emphasis">{{number_format($row->amount,0,",",".")}}đ</span>
@@ -75,6 +76,7 @@
                                                 <span class="font-weight-bold" style="font-size:20px;">
                                                     {{number_format($cart['amount_product'],0,",",".")}}đ
                                                 </span>
+                                                <div>{{NumberToTextVN($cart['amount_product'])}}</div>
                                             </td>
                                         </tr>
                                     </tfoot>

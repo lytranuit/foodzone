@@ -435,7 +435,7 @@ class Index extends MY_Controller
         // array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
 
         // echo "<pre>";
-        // print_r($this->data['cart']);
+        // print_r(NumberToTextVN($this->data['cart']['amount_product']));
         // die();
 
         $version = $this->config->item("version");
@@ -525,9 +525,9 @@ class Index extends MY_Controller
                 );
 
                 if (isset($row->unit_id)) {
-                    $data_up['unit_id'] = $row->unit_id;
+                    $data_up['unit_id_fz'] = $row->unit_id;
                     $unit = array_values(array_filter($row->units, function ($item) use ($data_up) {
-                        return $item->id == $data_up['unit_id'];
+                        return $item->id == $data_up['unit_id_fz'];
                     }));
                     $unit = $unit[0];
                     $data_up['special_unit'] = $unit->special_unit;
