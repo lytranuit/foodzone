@@ -41,6 +41,7 @@
                             <div class="col-lg-4">
                                 <a href="{{base_url()}}index/details/{{$row->id}}" class="text-dark font-weight-bold">{{ $row->{pick_language($row,'name_')} }}</a>
                                 <div>{{lang("code")}}: <span class="font-weight-bold">{{$row->code}}</span></div>
+                                <div>{{lang('qui_cach')}}: <span class="font-weight-bold">{{ $row->{pick_language($row,'volume_')} }}</span></div>
                             </div>
                             <div class="col-lg-2 text-lg-center mt-3">
 
@@ -131,6 +132,7 @@
                                     </td>
                                     <td class="text-right">
                                         <b class="big text-danger">{{number_format($cart['amount_product'],0,",",".")}}đ</b>
+                                        <div>{{NumberToTextVN($cart['amount_product'])}}</div>
                                     </td>
                                 </tr>
                                 <tr>

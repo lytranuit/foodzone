@@ -4,12 +4,12 @@
             <div class="col-12">
                 <div class="card card-fluid">
                     <div class="card-header drag-handle">
-                        Chi tiết đơn hàng # {{$data->code}}
+                        {{lang("details_order")}} # {{$data->code}}
                     </div>
                 </div>
                 <div class="card mt-3">
                     <div class="card-header drag-handle">
-                        Địa chỉ nhận hàng
+                        {{lang("cart_info_title")}}
                     </div>
                     <div class="card-body">
                         <p class="font-weight-bold">{{$data->receiver_name}}</p>
@@ -27,7 +27,7 @@
                                         {{lang("product_name")}}
                                     </th>
                                     <th>
-                                        Đơn giá
+                                        {{lang("price_order")}}
                                     </th>
                                     <th>
                                         {{lang("quantity")}}
@@ -79,7 +79,7 @@
                         </table>
                         <div class="float-right">
                             <a href="{{base_url()}}member/huy_don/{{$data->code}}" data-type='confirm' title='Bạn có muốn hủy đơn hàng này?' class="text-white btn btn-danger">
-                                Hủy đơn hàng
+                                {{lang("cancle_order")}}
                             </a>
                         </div>
                     </div>
