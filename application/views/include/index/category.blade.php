@@ -22,7 +22,15 @@
                                     {{ $row->{pick_language($row, 'name_')} }}
                                 </a>
                                 <div style="margin-left:auto;font-size:13px;">
-                                    
+                                    <select class="form-control order_by" style="border-radius: 15px;
+                                            font-size: 13px;
+                                            vertical-align: sub;
+                                            line-height: 45px;
+                                            padding: 0px 12px;">
+                                        <option value="1" <?= $params['order'] == 1 ? "selected" : "" ?>>Mặc định</option>
+                                        <option value="2" <?= $params['order'] == 2 ? "selected" : "" ?>>Giá cao -> thấp</option>
+                                        <option value="3" <?= $params['order'] == 3 ? "selected" : "" ?>>Giá thấp -> cao</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -88,34 +96,34 @@
                                     <ul class="pagination" style="font-size:14px;">
                                         @if($current_page > 1)
                                         <li>
-                                            <a class="page_prev" href="{{$site}}page={{$current_page - 1}}" tabindex="-1"><i class="fa fa-angle-left"></i></a>
+                                            <a class="page_prev" href="{{$site}}order={{$params['order']}}&page={{$current_page - 1}}" tabindex="-1"><i class="fa fa-angle-left"></i></a>
                                         </li>
                                         @endif
                                         <li class='<?= 1 == $current_page ? "active" : "" ?>'>
-                                            <a class='page_link' href="{{$site}}page=1" tabindex="-1">1</a>
+                                            <a class='page_link' href="{{$site}}order={{$params['order']}}&page=1" tabindex="-1">1</a>
                                         </li>
                                         @if($current_page > 3)
                                         <li class="disabled"><span class="">...</span></li>
                                         @endif
 
                                         @if($current_page > 2)
-                                        <li class=""><a class="page_link" href="{{$site}}page={{$current_page - 1}}">{{$current_page - 1}}</a></li>
+                                        <li class=""><a class="page_link" href="{{$site}}order={{$params['order']}}&page={{$current_page - 1}}">{{$current_page - 1}}</a></li>
                                         @endif
 
                                         @if($current_page > 1 && $current_page < $max_page) <li class="active"><a class="page_link" href="#">{{$current_page}}</a></li>
                                             @endif
-                                            @if($current_page <= $max_page - 2) <li class=""><a class="page_link" href="{{$site}}page={{$current_page + 1}}">{{$current_page + 1}}</a></li>
+                                            @if($current_page <= $max_page - 2) <li class=""><a class="page_link" href="{{$site}}order={{$params['order']}}&page={{$current_page + 1}}">{{$current_page + 1}}</a></li>
                                                 @endif
                                                 @if($current_page <= $max_page - 3) <li class="disabled"><span class="">...</span></li>
                                                     @endif
 
                                                     <li class='<?= $max_page == $current_page ? "active" : "" ?>'>
-                                                        <a class='page_link' href="{{$site}}page={{$max_page}}" tabindex="-1">{{$max_page}}</a>
+                                                        <a class='page_link' href="{{$site}}order={{$params['order']}}&page={{$max_page}}" tabindex="-1">{{$max_page}}</a>
                                                     </li>
 
                                                     @if($current_page != $max_page)
                                                     <li class="">
-                                                        <a class="page_next" href="{{$site}}page={{$current_page + 1}}"><i class=" fa fa-angle-right"></i></a>
+                                                        <a class="page_next" href="{{$site}}order={{$params['order']}}&page={{$current_page + 1}}"><i class=" fa fa-angle-right"></i></a>
                                                     </li>
                                                     @endif
 
@@ -133,3 +141,19 @@
         </div>
     </div>
 </section>
+<script>
+    $(document).ready(function() {
+        let site = '<?= $site ?>';
+        let params = <?= json_encode($params) ?>;
+        $(".order_by").change(function() {
+            let val = $(this).val();
+            params = {
+                ...params,
+                order: val,
+                page: 1
+            };
+            var str = $.param(params);
+            location.href = site + str;
+        })
+    })
+</script>

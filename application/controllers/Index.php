@@ -215,8 +215,10 @@ class Index extends MY_Controller
         $id = $params[0];
         $page = $this->input->get("page");
         $limit = $this->input->get("limit");
+        $order = $this->input->get("order");
         $page = $page != "" ? $page : 1;
         $limit = $limit != "" ? $limit : 20;
+        $order = $order != "" ? $order : 1;
         $this->load->model("category_model");
         $this->load->model("product_model");
 
@@ -232,7 +234,15 @@ class Index extends MY_Controller
         $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->count_rows();
         $max_page = ceil($count / $limit);
 
-        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_image()->with_price_km()->limit($limit, ($page - 1) * $limit)->get_all();
+        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->with_units()->with_image()->with_price_km();
+        if ($order == 1) {
+            $data = $data->order_by('fz_product_category.order', 'ASC');
+        } else if ($order == 2) {
+            $data = $data->order_by('product.retail_price', 'DESC');
+        } else if ($order == 3) {
+            $data = $data->order_by('product.retail_price', 'ASC');
+        }
+        $data = $data->limit($limit, ($page - 1) * $limit)->get_all();
         if (!empty($data)) {
             foreach ($data as &$row_format) {
                 $row_format = $this->product_model->format($row_format);
@@ -249,6 +259,7 @@ class Index extends MY_Controller
         $this->data['count'] = $count;
         $this->data['current_page'] = $page;
         $this->data['max_page'] = $max_page;
+        $this->data['params'] = array('page' => $page, 'order' => $order);
         $this->data['site'] = base_url() . "index/category/$id?";
         $version = $this->config->item("version");
 
