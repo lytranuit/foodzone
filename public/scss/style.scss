@@ -1846,6 +1846,18 @@ ul.content-block li > span {
     border: 1px solid #e62a2b;
     background-color: #e62a2b;
     border-radius: 100%;
-    color: #FFF;
+    color: #fff;
     font-size: 20px;
+}
+.sale-flash {
+    position: absolute;
+    color: #fff;
+    font-weight: 400;
+    padding: 0px 12px 0 8px;
+    line-height: 25px;
+    text-align: center;
+    top: 20px;
+    left: -1px;
+    z-index: 10;
+    background-color: #f7921e;
 }

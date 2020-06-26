@@ -195,11 +195,16 @@ $(document).ready(function () {
 
         let price = $(this).data("price");
         let prev_price = $(this).data("prev_price");
+        let down_per = Math.round((parseInt(price) - parseInt(prev_price)) * 100 / parseInt(prev_price));
         $(".price-km", parent).text(number_format(price, 0, ",", ".") + "đ");
-        if (prev_price > 0)
+        if (prev_price > 0) {
             $(".price-prev", parent).text(number_format(prev_price, 0, ",", ".") + "đ");
-        else
+            $(".sale-flash", parent).text(down_per + "%");
+        } else {
             $(".price-prev", parent).empty();
+        }
+
+
     });
     $(".unit_product.active", plugins.units).trigger("click");
     // }

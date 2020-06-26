@@ -47,6 +47,13 @@
                                             <div class="view_now d-flex align-items-center">
                                                 <a href="#" class="btn btn-danger mx-auto view_now_btn">{{lang("view")}}</a>
                                             </div>
+
+                                            <div class="sale-flash">
+                                                <span>@if(isset($product->down_per))
+                                                    {{$product->down_per}}%
+                                                    @endif
+                                                </span>
+                                            </div>
                                         </figure>
                                         <div class="caption">
                                             <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></div>

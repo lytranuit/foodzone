@@ -100,6 +100,7 @@ class Product_model extends MY_Model
                     $unit->km_price = $unit_km[0]->price;
                     $unit->prev_price = $unit->price;
                     $unit->price = $unit->km_price;
+                    $unit->down_per = round(($unit->price - $unit->prev_price) * 100 / $unit->prev_price, 0);
                 }
 
                 // print_r($unit);
@@ -116,11 +117,12 @@ class Product_model extends MY_Model
                 $product->km_price = $list_km[0]->price;
                 $product->prev_price = $product->price;
                 $product->price = $product->km_price;
+                $product->down_per = round(($product->price - $product->prev_price) * 100 / $product->prev_price, 0);
             }
         }
-
-        // print_r($product->prev_price);
-        // die();
+// echo "<pre>";
+//         print_r($product);
+//         die();
         return $product;
     }
 }
