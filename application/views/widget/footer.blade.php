@@ -4,7 +4,7 @@
             <div class="row border-left-cell">
                 <div class="col-12 col-lg-6">
                     <a class="brand brand-inverse" href="{{base_url()}}">
-                        <img src="{{base_url()}}public/image/logo.png" width="200" />
+                        <img src="{{base_url()}}public/image/logo.png?v=1" width="200" />
                     </a>
                     <p class="header_footer">{{$options['company_name']}}</p>
                     <p>{{lang("footer_tru_so")}}: <span class="text-dark">{{$options['dia_chi']}}</span></p>
@@ -49,4 +49,8 @@
             </div>
         </div>
     </section>
+
+    <div id="toTop" class="btn btn-secondary">
+        <i class="fas fa-angle-up"></i>
+    </div>
 </footer>

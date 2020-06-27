@@ -1516,6 +1516,13 @@ footer {
     padding: 5px 0 10px;
     text-transform: uppercase;
     margin: 10px 0px; }
+  footer #toTop {
+    position: fixed;
+    display: none;
+    right: 15px;
+    bottom: 70px;
+    transition: all 0.5s;
+    z-index: 11; }
 
 .order-cart-info .order-cart-policy,
 .order-cart-info .order-cart-summary {

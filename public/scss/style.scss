@@ -1791,6 +1791,14 @@ footer {
         text-transform: uppercase;
         margin: 10px 0px;
     }
+    #toTop {
+        position: fixed;
+        display: none;
+        right: 15px;
+        bottom: 70px;
+        transition: all 0.5s;
+        z-index: 11;
+    }
 }
 
 .order-cart-info .order-cart-policy,

@@ -55,11 +55,9 @@
             <div class="row">
                 <div class="col-xs-12 col-md-3 text-lg-left">
                     <div class="logo inline-block">
-
                         <a href="/" class="logo-wrapper ">
                             <img src="{{base_url()}}public/image/logo.png?v=1" width="200" />
                         </a>
-
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8 col-lg-7 hidden-xs">
