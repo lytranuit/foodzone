@@ -1777,8 +1777,20 @@ header nav .nav-item.active > a {
     }
 }
 footer {
-    background: #f7921e;
-    color: white;
+    box-shadow: 5px 5px 5px 5px #000;
+    background: url(http://demoweb.company/banhang01/wp-content/uploads/2018/10/footer.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    padding: 30px 0 180px 0;
+    .header_footer {
+        color: black;
+        font-weight: bold;
+        font-size: 17px;
+        padding: 5px 0 10px;
+        text-transform: uppercase;
+        margin: 10px 0px;
+    }
 }
 
 .order-cart-info .order-cart-policy,

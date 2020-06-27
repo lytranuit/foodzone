@@ -42,7 +42,7 @@
                         @foreach($news as $row)
                         <div class="unit unit-horizontal unit-spacing-xs">
                             <div class="unit-left">
-                                <img class="img-rounded" src="{{base_url()}}{{$row->image->src}}" alt="" width="70" height="70">
+                                <img class="img-rounded" src="@if(empty($row->image)){{base_url()}}public/image/temp.png @else{{base_url()}}{{$row->image->src}}@endif" alt="" width="70" height="70">
                             </div>
                             <div class="unit-body"><a class="link-default" href="{{base_url()}}/index/post/{{$row->id}}">{{$row->title}}</a>
                                 <div>

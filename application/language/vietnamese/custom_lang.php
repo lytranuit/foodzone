@@ -1,4 +1,4 @@
-<?php 
+<?php
 $lang['footer_about'] = "Giới thiệu";
 $lang['footer_fp'] = "Kết nối với Fanpage";
 $lang['footer_page'] = "Chính sách bán hàng";
@@ -87,3 +87,9 @@ $lang['status_order'] = "Trạng thái đơn hàng";
 $lang['details_order'] = "Chi tiết đơn hàng";
 $lang['price_order'] = "Đơn giá";
 $lang['cancle_order'] = "Hủy đơn hàng";
+
+$lang['lien_ket'] = "Hỗ trợ khách hàng";
+$lang['footer_hdmh'] = "Hướng dẫn mua hàng";
+$lang['footer_cstt'] = "Chính sách về thanh toán, giao nhận, vận chuyển";
+$lang['footer_csdh'] = "Chính sách đổi hàng, trả hàng, hoàn tiền";
+$lang['footer_csbm'] = "Chính sách bảo mật";

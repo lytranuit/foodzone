@@ -10,7 +10,7 @@
                         <article class="post post-modern">
                             <!-- Post media-->
                             <header class="post-media">
-                                <img class="img-responsive img-cover" width="570" height="321" src="{{base_url()}}{{$row->image->src}}" alt="">
+                                <img class="img-fluid" src="@if(empty($row->image)){{base_url()}}public/image/temp.png @else{{base_url()}}{{$row->image->src}}@endif" alt="">
                             </header>
                             <!-- Post content-->
                             <section class="post-content text-left">
