@@ -9,7 +9,7 @@
                         <div class="card card-custom1">
                             <div class="card-header">
                                 <div class="header_title">
-                                    {{lang('result_search')}}: <b>{{$search}} ({{$count}})</b>
+                                    <span>{{lang('result_search')}}: <b>{{$search}} ({{$count}})</b></span>
                                 </div>
                                 <div style="margin-left:auto;font-size:13px;">
 

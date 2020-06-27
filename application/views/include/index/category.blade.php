@@ -19,7 +19,7 @@
                         <div class="card card-custom1">
                             <div class="card-header">
                                 <a href="{{base_url()}}index/category/{{$row->id}}" class="header_title">
-                                    </span>{{ $row->{pick_language($row, 'name_')} }}</span>
+                                    <span>{{ $row->{pick_language($row, 'name_')} }}</span>
                                 </a>
                                 <div style="margin-left:auto;font-size:13px;">
                                     <select class="form-control order_by" style="border-radius: 15px;
