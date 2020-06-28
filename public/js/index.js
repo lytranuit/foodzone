@@ -17,7 +17,20 @@ $(document).ready(function () {
     plugins.image_view = $('.area_image');
     plugins.topics_view = $('.responsive1');
     plugins.menu_bar = $(".menu-bar");
-
+    $(window).scroll(function () {
+        if ($(this).scrollTop()) {
+            $('#toTop').fadeIn();
+        } else {
+            $('#toTop').fadeOut();
+        }
+    });
+    $("#toTop").click(function () {
+        //1 second of animation time
+        //html works for FFX but not Chrome
+        //body works for Chrome but not FFX
+        //This strange selector seems to work universally
+        $("html, body").animate({ scrollTop: 0 }, 1000);
+    });
     $(".index_category").click(async function (e) {
         e.preventDefault();
         let section = $(this).parents("section");

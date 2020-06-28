@@ -19573,17 +19573,17 @@ fieldset[disabled] .one-screen-page .btn-primary {
     }
 
     .thumbnail-menu-modern:hover figure {
-        /* height: 320px; */
-        padding-top: 10px;
 
         position: relative;
     }
-    .thumbnail-menu-modern:hover figure .view_now {
+    .thumbnail-menu-modern figure .view_now {
         position: absolute;
-        background: #0000008f;
         width: 100%;
         height: 100%;
         top: 0;
+    }
+    .thumbnail-menu-modern:hover figure .view_now {
+        background: #0000008f;
         z-index: 6;
     }
 }
@@ -34198,7 +34198,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 .customer span {
     display: block;
     padding: 3px 0;
-    color: #fff;
 }
 .customer .phone {
     font-size: 20px;

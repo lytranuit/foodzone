@@ -33,10 +33,10 @@
     <div class="container-wide">
         <div class="row">
             <div class="col-12">
-                <div class="card card-custom">
+                <div class="card card-custom1">
                     <div class="card-header">
-                        <a href="{{base_url()}}index/category/{{$row->id}}" class="text-dark header_title">
-                            {{ $row->{pick_language($row,'name_')} }} ({{$row->count_product}})
+                        <a href="{{base_url()}}index/category/{{$row->id}}" class="header_title">
+                            <span>{{ $row->{pick_language($row,'name_')} }} ({{$row->count_product}})</span>
                         </a>
                         <div style="margin-left:auto;">
                             <ul class="sub_category">
@@ -58,7 +58,7 @@
                         </div>
                     </div>
 
-                    <div class="card-body mt-2">
+                    <div class="card-body">
                         <div class="row no-gutters index_product" style="min-height: 400px;">
                             <div class="text-center col-12 h4">
                                 <i class="fas fa-circle-notch fa-spin"></i>

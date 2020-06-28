@@ -2,20 +2,32 @@
     <section class="section-50">
         <div class="container-wide">
             <div class="row border-left-cell">
-                <div class="col-sm-12 col-md-9">
+                <div class="col-12 col-lg-6">
                     <a class="brand brand-inverse" href="{{base_url()}}">
-                        <img src="{{base_url()}}public/image/logo.png" width="200" />
+                        <img src="{{base_url()}}public/image/logo.png?v=1" width="200" />
                     </a>
-                    <p style="color: black;
-                       font-weight: bold;
-                       font-size: 17px;
-                       padding: 5px 0 10px;
-                       text-transform: uppercase;
-                       margin: 10px 0px;">{{$options['company_name']}}</p>
-                    <p>{{lang("footer_tru_so")}}: {{$options['dia_chi']}}</p>
-                    <p>{{lang("footer_phone")}}: <a style="color: black;" href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</span></p>
+                    <p class="header_footer">{{$options['company_name']}}</p>
+                    <p>{{lang("footer_tru_so")}}: <span class="text-dark">{{$options['dia_chi']}}</span></p>
+                    <p>{{lang("footer_phone")}}: <a class="text-dark" href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</span></a></p>
                 </div>
-                <div class="col-sm-12 col-md-3">
+                <div class="col-12 col-lg-3">
+                    <p class="header_footer">{{lang("lien_ket")}}</p>
+                    <ul class="list list-marked">
+                        <li class="nav-item">
+                            <a class="text-dark" href="{{base_url()}}index/post/5">{{lang("footer_hdmh")}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-dark" href="{{base_url()}}index/post/6">{{lang("footer_cstt")}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-dark" href="{{base_url()}}index/post/7">{{lang("footer_csdh")}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-dark" href="{{base_url()}}index/post/8">{{lang("footer_csbm")}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-3">
                     <ul class="list-inline" style="font-size: 25px;">
                         <li><a target="_blank" class="icon icon-xxs-mod-1 fab fa-facebook icon-facebook" href="http://www.facebook.com/sharer/sharer.php?u={{current_url()}}"></a></li>
                         <li><a target="_blank" class="icon icon-xxs-mod-1 fab fa-twitter icon-twitter" href="https://twitter.com/intent/tweet?text=Link&url={{current_url()}}"></a></li>
@@ -37,4 +49,8 @@
             </div>
         </div>
     </section>
+
+    <div id="toTop" class="btn btn-secondary">
+        <i class="fas fa-angle-up"></i>
+    </div>
 </footer>

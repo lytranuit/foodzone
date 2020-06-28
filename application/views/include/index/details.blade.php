@@ -165,58 +165,62 @@
                 </section>
 
                 <section class="pt-5">
-                    <div class="card card-custom">
+                    <div class="card card-custom1">
                         <div class="card-header">
-                            {{lang('details_sp_lien_quan')}}
+                            <div class="header_title">
+                                {{lang('details_sp_lien_quan')}}
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="responsive">
                                 @if(!empty($product_related))
                                 @foreach($product_related as $row)
-                                <div class="thumbnail-menu-modern border border-light product" data-id="{{$row->id}}">
-                                    <input type="hidden" value="1" class="number" />
-                                    <figure>
-                                        <a href="{{base_url()}}index/details/{{$row->id}}">
-                                            <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}" alt="">
-                                        </a>
-                                        <div class="view_now d-flex align-items-center">
-                                            <a href="#" class="btn btn-danger mx-auto view_now_btn">{{lang("view")}}</a>
-                                        </div>
-                                    </figure>
-                                    <div class="caption">
-                                        <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$row->id}}" tabindex="-1">{{ $row->{pick_language($row,'name_')} }}</a></div>
-                                        <div>
-                                            <span class="price price-prev">@if(isset($row->prev_price) && $row->prev_price > 0)
-                                                {{ number_format($row->prev_price,0,",",".") }}đ
-                                                @endif</span>
-                                            <span class="price price-km">{{ number_format($row->price,0,",",".") }}đ</span>
-                                            @if(!empty($row->units))
-                                            <span class="dvt" style="font-size: 16px;"> / {{ $row->units[0]->{pick_language($row->units[0],'name_')} }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="sale">
-                                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                            <button type="button" class="btn btn-danger add-cart">{{lang("add_to_cart")}}</button>
-                                            @if(!empty($row->units))
-                                            <div class="btn-group dropup" role="group">
-                                                <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                </button>
 
-                                                <div class="dropdown-menu unit_list" aria-labelledby="btnGroupDrop1">
-                                                    @foreach($row->units as $key=>$unit)
-                                                    <a class="dropdown-item unit_product @if($key==0) btn-primary active @endif" href="#" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
-                                                        {{ $unit->{pick_language($unit,'name_')} }}
-                                                    </a>
-                                                    @endforeach
-                                                </div>
+                                <div class="col-6 col-lg-3 pr-2 pb-2">
+                                    <div class="thumbnail-menu-modern border border-light product" data-id="{{$product->id}}">
+                                        <input type="hidden" value="1" class="number" />
+                                        <figure>
+                                            <a href="{{base_url()}}index/details/{{$row->id}}">
+                                                <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}" alt="">
+                                            </a>
+                                            <div class="view_now d-flex align-items-center">
+                                                <a href="#" class="btn btn-danger mx-auto view_now_btn">{{lang("view")}}</a>
                                             </div>
-                                            @endif
+                                        </figure>
+                                        <div class="caption">
+                                            <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$row->id}}" tabindex="-1">{{ $row->{pick_language($row,'name_')} }}</a></div>
+                                            <div>
+                                                <span class="price price-prev">@if(isset($row->prev_price) && $row->prev_price > 0)
+                                                    {{ number_format($row->prev_price,0,",",".") }}đ
+                                                    @endif</span>
+                                                <span class="price price-km">{{ number_format($row->price,0,",",".") }}đ</span>
+                                                @if(!empty($row->units))
+                                                <span class="dvt" style="font-size: 16px;"> / {{ $row->units[0]->{pick_language($row->units[0],'name_')} }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="sale">
+                                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                                <button type="button" class="btn btn-danger add-cart"><i class="fas fa-shopping-cart hidden-md hidden-lg"></i><span class="hidden-xs">{{lang("add_to_cart")}}</span></button>
+                                                @if(!empty($row->units))
+                                                <div class="btn-group dropup" role="group">
+                                                    <button id="btnGroupDrop1" type="button" class="btn btn-danger border-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    </button>
 
+                                                    <div class="dropdown-menu unit_list" aria-labelledby="btnGroupDrop1">
+                                                        @foreach($row->units as $key=>$unit)
+                                                        <a class="dropdown-item unit_product @if($key==0) btn-primary active @endif" href="#" data-id="{{$unit->id}}" data-price="{{$unit->price}}" data-prev_price="@if(isset($unit->prev_price) && $unit->prev_price > 0){{$unit->prev_price}}@endif">
+                                                            {{ $unit->{pick_language($unit,'name_')} }}
+                                                        </a>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                @endif
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 @endforeach
                                 @endif
 
