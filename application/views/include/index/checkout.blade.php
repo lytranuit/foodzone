@@ -50,6 +50,7 @@
                                             <input type="text" name="address" value="{{ $userdata['address'] or '' }}" required="" class="form-control">
                                         </div>
                                         @else
+                                        @if(!empty($address))
                                         <div class="row">
                                             <input type="hidden" name="address_id" value="" />
                                             @foreach($address as $key=>$row)
@@ -71,6 +72,7 @@
                                             </div>
                                             @endforeach
                                         </div>
+                                        @endif
                                         <p class="text-primary">
                                             <u style="cursor: pointer;" class="new_address">{{lang("new_address")}}</u>
                                         </p>
