@@ -150,12 +150,12 @@
                                 <div class="resp-tabs-container">
                                     <div class="resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0">
                                         <div class="fr-view">
-                                            <?= $product->foodzone->{pick_language($product->foodzone, 'detail_')} ?>
+                                            <?= $product->{pick_language($product, 'detail_')} ?>
                                         </div>
                                     </div>
                                     <div class="resp-tab-content" aria-labelledby="tab_item-1">
                                         <div class="fr-view">
-                                            <?= $product->foodzone->{pick_language($product->foodzone, 'guide_')} ?>
+                                            <?= $product->{pick_language($product, 'guide_')} ?>
                                         </div>
                                     </div>
                                 </div>

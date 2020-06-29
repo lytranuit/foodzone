@@ -398,7 +398,7 @@ class Ajax extends MY_Controller
         /*
          * LAY DATA
          */
-        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_image()->with_price_km()->paginate($limit, NULL, $page);
+        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_foodzone()->with_units()->with_image()->with_price_km()->paginate($limit, NULL, $page);
         if (!empty($data)) {
             foreach ($data as &$row_format) {
                 $row_format = $this->product_model->format($row_format);
