@@ -591,11 +591,14 @@ if (!function_exists('sync_cart')) {
         $items = array(
             'details' => array(),
             'count_product' => 0,
-            'amount_product' => 0
+            'amount_product' => 0,
+            'paid_amount' => 0,
+            'service_fee' => -1
         );
         $CI->load->helper(array('cookie'));
         $CI->load->model('product_model');
         $CI->load->model('user_model');
+        $CI->load->model('fee_model');
 
         $cart = array();
         if (get_cookie("DATA_CART") && get_cookie("DATA_CART") != "") {
@@ -643,7 +646,25 @@ if (!function_exists('sync_cart')) {
             //            );
             //            $CI->input->set_cookie($co
         }
-        return $items;
+
+        $items['paid_amount'] = $items['amount_product'];
+        if (get_cookie("fee_id") && get_cookie("fee_id") != "") {
+            $fee_id = get_cookie("fee_id");
+
+            $fee = $CI->fee_model->get($fee_id);
+            if (empty($fee)) {
+                goto end;
+            }
+            $min_amount = $fee->min_amount;
+
+            if ($items['paid_amount'] > $min_amount) {
+                $items['service_fee'] = 0;
+                goto end;
+            }
+            $items['service_fee'] = $fee->price;
+            $items['paid_amount'] += $items['service_fee'];
+        }
+        end: return $items;
     }
 }
 
@@ -660,7 +681,7 @@ if (!function_exists('NumberToTextVN')) {
         $nstr = (string) $total;
 
         $len = strlen($nstr);
-        
+
         for ($i = 0; $i < $len; $i++) {
             $n[$len - 1 - $i] = substr($nstr, $i, 1);
         }

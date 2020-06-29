@@ -436,6 +436,11 @@ class Ajax extends MY_Controller
         // die();
         echo $this->blade->view()->make('ajax/modalview', $this->data)->render();
     }
+    function total_order()
+    {
+        $this->data['cart'] = sync_cart();
+        echo $this->blade->view()->make('ajax/total_order', $this->data)->render();
+    }
     function updatemenu()
     {
         $this->load->model("menu_model");

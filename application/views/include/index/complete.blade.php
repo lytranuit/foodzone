@@ -61,8 +61,12 @@
                                         <tr class="total-line total-line--shipping">
                                             <th class="total-line__name" scope="row">{{lang("service_fee")}}</th>
                                             <td class="text-right">
-                                                <span class="" data-checkout-total-shipping-target="0">
-                                                    0
+                                                <span class="">
+                                                    @if($cart['service_fee'] == -1)
+                                                    {{lang("price_zero")}}
+                                                    @else
+                                                    {{number_format($cart['service_fee'],0,",",".")}}đ
+                                                    @endif
                                                 </span>
                                             </td>
                                         </tr>
@@ -74,9 +78,10 @@
                                             </th>
                                             <td class="text-right">
                                                 <span class="font-weight-bold" style="font-size:20px;">
-                                                    {{number_format($cart['amount_product'],0,",",".")}}đ
+                                                    {{number_format($cart['paid_amount'],0,",",".")}}đ
                                                 </span>
-                                                <div>{{NumberToTextVN($cart['amount_product'])}}</div>
+
+                                                <div>{{NumberToTextVN($cart['paid_amount'])}}</div>
                                             </td>
                                         </tr>
                                     </tfoot>

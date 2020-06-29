@@ -184,50 +184,8 @@
                                         @endforeach
                                     </table>
                                 </div>
-                                <div class="col-12">
-                                    <table class="total-line-table table table-borderless">
-                                        <tbody class="border-bottom">
-                                            <tr class="total-line total-line--subtotal">
-                                                <th class="total-line__name" scope="row">{{lang("total")}}</th>
-                                                <td class="text-right">
-                                                    <span class="font-weight-bold" data-amount="{{$cart['amount_product']}}">
-                                                        {{number_format($cart['amount_product'],0,",",".")}}đ
-                                                    </span>
-                                                </td>
-                                            </tr>
+                                <div class="col-12" id="ajax_total">
 
-
-                                            <tr class="total-line total-line--shipping">
-                                                <th class="total-line__name" scope="row">{{lang("service_fee")}}</th>
-                                                <td class="text-right">
-                                                    <span class="">
-                                                        {{lang("price_zero")}}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot class="total-line-table__footer">
-                                            <tr class="total-line">
-                                                <th class="total-line__name payment-due-label" scope="row">
-                                                    <span class="payment-due-label__total">{{lang("amount")}}</span>
-                                                </th>
-                                                <td class="text-right">
-                                                    <span class="font-weight-bold" style="font-size:20px;">
-                                                        {{number_format($cart['amount_product'],0,",",".")}}đ
-                                                    </span>
-
-                                                    <div>{{NumberToTextVN($cart['amount_product'])}}</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" class="border-0 text-center">
-                                                    <button class="text-top btn btn-burnt-sienna btn-shape">
-                                                        <span>{{lang("cart_finish")}}</span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -352,6 +310,21 @@
             $(".address").addClass("btn-danger").removeClass("btn-success").text(no_selected);
             $("[name=address_id]").val(0);
         });
+        $("[name=area_id]").change(async function() {
+            let area_id = $(this).val();
+
+            $.cookies.set('fee_id', area_id);
+            $(".loading-modal").addClass("show");
+            $("#cboxOverlay").show();
+            let html = await $.ajax({
+                url: path + "ajax/total_order",
+                dataType: "HTML"
+            });
+            $("#ajax_total").html(html);
+
+            $(".loading-modal").removeClass("show");
+            $("#cboxOverlay").hide();
+        })
         $(".address").click(function() {
             $(".address").addClass("btn-danger").removeClass("btn-success").text(no_selected);
             $(this).addClass("btn-success").removeClass("btn-danger").text(selected);
@@ -367,7 +340,7 @@
             $("[name=address]").val(address);
             $("[name=email]").val(email);
             $("[name=name]").val(name);
-            $("[name=area_id]").val(area);
+            $("[name=area_id]").val(area).trigger("change");
         });
         $(".address").first().trigger("click");
     })

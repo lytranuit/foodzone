@@ -487,7 +487,8 @@ class Index extends MY_Controller
             // print_r($cart['details']);
             // die();
             $array['amount'] = $cart['amount_product'];
-            $array['total_amount'] = $cart['amount_product'] + 0;
+            $array['service_fee'] = $cart['service_fee'];
+            $array['total_amount'] = $cart['paid_amount'];
             $array['data_fz'] = json_encode($cart);
             // $data = $this->sale_model->create_object($array);
             // // echo "<pre>";
