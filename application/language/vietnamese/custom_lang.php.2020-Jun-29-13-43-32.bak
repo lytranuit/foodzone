@@ -1,5 +1,5 @@
 <?php 
-$lang['footer_about'] = "Giới thiệu";
+$lang['footer_about'] = "Giới thiệ";
 $lang['footer_fp'] = "Kết nối với Fanpage";
 $lang['footer_page'] = "Chính sách bán hàng";
 $lang['header_widget_page'] = "Bạn cần biết";
