@@ -106,11 +106,11 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Tên:<i class="text-danger">*</i></b>
                                         <div class="col-12 col-lg-4 pt-1">
-                                            <input class="form-control form-control-sm" type='text' name="name_vi" required="" placeholder="Tên" />
+                                            <input class="form-control form-control-sm" type='text' name="fz_name_vi" required="" placeholder="Tên" />
                                         </div>
                                         <b class="col-12 col-lg-2 col-form-label">Qui cách:</b>
                                         <div class="col-12 col-lg-4 pt-1">
-                                            <input class="form-control form-control-sm" type='text' name="volume_vi" />
+                                            <input class="form-control form-control-sm" type='text' name="fz_volume_vi" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -142,11 +142,11 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Tên:</b>
                                         <div class="col-12 col-lg-4 pt-1">
-                                            <input class="form-control form-control-sm" type='text' name="name_en" placeholder="Tên - Tiếng Anh" />
+                                            <input class="form-control form-control-sm" type='text' name="fz_name_en" placeholder="Tên - Tiếng Anh" />
                                         </div>
                                         <b class="col-12 col-lg-2 col-form-label">Qui cách:</b>
                                         <div class="col-12 col-lg-4 pt-1">
-                                            <input class="form-control form-control-sm" type='text' name="volume_en" />
+                                            <input class="form-control form-control-sm" type='text' name="fz_volume_en" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -178,11 +178,11 @@
                                     <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Tên:</b>
                                         <div class="col-12 col-lg-4 pt-1">
-                                            <input class="form-control form-control-sm" type='text' name="name_jp" placeholder="Tên - Tiếng Nhật" />
+                                            <input class="form-control form-control-sm" type='text' name="fz_name_jp" placeholder="Tên - Tiếng Nhật" />
                                         </div>
                                         <b class="col-12 col-lg-2 col-form-label">Qui cách:</b>
                                         <div class="col-12 col-lg-4 pt-1">
-                                            <input class="form-control form-control-sm" type='text' name="volume_jp" />
+                                            <input class="form-control form-control-sm" type='text' name="fz_volume_jp" />
                                         </div>
                                     </div>
                                     <div class="form-group row">

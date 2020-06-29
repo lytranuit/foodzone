@@ -70,6 +70,43 @@ class Product_model extends MY_Model
         $price_km = array_values(array_filter($price_km, function ($item) {
             return $item->deleted ==  0;
         }));
+        if (isset($product->foodzone)) {
+            if ($product->foodzone->name_vi != "")
+                $product->name_vi = $product->foodzone->name_vi;
+            if ($product->foodzone->name_en != "")
+                $product->name_en = $product->foodzone->name_en;
+            if ($product->foodzone->name_jp != "")
+                $product->name_jp = $product->foodzone->name_jp;
+
+            if ($product->foodzone->volume_vi != "")
+                $product->volume_vi = $product->foodzone->volume_vi;
+            if ($product->foodzone->volume_en != "")
+                $product->volume_en = $product->foodzone->volume_en;
+            if ($product->foodzone->volume_jp != "")
+                $product->volume_jp = $product->foodzone->volume_jp;
+
+            if ($product->foodzone->description_vi != "")
+                $product->description_vi = $product->foodzone->description_vi;
+
+            if ($product->foodzone->description_en != "")
+                $product->description_en = $product->foodzone->description_en;
+            if ($product->foodzone->description_jp != "")
+                $product->description_jp = $product->foodzone->description_jp;
+
+            if ($product->foodzone->detail_vi != "")
+                $product->detail_vi = $product->foodzone->detail_vi;
+            if ($product->foodzone->detail_en != "")
+                $product->detail_en = $product->foodzone->detail_en;
+            if ($product->foodzone->detail_jp != "")
+                $product->detail_jp = $product->foodzone->detail_jp;
+
+            if ($product->foodzone->guide_vi != "")
+                $product->guide_vi = $product->foodzone->guide_vi;
+            if ($product->foodzone->guide_en != "")
+                $product->guide_en = $product->foodzone->guide_en;
+            if ($product->foodzone->guide_jp != "")
+                $product->guide_jp = $product->foodzone->guide_jp;
+        }
         // echo "<pre>";
         // print_r($price_km);
         // die();
@@ -120,9 +157,9 @@ class Product_model extends MY_Model
                 $product->down_per = round(($product->price - $product->prev_price) * 100 / $product->prev_price, 0);
             }
         }
-// echo "<pre>";
-//         print_r($product);
-//         die();
+        // echo "<pre>";
+        //         print_r($product);
+        //         die();
         return $product;
     }
 }

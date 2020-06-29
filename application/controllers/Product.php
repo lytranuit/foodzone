@@ -225,9 +225,21 @@ class Product extends MY_Administrator
             }
             if (!empty($tin->foodzone)) {
                 foreach ($tin->foodzone as $key => $val) {
-                    $tin->{"fz_" . $key} = $val;
+                    if ($val != "") {
+                        $tin->{"fz_" . $key} = $val;
+                    } elseif (isset($tin->{$key})) {
+                        $tin->{"fz_" . $key} = $tin->{$key};
+                    }
                 }
             } else {
+                $tin->fz_name_vi = $tin->name_vi;
+                $tin->fz_name_en = $tin->name_en;
+                $tin->fz_name_jp = $tin->name_jp;
+
+                $tin->fz_volume_vi = $tin->volume_vi;
+                $tin->fz_volume_en = $tin->volume_en;
+                $tin->fz_volume_jp = $tin->volume_jp;
+
                 $tin->fz_description_vi = $tin->description_vi;
                 $tin->fz_description_en = $tin->description_en;
                 $tin->fz_description_jp = $tin->description_jp;
@@ -293,7 +305,7 @@ class Product extends MY_Administrator
             $where = $this->product_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
         }
 
-        $posts = $where->order_by("id", "DESC")->with_image()->paginate($limit, NULL, $page);
+        $posts = $where->order_by("id", "DESC")->with_foodzone()->with_image()->paginate($limit, NULL, $page);
         //        echo "<pre>";
         //        print_r($posts);
         //        die();
@@ -302,7 +314,7 @@ class Product extends MY_Administrator
             foreach ($posts as $post) {
                 $nestedData['id'] = $post->id;
                 $nestedData['code'] = $post->code;
-                $nestedData['name_vi'] = $post->name_vi;
+                $nestedData['name_vi'] = isset($post->foodzone->name_vi) && $post->foodzone->name_vi != "" ? $post->foodzone->name_vi : $post->name_vi;
                 $nestedData['price'] = number_format($post->retail_price, 0, ",", ".") . " VND";
                 // $nestedData['date'] =  date("d/m/Y", strtotime($post->date));
                 $nestedData['action'] = '<a href="' . base_url() . 'product/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="edit">'
