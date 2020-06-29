@@ -120,14 +120,6 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>{{lang("service_fee")}}</b>
-                                    </td>
-                                    <td class="text-right">
-                                        0 đ
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
                                         <b>{{lang("amount")}}</b>
                                     </td>
                                     <td class="text-right">

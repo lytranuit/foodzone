@@ -40,7 +40,7 @@
                         </a>
                         <div style="margin-left:auto;">
                             <ul class="sub_category">
-                                <li class="index_category active" data-id="{{$row->id}}">
+                                <li class="index_category active d-none" data-id="{{$row->id}}">
                                     <a href="#" class="text-dark">
                                         {{lang("all")}}
                                     </a>

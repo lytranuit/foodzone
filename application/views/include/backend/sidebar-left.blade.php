@@ -141,6 +141,13 @@
                         Cài đặt chung
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{base_url()}}fee" class="">
+                        <i class="metismenu-icon fas fa-truck"></i>
+                        Phí giao hàng
+                    </a>
+                </li>
                 <li>
                     <a href="{{base_url()}}admin/settings_email" class="">
                         <i class="metismenu-icon fas fa-envelope"></i>

@@ -459,11 +459,15 @@ class Index extends MY_Controller
         if ($this->data['is_login']) {
             $this->load->model("address_model");
             $user_id =  $this->data['userdata']['user_id'];
-            $address = $this->address_model->where(array("user_id" => $user_id, 'deleted' => 0))->get_all();
+            $address = $this->address_model->where(array("user_id" => $user_id, 'deleted' => 0))->with_area()->get_all();
             // print_r($address);
             // die();
             $this->data['address'] = $address;
         }
+
+        $this->load->model("fee_model");
+        $area = $this->fee_model->where(array('deleted' => 0))->get_all();
+        $this->data['area'] = $area;
         $this->data['cart'] = sync_cart();
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);

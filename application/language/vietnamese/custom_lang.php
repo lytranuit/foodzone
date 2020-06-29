@@ -16,6 +16,10 @@ $lang['login_name_label'] = "Tên";
 $lang['login_email_label'] = "Email";
 $lang['login_address_label'] = "Địa chỉ";
 $lang['login_phone_label'] = "Số điện thoại";
+$lang['login_area_label'] = "Khu vực";
+$lang['other_area'] = "Khu vực khác";
+$lang['price_zero'] = "Theo giá nhà vận chuyển";
+
 $lang['remember_me'] = "Ghi nhớ";
 $lang['widget_header_page'] = "Bạn cần biết";
 $lang['widget_header_product_new'] = "Hàng mới về";

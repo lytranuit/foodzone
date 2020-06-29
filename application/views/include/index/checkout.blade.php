@@ -49,6 +49,15 @@
                                             <b class="small font-weight-bold">{{lang('login_address_label')}}:</b>
                                             <input type="text" name="address" value="{{ $userdata['address'] or '' }}" required="" class="form-control">
                                         </div>
+                                        <div class="form-group">
+                                            <b class="small font-weight-bold">{{lang('login_area_label')}}:</b>
+                                            <select class="" name="area_id">
+                                                <option value="0">{{lang("other_area")}}</option>
+                                                @foreach($area as $row)
+                                                <option value="{{$row->id}}">{{$row->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         @else
                                         @if(!empty($address))
                                         <div class="row">
@@ -57,11 +66,30 @@
                                             <div class="col-12 mb-3">
                                                 <div class="border rounded p-3">
                                                     <p class="font-weight-bold">{{$row->name}}</p>
-                                                    <div>{{lang('login_email_label')}}: {{$row->email}}</div>
+                                                    <table>
+                                                        <tr>
+                                                            <td class="pr-3">{{lang('login_email_label')}}:</td>
+                                                            <td>{{$row->email}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pr-3">{{lang('login_phone_label')}}:</td>
+                                                            <td>{{$row->phone}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pr-3">{{lang('login_address_label')}}:</td>
+                                                            <td>{{$row->address}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pr-3">{{lang('login_area_label')}}:</td>
+                                                            <td>{{$row->area->name or lang('other_area')}}</td>
+                                                        </tr>
+                                                    </table>
+                                                    <!-- <div>{{lang('login_email_label')}}: {{$row->email}}</div>
                                                     <div>{{lang('login_phone_label')}}: {{$row->phone}}</div>
                                                     <div>{{lang('login_address_label')}}: {{$row->address}}</div>
+                                                    <div>{{lang('login_area_label')}}: {{$row->area->name or ''}}</div> -->
                                                     <div>
-                                                        <a class="btn btn-danger text-white address" data-id="{{$row->id}}" data-name="{{$row->name}}" data-phone="{{$row->phone}}" data-address="{{$row->address}}" data-email="{{$row->email}}">
+                                                        <a class="btn btn-danger text-white address" data-area="{{$row->area_id}}" data-id="{{$row->id}}" data-name="{{$row->name}}" data-phone="{{$row->phone}}" data-address="{{$row->address}}" data-email="{{$row->email}}">
                                                             {{lang("no_selected")}}
                                                         </a>
                                                         <a class="btn btn-light" href="{{base_url()}}index/remove_address/{{$row->id}}">
@@ -76,7 +104,7 @@
                                         <p class="text-primary">
                                             <u style="cursor: pointer;" class="new_address">{{lang("new_address")}}</u>
                                         </p>
-                                        <div class="d-none box_address">
+                                        <div class="@if(!empty($address)) d-none @endif box_address mb-2">
                                             <div class="form-group">
                                                 <b class="small font-weight-bold">{{lang('cart_info_name')}}:</b>
                                                 <input type="text" name="name" value="{{ $userdata['name'] or '' }}" required="" class="form-control">
@@ -92,6 +120,15 @@
                                             <div class="form-group">
                                                 <b class="small font-weight-bold">{{lang('login_address_label')}}:</b>
                                                 <input type="text" name="address" value="{{ $userdata['address'] or '' }}" required="" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <b class="small font-weight-bold">{{lang('login_area_label')}}:</b>
+                                                <select class="" name="area_id">
+                                                    <option value="0">{{lang("other_area")}}</option>
+                                                    @foreach($area as $row)
+                                                    <option value="{{$row->id}}">{{$row->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         @endif
@@ -163,8 +200,8 @@
                                             <tr class="total-line total-line--shipping">
                                                 <th class="total-line__name" scope="row">{{lang("service_fee")}}</th>
                                                 <td class="text-right">
-                                                    <span class="" data-checkout-total-shipping-target="0">
-                                                        0
+                                                    <span class="">
+                                                        {{lang("price_zero")}}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -324,12 +361,13 @@
             let email = $(this).data("email");
             let phone = $(this).data("phone");
             let address = $(this).data("address");
+            let area = $(this).data("area");
             $("[name=address_id]").val(id);
             $("[name=phone]").val(phone);
             $("[name=address]").val(address);
             $("[name=email]").val(email);
             $("[name=name]").val(name);
-
+            $("[name=area_id]").val(area);
         });
         $(".address").first().trigger("click");
     })
