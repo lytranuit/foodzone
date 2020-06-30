@@ -598,7 +598,7 @@ if (!function_exists('sync_cart')) {
         $CI->load->helper(array('cookie'));
         $CI->load->model('product_model');
         $CI->load->model('user_model');
-        $CI->load->model('fee_model');
+        $CI->load->model('area_model');
 
         $cart = array();
         if (get_cookie("DATA_CART") && get_cookie("DATA_CART") != "") {
@@ -648,21 +648,40 @@ if (!function_exists('sync_cart')) {
         }
 
         $items['paid_amount'] = $items['amount_product'];
-        if (get_cookie("fee_id") && get_cookie("fee_id") != "") {
-            $fee_id = get_cookie("fee_id");
+        if (get_cookie("AREA_ID") && get_cookie("AREA_ID") != "") {
+            $area_id = get_cookie("AREA_ID");
 
-            $fee = $CI->fee_model->get($fee_id);
-            if (empty($fee)) {
+            $area = $CI->area_model->with_fee()->get($area_id);
+            if (empty($area)) {
                 goto end;
             }
-            $min_amount = $fee->min_amount;
-
-            if ($items['paid_amount'] > $min_amount) {
+            if (empty($area->fee)) {
+                goto end;
+            }
+            $fees = $area->fee;
+            // echo "<pre>";
+            // print_r($fees);
+            // die();
+            foreach ($fees as $fee) {
                 $items['service_fee'] = 0;
-                goto end;
+                $min = $fee->min;
+                $max = $fee->max;
+                if ($min == 0 || $min == "") {
+                    if ($items['paid_amount'] > $max) {
+                        continue;
+                    }
+                } elseif ($max == 0 || $max == "") {
+                    if ($items['paid_amount'] <= $min) {
+                        continue;
+                    }
+                } elseif ($items['paid_amount'] <= $min || $items['paid_amount'] > $max) {
+                    continue;
+                }
+
+                $items['service_fee'] = $fee->fee;
+                $items['paid_amount'] += $items['service_fee'];
+                break;
             }
-            $items['service_fee'] = $fee->price;
-            $items['paid_amount'] += $items['service_fee'];
         }
         end: return $items;
     }

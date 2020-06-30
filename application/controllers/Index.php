@@ -465,8 +465,8 @@ class Index extends MY_Controller
             $this->data['address'] = $address;
         }
 
-        $this->load->model("fee_model");
-        $area = $this->fee_model->where(array('deleted' => 0))->get_all();
+        $this->load->model("area_model");
+        $area = $this->area_model->where(array('deleted' => 0))->get_all();
         $this->data['area'] = $area;
         $this->data['cart'] = sync_cart();
         $version = $this->config->item("version");

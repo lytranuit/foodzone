@@ -313,7 +313,7 @@
         $("[name=area_id]").change(async function() {
             let area_id = $(this).val();
 
-            $.cookies.set('fee_id', area_id);
+            $.cookies.set('AREA_ID', area_id);
             $(".loading-modal").addClass("show");
             $("#cboxOverlay").show();
             let html = await $.ajax({
@@ -342,6 +342,9 @@
             $("[name=name]").val(name);
             $("[name=area_id]").val(area).trigger("change");
         });
-        $(".address").first().trigger("click");
+        if ($(".address").length)
+            $(".address").first().trigger("click");
+        else
+            $("[name=area_id]").trigger("change");
     })
 </script>

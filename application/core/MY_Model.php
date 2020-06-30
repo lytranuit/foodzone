@@ -1772,7 +1772,7 @@ class MY_Model extends CI_Model
         $obj = array();
         foreach ($array as $key) {
             if (isset($data[$key])) {
-                if ($key == "price" || $key == "quantity" || $key == "retail_price" || $key == "min_amount") {
+                if ($key == "price" || $key == "quantity" || $key == "retail_price" || $key == "min" || $key == "max" || $key == "fee") {
                     $obj[$key] = str_replace(",", "", $data[$key]);
                     $obj[$key] = (float) str_replace(" VND", "", $obj[$key]);
                 } else

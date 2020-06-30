@@ -12,8 +12,6 @@
                     <thead>
                         <tr>
                             <th>Khu vực</th>
-                            <th>Đơn hàng tối thiểu</th>
-                            <th>Phí giao hàng</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -38,10 +36,6 @@
             },
             "columns": [{
                     "data": "name"
-                }, {
-                    "data": "min_amount"
-                }, {
-                    "data": "price"
                 },
                 {
                     "data": "action"
