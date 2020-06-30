@@ -177,7 +177,7 @@
                                 @foreach($product_related as $row)
 
                                 <div class="col-6 col-lg-3 pr-2 pb-2">
-                                    <div class="thumbnail-menu-modern border border-light product" data-id="{{$product->id}}">
+                                    <div class="thumbnail-menu-modern border border-light product" data-id="{{$row->id}}">
                                         <input type="hidden" value="1" class="number" />
                                         <figure>
                                             <a href="{{base_url()}}index/details/{{$row->id}}">
