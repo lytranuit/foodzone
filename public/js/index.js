@@ -109,7 +109,7 @@ $(document).ready(function () {
             dots: false,
             speed: 300,
             slidesToShow: 6,
-            slidesToScroll: 1,
+            slidesToScroll: 6,
             responsive: [{
                 breakpoint: 1024,
                 settings: {

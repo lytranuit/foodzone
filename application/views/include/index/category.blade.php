@@ -58,6 +58,7 @@
                                                 </div>
                                             </figure>
                                             <div class="caption">
+                                                <div>{{$product->code}}</div>
                                                 <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$product->id}}" tabindex="-1">{{ $product->{pick_language($product,'name_')} }}</a></div>
                                                 <div>
                                                     <span class="price price-prev">@if(isset($product->prev_price) && $product->prev_price > 0)

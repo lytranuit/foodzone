@@ -188,6 +188,7 @@
                                             </div>
                                         </figure>
                                         <div class="caption">
+                                            <div>{{$row->code}}</div>
                                             <div class="font-weight-bold"><a class="link link-default" href="{{base_url()}}index/details/{{$row->id}}" tabindex="-1">{{ $row->{pick_language($row,'name_')} }}</a></div>
                                             <div>
                                                 <span class="price price-prev">@if(isset($row->prev_price) && $row->prev_price > 0)

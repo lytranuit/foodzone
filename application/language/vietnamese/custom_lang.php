@@ -96,5 +96,9 @@ $lang['footer_cstt'] = "Chính sách về thanh toán, giao nhận, vận chuy�
 $lang['footer_csdh'] = "Chính sách đổi hàng, trả hàng, hoàn tiền";
 $lang['footer_csbm'] = "Chính sách bảo mật";
 
+$lang['policy_delivery'] = "Miễn phí giao hàng cho đơn hàng từ 500,000 ₫ trở lên";
+$lang['policy_vat'] = "Giá niêm yết bao gồm VAT";
+$lang['policy_pay'] = "Thanh toán bằng chuyển khoản ngân hàng hoặc tiền mặt";
+$lang['policy_support'] = "Vui lòng gọi (+84) 0917 211 515 để biết thêm chi tiết";
 
 ?>
