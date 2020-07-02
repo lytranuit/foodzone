@@ -1,5 +1,5 @@
 <section class="section-20 bg-gray-lighter">
-    <div class="container">
+    <div class="container-wide">
         <div class="row no-gutters">
 
             <div class="col-lg-9">
@@ -39,7 +39,7 @@
                                     @if(!empty($row->product))
                                     @foreach($row->product as $product)
 
-                                    <div class="col-6 col-lg-3 pr-2 pb-2">
+                                    <div class="col-6 col-lg-2dot4 pr-2 pb-2">
                                         <div class="thumbnail-menu-modern border border-light product" data-id="{{$product->id}}">
                                             <input type="hidden" value="1" class="number" />
                                             <figure>
