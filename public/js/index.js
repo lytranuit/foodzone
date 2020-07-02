@@ -79,6 +79,7 @@ $(document).ready(function() {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     arrows: false,
+                    swipe: false,
                     fade: true,
                     adaptiveHeight: true,
                     asNavFor: '.slider-nav-view'
@@ -87,6 +88,7 @@ $(document).ready(function() {
                     infinite: true,
                     slidesToShow: 3,
                     slidesToScroll: 1,
+                    swipe: false,
                     asNavFor: '.slider-for-view',
                     dots: false,
                     focusOnSelect: true,
@@ -149,6 +151,7 @@ $(document).ready(function() {
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: false,
+            swipe: false,
             fade: true,
             adaptiveHeight: true,
             asNavFor: '.slider-nav'
@@ -157,6 +160,7 @@ $(document).ready(function() {
             infinite: true,
             slidesToShow: 3,
             slidesToScroll: 1,
+            swipe: false,
             asNavFor: '.slider-for',
             dots: false,
             focusOnSelect: true,
