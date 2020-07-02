@@ -77,11 +77,13 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        @if($data->status == 1)
                         <div class="float-right">
                             <a href="{{base_url()}}member/huy_don/{{$data->code}}" data-type='confirm' title='Bạn có muốn hủy đơn hàng này?' class="text-white btn btn-danger">
                                 {{lang("cancle_order")}}
                             </a>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
