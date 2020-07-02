@@ -1,5 +1,5 @@
 <section class="text-center py-3 bg-image bg-image-breadcrumbs">
-    <div class="container">
+    <div class="container-wide">
         <div class="row no-gutters">
             <div class="col-xs-12 col-xl-preffix-1 col-xl-11">
                 <ul class="breadcrumbs-custom">
@@ -14,7 +14,7 @@
     </div>
 </section>
 <section class="section-50 details bg-gray-lighter">
-    <div class="container">
+    <div class="container-wide">
         <div class="row no-gutters">
             <div class="col-lg-9">
                 <div class="card card-customer product" data-id="{{$product->id}}">

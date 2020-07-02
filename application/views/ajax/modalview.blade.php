@@ -114,11 +114,7 @@
                 </div>
                 <hr class="my-2">
                 <div class="mt-2 fr-view">
-                    @if($product->foodzone->{pick_language($product->foodzone, 'description_')} != "")
-                    <?= $product->foodzone->{pick_language($product->foodzone, 'description_')} ?>
-                    @else
                     <?= $product->foodzone->{pick_language($product->foodzone, 'detail_')} ?>
-                    @endif
                 </div>
             </div>
         </div>
