@@ -78,6 +78,7 @@ $(document).ready(function() {
                     infinite: true,
                     slidesToShow: 1,
                     slidesToScroll: 1,
+                    arrows: false,
                     fade: true,
                     adaptiveHeight: true,
                     asNavFor: '.slider-nav-view'
@@ -147,6 +148,7 @@ $(document).ready(function() {
             infinite: true,
             slidesToShow: 1,
             slidesToScroll: 1,
+            arrows: false,
             fade: true,
             adaptiveHeight: true,
             asNavFor: '.slider-nav'
