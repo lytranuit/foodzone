@@ -482,7 +482,10 @@ class Index extends MY_Controller
             $this->load->model("sale_line_model");
             $this->load->model("sale_simba_model");
             $this->load->model("sale_line_simba_model");
+            $this->load->model("area_model");
             $array = $_POST;
+            $area_id = isset($array['area_id']) ? $array['area_id'] : 0;
+            $area = $this->area_model->get($area_id);
             // echo "<pre>";
             // print_r($cart['details']);
             // die();
@@ -510,6 +513,7 @@ class Index extends MY_Controller
             $array['receiver_phone'] =  $array['phone'];
             $array['receiver_email'] =  $array['email'];
             $array['receiver_address'] =  $array['address'];
+            $array['receiver_area'] =  isset($area->name) ? $area->name : "";
 
 
             $array['customer_id'] =  7544;

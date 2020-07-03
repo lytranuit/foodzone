@@ -16,6 +16,7 @@
                         <div>{{lang('login_email_label')}}: {{$data->receiver_email}}</div>
                         <div>{{lang('login_phone_label')}}: {{$data->receiver_phone}}</div>
                         <div>{{lang('login_address_label')}}: {{$data->receiver_address}}</div>
+                        <div>{{lang('login_area_label')}}: {{$data->receiver_area}}</div>
                     </div>
                 </div>
                 <div class="card mt-3">
@@ -65,11 +66,11 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="3"><span>{{lang("total")}}</span></td>
-                                    <td>{{number_format($data->total_amount,0,",",".")}} ₫</td>
+                                    <td>{{number_format($data->amount,0,",",".")}} ₫</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3"><span>{{lang("service_fee")}}</span></td>
-                                    <td>0 ₫</td>
+                                    <td>{{number_format($data->service_fee,0,",",".")}} ₫</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3"><span>{{lang("amount")}}</span></td>
