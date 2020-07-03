@@ -724,7 +724,7 @@ class Index extends MY_Controller
                 // }
 
 
-                $this->sale_model->update(array("is_send" => 1), $row->id);
+                $this->sale_simba_model->update(array("is_send" => 1), $row->id);
                 if ($this->email->send()) {
                     //                echo json_encode(array('code' => 400, 'msg' => lang('alert_400')));
                 } else {
