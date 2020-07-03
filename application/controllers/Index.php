@@ -703,14 +703,14 @@ class Index extends MY_Controller
                 $html = "";
                 $cart = json_decode($row->data);
                 $this->data['details'] = $cart->details;
-                $this->data['total'] = $row->amount;
+                $this->data['total'] = $row->total_amount;
                 $this->data['service_fee'] = $row->service_fee;
                 $this->data['notes'] = $row->notes;
                 $this->data['code'] = $row->code;
-                $this->data['name'] = $row->name;
-                $this->data['email'] = $row->email;
-                $this->data['phone'] = $row->phone;
-                $this->data['address'] = $row->address;
+                $this->data['name'] = $row->receiver_name;
+                $this->data['email'] = $row->receiver_email;
+                $this->data['phone'] = $row->receiver_phone;
+                $this->data['address'] = $row->receiver_address;
                 $this->data['order_date'] = $row->order_date;
 
                 $html = $this->blade->view()->make('page/mail', $this->data)->render();
