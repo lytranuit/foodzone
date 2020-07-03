@@ -492,7 +492,8 @@ class Index extends MY_Controller
             $array['amount'] = $cart['amount_product'];
             $array['service_fee'] = $cart['service_fee'];
             $array['total_amount'] = $cart['paid_amount'];
-            $array['data_fz'] = json_encode($cart);
+            $array['is_send'] = 0;
+            // $array['data_fz'] = json_encode($cart);
             // $data = $this->sale_model->create_object($array);
             // // echo "<pre>";
             // // print_r($data);
@@ -668,9 +669,9 @@ class Index extends MY_Controller
 
     public function cronjobsendmail()
     {
-        $this->load->model("sale_model");
+        $this->load->model("sale_simba_model");
         $this->load->model("option_model");
-        $sales = $this->sale_model->where(array("is_send" => 0))->as_object()->get_all();
+        $sales = $this->sale_simba_model->where(array("is_send" => 0))->with_details()->get_all();
         if (!empty($sales)) {
             $conf = $this->option_model->get_group("send_mail");
             // echo "<pre>";
@@ -701,8 +702,7 @@ class Index extends MY_Controller
                     ->set_mailtype('html');
 
                 $html = "";
-                $cart = json_decode($row->data_fz);
-                $this->data['details'] = $cart->details;
+                $this->data['details'] = $row->details;
                 $this->data['total'] = $row->total_amount;
                 $this->data['service_fee'] = $row->service_fee;
                 $this->data['notes'] = $row->notes;

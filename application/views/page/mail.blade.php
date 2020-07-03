@@ -79,18 +79,18 @@
             @foreach($details as $row)
             <tr>
                 <td>{{$row->code}}</td>
-                <td>{{$row->name_vi}}</td>
-                <td><img src="@if($row->image->type == 2) http://simbaeshop.com{{$row->image->src}} @else {{base_url()}}{{$row->image->src}} @endif" style="max-height:140px" /></td>
-                <td>{{number_format($row->price,0,",",".")}} VND</td>
-                <td>{{$row->qty}}</td>
-                <td>@if(!empty($row->unit)){{$row->unit->name_vi}}@endif</td>
-                <td>{{number_format($row->amount,0,",",".")}} VND</td>
+                <td>{{$row->name}}</td>
+                <td><img src="http://simbaeshop.com{{$row->image_url}}" style="max-height:140px" /></td>
+                <td>{{number_format($row->unit_price,0,",",".")}} VND</td>
+                <td>{{$row->quantity}}</td>
+                <td>{{$row->volume_order}}</td>
+                <td>{{number_format($row->subtotal,0,",",".")}} VND</td>
             </tr>
             @endforeach
         </tbody>
     </table>
 
-    <p><span style="font-family:arial,helvetica,sans-serif"><strong><u>Phí; giao hàng -&nbsp;<span style="color:rgb(0, 0, 0)">Shipping Fee - </span>送料</u>:<span style="color:rgb(255, 0, 0)"> {{$service_fee}} VND</span></strong></span></p>
+    <p><span style="font-family:arial,helvetica,sans-serif"><strong><u>Phí; giao hàng -&nbsp;<span style="color:rgb(0, 0, 0)">Shipping Fee - </span>送料</u>:<span style="color:rgb(255, 0, 0)">{{number_format($service_fee,0,",",".")}} VND</span></strong></span></p>
 
     <p><span style="font-family:arial,helvetica,sans-serif"><strong><u>Tổng tiền - Grand total - 合計</u>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:rgb(255, 0, 0)">{{number_format($total,0,",",".")}} VND</span>&nbsp;</strong></span></p>
 
