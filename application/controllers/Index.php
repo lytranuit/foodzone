@@ -701,7 +701,7 @@ class Index extends MY_Controller
                     ->set_mailtype('html');
 
                 $html = "";
-                $cart = json_decode($row->data);
+                $cart = json_decode($row->data_fz);
                 $this->data['details'] = $cart->details;
                 $this->data['total'] = $row->total_amount;
                 $this->data['service_fee'] = $row->service_fee;
