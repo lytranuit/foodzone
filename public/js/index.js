@@ -47,6 +47,7 @@ $(document).ready(function () {
             dataType: "HTML"
         });
         $(".index_product", section).html(product);
+        $(".unit_product.active").trigger("click");
     });
     ////TRIGGER
     $(".index_category.active").trigger("click");
