@@ -484,6 +484,8 @@ class Index extends MY_Controller
             $this->load->model("sale_line_simba_model");
             $this->load->model("area_model");
             $array = $_POST;
+
+            $arrray_lang = $this->config->item("language_list");
             $area_id = isset($array['area_id']) ? $array['area_id'] : 0;
             $area = $this->area_model->get($area_id);
             // echo "<pre>";
@@ -505,6 +507,8 @@ class Index extends MY_Controller
             $array['order_date'] = date("Y-m-d H:i:s");
             $array['delivery_date'] = date("Y-m-d");
             $array['code'] = "FOZ" . date("YmdHisz");
+            $array['type'] = 7;
+            $array['language'] =  $arrray_lang[language_current()];
             $array['customer_name'] = $array['name'];
             $array['customer_phone'] =  $array['phone'];
             $array['customer_email'] =  $array['email'];
