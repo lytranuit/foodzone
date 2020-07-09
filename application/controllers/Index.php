@@ -555,7 +555,7 @@ class Index extends MY_Controller
                         return $item->id == $data_up['unit_id_fz'];
                     }));
                     $unit = $unit[0];
-                    $data_up['unit_price'] = $unit->special_unit > 0 ? round($data_up['unit_price'] / $unit->special_unit, 2) : 0;
+                    $data_up['unit_price'] = $unit->special_unit > 0 ? round($data_up['subtotal'] / $unit->special_unit / $data_up['quantity'], 0) : 0;
                     $data_up['special_unit'] = $unit->special_unit;
                     $data_up['volume_order'] = $unit->name_vi;
                     $data_up['volume_order_en'] = $unit->name_en;
