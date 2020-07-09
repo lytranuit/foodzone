@@ -52,7 +52,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        {{number_format($row->subtotal / $row->special_unit / $row->quantity,0,",",".")}}đ
+                                        {{number_format($row->subtotal / $row->special_unit,0,",",".")}}đ
                                     </td>
                                     <td>
                                         {{number_format($row->quantity,0,",",".")}}
