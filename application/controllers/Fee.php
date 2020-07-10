@@ -39,7 +39,11 @@ class Fee extends MY_Administrator
 
     public function index()
     { /////// trang ca nhan
-        load_datatable($this->data);
+        // load_datatable($this->data);
+        $this->load->model("area_model");
+        $tin = $this->area_model->where(array('deleted' => 0))->order_by("order", "ASC")->get_all();
+        $this->data['areas'] = $tin;
+        load_sort_nest($this->data);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
     public function add()
@@ -108,6 +112,20 @@ class Fee extends MY_Administrator
         }
     }
 
+    function saveorderarea()
+    {
+        $this->load->model("area_model");
+        $data = json_decode($this->input->post('data'), true);
+        foreach ($data as $key => $row) {
+            if (isset($row['id'])) {
+                $id = $row['id'];
+                $array = array(
+                    'order' => $key
+                );
+                $this->area_model->update($array, $id);
+            }
+        }
+    }
     public function remove($params)
     { /////// trang ca nhan
         $this->load->model("area_model");

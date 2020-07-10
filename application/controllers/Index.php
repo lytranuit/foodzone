@@ -466,7 +466,7 @@ class Index extends MY_Controller
         }
 
         $this->load->model("area_model");
-        $area = $this->area_model->where(array('deleted' => 0))->get_all();
+        $area = $this->area_model->where(array('deleted' => 0))->order_by("order", "ASC")->get_all();
         $this->data['area'] = $area;
         $this->data['cart'] = sync_cart();
         $version = $this->config->item("version");
