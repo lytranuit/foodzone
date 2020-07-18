@@ -1,51 +1,48 @@
 <header class="header">
     <div class="topbar hidden-sm hidden-xs">
         <div class="container">
-            <div>
-                <div class="row">
-                    <div class="col-sm-6 col-md-8">
-                        <!-- <ul class="list_top float-left">
-                            <li>
-                                <a href="http://sakezone.vn/" class="text-white">👉 Sakezone</a>
-                            </li>
-                        </ul> -->
-
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <ul class="list-inline float-right">
-                            <li class="language">
-                                <a class="text-center" href="{{base_url()}}index/set_language/vietnamese"><img src="http://simbaeshop.com/flag/vi.png"></a>
-                            </li>
-                            <li class="language">
-                                <a class="text-center" href="{{base_url()}}index/set_language/english"><img src="http://simbaeshop.com/flag/en.png"></a>
-                            </li>
-                            <li class="language">
-                                <a class="text-center" href="{{base_url()}}index/set_language/japanese"><img src="http://simbaeshop.com/flag/jp.png"></a>
-                            </li>
-                            @if($is_login)
-                            <li>
-                                <div class="dropdown">
-                                    <button class="btn btn-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{$userdata['identity']}}
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item text-dark" href="<?= base_url() ?>member/">{{lang("info")}}</a>
-                                        <a class="dropdown-item text-dark" href="<?= base_url() ?>member/history">{{lang("history_order")}}</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item logout text-dark" href="<?= base_url() ?>index/logout">{{lang("logout")}}</a>
-                                    </div>
+            <div class="row no-gutters">
+                <div class="col-12">
+                    <ul class="list-inline float-right">
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="vertical-align: baseline;text-decoration: none;border-right: 1px solid #ffffff3d;">
+                                    <i class="fas fa-globe"></i>
+                                    @if(language_current() == "english")
+                                    English
+                                    @elseif(language_current() == "japanese")
+                                    日本語
+                                    @else
+                                    Tiếng việt
+                                    @endif
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item text-dark language" href="{{base_url()}}index/set_language/vietnamese">Tiếng việt</a>
+                                    <a class="dropdown-item text-dark language" href="{{base_url()}}index/set_language/english">English</a>
+                                    <a class="dropdown-item text-dark language" href="{{base_url()}}index/set_language/japanese">日本語</a>
                                 </div>
-                            </li>
-                            @else
-                            <li>
-                                <a href="{{base_url()}}index/login"><i class="fa fa-user"></i> {{lang("login")}}</a>
-                            </li>
-                            <li><span>{{lang("or")}}</span></li>
-                            <li><a href="{{base_url()}}index/register">{{lang("sign_up")}}</a>
-                            </li>
-                            @endif
-                        </ul>
-                    </div>
+                            </div>
+                        </li>
+                        @if($is_login)
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-link text-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="vertical-align: baseline;text-decoration: none;">
+                                    <i class="fas fa-user"></i> {{$userdata['identity']}}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <a class="dropdown-item text-dark" href="<?= base_url() ?>member/">{{lang("info")}}</a>
+                                    <a class="dropdown-item text-dark" href="<?= base_url() ?>member/history">{{lang("history_order")}}</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item logout text-dark" href="<?= base_url() ?>index/logout">{{lang("logout")}}</a>
+                                </div>
+                            </div>
+                        </li>
+                        @else
+                        <li>
+                            <a href="{{base_url()}}index/login"><i class="fa fa-user"></i> {{lang("login")}}</a>
+                        </li>
+                        @endif
+                    </ul>
                 </div>
             </div>
         </div>
@@ -149,7 +146,7 @@
     </div>
     <nav style="z-index:100" class="rd-navbar rd-navbar-original rd-navbar-static" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-stick-up-clone="false" data-md-stick-up-offset="100px" data-lg-stick-up-offset="100px">
         <div class="container-wide">
-            <div class="rd-navbar-inner">
+            <div style="position: relative;">
                 <div class="rd-navbar-nav-wrap toggle-original-elements">
                     <div class="hidden-md hidden-lg head-menu">
                         <a class="text-primary" href="{{base_url()}}index/login"><i class="fa fa-user text-dark mr-1"></i>{{lang("login")}}</a>
@@ -177,13 +174,13 @@
                                 @foreach($row->child as $row2)
                                 <li>
                                     @if($row2->type ==1)
-                                    <a class='d-block' href="{{$row->link}}">{{ $row2->{pick_language($row2,'name_')} }}</a>
+                                    <a class='d-block text-success' href="{{$row->link}}">{{ $row2->{pick_language($row2,'name_')} }}</a>
                                     @elseif($row2->type ==4)
-                                    <a class='d-block' href="{{base_url()}}index/khuyen_mai">{{ $row2->{pick_language($row2,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi" width="30"></a>
+                                    <a class='d-block text-success' href="{{base_url()}}index/khuyen_mai">{{ $row2->{pick_language($row2,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi" width="30"></a>
                                     @elseif($row2->type ==5)
-                                    <a class='d-block' href="{{base_url()}}index/news">{{ $row2->{pick_language($row2,'name_')} }}</a>
+                                    <a class='d-block text-success' href="{{base_url()}}index/news">{{ $row2->{pick_language($row2,'name_')} }}</a>
                                     @else
-                                    <a class='d-block' href="{{base_url()}}index/category/{{$row2->category_id}}">{{ $row2->{pick_language($row2,'name_')} }}</a>
+                                    <a class='d-block text-success' href="{{base_url()}}index/category/{{$row2->category_id}}">{{ $row2->{pick_language($row2,'name_')} }}</a>
                                     @endif
                                     @if(!empty($row2->child))
                                     <ul class="list-marked">
@@ -210,14 +207,14 @@
                         </li>
                         @endforeach
                     </ul>
-                    <ul class="hidden-md hidden-lg footer-menu">
-                        <li class="d-inline-block">
+                    <ul class="hidden-md hidden-lg footer-menu d-flex">
+                        <li class="col">
                             <a class="text-center" href="{{base_url()}}index/set_language/vietnamese"><img src="http://simbaeshop.com/flag/vi.png"></a>
                         </li>
-                        <li class="d-inline-block">
+                        <li class="col">
                             <a class="text-center" href="{{base_url()}}index/set_language/english"><img src="http://simbaeshop.com/flag/en.png"></a>
                         </li>
-                        <li class="d-inline-block">
+                        <li class="col">
                             <a class="text-center" href="{{base_url()}}index/set_language/japanese"><img src="http://simbaeshop.com/flag/jp.png"></a>
                         </li>
                     </ul>

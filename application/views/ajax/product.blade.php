@@ -1,10 +1,10 @@
 @if(!empty($data))
 @foreach($data as $product)
-<div class="col-6 col-lg-2dot4 pr-2 pb-2">
-    <div class="thumbnail-menu-modern border border-light product" data-id="{{$product->id}}">
+<div class="col-6 col-lg-2dot4 pb-2">
+    <div class="thumbnail-menu-modern border-right border-light product" data-id="{{$product->id}}">
         <input type="hidden" value="1" class="number" />
         <figure>
-            <a href="{{base_url()}}index/details/{{$product->id}}">
+            <a href="{{base_url()}}index/details/{{$product->id}}" class="d-block p-lg-5 p-md-3">
                 <img class="img-responsive" src="http://simbaeshop.com{{$product->image_url}}" alt="">
             </a>
             <div class="view_now d-flex align-items-center">

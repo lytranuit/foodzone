@@ -446,7 +446,7 @@ class Index extends MY_Controller
         // array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
 
         // echo "<pre>";
-        // print_r(NumberToTextVN($this->data['cart']['amount_product']));
+        // print_r(NumberToText($this->data['cart']['amount_product']));
         // die();
 
         $version = $this->config->item("version");

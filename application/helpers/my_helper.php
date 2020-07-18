@@ -687,6 +687,19 @@ if (!function_exists('sync_cart')) {
     }
 }
 
+if (!function_exists('NumberToText')) {
+
+    function NumberToText($total)
+    {
+        // return (language_current());
+        if (language_current() == "english") {
+
+            return NumberToTextEN($total) . " dong";
+        } else {
+            return NumberToTextVN($total);
+        }
+    }
+}
 if (!function_exists('NumberToTextVN')) {
 
     function NumberToTextVN($total)
@@ -772,6 +785,159 @@ if (!function_exists('NumberToTextVN')) {
         $rs = str_replace("mười,", "mười", $rs);
 
         return $rs;
+    }
+}
+
+if (!function_exists('NumberToTextJP')) {
+
+    function NumberToTextJP($total)
+    {
+
+        $rs = "";
+        $total = round($total, 0);
+        $ch = array("ゼロ", "一", "ニ", "三", "四", "五", "六", "七", "八", "九");
+        $rch = array("十", "一", "", "", "", "五");
+        $u = array("", "十", "百", "千", "", "", "百万", "", "", "十億", "", "", "千", "", "", "百万");
+
+        $nstr = (string) $total;
+
+        $len = strlen($nstr);
+
+        for ($i = 0; $i < $len; $i++) {
+            $n[$len - 1 - $i] = substr($nstr, $i, 1);
+        }
+        // print_r($n);
+        for ($i = $len - 1; $i >= 0; $i--) {
+            if ($i % 3 == 2) // số 0 ở hàng trăm
+            {
+                if ($n[$i] == 0 && $n[$i - 1] == 0 && $n[$i - 2] == 0) continue; //nếu cả 3 số là 0 thì bỏ qua không đọc
+            } else if ($i % 3 == 1) // số ở hàng chục
+            {
+                if ($n[$i] == 0) {
+                    if ($n[$i - 1] == 0) {
+                        continue;
+                    } // nếu hàng chục và hàng đơn vị đều là 0 thì bỏ qua.
+                    else {
+                        $rs .= " " . $rch[$n[$i]];
+                        continue; // hàng chục là 0 thì bỏ qua, đọc số hàng đơn vị
+                    }
+                }
+                if ($n[$i] == 1) //nếu số hàng chục là 1 thì đọc là mười
+                {
+                    $rs .= " 十";
+                    continue;
+                }
+            } else if ($i != $len - 1) // số ở hàng đơn vị (không phải là số đầu tiên)
+            {
+                if ($n[$i] == 0) // số hàng đơn vị là 0 thì chỉ đọc đơn vị
+                {
+                    if ($i + 2 <= $len - 1 && $n[$i + 2] == 0 && $n[$i + 1] == 0) continue;
+                    $rs .= " " . ($i % 3 == 0 ? $u[$i] : $u[$i % 3]);
+                    continue;
+                }
+                if ($n[$i] == 1) // nếu là 1 thì tùy vào số hàng chục mà đọc: 0,1: một / còn lại: mốt
+                {
+                    $rs .= " " . (($n[$i + 1] == 1 || $n[$i + 1] == 0) ? $ch[$n[$i]] : $rch[$n[$i]]);
+                    $rs .= " " . ($i % 3 == 0 ? $u[$i] : $u[$i % 3]);
+                    continue;
+                }
+                if ($n[$i] == 5) // cách đọc số 5
+                {
+                    if ($n[$i + 1] != 0) //nếu số hàng chục khác 0 thì đọc số 5 là lăm
+                    {
+                        $rs .= " " . $rch[$n[$i]]; // đọc số
+                        $rs .= " " . ($i % 3 == 0 ? $u[$i] : $u[$i % 3]); // đọc đơn vị
+                        continue;
+                    }
+                }
+            }
+
+            $rs .= ($rs == "" ? " " : ", ") . $ch[$n[$i]]; // đọc số
+            $rs .= " " . ($i % 3 == 0 ? $u[$i] : $u[$i % 3]); // đọc đơn vị
+        }
+        // print_r($rs);
+        if ($rs[strlen($rs) - 1] != ' ')
+            $rs .= " đồng";
+        else
+            $rs .= "đồng";
+
+        if (strlen($rs) > 2) {
+            $rs1 = substr($rs, 0, 2);
+            $rs1 = strtoupper($rs1);
+            $rs = substr($rs, 2);
+            $rs = $rs1 . $rs;
+        }
+        $rs = trim($rs);
+        $rs = str_replace("lẻ,", "lẻ", $rs);
+        $rs = str_replace("mươi,", "mươi", $rs);
+        $rs = str_replace("trăm,", "trăm", $rs);
+        $rs = str_replace("mười,", "mười", $rs);
+
+        return $rs;
+    }
+}
+
+if (!function_exists('NumberToTextEN')) {
+
+    function NumberToTextEN($number)
+    {
+
+        if (($number < 0) || ($number > 999999999)) {
+            throw new Exception("Number is out of range");
+        }
+
+        $Gn = floor($number / 1000000);
+        /* Millions (giga) */
+        $number -= $Gn * 1000000;
+        $kn = floor($number / 1000);
+        /* Thousands (kilo) */
+        $number -= $kn * 1000;
+        $Hn = floor($number / 100);
+        /* Hundreds (hecto) */
+        $number -= $Hn * 100;
+        $Dn = floor($number / 10);
+        /* Tens (deca) */
+        $n = $number % 10;
+        /* Ones */
+
+        $res = "";
+
+        if ($Gn) {
+            $res .= NumberToTextEN($Gn) .  "Million";
+        }
+
+        if ($kn) {
+            $res .= (empty($res) ? "" : " ") . NumberToTextEN($kn) . " Thousand";
+        }
+
+        if ($Hn) {
+            $res .= (empty($res) ? "" : " ") . NumberToTextEN($Hn) . " Hundred";
+        }
+
+        $ones = array("", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eightteen", "Nineteen");
+        $tens = array("", "", "Twenty", "Thirty", "Fourty", "Fifty", "Sixty", "Seventy", "Eigthy", "Ninety");
+
+        if ($Dn || $n) {
+            if (!empty($res)) {
+                $res .= " and ";
+            }
+
+            if ($Dn < 2) {
+                $res .= $ones[$Dn * 10 + $n];
+            } else {
+                $res .= $tens[$Dn];
+
+                if ($n) {
+                    $res .= "-" . $ones[$n];
+                }
+            }
+        }
+
+        if (empty($res)) {
+            $res = "zero";
+        }
+
+        return $res;
     }
 }
 if (!function_exists('is_wishlist')) {

@@ -124,7 +124,7 @@
                                     </td>
                                     <td class="text-right">
                                         <b class="big text-danger">{{number_format($cart['amount_product'],0,",",".")}}đ</b>
-                                        <div>{{NumberToTextVN($cart['amount_product'])}}</div>
+                                        <div>{{NumberToText($cart['amount_product'])}}</div>
                                     </td>
                                 </tr>
                                 <tr>

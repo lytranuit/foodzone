@@ -70,6 +70,8 @@ $(document).ready(function () {
                     opacity: 1
                 })
                 $(".fancybox", inner).fancybox();
+
+                $(".unit_product.active", inner).trigger("click");
                 // $(inner).off('click', '.fancybox')
                 //     .on('click', '.say_no', function () {
                 //         $.fancybox.close();
@@ -143,6 +145,17 @@ $(document).ready(function () {
                 // instead of a settings object
             ]
         });
+        plugins.topics_view.on({
+            mouseenter: function () {
+                $(".slick-arrow", this).fadeIn(500)
+                //stuff to do on mouse enter
+            },
+            mouseleave: function () {
+                $(".slick-arrow", this).fadeOut(500)
+                //stuff to do on mouse leave
+            }
+        });
+        $(".slick-arrow").hide()
     }
 
     //// DETAILS HÌNH ẢNH SẢN PHẨM

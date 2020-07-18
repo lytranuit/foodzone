@@ -81,7 +81,7 @@
                                                     {{number_format($cart['paid_amount'],0,",",".")}}đ
                                                 </span>
 
-                                                <div>{{NumberToTextVN($cart['paid_amount'])}}</div>
+                                                <div>{{NumberToText($cart['paid_amount'])}}</div>
                                             </td>
                                         </tr>
                                     </tfoot>

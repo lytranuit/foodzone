@@ -5720,23 +5720,9 @@ html p a:hover {
 @media (min-width: 1400px) {
     .shell,
     .container-wide,
+    .container,
     .shell-wide {
         max-width: 1400px;
-    }
-}
-
-@media (min-width: 1600px) {
-    .shell,
-    .container-wide,
-    .shell-wide {
-        max-width: 1600px;
-    }
-}
-
-@media (min-width: 1800px) {
-    .container-wide,
-    .shell-wide {
-        max-width: 1800px;
     }
 }
 
@@ -24314,7 +24300,7 @@ html:not(.lt-ie10) .not-animated {
 */
 .rd-navbar {
     display: none;
-    background: #f7921e;
+    background: #75990b;
     box-shadow: none;
     box-shadow: 0px 4px 4px 1px grey;
 }
@@ -25280,7 +25266,7 @@ html:not(.lt-ie10) .not-animated {
     top: 0;
     right: 0;
     z-index: 9999;
-    background: #f7921e;
+    background: #75990b;
 }
 
 .rd-navbar-static.rd-navbar--is-stuck .rd-navbar-megamenu,
@@ -25929,7 +25915,7 @@ html:not(.lt-ie10) .not-animated {
     right: 0;
     box-shadow: 0 0 13px -1px rgba(0, 0, 0, 0.17);
     border-bottom: 1px solid #f9b129;
-    background: #f7921e;
+    background: #75990b;
 }
 
 .rd-navbar-fixed .rd-navbar-toggle {
