@@ -44,6 +44,7 @@ class MY_Controller extends CI_Controller
         //     $this->data['template'] = $page[0]['template'];
         //     $this->data['title'] = $page[0]['page'];
         // } else { //////// Default
+        $this->data['body_class'] = "";
         $this->data['content'] = $class . "." . $method;
         $this->data['template'] = "template";
         $this->data['title'] = "";

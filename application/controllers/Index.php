@@ -91,6 +91,7 @@ class Index extends MY_Controller
         //         $row_format = $this->product_model->format($row_format);
         //     }
         // }
+        $this->data['body_class'] = "template_index";
         $this->data['topics'] = $list_topics;
         $this->data['category'] = $list_category;
         echo $this->blade->view()->make('page/page', $this->data)->render();
@@ -442,6 +443,7 @@ class Index extends MY_Controller
     function cart()
     {
         $this->data['cart'] = sync_cart();
+
         //        $this->data['stylesheet_tag'] = array();
         // array_push($this->data['stylesheet_tag'], base_url() . "public/assets/checkout.css");
 

@@ -51,7 +51,7 @@
 <div class="loading-modal modal">Loading</div>
 <div id="cboxOverlay" style="display: none;"></div>
 
-<body class='{{$template or ""}}'>
+<body class='{{$body_class}}'>
     @include("include.header")
     <main class="page">
         @yield("content")
