@@ -9,9 +9,9 @@
                     <div class="col-md-4 offset-top-30">
                         <article class="post post-modern">
                             <!-- Post media-->
-                            <header class="post-media">
+                            <div class="post-media text-center">
                                 <img class="img-fluid" src="@if(empty($row->image)){{base_url()}}public/image/temp.png @else{{base_url()}}{{$row->image->src}}@endif" alt="">
-                            </header>
+                            </div>
                             <!-- Post content-->
                             <section class="post-content text-left">
                                 <div class="post-meta pull-sm-right"><span class="text-middle icon-xxs mdi mdi-clock text-accent"></span>
