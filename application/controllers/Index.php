@@ -507,7 +507,7 @@ class Index extends MY_Controller
 
             ///UPDATE SIMBA
             $array['order_date'] = date("Y-m-d H:i:s");
-            $array['delivery_date'] = date("Y-m-d");
+            // $array['delivery_date'] = date("Y-m-d");
             $array['code'] = "FOZ" . date("YmdHisz");
             $array['type'] = 7;
             $array['language'] =  $arrray_lang[language_current()];
