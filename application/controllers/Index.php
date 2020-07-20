@@ -326,7 +326,7 @@ class Index extends MY_Controller
         $sql_where = "status = 1 and is_foodzone = 1 ";
         if ($search != "") {
             $short_language = short_language_current();
-            $sql_where .= " AND AND (LOWER(code) LIKE LOWER('%$search%') OR name_$short_language like '%" . $search . "%')";
+            $sql_where .= " AND (LOWER(code) LIKE LOWER('%$search%') OR LOWER(name_$short_language) like LOWER('%" . $search . "%'))";
         }
 
         $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->count_rows();
