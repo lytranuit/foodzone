@@ -26,7 +26,7 @@
     <div class="container-wide">
         <div class="row">
             <div class="col-12">
-                <div class="card card-custom2">
+                <div class="card card-custom1">
                     <div class="card-header">
                         <a href="{{base_url()}}index/category/{{$row->id}}" class="header_title">
                             <span>{{ $row->{pick_language($row,'name_')} }} ({{$row->count_product}})</span>
