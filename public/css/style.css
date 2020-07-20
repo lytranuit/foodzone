@@ -200,7 +200,7 @@
 ==============================================================================*/
 /*4.1  Header Gerenal*/
 header {
-  background: transparent;
+  background: #75990b;
   width: 100%;
   height: initial !important; }
 
@@ -209,7 +209,7 @@ header .nav > li > a:hover {
   background: #70634d; }
 
 .topbar {
-  background: #75990b;
+  background: #6d8e0a;
   color: #fff;
   text-align: center;
   height: 40px;
@@ -584,11 +584,9 @@ header .nav > li > a:hover {
 
 .top-cart-contain {
   color: #363636;
-  padding: 17px 0 0 0;
+  padding: 22px 0 0 0;
   right: 0;
   width: 130px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
   position: relative; }
 
 .top-cart-contain .heading-cart {
@@ -1167,12 +1165,38 @@ header nav .nav-item.active > a {
   height: 30px;
   line-height: 30px; }
 
+.block-search {
+  padding: 17px 0 0 0; }
+  .block-search .search-text {
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    height: 45px;
+    padding: 5px 120px 5px 20px;
+    background: #ffffff; }
+  .block-search .input-group-btn .btn {
+    background: #ffad00;
+    border-radius: 0 5px 5px 0;
+    -webkit-border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    -khtml-border-radius: 0 5px 5px 0;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 0 0 -1px;
+    padding: 11px 32.5px;
+    position: relative;
+    letter-spacing: 1px;
+    right: auto;
+    top: auto; }
+
 @media (max-width: 991px) {
   .header {
     position: sticky;
     top: 0px;
-    background: white;
-    z-index: 1000; }
+    z-index: 1000;
+    color: white; }
 
   .head-menu {
     color: #333;
@@ -1440,6 +1464,8 @@ header nav .nav-item.active > a {
     color: #fff;
     right: -20px;
     background: #dc3545; }
+.rd-navbar--is-stuck .menu-search {
+  display: block !important; }
 
 @media (min-width: 991px) {
   .list.list-marked .img_km {
@@ -1680,5 +1706,10 @@ ul.content-block li > span {
   left: -1px;
   z-index: 10;
   background-color: #ffb200; }
+
+.card-menu .card-body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 13px; }
 
 /*# sourceMappingURL=style.css.map */

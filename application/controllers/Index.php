@@ -26,6 +26,7 @@ class Index extends MY_Controller
             "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
             base_url() . "public/lib/bootstrap/js/popper.min.js",
             base_url() . "public/lib/bootstrap/js/bootstrap.min.js",
+            base_url() . "public/lib/in-view/jquery.inview.js",
             base_url() . "public/lib/cookie/jquery.cookies.2.2.0.min.js",
 
             // base_url() . "public/lib/UItoTop/easing.js",
@@ -323,16 +324,16 @@ class Index extends MY_Controller
         $this->load->model("category_model");
         $this->load->model("product_model");
 
-        $sql_where = "status = 1 and is_foodzone = 1 ";
+        $sql_where = "product.status = 1 and product.is_foodzone = 1";
         if ($search != "") {
             $short_language = short_language_current();
-            $sql_where .= " AND (LOWER(code) LIKE LOWER('%$search%') OR LOWER(name_$short_language) like LOWER('%" . $search . "%'))";
+            $sql_where .= " AND (LOWER(product.code) LIKE LOWER('%$search%') OR LOWER(fz_product.name_$short_language) like LOWER('%" . $search . "%') OR (fz_product.code IS NULL AND LOWER(product.name_$short_language) like LOWER('%" . $search . "%')))";
         }
 
-        $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->count_rows();
+        $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->left_join("fz_product", "code", "code")->count_rows();
         $max_page = ceil($count / $limit);
 
-        $data = $this->product_model->where($sql_where, null, null, null, null, true)->order_by('code', 'ASC')->with_foodzone()->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
+        $data = $this->product_model->where($sql_where, null, null, null, null, true)->left_join("fz_product", "code", "code")->fields('product.*')->order_by('code', 'ASC')->with_foodzone()->with_units()->with_price_km()->with_image()->limit($limit, ($page - 1) * $limit)->get_all();
         if (!empty($data)) {
             foreach ($data as &$row_format) {
                 $row_format = $this->product_model->format($row_format);

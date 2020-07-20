@@ -17,6 +17,12 @@ $(document).ready(function () {
     plugins.image_view = $('.area_image');
     plugins.topics_view = $('.responsive1');
     plugins.menu_bar = $(".menu-bar");
+    $(document).on("inview", ".lazyload", function () {
+        console.log(1);
+        let src = $(this).data("src");
+        $(this).attr("src", src);
+        $(this).removeClass("lazyload");
+    });
     $(window).scroll(function () {
         if ($(this).scrollTop()) {
             $('#toTop').fadeIn();

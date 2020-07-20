@@ -196,7 +196,9 @@ class Member extends MY_Controller
         $code = $params[0];
 
         $this->load->model("sale_simba_model");
-        $this->sale_simba_model->where(array('code' => $code))->update(array("status" => 5));
+        $sale = $this->sale_simba_model->where(array('code' => $code))->get();
+        if (!$sale || (isset($sale->status) && $sale->status != 5))
+            $this->sale_simba_model->where(array('code' => $code))->update(array("status" => 5));
         redirect('member/history', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
     }
     function changepass()

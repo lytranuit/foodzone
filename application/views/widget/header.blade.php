@@ -53,46 +53,21 @@
                 <div class="col-xs-12 col-md-3 text-lg-left">
                     <div class="logo inline-block">
                         <a href="/" class="logo-wrapper ">
-                            <img src="{{base_url()}}public/image/logo.png?v=1" width="200" />
+                            <img src="{{base_url()}}public/image/logo3.png?v=1" width="200" />
                         </a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8 col-lg-7 hidden-xs">
-                    <div class="policy d-flex justify-content-around">
-
-                        <div class="item-policy d-flex align-items-center">
-                            <a href="{{base_url()}}index/post/4" class="text-dark">
-                                <img src="{{base_url()}}public/image/policy1.png">
-                            </a>
-                            <div class="info a-left">
-                                <a href="{{base_url()}}index/post/4" class="text-dark">{{lang("header_text_ship")}}</a>
-                                <p>{{lang("header_text_ship_sub")}}</p>
-                            </div>
-                        </div>
-
-                        <!-- 
-                        <div class="item-policy d-flex align-items-center">
-                            <a href="http://sakezone.vn/" target="_blank">
-                                <img src="{{base_url()}}public/image/sakezone.png" width="100">
-                            </a>
-                            <div class="info a-left">
-                                <a href="#" class="text-dark">{{lang("header_text_hotline")}}</a>
-                                <p>{{lang("header_text_hotline_sub")}}<a href="callto:19001009" class="text-dark">{{$options['hot_line']}}</a></p>
-                            </div>
-                        </div> -->
-
-
-                        <div class="item-policy d-flex align-items-center">
-                            <a href="#">
-                                <img src="{{base_url()}}public/image/policy3.png">
-                            </a>
-                            <div class="info a-left">
-                                <a href="#" class="text-dark">{{lang("header_text_opening")}}</a>
-                                <p>{{lang("header_text_opening_sub")}}</p>
-                            </div>
-                        </div>
-
-
+                    <div class="block block-search">
+                        <form class="input-group search-bar search_form" action="{{base_url()}}index/search" method="get" role="search">
+                            <input type="search" name="q" value="" placeholder="{{lang('search_text')}}" class="input-group-field st-default-search-input search-text form-control" autocomplete="off">
+                            <input type="hidden" name="type" value="product">
+                            <span class="input-group-btn">
+                                <button class="btn icon-fallback-text">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </form>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-1 col-lg-2 hidden-sm hidden-xs">
@@ -137,7 +112,7 @@
         <div class="menu-bar hidden-md hidden-lg">
             <i class="fas fa-bars" style="font-size: 24px;"></i>
         </div>
-        <a href="{{base_url()}}index/cart" class="icon-cart-mobile hidden-md hidden-lg f-left text-dark absolute">
+        <a href="{{base_url()}}index/cart" class="icon-cart-mobile hidden-md hidden-lg f-left text-white absolute">
             <div class="icon relative">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="cartCount count_item_pr">0</span>
@@ -218,7 +193,7 @@
                             <a class="text-center" href="{{base_url()}}index/set_language/japanese"><img src="http://simbaeshop.com/flag/jp.png"></a>
                         </li>
                     </ul>
-                    <div class="menu-search hidden-sm hidden-xs">
+                    <div class="menu-search d-none">
                         <div class="header_search search_form">
                             <form class="input-group search-bar search_form" action="{{base_url()}}index/search" method="get" role="search">
                                 <input type="search" name="q" value="" placeholder="{{lang('search_text')}}" class="input-group-field st-default-search-input search-text auto-search form-control" autocomplete="off">

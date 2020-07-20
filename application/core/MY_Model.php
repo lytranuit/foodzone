@@ -1791,4 +1791,11 @@ class MY_Model extends CI_Model
         //$this->_trashed = ''; issue #208...
         return $this;
     }
+    public function left_join($table, $local_key, $foreign_key)
+    {
+        $this->_database->join($table, $this->table . '.' . $local_key . ' = ' . $table . '.' . $foreign_key, 'left');
+
+        //$this->_trashed = ''; issue #208...
+        return $this;
+    }
 }

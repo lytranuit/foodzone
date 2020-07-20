@@ -2,10 +2,10 @@
     <div class="container-wide">
         <div class="row">
             <div class="col-lg-3 d-none d-sm-block" style="z-index: 99;">
-                <div class="card card-custom card-color">
+                <div class="card card-custom card-color card-menu">
                     <div class="card-header">{{lang("index_menu_slide")}}</div>
                     <div class="card-body py-0">
-                        <ul class="list list-marked list-bordered list-custom" style="height: 525px;">
+                        <ul class="list list-marked list-bordered list-custom">
                             @foreach($list_menu as $row)
                             <li class="nav-item has_sub">
                                 @if($row->type ==1 )
@@ -93,6 +93,23 @@
                                 mouseleave: function() {
                                     $(".slick-arrow", this).fadeOut(500)
                                     //stuff to do on mouse leave
+                                }
+                            });
+
+                            let height_slider = $(".home-banner").outerHeight(true);
+                            let height_menu = height_slider - 47;
+                            $(".card-menu .card-body").height(height_menu);
+                            $(".list-custom li.has_sub").on({
+                                mouseenter: function() {
+                                    let offset = $(this).offset();
+                                    console.log(offset);
+                                    $(">ul", this).css({
+                                        "left": offset.left + 300,
+                                        "top": offset.top
+                                    })
+                                },
+                                mouseleave: function() {
+
                                 }
                             });
                         });
