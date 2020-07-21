@@ -159,7 +159,7 @@ class Member extends MY_Controller
         $this->load->model("sale_simba_model");
         $this->load->model("sale_line_simba_model");
 
-        $data = $this->sale_simba_model->where(array('user_id' => $id_user))->order_by("id", "DESC")->get_all();
+        $data = $this->sale_simba_model->where(array('user_id' => $id_user, 'deleted' => 0))->order_by("id", "DESC")->get_all();
 
         $this->data['data'] = $data;
         //echo $this->data['content'];
