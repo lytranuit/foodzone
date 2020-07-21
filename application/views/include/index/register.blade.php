@@ -89,12 +89,10 @@
                 $(element).parents('.form-group').append(error);
             },
             submitHandler: function(form) {
-                var username = $("input[name=username]").val();
+                // var username = $("input[name=username]").val();
                 $.ajax({
-                    url: path + "admin/checkusername",
-                    data: {
-                        username: username
-                    },
+                    url: path + "index/checkregister",
+                    data: $(form).serialize(),
                     dataType: "JSON",
                     success: function(data) {
                         if (data.success == 1) {

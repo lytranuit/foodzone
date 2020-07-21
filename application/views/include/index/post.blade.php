@@ -1,4 +1,4 @@
-<?= $widget->post_header($post->title) ?>
+<?= $widget->post_header($post->{pick_language($post, 'title_')}) ?>
 
 <section class="section-50 section-sm-100">
     <div class="container">
@@ -12,7 +12,7 @@
                             <!-- <img class="img-responsive" src="images/post-01-870x412.jpg" alt="" width="870" height="412"> -->
                             <!-- Post content-->
                             <section class="post-content text-left offset-top-25">
-                                <h5 class="text-uppercase">{{$post->title}}</h5>
+                                <h5 class="text-uppercase">{{$post->{pick_language($post,'title_')} }}</h5>
                                 <ul class="list-inline list-inline-md offset-top-5">
                                     <li>
                                         <div class="unit unit-horizontal unit-spacing-xxs">
@@ -31,7 +31,7 @@
                                 </ul>
                                 <hr class="offset-top-15">
                                 <div class="fr-view">
-                                    <?= $post->content ?>
+                                    <?= $post->{pick_language($post, 'content_')} ?>
                                 </div>
                             </section>
                             <div class="offset-top-50 text-sm-left clearfix">

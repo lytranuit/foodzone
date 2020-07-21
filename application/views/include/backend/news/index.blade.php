@@ -12,7 +12,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Tiêu đề</th>
+                            <th>Tiếng Việt</th>
+                            <th>Tiếng Anh</th>
+                            <th>Tiếng Nhật</th>
                             <th>Ngày đăng</th>
                             <th>Hành động</th>
                         </tr>
@@ -39,7 +41,11 @@
             "columns": [{
                     "data": "id"
                 }, {
-                    "data": "title"
+                    "data": "title_vi"
+                }, {
+                    "data": "title_en"
+                }, {
+                    "data": "title_jp"
                 },
                 {
                     "data": "date"

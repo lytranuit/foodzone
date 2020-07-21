@@ -95,21 +95,30 @@
                                     //stuff to do on mouse leave
                                 }
                             });
-
                             let height_slider = $(".home-banner").outerHeight(true);
                             let height_menu = height_slider - 47;
                             $(".card-menu .card-body").height(height_menu);
+                            var count = 1;
+                            let timer = setInterval(function() {
+                                if (count == 10)
+                                    clearInterval(timer);
+                                let height_slider = $(".home-banner").outerHeight(true);
+                                let height_menu = height_slider - 47;
+                                $(".card-menu .card-body").height(height_menu);
+                            }, 1000)
+
                             $(".list-custom li.has_sub").on({
                                 mouseenter: function() {
                                     let offset = $(this).offset();
-                                    console.log(offset);
                                     $(">ul", this).css({
                                         "left": offset.left + 300,
                                         "top": offset.top
-                                    })
+                                    });
+                                    $(">ul", this).fadeIn(500)
                                 },
                                 mouseleave: function() {
-
+                                    let offset = $(this).offset();
+                                    $(">ul", this).fadeOut(500)
                                 }
                             });
                         });

@@ -28,11 +28,11 @@
                                 </ul>
                                 <!-- Post Title-->
                                 <div class="post-title">
-                                    <h6 class="offset-top-25"><a class="link-default" href="{{base_url()}}index/post/{{$row->id}}">{{$row->title}}</a></h6>
+                                    <h6 class="offset-top-25"><a class="link-default" href="{{base_url()}}index/post/{{$row->id}}">{{ $row->{pick_language($row,'title_')} }}</a></h6>
                                 </div>
                                 <!-- Post Body-->
                                 <div class="post-body offset-top-20">
-                                    <p>{{split_string($row->content,50)}}</p>
+                                    <p>{{split_string($row->{pick_language($row,'content_')},50)}}</p>
                                 </div>
                             </section>
                         </article>

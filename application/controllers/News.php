@@ -118,7 +118,7 @@ class News extends MY_Administrator
             $where = $this->news_model->where($sWhere, NULL, NULL, FALSE, FALSE, TRUE);
         }
 
-        $posts = $where->order_by("id", "DESC")->with_image()->paginate($limit, NULL, $page);
+        $posts = $where->order_by("id", "DESC")->paginate($limit, NULL, $page);
         //        echo "<pre>";
         //        print_r($posts);
         //        die();
@@ -126,9 +126,11 @@ class News extends MY_Administrator
         if (!empty($posts)) {
             foreach ($posts as $post) {
                 $nestedData['id'] = $post->id;
-                $nestedData['title'] = $post->title;
-                $image = isset($post->image->src) ? base_url() . $post->image->src : "";
-                $nestedData['image'] = "<img src='$image' width='100'/>";
+                $nestedData['title_vi'] = $post->title_vi;
+                $nestedData['title_en'] = $post->title_en;
+                $nestedData['title_jp'] = $post->title_jp;
+                // $image = isset($post->image->src) ? base_url() . $post->image->src : "";
+                // $nestedData['image'] = "<img src='$image' width='100'/>";
                 $nestedData['date'] =  date("d/m/Y", strtotime($post->date));
                 $nestedData['action'] = '<a href="' . base_url() . 'news/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="edit">'
                     . '<i class="fas fa-pencil-alt">'

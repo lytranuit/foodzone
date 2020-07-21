@@ -184,14 +184,18 @@
   .responsive1 .item .caption {
     font-size: 0.85rem;
     background: #ffb200;
-    color: black;
+    color: #ffffff;
     width: 100%;
-    padding: 10px 20px;
-    height: 3.5rem;
-    line-height: 1.2em;
     vertical-align: top;
     letter-spacing: 1px;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 20px;
+    height: 40px; }
 
 /*============================================================================
 4. Header

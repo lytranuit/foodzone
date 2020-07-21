@@ -2565,6 +2565,7 @@ class Admin extends MY_Administrator
             echo json_encode(array('success' => 0, 'msg' => "Tài khoản đã tồn tại!"));
         }
     }
+
     public function check_product()
     {
         $code = $this->input->post('code');

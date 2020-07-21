@@ -82,7 +82,7 @@ class Widget
     public function index_slider()
     {
         $this->CI->load->model("slider_model");
-        $this->data['list_slider'] = $this->CI->slider_model->where(array('deleted' => 0))->with_image()->get_all();
+        $this->data['list_slider'] = $this->CI->slider_model->where(array('deleted' => 0))->order_by('order', 'ASC')->with_image()->get_all();
 
 
         $this->CI->load->model("menu_slide_model");

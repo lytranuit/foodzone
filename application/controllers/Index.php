@@ -109,7 +109,7 @@ class Index extends MY_Controller
         // echo "<pre>";
         // print_r($post);
         // die();
-        $this->data['title'] = $post->title;
+        $this->data['title'] = $post->{pick_language($post, 'title_')};
         load_froala_view($this->data);
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
@@ -175,7 +175,6 @@ class Index extends MY_Controller
             // account_creation_duplicate_identity
             // account_creation_duplicate_email
             if (!empty($check)) {
-
                 redirect('/index/register?msg=1', 'refresh');
                 die();
             }
@@ -201,9 +200,30 @@ class Index extends MY_Controller
             // print_r($msg);
             // die();
             $this->data['msg'] = $msg;
+            array_push($this->data['javascript_tag'], base_url() . "public/lib/jquery-validation/jquery.validate.js");
             array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
+    }
+
+    public function checkregister()
+    {
+        $username = $this->input->get('username');
+        $email = $this->input->get('email');
+        $this->load->model("user_model");
+        $check = $this->user_model->where(array("username" => $username))->as_array()->get();
+        // account_creation_duplicate_identity
+        // account_creation_duplicate_email
+        if (!empty($check)) {
+            echo json_encode(array('success' => 0, 'msg' => lang('account_creation_duplicate_identity')));
+            die();
+        }
+        $check = $this->user_model->where(array("email" => $email))->as_array()->get();
+        if (!empty($check)) {
+            echo json_encode(array('success' => 0, 'msg' => lang('account_creation_duplicate_email')));
+            die();
+        }
+        echo json_encode(array('success' => 1));
     }
     public function set_language($params)
     {

@@ -29,8 +29,8 @@ $(document).ready(function() {
         } else {
             $('#toTop').fadeOut();
         }
-        /// fix bug 
-        // $(".list-custom li.has_sub > ul").css("opacity", 0);
+        /// fix bug .
+        $(".list-custom li.has_sub > ul").fadeOut();
     });
     $("#toTop").click(function() {
         //1 second of animation time
