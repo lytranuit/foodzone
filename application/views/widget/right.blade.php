@@ -44,7 +44,7 @@
                             <div class="unit-left">
                                 <img class="img-rounded" src="@if(empty($row->image)){{base_url()}}public/image/temp.png @else{{base_url()}}{{$row->image->src}}@endif" alt="" width="70" height="70">
                             </div>
-                            <div class="unit-body"><a class="link-default" href="{{base_url()}}/index/post/{{$row->id}}">{{$row->title}}</a>
+                            <div class="unit-body"><a class="link-default" href="{{base_url()}}/index/post/{{$row->id}}">{{ $row->{pick_language($row,'title_')} }}</a>
                                 <div>
                                     <time>{{date('F j,Y',strtotime($row->date))}}</time>
                                 </div>
