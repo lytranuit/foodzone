@@ -82,7 +82,7 @@
     border-radius: 0px 30px 0px 0px; }
     .card.card-color .card-header {
       background-color: #ffb200;
-      color: white;
+      color: black;
       border-radius: 0px 30px; }
   .card.card-custom1 {
     background: transparent;
@@ -99,7 +99,7 @@
       .card.card-custom1 .card-header .header_title {
         padding: 0.75rem 1.25rem;
         background: #ffb200;
-        color: white;
+        color: black;
         position: relative; }
         .card.card-custom1 .card-header .header_title span {
           overflow: hidden;
@@ -184,12 +184,10 @@
   .responsive1 .item .caption {
     font-size: 0.85rem;
     background: #ffb200;
-    color: #ffffff;
+    color: black;
     width: 100%;
     padding: 10px 20px;
-    /* background: #1c223f; */
     height: 3.5rem;
-    color: #ffffff;
     line-height: 1.2em;
     vertical-align: top;
     letter-spacing: 1px;
@@ -1089,7 +1087,7 @@ header.header {
     background: #ffb200;
     border-radius: 15px;
     line-height: 36px;
-    color: #fff; } }
+    color: black; } }
 .top-cart-contain .mini-cart .heading-cart > a .icon.f-left.relative {
   height: auto;
   margin-right: 10px;
@@ -1112,7 +1110,7 @@ header.header {
 .top-cart-contain .mini-cart .right-content .label {
   display: inline-block;
   padding: 0;
-  color: #fff; }
+  color: black; }
 
 /*4.3  Header Menu*/
 header nav {
@@ -1697,7 +1695,7 @@ ul.content-block li > span {
 
 .sale-flash {
   position: absolute;
-  color: #fff;
+  color: black;
   font-weight: 400;
   padding: 0px 12px 0 8px;
   line-height: 25px;
