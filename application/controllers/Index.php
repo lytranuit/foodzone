@@ -255,16 +255,16 @@ class Index extends MY_Controller
         /*
          * TINH COUNT
          */
-        $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->count_rows();
+        $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->left_join("fz_product", 'code', 'code')->left_join("fz_product_category", "id", "product_id")->count_rows();
         $max_page = ceil($count / $limit);
 
-        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->join("fz_product_category", "id", "product_id")->with_foodzone()->with_units()->with_image()->with_price_km();
+        $data = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->left_join("fz_product", 'code', 'code')->left_join("fz_product_category", "id", "product_id")->with_foodzone()->with_units()->with_image()->with_price_km();
         if ($order == 1) {
             $data = $data->order_by('fz_product_category.order', 'ASC');
         } else if ($order == 2) {
-            $data = $data->order_by('product.retail_price', 'DESC');
+            $data = $data->order_by(array("fz_product.price" => "DESC", 'product.retail_price' => 'DESC'));
         } else if ($order == 3) {
-            $data = $data->order_by('product.retail_price', 'ASC');
+            $data = $data->order_by(array("fz_product.price" => "ASC", 'product.retail_price' => 'ASC'));
         }
         $data = $data->limit($limit, ($page - 1) * $limit)->get_all();
         if (!empty($data)) {
