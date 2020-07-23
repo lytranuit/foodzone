@@ -1,4 +1,4 @@
-<?php 
+<?php
 $lang['footer_about'] = "紹介";
 $lang['footer_fp'] = "ファンページへ";
 $lang['footer_page'] = "販売規約";
@@ -16,21 +16,12 @@ $lang['login_name_label'] = "名前";
 $lang['login_email_label'] = "メール";
 $lang['login_address_label'] = "住所";
 $lang['login_phone_label'] = "電話番号";
-<<<<<<< HEAD
 $lang['login_area_label'] = "区";
 $lang['other_area'] = "その他エリア";
 $lang['price_zero'] = "送料について、後ほどご連絡します";
 $lang['remember_me'] = "次回から入力を省略";
 $lang['widget_header_page'] = "";
 $lang['widget_header_product_new'] = "新商品";
-=======
-$lang['login_area_label'] = "";
-$lang['other_area'] = "";
-$lang['price_zero'] = "";
-$lang['remember_me'] = "ノート";
-$lang['widget_header_page'] = "知る必要";
-$lang['widget_header_product_new'] = "新製品";
->>>>>>> 31666b0c03642456247d7348c102924a9e65d62e
 $lang['widget_header_seen'] = "";
 $lang['header_quick_order'] = "";
 $lang['details_mo_ta'] = "商品情報";
@@ -100,7 +91,6 @@ $lang['price_order'] = "単価";
 $lang['cancle_order'] = "キャンセル";
 $lang['lien_ket'] = "カスタマーサポート";
 $lang['footer_hdmh'] = "";
-<<<<<<< HEAD
 $lang['footer_cstt'] = "支払 / 配送 / 物流 ポリシー";
 $lang['footer_csdh'] = "返品 / 交換 ポリシー";
 $lang['footer_csbm'] = "セキュリティポリシー";
@@ -108,10 +98,6 @@ $lang['policy_delivery'] = "500,000ドン以上のご注文は、送料無料で
 $lang['policy_vat'] = "表示価格は全てVAT込です";
 $lang['policy_pay'] = "お支払い方法 : 銀行振込 / 現金";
 $lang['policy_support'] = "お問い合わせは 028 777 04567 へお電話ください";
-=======
-$lang['footer_cstt'] = "";
-$lang['footer_csdh'] = "";
-$lang['footer_csbm'] = "";
 $lang['remove_cart'] = "";
 $lang['default'] = "";
 $lang['high_to_low'] = "";
@@ -124,16 +110,8 @@ $lang['status_5'] = "";
 $lang['status_6'] = "";
 $lang['status_7'] = "";
 $lang['status_8'] = "";
-$lang['policy_delivery'] = "";
-$lang['policy_vat'] = "";
-$lang['policy_pay'] = "";
-$lang['policy_support'] = "";
 $lang['login_successful'] = "";
 $lang['login_unsuccessful'] = "";
 $lang['login_unsuccessful_not_active'] = "";
 $lang['login_timeout'] = "";
 $lang['logout_successful'] = "";
->>>>>>> 31666b0c03642456247d7348c102924a9e65d62e
-
-
-?>

@@ -15,19 +15,11 @@ $lang['login_confirm_password_label'] = "Re-enter Password";
 $lang['login_name_label'] = "Name";
 $lang['login_email_label'] = "Email";
 $lang['login_address_label'] = "Address";
-<<<<<<< HEAD
 $lang['login_phone_label'] = "Phone Number";
 $lang['login_area_label'] = "District";
 $lang['other_area'] = "Other Area";
 $lang['price_zero'] = "Shipping fee will be informed later";
 $lang['remember_me'] = "Remember me";
-=======
-$lang['login_phone_label'] = "Telephone";
-$lang['login_area_label'] = "";
-$lang['other_area'] = "";
-$lang['price_zero'] = "";
-$lang['remember_me'] = "Remember";
->>>>>>> 31666b0c03642456247d7348c102924a9e65d62e
 $lang['widget_header_page'] = "";
 $lang['widget_header_product_new'] = "New Arrival";
 $lang['widget_header_seen'] = "";
@@ -102,12 +94,10 @@ $lang['footer_hdmh'] = "Shopping Guide";
 $lang['footer_cstt'] = "Payment / Delivery / Transportation Policy";
 $lang['footer_csdh'] = "Return / Exchange / Refund Policy";
 $lang['footer_csbm'] = "Security Policy";
-<<<<<<< HEAD
 $lang['policy_delivery'] = "Free Shipping for 500,000VND+";
 $lang['policy_vat'] = "The listed prices include VAT";
 $lang['policy_pay'] = "Payment : Methods Bank Transfer / Cash";
 $lang['policy_support'] = "Please call  028 777 04567 for more details";
-=======
 $lang['remove_cart'] = "";
 $lang['default'] = "";
 $lang['high_to_low'] = "";
@@ -120,16 +110,11 @@ $lang['status_5'] = "";
 $lang['status_6'] = "";
 $lang['status_7'] = "";
 $lang['status_8'] = "";
-$lang['policy_delivery'] = "";
-$lang['policy_vat'] = "";
-$lang['policy_pay'] = "";
-$lang['policy_support'] = "";
 $lang['login_successful'] = "Logged In Successfully";
 $lang['login_unsuccessful'] = "Incorrect Login";
 $lang['login_unsuccessful_not_active'] = "Account is inactive";
 $lang['login_timeout'] = "Temporarily Locked Out.  Try again later.";
 $lang['logout_successful'] = "Logged Out Successfully";
->>>>>>> 31666b0c03642456247d7348c102924a9e65d62e
 
 
 ?>

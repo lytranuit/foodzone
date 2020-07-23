@@ -18,11 +18,7 @@ $lang['login_address_label'] = "Địa chỉ";
 $lang['login_phone_label'] = "Số điện thoại";
 $lang['login_area_label'] = "Quận";
 $lang['other_area'] = "Khu vực khác";
-<<<<<<< HEAD
 $lang['price_zero'] = "Phí theo nhà vận chuyển";
-=======
-$lang['price_zero'] = "Theo giá nhà vận chuyển";
->>>>>>> 31666b0c03642456247d7348c102924a9e65d62e
 $lang['remember_me'] = "Ghi nhớ";
 $lang['widget_header_page'] = "Bạn cần biết";
 $lang['widget_header_product_new'] = "Hàng mới về";
@@ -98,12 +94,10 @@ $lang['footer_hdmh'] = "Hướng dẫn mua hàng";
 $lang['footer_cstt'] = "Chính sách về thanh toán, giao nhận, vận chuyển";
 $lang['footer_csdh'] = "Chính sách đổi hàng, trả hàng, hoàn tiền";
 $lang['footer_csbm'] = "Chính sách bảo mật";
-<<<<<<< HEAD
 $lang['policy_delivery'] = "Miễn phí giao hàng cho đơn hàng từ 500,000 ₫ trở lên";
 $lang['policy_vat'] = "Giá niêm yết bao gồm VAT";
 $lang['policy_pay'] = "Thanh toán bằng chuyển khoản ngân hàng hoặc tiền mặt";
 $lang['policy_support'] = "Vui lòng gọi 028 777 04567 để biết thêm chi tiết";
-=======
 $lang['remove_cart'] = "Xóa khỏi giỏ hàng?";
 $lang['default'] = "Mặc định";
 $lang['high_to_low'] = "Giá cao->thấp";
@@ -116,16 +110,11 @@ $lang['status_5'] = "Đã hủy";
 $lang['status_6'] = "Đã khóa";
 $lang['status_7'] = "Đã sửa";
 $lang['status_8'] = "Đang giao hàng";
-$lang['policy_delivery'] = "Miễn phí giao hàng cho đơn hàng từ 500,000 ₫ trở lên";
-$lang['policy_vat'] = "Giá niêm yết bao gồm VAT";
-$lang['policy_pay'] = "Thanh toán bằng chuyển khoản ngân hàng hoặc tiền mặt";
-$lang['policy_support'] = "Vui lòng gọi (+84) 0917 211 515 để biết thêm chi tiết";
 $lang['login_successful'] = "Đăng nhập thành công";
 $lang['login_unsuccessful'] = "Tài khoản hoặc mật khẩu không đúng";
 $lang['login_unsuccessful_not_active'] = "Tài khoản này đã bị khoá";
 $lang['login_timeout'] = "Tài khoản này đã tạm thời bị khoá, vui lòng thử lại sau";
 $lang['logout_successful'] = "Đăng xuất thành công";
->>>>>>> 31666b0c03642456247d7348c102924a9e65d62e
 
 
 ?>
