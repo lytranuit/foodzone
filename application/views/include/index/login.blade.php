@@ -11,6 +11,11 @@
                 <div class="card-body">
                     <form id="form-login" method="POST">
                         <input type="hidden" name="next" value="{{$next}}" />
+                        @if($message != '')
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <?= $message ?>
+                        </div>
+                        @endif
                         <div class="form-group">
                             <input class="form-control" id="username" name="identity" type="text" placeholder="<?= lang('login_identity_label') ?>" autocomplete="off">
                         </div>

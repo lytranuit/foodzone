@@ -214,6 +214,8 @@ class Index extends MY_Controller
         $check = $this->user_model->where(array("username" => $username))->as_array()->get();
         // account_creation_duplicate_identity
         // account_creation_duplicate_email
+        // print_r($check);
+        // die();
         if (!empty($check)) {
             echo json_encode(array('success' => 0, 'msg' => lang('account_creation_duplicate_identity')));
             die();
@@ -422,7 +424,8 @@ class Index extends MY_Controller
             } else {
                 // if the login was un-successful
                 // redirect them back to the login page
-                $this->session->set_flashdata('message', lang('alert_501'));
+                $_SESSION['message'] = $this->ion_auth->errors();
+
                 redirect('index/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
             }
         } else {
@@ -430,7 +433,13 @@ class Index extends MY_Controller
             // set the flash data error message if there is one
 
             $this->data['next'] = $this->input->get('next');
-            $this->data['message'] = $this->session->flashdata('message');
+
+            $message = '';
+            if (isset($_SESSION['message'])) {
+                $message = $_SESSION['message'];
+                unset($_SESSION['message']);
+            }
+            $this->data['message'] = $message;
             $version = $this->config->item("version");
             array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
             echo $this->blade->view()->make('page/page', $this->data)->render();
@@ -512,7 +521,7 @@ class Index extends MY_Controller
             // print_r($cart['details']);
             // die();
             $array['amount'] = $cart['amount_product'];
-            $array['service_fee'] = $cart['service_fee'];
+            $array['service_fee'] = $cart['service_fee'] > 0 ? $cart['service_fee'] : 0;
             $array['total_amount'] = $cart['paid_amount'];
             $array['is_send'] = 0;
             // $array['data_fz'] = json_encode($cart);

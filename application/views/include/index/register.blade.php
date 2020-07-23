@@ -72,7 +72,7 @@
 
 <script>
     $(document).ready(function() {
-        let msg = <?= $msg ?>;
+        let msg = '<?= $msg ?>';
         if (msg == 1) {
             alert(dup_username);
         } else if (msg == 2) {

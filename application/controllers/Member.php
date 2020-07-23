@@ -176,9 +176,14 @@ class Member extends MY_Controller
         $code = $params[0];
 
         $this->load->model("sale_simba_model");
+        $this->load->model("product_model");
 
         $data = $this->sale_simba_model->where(array('code' => $code))->with_details()->get();
-
+        foreach ($data->details as &$row) {
+            $product = $this->product_model->where(array('id' => $row->product_id))->with_foodzone()->with_units()->with_price_km()->get();
+            $product = $this->product_model->format($product);
+            $row->product = $product;
+        }
         $this->data['data'] = $data;
         // echo "<pre>";
         // print_r($this->data['data']);

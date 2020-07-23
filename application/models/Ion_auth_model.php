@@ -1940,6 +1940,7 @@ class Ion_auth_model extends CI_Model {
         if ($langify) {
             $_output = array();
             foreach ($this->messages as $message) {
+
                 $messageLang = $this->lang->line($message) ? $this->lang->line($message) : '##' . $message . '##';
                 $_output[] = $this->message_start_delimiter . $messageLang . $this->message_end_delimiter;
             }
