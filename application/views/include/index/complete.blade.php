@@ -10,7 +10,8 @@
 
                         </h5>
                         <div class="text-center">
-                            <a href="{{base_url()}}" class="btn btn-danger">{{lang("cart_next")}}</a>
+                            <a href="{{base_url()}}" class="btn btn-danger mr-5">{{lang("cart_next")}}</a>
+                            <a href="{{base_url()}}member/history" class="btn btn-danger">{{lang("history_order")}}</a>
                         </div>
                     </div>
                 </div>

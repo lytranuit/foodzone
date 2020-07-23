@@ -251,6 +251,8 @@ class Product extends MY_Administrator
                 $tin->fz_guide_vi = $tin->guide_vi;
                 $tin->fz_guide_en = $tin->guide_en;
                 $tin->fz_guide_jp = $tin->guide_jp;
+
+                $tin->fz_price = $tin->retail_price;
             }
             // echo "<pre>";
             // print_r($tin);
@@ -315,7 +317,7 @@ class Product extends MY_Administrator
                 $nestedData['id'] = $post->id;
                 $nestedData['code'] = $post->code;
                 $nestedData['name_vi'] = isset($post->foodzone->name_vi) && $post->foodzone->name_vi != "" ? $post->foodzone->name_vi : $post->name_vi;
-                $nestedData['price'] = number_format($post->retail_price, 0, ",", ".") . " VND";
+                $nestedData['price'] = isset($post->foodzone->price) && $post->foodzone->price != "" ? number_format($post->foodzone->price, 0, ",", ".") . " VND" : number_format($post->retail_price, 0, ",", ".") . " VND";
                 // $nestedData['date'] =  date("d/m/Y", strtotime($post->date));
                 $nestedData['action'] = '<a href="' . base_url() . 'product/edit/' . $post->id . '" class="btn btn-warning btn-sm mr-2" title="edit">'
                     . '<i class="fas fa-pencil-alt">'

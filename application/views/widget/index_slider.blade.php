@@ -110,8 +110,9 @@
                             $(".list-custom li.has_sub").on({
                                 mouseenter: function() {
                                     let offset = $(this).offset();
+                                    let width = $(this).outerWidth(true);
                                     $(">ul", this).css({
-                                        "left": offset.left + 300,
+                                        "left": offset.left + width ,
                                         "top": offset.top
                                     });
                                     $(">ul", this).fadeIn(500)

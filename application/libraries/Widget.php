@@ -72,7 +72,7 @@ class Widget
             return $item->menu_id == 1;
         });
         $this->data['list_topics'] = array_filter((array) $list_category, function ($item) {
-            return $item->menu_id == 2;
+            return $item->menu_id == 2 && $item->parent_id != 0;
         });
         $this->CI->load->model("news_model");
         $this->data['news'] = $this->CI->news_model->where(array('deleted' => 0))->with_image()->order_by("id", "DESC")->limit(5)->get_all();
@@ -97,7 +97,7 @@ class Widget
                 });
                 $row->child = $child;
             }
-        }else{
+        } else {
             $list_parent = array();
         }
         // echo "<pre>";

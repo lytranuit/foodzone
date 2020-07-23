@@ -587,7 +587,7 @@ $(document).ready(function() {
     });
     $(".remove_product").click(function(e) {
         e.preventDefault();
-        if (confirm("Remove to Cart!") == true) {
+        if (confirm(remove_cart) == true) {
             var parent = $(this).parents(".product");
             var id = parent.data("id");
             var data_cart = $.cookies.get('DATA_CART') || {};

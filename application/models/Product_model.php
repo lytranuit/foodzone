@@ -106,6 +106,8 @@ class Product_model extends MY_Model
                 $product->guide_en = $product->foodzone->guide_en;
             if ($product->foodzone->guide_jp != "")
                 $product->guide_jp = $product->foodzone->guide_jp;
+            if ($product->foodzone->price != "")
+                $product->retail_price = $product->foodzone->price;
         }
         // echo "<pre>";
         // print_r($price_km);

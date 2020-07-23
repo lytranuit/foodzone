@@ -46,9 +46,13 @@
                                             <img class="img-responsive" src="http://simbaeshop.com{{$row->image_url}}" width="70" />
                                         </div>
                                         <div class="d-inline-block" style="vertical-align: top;">
-                                            <a href="{{base_url()}}index/details/{{$row->product_id}}" class="text-dark font-weight-bold">{{ $row->name }}</a>
+                                            <a href="{{base_url()}}index/details/{{$row->product_id}}" class="text-dark font-weight-bold">{{ $row->product->{pick_language($row->product,'name_')} }}</a>
                                             <div>{{lang("code")}}: <span class="font-weight-bold">{{$row->code}}</span></div>
+                                            @if(language_current() == "vietnamese")
                                             <div>{{lang("dvt")}}: <span class="font-weight-bold">{{$row->volume_order}}</span></div>
+                                            @else
+                                            <div>{{lang("dvt")}}: <span class="font-weight-bold">{{ $row->{pick_language($row,'volume_order_')} }}</span></div>
+                                            @endif
                                         </div>
                                     </td>
                                     <td>

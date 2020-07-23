@@ -16,9 +16,6 @@ $lang['login_name_label'] = "Your Name";
 $lang['login_email_label'] = "Email";
 $lang['login_address_label'] = "Address";
 $lang['login_phone_label'] = "Telephone";
-$lang['login_area_label'] = "";
-$lang['other_area'] = "";
-$lang['price_zero'] = "";
 $lang['remember_me'] = "Remember";
 $lang['widget_header_page'] = "";
 $lang['widget_header_product_new'] = "New Arrival";
@@ -94,27 +91,6 @@ $lang['footer_hdmh'] = "Shopping Guide";
 $lang['footer_cstt'] = "Payment/Delivery/Transportation policy";
 $lang['footer_csdh'] = "Policy on returning/Product change/Refunding";
 $lang['footer_csbm'] = "Security Policy";
-$lang['remove_cart'] = "";
-$lang['default'] = "";
-$lang['high_to_low'] = "";
-$lang['low_to_high'] = "";
-$lang['status_1'] = "";
-$lang['status_2'] = "";
-$lang['status_3'] = "";
-$lang['status_4'] = "";
-$lang['status_5'] = "";
-$lang['status_6'] = "";
-$lang['status_7'] = "";
-$lang['status_8'] = "";
-$lang['policy_delivery'] = "";
-$lang['policy_vat'] = "";
-$lang['policy_pay'] = "";
-$lang['policy_support'] = "";
-$lang['login_successful'] = "Logged In Successfully";
-$lang['login_unsuccessful'] = "Incorrect Login";
-$lang['login_unsuccessful_not_active'] = "Account is inactive";
-$lang['login_timeout'] = "Temporarily Locked Out.  Try again later.";
-$lang['logout_successful'] = "Logged Out Successfully";
 
 
 ?>

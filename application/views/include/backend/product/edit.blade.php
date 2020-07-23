@@ -19,7 +19,7 @@
                                 </div>
                                 <b class="col-12 col-lg-2 col-form-label">Giá bán:<i class="text-danger">*</i></b>
                                 <div class="col-12 col-lg-4 pt-1">
-                                    <input class="form-control form-control-sm price" type='text' name="retail_price" required placeholder="Giá bán" />
+                                    <input class="form-control form-control-sm price" type='text' name="fz_price" required placeholder="Giá bán" />
                                 </div>
                             </div>
                             <div class="form-group row">

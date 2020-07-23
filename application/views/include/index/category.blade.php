@@ -27,9 +27,9 @@
                                             vertical-align: sub;
                                             line-height: 45px;
                                             padding: 0px 12px;">
-                                        <option value="1" <?= $params['order'] == 1 ? "selected" : "" ?>>Mặc định</option>
-                                        <option value="2" <?= $params['order'] == 2 ? "selected" : "" ?>>Giá cao -> thấp</option>
-                                        <option value="3" <?= $params['order'] == 3 ? "selected" : "" ?>>Giá thấp -> cao</option>
+                                        <option value="1" <?= $params['order'] == 1 ? "selected" : "" ?>>{{lang("default")}}</option>
+                                        <option value="2" <?= $params['order'] == 2 ? "selected" : "" ?>>{{lang("high_to_low")}}</option>
+                                        <option value="3" <?= $params['order'] == 3 ? "selected" : "" ?>>{{lang("low_to_high")}}</option>
                                     </select>
                                 </div>
                             </div>

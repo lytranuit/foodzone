@@ -16,9 +16,6 @@ $lang['login_name_label'] = "名前";
 $lang['login_email_label'] = "メール";
 $lang['login_address_label'] = "住所";
 $lang['login_phone_label'] = "電話番号";
-$lang['login_area_label'] = "";
-$lang['other_area'] = "";
-$lang['price_zero'] = "";
 $lang['remember_me'] = "ノート";
 $lang['widget_header_page'] = "知る必要";
 $lang['widget_header_product_new'] = "新製品";
@@ -94,27 +91,6 @@ $lang['footer_hdmh'] = "";
 $lang['footer_cstt'] = "";
 $lang['footer_csdh'] = "";
 $lang['footer_csbm'] = "";
-$lang['remove_cart'] = "";
-$lang['default'] = "";
-$lang['high_to_low'] = "";
-$lang['low_to_high'] = "";
-$lang['status_1'] = "";
-$lang['status_2'] = "";
-$lang['status_3'] = "";
-$lang['status_4'] = "";
-$lang['status_5'] = "";
-$lang['status_6'] = "";
-$lang['status_7'] = "";
-$lang['status_8'] = "";
-$lang['policy_delivery'] = "";
-$lang['policy_vat'] = "";
-$lang['policy_pay'] = "";
-$lang['policy_support'] = "";
-$lang['login_successful'] = "";
-$lang['login_unsuccessful'] = "";
-$lang['login_unsuccessful_not_active'] = "";
-$lang['login_timeout'] = "";
-$lang['logout_successful'] = "";
 
 
 ?>
