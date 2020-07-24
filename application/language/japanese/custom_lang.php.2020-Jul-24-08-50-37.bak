@@ -1,4 +1,4 @@
-<?php 
+<?php
 $lang['footer_about'] = "紹介";
 $lang['footer_fp'] = "ファンページへ";
 $lang['footer_page'] = "販売規約";
@@ -102,19 +102,16 @@ $lang['remove_cart'] = "";
 $lang['default'] = "";
 $lang['high_to_low'] = "";
 $lang['low_to_high'] = "";
-$lang['status_1'] = "ご注文確認中";
-$lang['status_2'] = "確認済 - 配送準備中";
-$lang['status_3'] = "支払済";
-$lang['status_4'] = "配送済";
-$lang['status_5'] = "キャンセル済";
+$lang['status_1'] = "";
+$lang['status_2'] = "";
+$lang['status_3'] = "";
+$lang['status_4'] = "";
+$lang['status_5'] = "";
 $lang['status_6'] = "";
 $lang['status_7'] = "";
-$lang['status_8'] = "配送中";
+$lang['status_8'] = "";
 $lang['login_successful'] = "";
 $lang['login_unsuccessful'] = "";
 $lang['login_unsuccessful_not_active'] = "";
 $lang['login_timeout'] = "";
 $lang['logout_successful'] = "";
-
-
-?>
