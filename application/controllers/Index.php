@@ -201,6 +201,11 @@ class Index extends MY_Controller
             // die();
             $this->data['msg'] = $msg;
             array_push($this->data['javascript_tag'], base_url() . "public/lib/jquery-validation/jquery.validate.js");
+            if (language_current() == "vietnamese") {
+                array_push($this->data['javascript_tag'], base_url() . "public/lib/jquery-validation/localization/messages_vi.js");
+            } elseif (language_current() == "japanese") {
+                array_push($this->data['javascript_tag'], base_url() . "public/lib/jquery-validation/localization/messages_ja.js");
+            }
             array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }

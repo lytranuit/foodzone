@@ -115,6 +115,16 @@ $lang['login_unsuccessful'] = "Tài khoản hoặc mật khẩu không đúng";
 $lang['login_unsuccessful_not_active'] = "Tài khoản này đã bị khoá";
 $lang['login_timeout'] = "Tài khoản này đã tạm thời bị khoá, vui lòng thử lại sau";
 $lang['logout_successful'] = "Đăng xuất thành công";
+$lang['change_password_old_password_label'] = "Mật khẩu cũ";
+$lang['change_password_new_password_label'] = "Mật khẩu mới";
+$lang['change_password_new_password_confirm_label'] = "Xác nhận mật khẩu mới";
+$lang['change_password_submit_btn'] = "Lưu lại";
+$lang['thay_doi_password'] = "Thay đổi mật khẩu";
+$lang['password_change_successful'] = "Đã thay đổi mật khẩu thành công";
+$lang['password_change_unsuccessful_oldpassword'] = "Mật khẩu cũ không đúng";
+$lang['password_change_unsuccessful_confirmpassword'] = "Xác nhận mật khẩu mới không đúng.";
+$lang['account_creation_duplicate_email'] = "Địa chỉ email không hợp lệ hoặc đã được sử dụng";
+$lang['account_creation_duplicate_identity'] = "Tên tài khoản không hợp lệ hoặc đã được sử dụng";
 
 
 ?>

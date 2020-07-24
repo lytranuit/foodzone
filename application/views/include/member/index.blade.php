@@ -4,26 +4,26 @@
             <div class="col-12">
                 <div class="card card-fluid">
                     <div class="card-header drag-handle">
-                        Thông tin cá nhân
+                        {{lang("info")}}
                     </div>
                     <div class="card-body">
                         <form id="form_advanced_validation" method="POST" novalidate="novalidate">
                             <div class="form-group">
-                                <b class="form-label">Username:</b>
+                                <b class="form-label">{{lang("login_identity_label")}}:</b>
                                 <div class="form-line">
                                     <input type="text" class="form-control" value="{{$user->username}}" name="username" required="" aria-required="true" readonly="">
                                 </div>
                                 <div class="help-info"></div>
                             </div>
                             <div class="form-group">
-                                <b class="form-label">Tên</b>
+                                <b class="form-label">{{lang("login_name_label")}}</b>
                                 <div class="form-line">
                                     <input type="text" class="form-control" value="{{$user->last_name}}" name="last_name" minlength="3" required="" aria-required="true">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <b class="form-label">Số điện thoại</b>
+                                <b class="form-label">{{lang("login_phone_label")}}</b>
                                 <div class="form-line">
                                     <input type="text" class="form-control" value="{{$user->phone}}" name="phone" minlength="3" required="" aria-required="true">
                                 </div>
@@ -31,10 +31,10 @@
                             <div style="margin-bottom: 20px;">
                                 <a href="#" data-target="#password-modal" data-toggle="modal">
                                     <i class="fas fa-lock" style='font-size: 20px;vertical-align: middle;'></i>
-                                    <span>Thay đổi mật khẩu</span>
+                                    <span>{{lang("thay_doi_password")}}</span>
                                 </a>
                             </div>
-                            <button class="btn btn-primary waves-effect" type="submit" name="edit_user">Cập nhật</button>
+                            <button class="btn btn-primary waves-effect" type="submit" name="edit_user">{{lang("change_password_submit_btn")}}</button>
                         </form>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title" id="comment-modalLabel">
-                    Thay đổi mật khẩu
+                    {{lang("thay_doi_password")}}
                 </div>
             </div>
             <div class="modal-body">
@@ -56,25 +56,25 @@
                     <!--<p>Sign up once and watch any of our free demos.</p>-->
                     <form id="form-password">
                         <div class="form-group">
-                            <b class="form-label">Mật khẩu cũ:</b>
+                            <b class="form-label">{{lang("change_password_old_password_label")}}:</b>
                             <div class="form-line">
                                 <input type="password" class="form-control" name="password" required="" aria-required="true">
                             </div>
                             <div class="help-info"></div>
                         </div>
                         <div class="form-group">
-                            <b class="form-label">Mât khẩu mới</b>
+                            <b class="form-label">{{lang("change_password_new_password_label")}}:</b>
                             <div class="form-line">
                                 <input type="password" class="form-control" name="newpassword" minlength="6" required="" aria-required="true">
                             </div>
                         </div>
                         <div class="form-group">
-                            <b class="form-label">Xác nhận mật khẩu mới</b>
+                            <b class="form-label">{{lang("change_password_new_password_confirm_label")}}:</b>
                             <div class="form-line">
                                 <input type="password" class="form-control" name="confirmpassword" minlength="6" required="" aria-required="true">
                             </div>
                         </div>
-                        <button class="btn btn-primary waves-effect" type="submit" name="edit_password">Cập nhật</button>
+                        <button class="btn btn-primary waves-effect" type="submit" name="edit_password">{{lang("change_password_submit_btn")}}</button>
                     </form>
                 </div>
             </div>

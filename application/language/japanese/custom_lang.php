@@ -1,4 +1,4 @@
-<?php
+<?php 
 $lang['footer_about'] = "紹介";
 $lang['footer_fp'] = "ファンページへ";
 $lang['footer_page'] = "販売規約";
@@ -115,3 +115,16 @@ $lang['login_unsuccessful'] = "";
 $lang['login_unsuccessful_not_active'] = "";
 $lang['login_timeout'] = "";
 $lang['logout_successful'] = "";
+$lang['change_password_old_password_label'] = "";
+$lang['change_password_new_password_label'] = "";
+$lang['change_password_new_password_confirm_label'] = "";
+$lang['change_password_submit_btn'] = "";
+$lang['thay_doi_password'] = "";
+$lang['password_change_successful'] = "";
+$lang['password_change_unsuccessful_oldpassword'] = "";
+$lang['password_change_unsuccessful_confirmpassword'] = "";
+$lang['account_creation_duplicate_email'] = "";
+$lang['account_creation_duplicate_identity'] = "";
+
+
+?>

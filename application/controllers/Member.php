@@ -211,15 +211,15 @@ class Member extends MY_Controller
         $id_user = $this->session->userdata('user_id');
         $this->load->model("user_model");
         if (!isset($_POST['password']) || (isset($_POST['password']) && $this->ion_auth->hash_password_db($id_user, $_POST['password']) === FALSE)) {
-            echo json_encode(array('code' => 402, "msg" => "Mật khẩu cũ không đúng."));
+            echo json_encode(array('code' => 402, "msg" => lang("password_change_unsuccessful_oldpassword")));
             die();
         }
         if (!isset($_POST['confirmpassword']) || !isset($_POST['newpassword']) || (isset($_POST['newpassword']) && isset($_POST['confirmpassword']) && $_POST['newpassword'] != $_POST['confirmpassword'])) {
-            echo json_encode(array('code' => 403, "msg" => "Xác nhận mật khẩu mới không đúng."));
+            echo json_encode(array('code' => 403, "msg" => lang("password_change_unsuccessful_confirmpassword")));
             die();
         }
         $this->ion_auth->change_password($this->session->userdata('identity'), $this->input->post('password'), $this->input->post('newpassword'));
-        echo json_encode(array('code' => 400, "msg" => "Thay đổi mật khẩu thành công."));
+        echo json_encode(array('code' => 400, "msg" => lang("password_change_successful")));
         die();
     }
 }

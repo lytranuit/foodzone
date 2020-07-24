@@ -115,6 +115,16 @@ $lang['login_unsuccessful'] = "Incorrect Login";
 $lang['login_unsuccessful_not_active'] = "Account is inactive";
 $lang['login_timeout'] = "Temporarily Locked Out.  Try again later.";
 $lang['logout_successful'] = "Logged Out Successfully";
+$lang['change_password_old_password_label'] = "";
+$lang['change_password_new_password_label'] = "";
+$lang['change_password_new_password_confirm_label'] = "";
+$lang['change_password_submit_btn'] = "";
+$lang['thay_doi_password'] = "";
+$lang['password_change_successful'] = "Success.";
+$lang['password_change_unsuccessful_oldpassword'] = "Old pass";
+$lang['password_change_unsuccessful_confirmpassword'] = "Confirm";
+$lang['account_creation_duplicate_email'] = "";
+$lang['account_creation_duplicate_identity'] = "";
 
 
 ?>
