@@ -3,6 +3,9 @@
     <div class="container-wide">
         <div class="row">
             <div class="col-12">
+                <div class="section-title text-center">
+                    <a href="#">{{lang("index_topic")}}</a>
+                </div>
                 <div class="responsive1" style="min-height: 200px;">
                     @foreach($topics as $row)
                     <div class="item m-2">

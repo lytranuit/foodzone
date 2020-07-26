@@ -1,4 +1,4 @@
-<?php 
+<?php
 $lang['footer_about'] = "Giới thiệu";
 $lang['footer_fp'] = "Kết nối với Fanpage";
 $lang['footer_page'] = "Chính sách bán hàng";
@@ -126,5 +126,4 @@ $lang['password_change_unsuccessful_confirmpassword'] = "Xác nhận mật khẩ
 $lang['account_creation_duplicate_email'] = "Địa chỉ email không hợp lệ hoặc đã được sử dụng";
 $lang['account_creation_duplicate_identity'] = "Tên tài khoản không hợp lệ hoặc đã được sử dụng";
 
-
-?>
+$lang['index_topic'] = "Nguyên liệu theo món ăn";

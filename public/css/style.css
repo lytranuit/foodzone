@@ -1714,4 +1714,32 @@ ul.content-block li > span {
   overflow-y: auto;
   font-size: 13px; }
 
+.section-title {
+  position: relative;
+  margin-bottom: 30px; }
+  .section-title:before {
+    left: 0;
+    content: "";
+    height: 2px;
+    width: 50%;
+    background: #f7921e;
+    top: 50%;
+    z-index: -1;
+    position: absolute; }
+  .section-title:after {
+    right: 0;
+    content: "";
+    height: 2px;
+    width: 50%;
+    background: #f7921e;
+    top: 50%;
+    z-index: -1;
+    position: absolute; }
+  .section-title a {
+    display: inline-block;
+    padding: 15px 20px 14px 20px;
+    text-decoration: none;
+    color: black;
+    background: #ffb200; }
+
 /*# sourceMappingURL=style.css.map */
