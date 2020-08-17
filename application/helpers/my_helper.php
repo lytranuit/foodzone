@@ -692,8 +692,8 @@ if (!function_exists('NumberToText')) {
     function NumberToText($total)
     {
         // return (language_current());
+        return "";
         if (language_current() == "english") {
-
             return NumberToTextEN($total) . " dong";
         } else {
             return NumberToTextVN($total);

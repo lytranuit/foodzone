@@ -37,6 +37,13 @@
                                         <input type="text" class="form-control" value="" name="last_name" minlength="3" required="">
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <b class="col-12 col-sm-3 col-form-label text-sm-right">{{lang('login_phone_label')}}:<i class="text-danger">*</i></b>
+                                    <div class="col-12 col-sm-8 col-lg-6 pt-1">
+                                        <input type="text" class="form-control" value="" name="phone" required="">
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <b class="col-12 col-sm-3 col-form-label text-sm-right">{{lang('login_email_label')}}:<i class="text-danger">*</i></b>
                                     <div class="col-12 col-sm-8 col-lg-6 pt-1">
@@ -50,12 +57,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <b class="col-12 col-sm-3 col-form-label text-sm-right">{{lang('login_phone_label')}}:</b>
-                                    <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                        <input type="text" class="form-control" value="" name="phone">
-                                    </div>
-                                </div>
                                 <div class="form-group row justify-content-center">
                                     <button class="text-top btn btn-burnt-sienna btn-shape d-inline-block">
                                         <span>{{lang('sign_up')}}</span>

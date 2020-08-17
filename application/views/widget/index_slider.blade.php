@@ -11,7 +11,7 @@
                                 @if($row->type ==1 )
                                 <a class="text-dark" href="{{$row->link}}">{{ $row->{pick_language($row,'name_')} }}</a>
                                 @elseif($row->type ==4)
-                                <a class="text-dark" href="{{base_url()}}index/khuyen_mai">{{ $row->{pick_language($row,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi" width="30"></a>
+                                <a class="text-dark" href="{{base_url()}}index/khuyen_mai">{{ $row->{pick_language($row,'name_')} }} <img class='img_km' src="{{base_url()}}public/image/hot-gift.gif" alt="Siêu khuyến mãi" width="50"></a>
                                 @elseif($row->type ==5)
                                 <a class="text-dark" href="{{base_url()}}index/news">{{ $row->{pick_language($row,'name_')} }}</a>
                                 @else
@@ -28,7 +28,7 @@
                                         @if($row2->type ==1)
                                         <a class='text-dark' href="{{$row->link}}">{{ $row2->{pick_language($row2,'name_')} }}</a>
                                         @elseif($row2->type ==4)
-                                        <a class='text-dark' href="{{base_url()}}index/khuyen_mai">{{ $row2->{pick_language($row2,'name_')} }} <img class='img_km' src="//theme.hstatic.net/1000372774/1000494897/14/hot-gift.gif?v=2064" alt="Siêu khuyến mãi" width="30"></a>
+                                        <a class='text-dark' href="{{base_url()}}index/khuyen_mai">{{ $row2->{pick_language($row2,'name_')} }} <img class='img_km' src="{{base_url()}}public/image/hot-gift.gif" alt="Siêu khuyến mãi" width="50"></a>
                                         @elseif($row2->type ==5)
                                         <a class='text-dark' href="{{base_url()}}index/news">{{ $row2->{pick_language($row2,'name_')} }}</a>
                                         @else

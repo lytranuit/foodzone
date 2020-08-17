@@ -1479,7 +1479,7 @@ header nav .nav-item.active > a {
   @media (min-width: 991px) {
     .img_km {
       right: -20px;
-      top: -10px; } }
+      top: -25px; } }
 
 /*3.1 Title*/
 .header-title {
