@@ -135,7 +135,7 @@
                                         <hr>
                                         <div class="form-group">
                                             <b class="small font-weight-bold">{{lang('cart_info_delivery')}}:</b>
-                                            <input type="date" name="delivery_date" value="{{date('Y-m-d')}}" class="form-control">
+                                            <input type="date" name="delivery_date" value="{{date('Y-m-d')}}" min="{{date('Y-m-d')}}" class="form-control">
                                         </div>
                                     </div>
                                 </div>

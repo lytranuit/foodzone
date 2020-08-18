@@ -114,6 +114,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <b class="col-12 col-lg-2 col-form-label">Tìm kiếm:<i class="text-danger">*</i></b>
+                                        <div class="col-12 col-lg-4 pt-1">
+                                            <input class="form-control form-control-sm" type='text' name="fz_search_vi" required="" placeholder="Tìm kiếm nâng cao" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <b class="col-12 col-lg-2 col-form-label">Mô tả sơ lược:</b>
                                         <div class="col-lg-12">
                                             <textarea class="form-control" name="fz_description_vi" placeholder="Mô tả"></textarea>
@@ -147,6 +153,13 @@
                                         <b class="col-12 col-lg-2 col-form-label">Qui cách:</b>
                                         <div class="col-12 col-lg-4 pt-1">
                                             <input class="form-control form-control-sm" type='text' name="fz_volume_en" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <b class="col-12 col-lg-2 col-form-label">Tìm kiếm:<i class="text-danger">*</i></b>
+                                        <div class="col-12 col-lg-4 pt-1">
+                                            <input class="form-control form-control-sm" type='text' name="fz_search_en" required="" placeholder="Tìm kiếm nâng cao" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -183,6 +196,13 @@
                                         <b class="col-12 col-lg-2 col-form-label">Qui cách:</b>
                                         <div class="col-12 col-lg-4 pt-1">
                                             <input class="form-control form-control-sm" type='text' name="fz_volume_jp" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <b class="col-12 col-lg-2 col-form-label">Tìm kiếm:<i class="text-danger">*</i></b>
+                                        <div class="col-12 col-lg-4 pt-1">
+                                            <input class="form-control form-control-sm" type='text' name="fz_search_jp" required="" placeholder="Tìm kiếm nâng cao" />
                                         </div>
                                     </div>
                                     <div class="form-group row">

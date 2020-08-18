@@ -354,7 +354,7 @@ class Index extends MY_Controller
         $sql_where = "product.status = 1 and product.is_foodzone = 1";
         if ($search != "") {
             $short_language = short_language_current();
-            $sql_where .= " AND (LOWER(product.code) LIKE LOWER('%$search%') OR LOWER(fz_product.name_$short_language) like LOWER('%" . $search . "%') OR (fz_product.code IS NULL AND LOWER(product.name_$short_language) like LOWER('%" . $search . "%')))";
+            $sql_where .= " AND (LOWER(fz_product.search_$short_language) like LOWER('%" . $search . "%') OR LOWER(product.code) LIKE LOWER('%$search%') OR LOWER(fz_product.name_$short_language) like LOWER('%" . $search . "%') OR (fz_product.code IS NULL AND LOWER(product.name_$short_language) like LOWER('%" . $search . "%')))";
         }
 
         $count = $this->product_model->where($sql_where, NULL, NULL, FALSE, FALSE, TRUE)->left_join("fz_product", "code", "code")->count_rows();
