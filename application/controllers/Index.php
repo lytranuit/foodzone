@@ -500,8 +500,20 @@ class Index extends MY_Controller
         }
 
         $this->load->model("area_model");
-        $area = $this->area_model->where(array('deleted' => 0))->order_by("order", "ASC")->get_all();
-        $this->data['area'] = $area;
+        $list = $this->area_model->where(array('deleted' => 0))->order_by("order", "ASC")->as_array()->get_all();
+        // echo "<pre>";
+        // print_r($list);
+        // die();
+        $groups = array_values(array_filter($list, function ($item) {
+            return $item['parent_id'] == 0;
+        }));
+        foreach ($groups as &$group) {
+            $group['child'] = array_values(array_filter($list, function ($item) use ($group) {
+                return $item['parent_id'] == $group['id'];
+            }));
+        }
+
+        $this->data['group_area'] = $groups;
         $this->data['cart'] = sync_cart();
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);

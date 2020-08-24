@@ -41,8 +41,19 @@ class Fee extends MY_Administrator
     { /////// trang ca nhan
         // load_datatable($this->data);
         $this->load->model("area_model");
-        $tin = $this->area_model->where(array('deleted' => 0))->order_by("order", "ASC")->get_all();
-        $this->data['areas'] = $tin;
+        $list = $this->area_model->where(array('deleted' => 0))->order_by("order", "ASC")->as_array()->get_all();
+        // echo "<pre>";
+        // print_r($list);
+        // die();
+        $groups = array_values(array_filter($list, function ($item) {
+            return $item['parent_id'] == 0;
+        }));
+        foreach ($groups as &$group) {
+            $group['child'] = array_values(array_filter($list, function ($item) use ($group) {
+                return $item['parent_id'] == $group['id'];
+            }));
+        }
+        $this->data['areas'] = $groups;
         load_sort_nest($this->data);
         echo $this->blade->view()->make('page/page', $this->data)->render();
     }
@@ -119,8 +130,10 @@ class Fee extends MY_Administrator
         foreach ($data as $key => $row) {
             if (isset($row['id'])) {
                 $id = $row['id'];
+                $parent_id = isset($row['parent_id']) ? $row['parent_id'] : 0;
                 $array = array(
-                    'order' => $key
+                    'order' => $key,
+                    'parent_id' => $parent_id
                 );
                 $this->area_model->update($array, $id);
             }
