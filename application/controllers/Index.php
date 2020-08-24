@@ -595,7 +595,7 @@ class Index extends MY_Controller
                     'image_url' => $row->image_url
                 );
 
-                if (isset($row->unit_id)) {
+                if (isset($row->unit_id) && !empty($row->units)) {
                     $data_up['unit_id_fz'] = $row->unit_id;
                     $unit = array_values(array_filter($row->units, function ($item) use ($data_up) {
                         return $item->id == $data_up['unit_id_fz'];
