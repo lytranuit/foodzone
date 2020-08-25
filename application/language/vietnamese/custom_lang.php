@@ -127,5 +127,39 @@ $lang['account_creation_duplicate_email'] = "Địa chỉ email không hợp l�
 $lang['account_creation_duplicate_identity'] = "Tên tài khoản không hợp lệ hoặc đã được sử dụng";
 $lang['index_topic'] = "NGUYÊN LIỆU THEO MÓN ĂN";
 
+<<<<<<< HEAD
 
 ?>
+=======
+$lang['index_topic'] = "Nguyên liệu theo món ăn";
+
+
+$lang['login_forgot_password'] = 'Quên mật khẩu?';
+$lang['forgot_password_identity_label'] = "Email:";
+// Change Password
+$lang['change_password_heading']                               = 'Đổi mật khẩu';
+$lang['change_password_old_password_label']                    = 'Mật khẩu cũ:';
+$lang['change_password_new_password_label']                    = 'Mật khẩu mới (ít nhất %s ký tự):';
+$lang['change_password_new_password_confirm_label']            = 'Xác nhận mật khẩu mới:';
+$lang['change_password_submit_btn']                            = 'Lưu lại';
+$lang['change_password_validation_old_password_label']         = 'Mật khẩu cũ';
+$lang['change_password_validation_new_password_label']         = 'Mật khẩu mới';
+$lang['change_password_validation_new_password_confirm_label'] = 'Xác nhận mật khẩu mới';
+
+// Forgot Password
+$lang['forgot_password_heading']                 = 'Quên mật khẩu';
+$lang['forgot_password_subheading']              = 'Vui lòng nhập %s để nhận được email khôi phục mật khẩu.';
+$lang['forgot_password_email_label']             = '%s:';
+$lang['forgot_password_submit_btn']              = 'Xác nhận';
+$lang['forgot_password_validation_email_label']  = 'Email';
+$lang['forgot_password_username_identity_label'] = 'Tài khoản';
+$lang['forgot_password_email_identity_label']    = 'Email';
+$lang['forgot_password_email_not_found']         = 'Địa chỉ email không tồn tại.';
+$lang['forgot_password_identity_not_found']         = 'No record of that username address.';
+
+// Password
+$lang['password_change_successful']           = 'Đã thay đổi mật khẩu thành công';
+$lang['password_change_unsuccessful']            = 'Không thể thay đổi mật khẩu vào lúc này';
+$lang['forgot_password_successful']           = 'Email khôi phục mật khẩu đã được gửi đi';
+$lang['forgot_password_unsuccessful']           = 'Không thể khôi phục mật khẩu vào lúc này';
+>>>>>>> e2c8a3d7078c2135159743a8728aac4991121714

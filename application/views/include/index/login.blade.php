@@ -25,7 +25,11 @@
                         <div class="form-group">
                             <label class="custom-control custom-checkbox">
                                 <input class="custom-control-input" type="checkbox" value="1" checked="" name="remember"><span class="custom-control-label">{{lang('remember_me')}}</span>
+                                <a class="float-right" href="{{base_url()}}index/forgot_password">
+                                    Quên mật khẩu?
+                                </a>
                             </label>
+
                         </div>
                         <button type="submit" class="btn btn-primary btn-lg btn-block" id="button_login">{{lang('login')}}</button>
                     </form>
