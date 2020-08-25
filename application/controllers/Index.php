@@ -860,6 +860,7 @@ class Index extends MY_Controller
             show_404();
         }
 
+        $code = $code[0];
         $this->data['title'] = $this->lang->line('reset_password_heading');
 
         $user = $this->ion_auth->forgotten_password_check($code);
