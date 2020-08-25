@@ -79,24 +79,6 @@ class Ion_auth
         }
 
         $email_config = $this->config->item('email_config', 'ion_auth');
-
-        $conf = $this->option_model->get_group("send_mail");
-        // echo "<pre>";
-        // print_r($conf);
-        // die();
-        $email_config = array(
-            'mailtype' => 'html',
-            'protocol' => "smtp",
-            'smtp_host' => $conf['email_server'],
-            'smtp_user' => $conf['email_username'], // actual values different
-            'smtp_pass' => $conf['email_password'],
-            'charset' => "utf-8",
-            'smtp_crypto' => $conf['email_security'],
-            'wordwrap' => TRUE,
-            'smtp_port' => $conf['email_port'],
-            'starttls' => true,
-            'newline' => "\r\n"
-        );
         if ($this->config->item('use_ci_email', 'ion_auth') && isset($email_config) && is_array($email_config)) {
             $this->email->initialize($email_config);
         }
@@ -169,6 +151,20 @@ class Ion_auth
                     $this->set_message('forgot_password_successful');
                     return $data;
                 } else {
+                    $email_config = array(
+                        'mailtype' => 'html',
+                        'protocol' => "smtp",
+                        'smtp_host' => $conf['email_server'],
+                        'smtp_user' => $conf['email_username'], // actual values different
+                        'smtp_pass' => $conf['email_password'],
+                        'charset' => "utf-8",
+                        'smtp_crypto' => $conf['email_security'],
+                        'wordwrap' => TRUE,
+                        'smtp_port' => $conf['email_port'],
+                        'starttls' => true,
+                        'newline' => "\r\n"
+                    );
+                    $this->email->initialize($email_config);
                     $message = $this->load->view($this->config->item('email_templates', 'ion_auth') . $this->config->item('email_forgot_password', 'ion_auth'), $data, true);
                     $this->email->clear();
                     $this->email->from($conf['email_email'], $conf['email_name']);
@@ -180,7 +176,8 @@ class Ion_auth
                         $this->set_message('forgot_password_successful');
                         return TRUE;
                     } else {
-                        $this->set_error('forgot_password_unsuccessful');
+
+                        $this->set_error('email_forgotten_password_subject');
                         return FALSE;
                     }
                 }
