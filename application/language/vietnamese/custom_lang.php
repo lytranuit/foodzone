@@ -1,4 +1,4 @@
-<?php
+<?php 
 $lang['footer_about'] = "Giới thiệu";
 $lang['footer_fp'] = "Kết nối với Fanpage";
 $lang['footer_page'] = "Chính sách bán hàng";
@@ -27,11 +27,11 @@ $lang['header_quick_order'] = "";
 $lang['details_mo_ta'] = "Mô tả";
 $lang['details_huong_dan'] = "Hướng dẫn sử dụng";
 $lang['details_sp_lien_quan'] = "Sản phẩm liên quan";
-$lang['danh_muc'] = "Danh mục";
+$lang['danh_muc'] = "Danh mục sản phẩm";
 $lang['topic'] = "Chủ đề";
 $lang['post'] = "Bài viết";
-$lang['khuyen_mai'] = "Siêu khuyến mãi";
-$lang['index_menu_slide'] = "Danh mục";
+$lang['khuyen_mai'] = "SIÊU KHUYẾN MẠI";
+$lang['index_menu_slide'] = "Danh mục sản phẩm";
 $lang['result_search'] = "Kết quả tìm kiếm";
 $lang['qui_cach'] = "Qui cách";
 $lang['xuat_xu'] = "Xuất xứ";
@@ -125,5 +125,7 @@ $lang['password_change_unsuccessful_oldpassword'] = "Mật khẩu cũ không đ�
 $lang['password_change_unsuccessful_confirmpassword'] = "Xác nhận mật khẩu mới không đúng.";
 $lang['account_creation_duplicate_email'] = "Địa chỉ email không hợp lệ hoặc đã được sử dụng";
 $lang['account_creation_duplicate_identity'] = "Tên tài khoản không hợp lệ hoặc đã được sử dụng";
+$lang['index_topic'] = "NGUYÊN LIỆU THEO MÓN ĂN";
 
-$lang['index_topic'] = "Nguyên liệu theo món ăn";
+
+?>
