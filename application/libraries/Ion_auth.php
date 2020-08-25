@@ -151,9 +151,6 @@ class Ion_auth
                     $this->set_message('forgot_password_successful');
                     return $data;
                 } else {
-                    echo "<pre>";
-                    print_r($conf);
-                    die();
                     $email_config = array(
                         'mailtype' => 'html',
                         'protocol' => "smtp",
