@@ -155,13 +155,13 @@ class Ion_auth
     {    //changed $email to $identity
         if ($this->ion_auth_model->forgotten_password($identity)) {   //changed
             // Get user information
-            $identifier = $this->ion_auth_model->identity_column; // use model identity column, so it can be overridden in a controller
+            $identifier = $email; // use model identity column, so it can be overridden in a controller
             $user = $this->where($identifier, $identity)->where('active', 1)->users()->row();  // changed to get_user_by_identity from email
             $conf = $this->option_model->get_group("send_mail");
 
             if ($user) {
                 $data = array(
-                    'identity' => $user->{$this->config->item('identity', 'ion_auth')},
+                    'identity' => $user->email,
                     'forgotten_password_code' => $user->forgotten_password_code
                 );
 
