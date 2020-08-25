@@ -8,6 +8,8 @@ class Index extends MY_Controller
         parent::__construct();
         ////////////////////////////////
         ////////////
+
+        $this->load->library('form_validation');
         $this->data['is_login'] = $this->ion_auth->logged_in();
         $this->data['userdata'] = $this->session->userdata();
 
@@ -801,7 +803,6 @@ class Index extends MY_Controller
      */
     public function forgot_password()
     {
-        $this->load->library('form_validation');
         $this->data['title'] = $this->lang->line('forgot_password_heading');
 
         $this->form_validation->set_rules('identity', $this->lang->line('forgot_password_validation_email_label'), 'required|valid_email');
