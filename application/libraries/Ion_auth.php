@@ -146,40 +146,34 @@ class Ion_auth
                     'identity' => $user->email,
                     'forgotten_password_code' => $user->forgotten_password_code
                 );
+                $email_config = array(
+                    'mailtype' => 'html',
+                    'protocol' => "smtp",
+                    'smtp_host' => $conf['email_server'],
+                    'smtp_user' => $conf['email_username'], // actual values different
+                    'smtp_pass' => $conf['email_password'],
+                    'charset' => "utf-8",
+                    'smtp_crypto' => $conf['email_security'],
+                    'wordwrap' => TRUE,
+                    'smtp_port' => $conf['email_port'],
+                    'starttls' => true,
+                    'newline' => "\r\n"
+                );
+                $this->email->initialize($email_config);
+                $message = $this->load->view($this->config->item('email_templates', 'ion_auth') . $this->config->item('email_forgot_password', 'ion_auth'), $data, true);
+                $this->email->clear();
+                $this->email->from($conf['email_email'], $conf['email_name']);
+                $this->email->to($user->email);
+                $this->email->subject($this->config->item('site_title', 'ion_auth') . ' - ' . $this->lang->line('email_forgotten_password_subject'));
+                $this->email->message($message);
 
-                if (!$this->config->item('use_ci_email', 'ion_auth')) {
+                if ($this->email->send()) {
                     $this->set_message('forgot_password_successful');
-                    return $data;
+                    return TRUE;
                 } else {
-                    $email_config = array(
-                        'mailtype' => 'html',
-                        'protocol' => "smtp",
-                        'smtp_host' => $conf['email_server'],
-                        'smtp_user' => $conf['email_username'], // actual values different
-                        'smtp_pass' => $conf['email_password'],
-                        'charset' => "utf-8",
-                        'smtp_crypto' => $conf['email_security'],
-                        'wordwrap' => TRUE,
-                        'smtp_port' => $conf['email_port'],
-                        'starttls' => true,
-                        'newline' => "\r\n"
-                    );
-                    $this->email->initialize($email_config);
-                    $message = $this->load->view($this->config->item('email_templates', 'ion_auth') . $this->config->item('email_forgot_password', 'ion_auth'), $data, true);
-                    $this->email->clear();
-                    $this->email->from($conf['email_email'], $conf['email_name']);
-                    $this->email->to($user->email);
-                    $this->email->subject($this->config->item('site_title', 'ion_auth') . ' - ' . $this->lang->line('email_forgotten_password_subject'));
-                    $this->email->message($message);
 
-                    if ($this->email->send()) {
-                        $this->set_message('forgot_password_successful');
-                        return TRUE;
-                    } else {
-
-                        $this->set_error('email_forgotten_password_subject');
-                        return FALSE;
-                    }
+                    $this->set_error('email_forgotten_password_subject');
+                    return FALSE;
                 }
             } else {
                 $this->set_error('forgot_password_unsuccessful');
