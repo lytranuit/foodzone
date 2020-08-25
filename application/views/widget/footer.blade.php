@@ -56,4 +56,26 @@
     <div id="toTop" class="btn btn-secondary">
         <i class="fas fa-angle-up"></i>
     </div>
+
 </footer>
+<div class="footer-bottom" style="margin-top: 197px;
+    background: black;
+    width: 100%;
+    color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="copyright col-lg-9 col-sm-12">© Copyright 2118 www.simba.com.vn, All rights reserved.<br>
+                + Tên công ty: Công Ty Cổ Phần Thương Mại Sim Ba<br>
+                + Địa chỉ: R1-08-03, Tòa nhà Everich, số 968 Ba Tháng Hai, Phường 15, Quận 11, Thành phố Hồ Chí Minh<br>
+                + MST: 0303582244
+            </div>
+            <!-- <div class="col-lg-3 col-sm-12">
+                <a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=52565" target="_blank" class="bocongthuong">
+                    <div>Chứng nhận SGD TMĐT</div>
+                    <img src="http://www.simbaeshop.com/img/bct.png" alt="TMĐT">
+                </a>
+            </div> -->
+            <div style="height:60px;display: inline-block;width: 100%;"></div>
+        </div>
+    </div>
+</div>
