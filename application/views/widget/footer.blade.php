@@ -9,6 +9,7 @@
                     <p class="header_footer">{{$options['company_name']}}</p>
                     <p>{{lang("footer_tru_so")}}: <span class="text-dark">{{$options['dia_chi']}}</span></p>
                     <p>{{lang("footer_phone")}}: <a class="text-dark" href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</span></a></p>
+                    <p>MST: 0303582244</p>
                 </div>
                 <div class="col-12 col-lg-3">
                     <p class="header_footer">{{lang("lien_ket")}}</p>
@@ -58,24 +59,3 @@
     </div>
 
 </footer>
-<div class="footer-bottom" style="margin-top: 197px;
-    background: black;
-    width: 100%;
-    color: white;">
-    <div class="container">
-        <div class="row">
-            <div class="copyright col-lg-9 col-sm-12">© Copyright 2018 www.simba.com.vn, All rights reserved.<br>
-                + Tên công ty: Công Ty Cổ Phần Thương Mại Sim Ba<br>
-                + Địa chỉ: R1-08-03, Tòa nhà Everich, số 968 Ba Tháng Hai, Phường 15, Quận 11, Thành phố Hồ Chí Minh<br>
-                + MST: 0303582244
-            </div>
-            <!-- <div class="col-lg-3 col-sm-12">
-                <a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=52565" target="_blank" class="bocongthuong">
-                    <div>Chứng nhận SGD TMĐT</div>
-                    <img src="http://www.simbaeshop.com/img/bct.png" alt="TMĐT">
-                </a>
-            </div> -->
-            <div style="height:60px;display: inline-block;width: 100%;"></div>
-        </div>
-    </div>
-</div>
