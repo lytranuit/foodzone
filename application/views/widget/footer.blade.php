@@ -9,6 +9,7 @@
                     <p class="header_footer">{{$options['company_name']}}</p>
                     <p>{{lang("footer_tru_so")}}: <span class="text-dark">{{$options['dia_chi']}}</span></p>
                     <p>{{lang("footer_phone")}}: <a class="text-dark" href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</span></a></p>
+                    <p>MST: 0303582244</p>
                 </div>
                 <div class="col-12 col-lg-3">
                     <p class="header_footer">{{lang("lien_ket")}}</p>
@@ -56,4 +57,5 @@
     <div id="toTop" class="btn btn-secondary">
         <i class="fas fa-angle-up"></i>
     </div>
+
 </footer>
