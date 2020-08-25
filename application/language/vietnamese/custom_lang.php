@@ -1,4 +1,4 @@
-<?php 
+<?php
 $lang['footer_about'] = "Giới thiệu";
 $lang['footer_fp'] = "Kết nối với Fanpage";
 $lang['footer_page'] = "Chính sách bán hàng";
@@ -157,3 +157,8 @@ $lang['password_change_unsuccessful']            = 'Không thể thay đổi m�
 $lang['forgot_password_successful']           = 'Email khôi phục mật khẩu đã được gửi đi';
 $lang['forgot_password_unsuccessful']           = 'Không thể khôi phục mật khẩu vào lúc này';
 
+// Forgot Password Email
+$lang['email_forgotten_password_subject']    = 'Xác nhận quên mật khẩu';
+$lang['email_forgot_password_heading']    = 'Khôi phục mật khẩu cho %s';
+$lang['email_forgot_password_subheading'] = 'Vui lòng click vào link này để %s.';
+$lang['email_forgot_password_link']       = 'Khôi phục mật khẩu của bạn';
