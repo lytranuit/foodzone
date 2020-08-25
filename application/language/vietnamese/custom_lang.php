@@ -162,3 +162,11 @@ $lang['email_forgotten_password_subject']    = 'Xác nhận quên mật khẩu';
 $lang['email_forgot_password_heading']    = 'Khôi phục mật khẩu cho %s';
 $lang['email_forgot_password_subheading'] = 'Vui lòng click vào link này để %s.';
 $lang['email_forgot_password_link']       = 'Khôi phục mật khẩu của bạn';
+
+// Reset Password
+$lang['reset_password_heading']                               = 'Đổi mật khẩu';
+$lang['reset_password_new_password_label']                    = 'Mật khẩu mới (ít nhất %s ký tự):';
+$lang['reset_password_new_password_confirm_label']            = 'Xác nhận mật khẩu mới:';
+$lang['reset_password_submit_btn']                            = 'Lưu lại';
+$lang['reset_password_validation_new_password_label']         = 'Mật khẩu mới';
+$lang['reset_password_validation_new_password_confirm_label'] = 'Xác nhận mật khẩu mới';

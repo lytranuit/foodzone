@@ -849,4 +849,110 @@ class Index extends MY_Controller
             }
         }
     }
+    /**
+     * Reset password - final step for forgotten password
+     *
+     * @param string|null $code The reset code
+     */
+    public function reset_password($code = NULL)
+    {
+        if (!$code) {
+            show_404();
+        }
+
+        $this->data['title'] = $this->lang->line('reset_password_heading');
+
+        $user = $this->ion_auth->forgotten_password_check($code);
+
+        if ($user) {
+            // if the code is valid then display the password reset form
+
+            $this->form_validation->set_rules('new', $this->lang->line('reset_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|matches[new_confirm]');
+            $this->form_validation->set_rules('new_confirm', $this->lang->line('reset_password_validation_new_password_confirm_label'), 'required');
+
+            if ($this->form_validation->run() === FALSE) {
+                // display the form
+
+                // set the flash data error message if there is one
+                $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+
+                $this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
+                $this->data['new_password'] = [
+                    'name' => 'new',
+                    'id' => 'new',
+                    'type' => 'password',
+                    'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
+                ];
+                $this->data['new_password_confirm'] = [
+                    'name' => 'new_confirm',
+                    'id' => 'new_confirm',
+                    'type' => 'password',
+                    'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
+                ];
+                $this->data['user_id'] = [
+                    'name' => 'user_id',
+                    'id' => 'user_id',
+                    'type' => 'hidden',
+                    'value' => $user->id,
+                ];
+                $this->data['csrf'] = $this->_get_csrf_nonce();
+                $this->data['code'] = $code;
+
+                echo $this->blade->view()->make('page/page', $this->data)->render();
+            } else {
+                $identity = $user->{$this->config->item('identity', 'ion_auth')};
+
+                // do we have a valid request?
+                if ($this->_valid_csrf_nonce() === FALSE || $user->id != $this->input->post('user_id')) {
+
+                    // something fishy might be up
+                    $this->ion_auth->clear_forgotten_password_code($identity);
+
+                    show_error($this->lang->line('error_csrf'));
+                } else {
+                    // finally change the password
+                    $change = $this->ion_auth->reset_password($identity, $this->input->post('new'));
+
+                    if ($change) {
+                        // if the password was successfully changed
+                        $this->session->set_flashdata('message', $this->ion_auth->messages());
+                        redirect("index/login", 'refresh');
+                    } else {
+                        $this->session->set_flashdata('message', $this->ion_auth->errors());
+                        redirect('index/reset_password/' . $code, 'refresh');
+                    }
+                }
+            }
+        } else {
+            // if the code is invalid then send them back to the forgot password page
+            $this->session->set_flashdata('message', $this->ion_auth->errors());
+            redirect("auth/forgot_password", 'refresh');
+        }
+    }
+
+    /**
+     * @return array A CSRF key-value pair
+     */
+    public function _get_csrf_nonce()
+    {
+        $this->load->helper('string');
+        $key = random_string('alnum', 8);
+        $value = random_string('alnum', 20);
+        $this->session->set_flashdata('csrfkey', $key);
+        $this->session->set_flashdata('csrfvalue', $value);
+
+        return [$key => $value];
+    }
+
+    /**
+     * @return bool Whether the posted CSRF token matches
+     */
+    public function _valid_csrf_nonce()
+    {
+        $csrfkey = $this->input->post($this->session->flashdata('csrfkey'));
+        if ($csrfkey && $csrfkey === $this->session->flashdata('csrfvalue')) {
+            return TRUE;
+        }
+        return FALSE;
+    }
 }
