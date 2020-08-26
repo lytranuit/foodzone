@@ -26,7 +26,7 @@
                             <label class="custom-control custom-checkbox">
                                 <input class="custom-control-input" type="checkbox" value="1" checked="" name="remember"><span class="custom-control-label">{{lang('remember_me')}}</span>
                                 <a class="float-right" href="{{base_url()}}index/forgot_password">
-                                    Quên mật khẩu?
+                                    {{lang("login_forgot_password")}}
                                 </a>
                             </label>
 
