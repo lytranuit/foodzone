@@ -223,6 +223,19 @@ if (!function_exists('get_url_category')) {
         return base_url() . $url;
     }
 }
+
+if (!function_exists('area_current')) {
+
+    function area_current()
+    {
+        $CI = &get_instance();
+        $area_current = "";
+        if (isset($_SESSION['area_current'])) {
+            $area_current = $_SESSION['area_current'];
+        }
+        return $area_current;
+    }
+}
 if (!function_exists('language_current')) {
 
     function language_current()
@@ -683,7 +696,8 @@ if (!function_exists('sync_cart')) {
                 break;
             }
         }
-        end: return $items;
+        end:
+        return $items;
     }
 }
 

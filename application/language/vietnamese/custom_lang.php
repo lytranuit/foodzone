@@ -170,3 +170,10 @@ $lang['reset_password_new_password_confirm_label']            = 'Xác nhận m�
 $lang['reset_password_submit_btn']                            = 'Lưu lại';
 $lang['reset_password_validation_new_password_label']         = 'Mật khẩu mới';
 $lang['reset_password_validation_new_password_confirm_label'] = 'Xác nhận mật khẩu mới';
+
+$lang['choose_area'] = "Chọn khu vực";
+$lang['des_area'] = "Hãy chọn khu vực của bạn. Bạn có thể thay đổi khu vực tại đầu trang.";
+$lang['yes_area'] = "Đồng ý";
+$lang['area_N'] = "Miền Nam";
+$lang['area_B'] = "Miền Bắc";
+$lang['area_T'] = "Miền Trung";

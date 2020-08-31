@@ -3,6 +3,22 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-12">
+                    <div class="float-left">
+                        <button class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if(area_current() == "B")
+                            <i class="fas fa-map-marker-alt"></i> {{lang("area_B")}}
+                            @elseif(area_current() == "T")
+                            <i class="fas fa-map-marker-alt"></i> {{lang("area_T")}}
+                            @else
+                            <i class="fas fa-map-marker-alt"></i> {{lang("area_N")}}
+                            @endif
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item text-dark" href="{{base_url()}}index/set_area/N"><i class="fas fa-map-marker-alt"></i> {{lang("area_N")}}</a>
+                            <a class="dropdown-item text-dark" href="{{base_url()}}index/set_area/T"><i class="fas fa-map-marker-alt"></i> {{lang("area_T")}}</a>
+                            <a class="dropdown-item text-dark" href="{{base_url()}}index/set_area/B"><i class="fas fa-map-marker-alt"></i> {{lang("area_B")}}</a>
+                        </div>
+                    </div>
                     <ul class="list-inline float-right">
                         <li>
                             <div class="dropdown">
@@ -219,3 +235,37 @@
         </div>
     </nav>
 </header>
+@if(!isset($_SESSION['area_current']))
+<!-- Modal-->
+<div aria-hidden="true" aria-labelledby="area-modalLabel" class="modal fade" id="area-modal" role="dialog" tabindex="-1" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <h4 class="text-center text-uppercase">{{lang("choose_area")}}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="main text-center">
+                    <p class="text-center">{{lang("des_area")}}</p>
+                    <div class="form-group form-group-lg">
+                        <select class="form-control-lg select_area">
+                            <option value="N">
+                                {{lang("area_N")}}
+                            </option>
+                            <option value="T">
+                                {{lang("area_T")}}
+                            </option>
+                            <option value="B">
+                                {{lang("area_B")}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-lg">
+                        <button class="btn btn-success btn-lg text-uppercase yes_area">{{lang("yes_area")}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif

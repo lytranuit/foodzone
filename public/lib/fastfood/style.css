@@ -5444,13 +5444,6 @@ button.close {
  * Toolkit
  */
 
-html *:first-child {
-    margin-top: 0;
-}
-
-html *:last-child {
-    margin-bottom: 0;
-}
 
 a:focus,
 button:focus {

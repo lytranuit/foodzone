@@ -83,8 +83,6 @@
 </div>
 <script>
     $(document).ready(function() {
-
-        $(".modal").detach().appendTo("body");
         $("button[name='edit_password']").click(function(e) {
             e.preventDefault();
             $.ajax({

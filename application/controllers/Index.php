@@ -241,6 +241,13 @@ class Index extends MY_Controller
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
+    public function set_area($params)
+    {
+        $area = $params[0];
+        $_SESSION['area_current'] = $area;
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
     public function category($params)
     {
         $id = $params[0];
