@@ -156,9 +156,6 @@ $lang['reset_password_validation_new_password_label'] = "Mật khẩu mới";
 $lang['reset_password_validation_new_password_confirm_label'] = "Xác nhận mật khẩu mới";
 
 
-<<<<<<< HEAD
-?>
-=======
 // Reset Password
 $lang['reset_password_heading']                               = 'Đổi mật khẩu';
 $lang['reset_password_new_password_label']                    = 'Mật khẩu mới (ít nhất %s ký tự):';
@@ -173,4 +170,3 @@ $lang['yes_area'] = "Đồng ý";
 $lang['area_N'] = "Miền Nam";
 $lang['area_B'] = "Miền Bắc";
 $lang['area_T'] = "Miền Trung";
->>>>>>> 6d34d13bf4cfd46d8da22216a2fd4ca1ab1b3fde
