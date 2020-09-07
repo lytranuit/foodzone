@@ -378,8 +378,8 @@ class Ajax extends MY_Controller
         $limit = $this->input->get("limit");
         $page = $page != "" ? $page : 1;
         $limit = $limit != "" ? $limit : 12;
-        $sql_where = "status = 1 and is_foodzone = 1 ";
-
+        $my_region = area_current();
+        $sql_where = "status = 1 and is_foodzone = 1 and FIND_IN_SET('$my_region',region) ";
         if ($category > 0) {
             $sql_where .= " AND fz_product_category.category_id = $category";
         } else {
