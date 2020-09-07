@@ -14,7 +14,8 @@
                         @foreach($areas as $row)
                         <li class="dd-item ui-sortable-handle" id="menuItem_{{$row['id']}}" data-id="{{$row['id']}}">
                             <div class="dd-handle">
-                                <div>{{$row['name']}}</div>
+                                <div>{{$row['name']}} - 
+                                {{$row['region'] == "B" ? 'Miền Bắc' : $row['region'] == "T" ? 'Miền Trung' : "Miền Nam"}}</div>
                                 <div class="dd-nodrag btn-group ml-auto">
                                     <a class="btn btn-sm btn-outline-light" href="{{base_url()}}fee/edit/{{$row['id']}}">Edit</a>
                                     <a class="btn btn-sm btn-outline-light" href="{{base_url()}}fee/remove/{{$row['id']}}" data-type="confirm" title="Xóa">
@@ -22,24 +23,6 @@
                                     </a>
                                 </div>
                             </div>
-                            <ol class="dd-list">
-                                @foreach($row['child'] as $row1)
-                                <li class="dd-item ui-sortable-handle" id="menuItem_{{$row1['id']}}" data-id="{{$row1['id']}}">
-                                    <div class="dd-handle">
-                                        <div>{{$row1['name']}}</div>
-                                        <div class="dd-nodrag btn-group ml-auto">
-                                            <a class="btn btn-sm btn-outline-light" href="{{base_url()}}fee/edit/{{$row1['id']}}">Edit</a>
-                                            <a class="btn btn-sm btn-outline-light" href="{{base_url()}}fee/remove/{{$row1['id']}}" data-type="confirm" title="Xóa">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <ol class="dd-list">
-
-                                    </ol>
-                                </li>
-                                @endforeach
-                            </ol>
                         </li>
                         @endforeach
                     </ol>
@@ -56,7 +39,7 @@
             forcePlaceholderSize: true,
             items: 'li',
             opacity: .6,
-            maxLevels: 2,
+            maxLevels: 1,
             placeholder: 'dd-placeholder',
             update: function(event, ui) {
                 var arraied = $('#nestable').nestedSortable('toArray', {

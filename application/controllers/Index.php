@@ -512,10 +512,13 @@ class Index extends MY_Controller
         }
 
         $this->load->model("area_model");
-        $list = $this->area_model->where(array('deleted' => 0))->order_by("order", "ASC")->as_array()->get_all();
+        $my_region = area_current();
+        $list = $this->area_model->where(array('deleted' => 0, 'region' => $my_region))->order_by("order", "ASC")->as_array()->get_all();
         // echo "<pre>";
         // print_r($list);
         // die();
+        if (empty($list))
+            $list = array();
         $groups = array_values(array_filter($list, function ($item) {
             return $item['parent_id'] == 0;
         }));

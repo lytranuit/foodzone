@@ -13,6 +13,14 @@
                         <div class="col-12 col-lg-4 pt-1">
                             <input class="form-control form-control-sm" type='text' name="name" required="" placeholder="Khu vực" />
                         </div>
+                        <b class="col-12 col-lg-2 col-form-label">Vùng:<i class="text-danger">*</i></b>
+                        <div class="col-12 col-lg-4 pt-1">
+                            <select name="region" class="form-control form-control-sm">
+                                <option value="N">Miền Nam</option>
+                                <option value="T">Miền Trung</option>
+                                <option value="B">Miền Bắc</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </section>

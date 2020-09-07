@@ -126,15 +126,7 @@
                                                 <select class="" name="area_id">
                                                     <option value="0">{{lang("other_area")}}</option>
                                                     @foreach($group_area as $row)
-                                                    @if(!empty($row['child']))
-                                                    <optgroup label="{{$row['name']}}">
-                                                        @foreach($row['child'] as $row1)
-                                                        <option value="{{$row1['id']}}">{{$row1['name']}}</option>
-                                                        @endforeach
-                                                    </optgroup>
-                                                    @else
                                                     <option value="{{$row['id']}}">{{$row['name']}}</option>
-                                                    @endif
                                                     @endforeach
                                                 </select>
                                             </div>
