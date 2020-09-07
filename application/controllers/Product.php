@@ -93,6 +93,9 @@ class Product extends MY_Administrator
             // echo "<pre>";
             // print_r($data_fz);
             // die();
+            if (isset($data['region'])) {
+                $data['region'] = implode(",", $data['region']);
+            }
             $data_up = $this->product_model->create_object($data);
             $this->product_model->update($data_up, $id);
 
@@ -222,6 +225,9 @@ class Product extends MY_Administrator
                 // echo "<pre>";
                 // print_r($tin->other_image);
                 // die();
+            }
+            if (!empty($tin->region)) {
+                $tin->region = explode(",", $tin->region);
             }
             if (!empty($tin->foodzone)) {
                 foreach ($tin->foodzone as $key => $val) {

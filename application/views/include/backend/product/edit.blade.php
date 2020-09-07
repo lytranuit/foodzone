@@ -40,6 +40,17 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <b class="col-12 col-lg-2 col-form-label">Vùng:</b>
+                                <div class="col-12 col-lg-4 pt-1">
+                                    <select name="region[]" class="form-control form-control-sm chosen" multiple>
+                                        <option value="N">Miền Nam</option>
+                                        <option value="T">Miền Trung</option>
+                                        <option value="B">Miền Bắc</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <b class="col-12 col-lg-2 col-form-label">Hiển thị:</b>
                                 <div class="col-12 col-lg-4 pt-1">
@@ -480,7 +491,6 @@
         $(".chosen").chosen({
             width: "100%"
         });
-
         $(".up_order").click(function() {
             let max = $(this).data("max");
             $(".order").val(max);

@@ -121,6 +121,7 @@ class Index extends MY_Controller
     public function details($params)
     {
         $id = $params[0];
+        $my_region = area_current();
         $version = $this->config->item("version");
         $this->load->model("product_model");
         $product = $this->product_model->with_foodzone()->with_other_image()->with_units()->with_image()->with_price_km('where: NOW() BETWEEN date_from AND date_to and deleted = 0')->with_preservation()->with_origin()->with_category()->get($id);
@@ -145,7 +146,7 @@ class Index extends MY_Controller
             $this->data['category'] = $categories[0];
         }
         // die();
-        $this->data['product_related'] = $this->product_model->where("status = 1 and is_foodzone = 1 and id IN(SELECT product_related_id FROM fz_product_related WHERE product_id = $id)", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
+        $this->data['product_related'] = $this->product_model->where("status = 1 and is_foodzone = 1 and FIND_IN_SET('$my_region',region) and id IN(SELECT product_related_id FROM fz_product_related WHERE product_id = $id)", null, null, null, null, true)->with_units()->with_image()->with_price_km('order_inside:date_from desc')->get_all();
         // print_r($this->data['product_related']);
         // die();
         if (empty($this->data['product_related'])) {
@@ -265,7 +266,8 @@ class Index extends MY_Controller
         $row =  $this->category_model->get($id);
         if (empty($row))
             redirect("", "refresh");
-        $sql_where = "status = 1 and is_foodzone = 1 and category_id = $row->id";
+        $my_region = area_current();
+        $sql_where = "status = 1 and is_foodzone = 1 and category_id = $row->id and FIND_IN_SET('$my_region',region)";
         /*
          * TINH COUNT
          */
@@ -315,7 +317,8 @@ class Index extends MY_Controller
         $limit = $limit != "" ? $limit : 20;
         $this->load->model("category_model");
         $this->load->model("product_model");
-        $sql_where = "status = 1 and is_foodzone = 1 and id IN(SELECT product_id FROM fz_product_price WHERE NOW() BETWEEN date_from AND date_to AND deleted = 0)";
+        $my_region = area_current();
+        $sql_where = "status = 1 and is_foodzone = 1 and FIND_IN_SET('$my_region',region) and id IN(SELECT product_id FROM fz_product_price WHERE NOW() BETWEEN date_from AND date_to AND deleted = 0)";
         /*
          * TINH COUNT
          */
@@ -359,8 +362,8 @@ class Index extends MY_Controller
         $limit = $limit != "" ? $limit : 20;
         $this->load->model("category_model");
         $this->load->model("product_model");
-
-        $sql_where = "product.status = 1 and product.is_foodzone = 1";
+        $my_region = area_current();
+        $sql_where = "product.status = 1 and product.is_foodzone = 1 and FIND_IN_SET('$my_region',product.region)";
         if ($search != "") {
             $short_language = short_language_current();
             $sql_where .= " AND (LOWER(fz_product.search_$short_language) like LOWER('%" . $search . "%') OR LOWER(product.code) LIKE LOWER('%$search%') OR LOWER(fz_product.name_$short_language) like LOWER('%" . $search . "%') OR (fz_product.code IS NULL AND LOWER(product.name_$short_language) like LOWER('%" . $search . "%')))";
