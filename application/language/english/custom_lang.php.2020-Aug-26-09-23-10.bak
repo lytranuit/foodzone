@@ -137,23 +137,23 @@ $lang['forgot_password_subheading'] = "Please enter your %s that you want to res
 $lang['forgot_password_email_label'] = "%s:";
 $lang['forgot_password_submit_btn'] = "Send";
 $lang['forgot_password_validation_email_label'] = "Email";
-$lang['forgot_password_username_identity_label'] = "Username";
-$lang['forgot_password_email_identity_label'] = "Email";
-$lang['forgot_password_email_not_found'] = "Your email doesn't exist.";
+$lang['forgot_password_username_identity_label'] = "";
+$lang['forgot_password_email_identity_label'] = "";
+$lang['forgot_password_email_not_found'] = "";
 $lang['forgot_password_identity_not_found'] = "";
 $lang['password_change_unsuccessful'] = "";
-$lang['forgot_password_successful'] = "Password reset email sent";
+$lang['forgot_password_successful'] = "";
 $lang['forgot_password_unsuccessful'] = "";
-$lang['email_forgotten_password_subject'] = "Reset password confirmation";
-$lang['email_forgot_password_heading'] = "You have requested to reset the password for %s";
-$lang['email_forgot_password_subheading'] = "Your password has been reset. Please %s";
-$lang['email_forgot_password_link'] = "click here to log in.";
-$lang['reset_password_heading'] = "Change password";
-$lang['reset_password_new_password_label'] = "New password (must be %s characters):";
-$lang['reset_password_new_password_confirm_label'] = "Confirm new password";
-$lang['reset_password_submit_btn'] = "Save";
-$lang['reset_password_validation_new_password_label'] = "New password";
-$lang['reset_password_validation_new_password_confirm_label'] = "Confirm new password";
+$lang['email_forgotten_password_subject'] = "";
+$lang['email_forgot_password_heading'] = "";
+$lang['email_forgot_password_subheading'] = "";
+$lang['email_forgot_password_link'] = "";
+$lang['reset_password_heading'] = "";
+$lang['reset_password_new_password_label'] = "";
+$lang['reset_password_new_password_confirm_label'] = "";
+$lang['reset_password_submit_btn'] = "";
+$lang['reset_password_validation_new_password_label'] = "";
+$lang['reset_password_validation_new_password_confirm_label'] = "";
 
 
 ?>
