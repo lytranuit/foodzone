@@ -1,4 +1,4 @@
-<?php 
+<?php
 $lang['footer_about'] = "Giới thiệu";
 $lang['footer_fp'] = "Kết nối với Fanpage";
 $lang['footer_page'] = "Chính sách bán hàng";
@@ -170,3 +170,10 @@ $lang['yes_area'] = "Đồng ý";
 $lang['area_N'] = "Miền Nam";
 $lang['area_B'] = "Miền Bắc";
 $lang['area_T'] = "Miền Trung";
+
+
+$lang['inv_text'] = "Xuất hóa đơn tài chính";
+$lang['inv_header'] = "Thông tin xuất hóa đơn";
+$lang['inv_name'] = "Tên người mua hàng";
+$lang['inv_address'] = "Địa chỉ";
+$lang['inv_tax_code'] = "Mã số thuế";

@@ -581,7 +581,12 @@ class Index extends MY_Controller
             $array['receiver_address'] =  $array['address'];
             $array['receiver_area'] =  isset($area->name) ? $area->name : "";
 
-
+            if (isset($array['flag_inv']) && $array['flag_inv'] == 1) {
+            } else {
+                $array['inv_name'] = "";
+                $array['inv_address'] = "";
+                $array['inv_tax_code'] = "";
+            }
             $array['customer_id'] =  7544;
             if ($this->data['is_login']) {
                 $array['user_id'] =  $this->data['userdata']['user_id'];
