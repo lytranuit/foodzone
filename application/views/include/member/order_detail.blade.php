@@ -7,6 +7,8 @@
                         {{lang("details_order")}} # {{$data->code}}
                     </div>
                 </div>
+            </div>
+            <div class="col-12 col-lg-6">
                 <div class="card mt-3">
                     <div class="card-header drag-handle">
                         {{lang("cart_info_title")}}
@@ -19,6 +21,22 @@
                         <div>{{lang('login_area_label')}}: {{$data->receiver_area}}</div>
                     </div>
                 </div>
+            </div>
+            @if($data->inv_tax_code != "")
+            <div class="col-12 col-lg-6">
+                <div class="card mt-3">
+                    <div class="card-header drag-handle">
+                        {{lang("inv_header")}}
+                    </div>
+                    <div class="card-body">
+                        <div>{{lang('inv_name')}}: {{$data->inv_name}}</div>
+                        <div>{{lang('inv_address')}}: {{$data->inv_address}}</div>
+                        <div>{{lang('inv_tax_code')}}: {{$data->inv_tax_code}}</div>
+                    </div>
+                </div>
+            </div>
+            @endif
+            <div class="col-12">
                 <div class="card mt-3">
                     <div class="card-body">
                         <table class="table">

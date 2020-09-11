@@ -135,7 +135,31 @@
                                         <hr>
                                         <div class="form-group">
                                             <b class="small font-weight-bold">{{lang('cart_info_delivery')}}:</b>
-                                            <input type="date" name="delivery_date" value="{{date('Y-m-d')}}" min="{{date('Y-m-d')}}" class="form-control">
+                                            <input type="date" name="delivery_date" value="{{date('Y-m-d')}}" min="{{date('Y-m-d')}}" class="form-control smail">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" name="flag_inv" class="" id="inv" value="1">
+                                            <label class="form-check-label" for="inv"> {{lang("inv_text")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card my-3 box_inv d-none">
+                                    <div class="card-header">
+                                        {{lang("inv_header")}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <b class="small font-weight-bold">{{lang('inv_name')}}:</b>
+                                            <input type="text" name="inv_name" value="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <b class="small font-weight-bold">{{lang('inv_tax_code')}}:</b>
+                                            <input type="text" name="inv_tax_code" value="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <b class="small font-weight-bold">{{lang('inv_address')}}:</b>
+                                            <input type="text" name="inv_address" value="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -305,6 +329,9 @@
 </style>
 <script>
     $(document).ready(function() {
+        $("#inv").change(function() {
+            $(".box_inv").toggleClass("d-none");
+        })
         $(".new_address").click(function() {
             $(".box_address").removeClass("d-none");
             $(".address").addClass("btn-danger").removeClass("btn-success").text(no_selected);
