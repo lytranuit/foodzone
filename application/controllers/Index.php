@@ -792,6 +792,9 @@ class Index extends MY_Controller
 
                 $this->sale_simba_model->update(array("is_send" => 1), $row->id);
                 if ($this->email->send()) {
+                    $file_log = './success_' . $row->id . '.log';
+                    file_put_contents($file_log, 1, FILE_APPEND);
+
                     //                echo json_encode(array('code' => 400, 'msg' => lang('alert_400')));
                 } else {
                     $file_log = './log_' . $row->id . '.log';
