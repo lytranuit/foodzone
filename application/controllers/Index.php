@@ -767,7 +767,7 @@ class Index extends MY_Controller
                 // echo "<pre>";
                 // print_r(json_decode($row->data));
                 // die();
-                $this->email->from($conf['email_email'], $conf['email_name']);
+                // $this->email->from($conf['email_email'], $conf['email_name']);
                 $this->email->to($conf['email_email']); /// $conf['email_contact']
                 $this->email->cc($conf['email_contact']); /// $conf['email_contact']
                 $this->email->subject("Thông báo Đơn hàng mới - New PO Alert")
