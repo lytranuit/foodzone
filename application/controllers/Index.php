@@ -767,9 +767,9 @@ class Index extends MY_Controller
                 // echo "<pre>";
                 // print_r(json_decode($row->data));
                 // die();
-                // $this->email->from($conf['email_email'], $conf['email_name']);
+                $this->email->from($conf['email_email'], $conf['email_name']);
                 $this->email->to($conf['email_email']); /// $conf['email_contact']
-                $this->email->cc($conf['email_contact']); /// $conf['email_contact']
+                $this->email->bcc($conf['email_contact']); /// $conf['email_contact']
                 $this->email->subject("Thông báo Đơn hàng mới - New PO Alert")
                     ->set_mailtype('html');
 
@@ -798,9 +798,12 @@ class Index extends MY_Controller
 
                 $this->sale_simba_model->update(array("is_send" => 1), $row->id);
                 if ($this->email->send()) {
-                    $file_log = './success_' . $row->id . '.log';
-                    file_put_contents($file_log, 1, FILE_APPEND);
-
+                    // $file_log = './success_' . $row->id . '.log';
+                    // file_put_contents($file_log, 1, FILE_APPEND);
+                    //Section 2: IMAP
+                    // if ($thsave_mail($mail)) {
+                    //     echo "Message saved!";
+                    // }
                     //                echo json_encode(array('code' => 400, 'msg' => lang('alert_400')));
                 } else {
                     $file_log = './log_' . $row->id . '.log';
