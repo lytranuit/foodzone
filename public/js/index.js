@@ -70,7 +70,7 @@ $(document).ready(function () {
         $(".unit_product.active").trigger("click");
     });
     ////TRIGGER
-    $(".index_category.active").trigger("click");
+    // $(".index_category.active").trigger("click");
     ////View NOW
     $(document).on("click", ".view_now_btn", async function (e) {
         e.preventDefault();

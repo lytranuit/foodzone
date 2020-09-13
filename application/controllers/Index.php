@@ -66,21 +66,23 @@ class Index extends MY_Controller
         // load_autonumberic($this->data);
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
 
+        $my_region = area_current();
         $this->load->model("category_model");
         $this->load->model("product_model");
         $list_category = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'is_home' => 1, 'parent_id' => 0, 'menu_id' => 1))->order_by('order', 'ASC')->get_all();
         foreach ($list_category as &$row) {
-            // $row->product = $this->product_model->where("deleted = 0 and active = 1 AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
-            // // echo "<pre>";
-            // // print_r($row->product);
-            // // die();
-            // if (!empty($row->product)) {
-            //     foreach ($row->product as &$row_format) {
-            //         $row_format = $this->product_model->format($row_format);
-            //     }
-            // }
+
+            $row->products = $this->product_model->where("status = 1 and is_foodzone = 1 and FIND_IN_SET('$my_region',region) AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->order_by('fz_product_category.order', 'ASC')->with_units()->with_price_km()->with_image()->limit(12)->get_all();
+            // echo "<pre>";
+            // print_r($row->product);
+            // die();
+            if (!empty($row->products)) {
+                foreach ($row->products as &$row_format) {
+                    $row_format = $this->product_model->format($row_format);
+                }
+            }
             /* COUNT PRODUCT */
-            $row->count_product = $this->product_model->where("status = 1 and is_foodzone = 1 AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->count_rows();
+            $row->count_product = $this->product_model->where("status = 1 and is_foodzone = 1 and FIND_IN_SET('$my_region',region) AND category_id = $row->id", null, null, null, null, true)->join("fz_product_category", "id", "product_id")->count_rows();
             /* SUB */
             $row->child = $this->category_model->where(array('deleted' => 0, 'active' => 1, 'parent_id' => $row->id))->order_by('order', 'ASC')->get_all();
         }

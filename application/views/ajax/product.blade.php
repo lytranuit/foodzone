@@ -5,7 +5,7 @@
         <input type="hidden" value="1" class="number" />
         <figure>
             <a href="{{base_url()}}index/details/{{$product->id}}" class="d-block p-lg-5 p-md-3">
-                <img class="img-responsive" loading="lazy" data-src="{{base_url()}}public/image/lazy_image.gif" src="http://simbaeshop.com{{$product->image_url}}" alt="">
+                <img class="img-responsive lazyload" src="{{base_url()}}public/image/lazy_image.gif" data-src="http://simbaeshop.com{{$product->image_url}}" alt="">
             </a>
             <div class="view_now d-flex align-items-center">
                 <a href="#" class="btn btn-danger mx-auto view_now_btn">{{lang("view")}}</a>
