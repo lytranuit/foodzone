@@ -10,7 +10,7 @@
                     @foreach($topics as $row)
                     <div class="item m-2">
                         <a class="" href="{{base_url()}}index/category/{{$row->id}}">
-                            <img class="img-responsive" data-src="{{base_url()}}public/image/lazy_image.gif" src="@if(isset($row->image)){{$row->image->src}}@endif" alt="">
+                            <img class="img-responsive" data-src="{{base_url()}}public/image/lazy_image.gif" data-lazy="@if(isset($row->image)){{$row->image->src}}@endif" alt="">
                             <div class="caption text-center">
                                 <p>
                                     {{ $row->{pick_language($row,'name_')} }}

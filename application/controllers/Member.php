@@ -150,6 +150,7 @@ class Member extends MY_Controller
             $user = $this->user_model->where(array('id' => $id_user))->as_object()->get();
             $this->data['user'] = $user;
             //echo $this->data['content'];
+            $version = $this->config->item("version");
             array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
             echo $this->blade->view()->make('page/page', $this->data)->render();
         }
