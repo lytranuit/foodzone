@@ -155,6 +155,9 @@
                                 <a class="dropdown-item logout text-dark" href="<?= base_url() ?>index/logout">{{lang("logout")}}</a>
                             </div>
                         </div>
+                        <a class="text-dark exits-bar" href="#" style="font-size:24px;display: inline-block; padding: 0;">
+                            <i class="fas fa-long-arrow-alt-left"></i>
+                        </a>
                         @else
                         <a class="text-primary" href="{{base_url()}}index/login"><i class="fa fa-user text-dark mr-1"></i>{{lang("login")}}</a>
                         <span class="text-dark">{{lang("or")}}</span>

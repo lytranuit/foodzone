@@ -144,6 +144,8 @@ $(document).ready(function() {
     }
     if (plugins.topics_view.length > 0) {
         plugins.topics_view.slick({
+
+            lazyLoad: 'ondemand',
             dots: false,
             speed: 300,
             slidesToShow: 6,
