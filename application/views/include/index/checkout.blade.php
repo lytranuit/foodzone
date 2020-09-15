@@ -53,8 +53,8 @@
                                             <b class="small font-weight-bold">{{lang('login_area_label')}}:</b>
                                             <select class="" name="area_id">
                                                 <option value="0">{{lang("other_area")}}</option>
-                                                @foreach($area as $row)
-                                                <option value="{{$row->id}}">{{$row->name}}</option>
+                                                @foreach($group_area as $row)
+                                                <option value="{{$row['id']}}">{{$row['name']}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
