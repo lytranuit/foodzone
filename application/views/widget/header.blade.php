@@ -143,12 +143,26 @@
             <div style="position: relative;">
                 <div class="rd-navbar-nav-wrap toggle-original-elements">
                     <div class="hidden-md hidden-lg head-menu">
+                        @if($is_login)
+                        <div class="dropdown text-center">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="vertical-align: baseline;text-decoration: none;">
+                                <i class="fas fa-user"></i> {{$userdata['identity']}}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <a class="dropdown-item text-dark" href="<?= base_url() ?>member/">{{lang("info")}}</a>
+                                <a class="dropdown-item text-dark" href="<?= base_url() ?>member/history">{{lang("history_order")}}</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item logout text-dark" href="<?= base_url() ?>index/logout">{{lang("logout")}}</a>
+                            </div>
+                        </div>
+                        @else
                         <a class="text-primary" href="{{base_url()}}index/login"><i class="fa fa-user text-dark mr-1"></i>{{lang("login")}}</a>
                         <span class="text-dark">{{lang("or")}}</span>
                         <a class="text-primary" href="{{base_url()}}index/register">{{lang("sign_up")}}</a>
                         <a class="text-dark exits-bar" href="#" style="font-size:24px;display: inline-block; padding: 0;">
                             <i class="fas fa-long-arrow-alt-left"></i>
                         </a>
+                        @endif
                     </div>
                     <ul class="rd-navbar-nav">
 
