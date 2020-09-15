@@ -50,7 +50,7 @@
                         @foreach($list_slider as $row)
                         <div class="banner-item ">
                             <a target="_blank" href="{{$row->url}}" title="{{$row->text}}">
-                                <img src="{{base_url()}}{{$row->image->src}}" class="img-responsive w-100">
+                                <img data-lazy="{{base_url()}}{{$row->image->src}}" class="img-responsive w-100">
                             </a>
                             <div class="banner-caption">
                                 <div class="banner-caption-name">
@@ -64,6 +64,7 @@
                     <script type="text/javascript">
                         $(document).ready(function() {
                             $('.home-banner-container').slick({
+                                lazyLoad: 'ondemand',
                                 infinite: true,
                                 slidesToShow: 1,
                                 slidesToScroll: 1,
@@ -112,7 +113,7 @@
                                     let offset = $(this).offset();
                                     let width = $(this).outerWidth(true);
                                     $(">ul", this).css({
-                                        "left": offset.left + width ,
+                                        "left": offset.left + width,
                                         "top": offset.top
                                     });
                                     $(">ul", this).fadeIn(500)
