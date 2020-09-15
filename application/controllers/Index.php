@@ -28,12 +28,12 @@ class Index extends MY_Controller
             "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
             base_url() . "public/lib/bootstrap/js/popper.min.js",
             base_url() . "public/lib/bootstrap/js/bootstrap.min.js",
+            base_url() . "public/lib/rd_nav/js/jquery.rd-navbar.min.js", // navbar
             base_url() . "public/lib/in-view/jquery.inview.js",
             base_url() . "public/lib/cookie/jquery.cookies.2.2.0.min.js",
 
             // base_url() . "public/lib/UItoTop/easing.js",
             // base_url() . "public/lib/UItoTop/jquery.ui.totop.js",
-            base_url() . "public/lib/rd_nav/js/jquery.rd-navbar.min.js", // navbar
             "https://sp.zalo.me/plugins/sdk.js",
         );
 
