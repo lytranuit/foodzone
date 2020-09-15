@@ -14,8 +14,15 @@
                         @foreach($areas as $row)
                         <li class="dd-item ui-sortable-handle" id="menuItem_{{$row['id']}}" data-id="{{$row['id']}}">
                             <div class="dd-handle">
-                                <div>{{$row['name']}} - 
-                                {{$row['region'] == "B" ? 'Miền Bắc' : $row['region'] == "T" ? 'Miền Trung' : "Miền Nam"}}</div>
+                                <div>{{$row['name']}} -
+                                    @if($row['region'] == 'B')
+                                    Miền Bắc
+                                    @elseif($row['region'] == 'T')
+                                    Miền Trung
+                                    @else
+                                    Miền Nam
+                                    @endif
+                                </div>
                                 <div class="dd-nodrag btn-group ml-auto">
                                     <a class="btn btn-sm btn-outline-light" href="{{base_url()}}fee/edit/{{$row['id']}}">Edit</a>
                                     <a class="btn btn-sm btn-outline-light" href="{{base_url()}}fee/remove/{{$row['id']}}" data-type="confirm" title="Xóa">
