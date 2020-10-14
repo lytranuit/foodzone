@@ -9,7 +9,7 @@
                     <p class="header_footer">{{$options['company_name']}}</p>
                     <p>{{lang("footer_tru_so")}}: <span class="text-dark">{{$options['dia_chi']}}</span></p>
                     <p>{{lang("footer_phone")}}: <a class="text-dark" href="tel:{{$options['hot_line']}}">{{$options['hot_line']}}</span></a></p>
-                    <p>MST: 0303582244</p>
+                    <p>Giấy chứng nhận Đăng ký Kinh doanh số 0303582244 do Phòng Đăng Ký Kinh Doanh -  Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp đăng ký thay đổi lần thứ 11 ngày 07/02/2020</p>
                 </div>
                 <div class="col-12 col-lg-3">
                     <p class="header_footer">{{lang("lien_ket")}}</p>
