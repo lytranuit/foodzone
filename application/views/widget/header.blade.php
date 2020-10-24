@@ -258,27 +258,30 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
-                <h4 class="text-center text-uppercase">{{lang("choose_area")}}
+                <h4 class="text-center text-uppercase">Chọn khu vực / Choose your region / お住まいの地域を選択してください
                 </h4>
             </div>
             <div class="modal-body">
                 <div class="main text-center">
-                    <p class="text-center">{{lang("des_area")}}</p>
+                    <!-- <p class="text-center">{{lang("des_area")}}</p> -->
+                    <p class="text-center">Hãy chọn khu vực của bạn. Bạn có thể thay đổi khu vực tại đầu trang.</p>
+                    <p class="text-center">Please select your region or you can change at the top of website.</p>
+                    <p class="text-center">ページ上部のタブより、いつでも変更可能です</p>
                     <div class="form-group form-group-lg">
                         <select class="form-control-lg select_area">
                             <option value="N">
-                                {{lang("area_N")}}
+                                Miền Nam / South / 南部
                             </option>
                             <option value="T">
-                                {{lang("area_T")}}
+                                Miền Trung / Central / 中部
                             </option>
                             <option value="B">
-                                {{lang("area_B")}}
+                                Miền Bắc / North / 北部
                             </option>
                         </select>
                     </div>
                     <div class="form-group form-group-lg">
-                        <button class="btn btn-success btn-lg text-uppercase yes_area">{{lang("yes_area")}}</button>
+                        <button class="btn btn-success btn-lg text-uppercase yes_area">Đồng ý / Accept / 選択</button>
                     </div>
                 </div>
             </div>
