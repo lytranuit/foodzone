@@ -6,7 +6,8 @@
                 <div class="section-title text-center">
                     <a href="#">{{lang("index_topic")}}</a>
                 </div>
-                <div class="responsive1" style="min-height: 200px;">
+                <div class="responsive1" style="height: 200px; opacity: 0;
+                transition: opacity 0.3s;">
                     @foreach($topics as $row)
                     <div class="item m-2">
                         <a class="" href="{{base_url()}}index/category/{{$row->id}}">

@@ -178,6 +178,7 @@ $(document).ready(function() {
                 // instead of a settings object
             ]
         });
+        plugins.topics_view.css("opacity", 1)
         plugins.topics_view.on({
             mouseenter: function() {
                 $(".slick-arrow", this).fadeIn(500)
