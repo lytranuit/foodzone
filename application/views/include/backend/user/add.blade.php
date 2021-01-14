@@ -107,7 +107,7 @@
             submitHandler: function(form) {
                 var username = $("input[name=username]").val();
                 $.ajax({
-                    url: path + "admin/checkusername",
+                    url: path + "admin/user/checkusername",
                     data: {
                         username: username
                     },
