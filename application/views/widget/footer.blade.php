@@ -84,7 +84,12 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
-
+<style>
+    #fb-root iframe {
+        left: 12px;
+        right: inherit !important;
+    }
+</style>
 <!-- Your Chat Plugin code -->
 <div class="fb-customerchat" attribution=setup_tool page_id="100954748611270">
 </div>
