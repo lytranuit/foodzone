@@ -48,7 +48,7 @@
                         <span class="phone text-dark">{{$options['hot_line']}}</span>
                     </div>
                     <div>
-                        <a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=52565" target="_blank" class="bocongthuong">
+                        <a href="http://online.gov.vn/Home/WebDetails/70661" target="_blank" class="bocongthuong">
                             <div class="text-dark">Chứng nhận SGD TMĐT</div>
                             <img src="public/image/bct.png" alt="TMĐT">
                         </a>
