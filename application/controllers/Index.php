@@ -611,7 +611,7 @@ class Index extends MY_Controller
                     'quantity' => $row->qty,
                     'unit_price' => $row->price,
                     'subtotal' => $row->amount,
-                    'name' => $row->name_vi,
+                    'name' => $row->{pick_language($row)},
                     'code' => $row->code,
                     'product_id' => $row->id,
                     'image_url' => $row->image_url
@@ -628,6 +628,7 @@ class Index extends MY_Controller
                     $data_up['volume_order'] = $unit->name_vi;
                     $data_up['volume_order_en'] = $unit->name_en;
                     $data_up['volume_order_jp'] = $unit->name_jp;
+                    $data_up['volume'] = $unit->{pick_language($unit)};
                 }
                 $this->sale_line_simba_model->insert($data_up);
             }
