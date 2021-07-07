@@ -25,7 +25,7 @@
                             <div class="form-group row">
                                 <b class="col-12 col-lg-2 col-form-label">Xuất xứ:</b>
                                 <div class="col-12 col-lg-4 pt-1">
-                                    <select name="origin_id" class="form-control form-control-sm">
+                                    <select name="origin_country_id" class="form-control form-control-sm">
                                         @foreach($origin as $row)
                                         <option value="{{$row->id}}">{{$row->name_vi}}</option>
                                         @endforeach
