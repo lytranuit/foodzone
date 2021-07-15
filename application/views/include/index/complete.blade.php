@@ -6,8 +6,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="col-12 text-center">
-                            {{lang("cart_text_finish")}}
-
+                            <?= lang("cart_text_finish") ?>
                         </h5>
                         <div class="text-center">
                             <a href="{{base_url()}}" class="btn btn-danger mr-5">{{lang("cart_next")}}</a>
