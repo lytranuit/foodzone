@@ -532,6 +532,9 @@ class Index extends MY_Controller
 
         $this->data['group_area'] = $groups;
         $this->data['cart'] = sync_cart();
+        echo "<pre>";
+        print_r($this->data['cart']);
+        die();
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
@@ -629,6 +632,12 @@ class Index extends MY_Controller
                     $data_up['volume_order_en'] = $unit->name_en;
                     $data_up['volume_order_jp'] = $unit->name_jp;
                     $data_up['volume'] = $unit->{pick_language($unit)};
+                } else {
+                    $data_up['special_unit'] = $row->special_unit;
+                    $data_up['volume_order'] = $row->volume_vi;
+                    $data_up['volume_order_en'] = $row->volume_en;
+                    $data_up['volume_order_jp'] = $row->volume_jp;
+                    $data_up['volume'] = $row->volume;
                 }
                 $this->sale_line_simba_model->insert($data_up);
             }
