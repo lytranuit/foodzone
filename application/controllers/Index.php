@@ -532,9 +532,9 @@ class Index extends MY_Controller
 
         $this->data['group_area'] = $groups;
         $this->data['cart'] = sync_cart();
-        echo "<pre>";
-        print_r($this->data['cart']);
-        die();
+        // echo "<pre>";
+        // print_r($this->data['cart']);
+        // die();
         $version = $this->config->item("version");
         array_push($this->data['javascript_tag'], base_url() . "public/js/index.js?v=" . $version);
         echo $this->blade->view()->make('page/page', $this->data)->render();
