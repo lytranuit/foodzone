@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var plugins = {};
     $document = $(document)
     $window = $(window)
@@ -18,6 +18,7 @@ $(document).ready(function() {
     plugins.topics_view = $('.responsive1');
     plugins.menu_bar = $(".menu-bar");
     plugins.area_model = $("#area-modal");
+    plugins.popup_model = $("#popup-modal");
 
     /**
      * RD Navbar
@@ -34,19 +35,21 @@ $(document).ready(function() {
     $(".modal").detach().appendTo("body");
     if (plugins.area_model.length > 0) {
         $("#area-modal").modal("show");
-        $(".yes_area").click(function() {
+        $(".yes_area").click(function () {
             $("#area-modal").modal("hide");
             let area = $(".select_area").val();
             location.href = path + "index/set_area/" + area;
         })
     }
-    $(document).on("inview", ".lazyload", function() {
-        console.log(1);
+    if (plugins.popup_model.length > 0) {
+        $("#popup-modal").modal("show");
+    }
+    $(document).on("inview", ".lazyload", function () {
         let src = $(this).data("src");
         $(this).attr("src", src);
         $(this).removeClass("lazyload");
     });
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop()) {
             $('#toTop').fadeIn();
         } else {
@@ -55,14 +58,14 @@ $(document).ready(function() {
         /// fix bug .
         $(".list-custom li.has_sub > ul").fadeOut();
     });
-    $("#toTop").click(function() {
+    $("#toTop").click(function () {
         //1 second of animation time
         //html works for FFX but not Chrome
         //body works for Chrome but not FFX
         //This strange selector seems to work universally
         $("html, body").animate({ scrollTop: 0 }, 1000);
     });
-    $(".index_category").click(async function(e) {
+    $(".index_category").click(async function (e) {
         e.preventDefault();
         let section = $(this).parents("section");
         let id = $(this).data("id");
@@ -83,7 +86,7 @@ $(document).ready(function() {
     ////TRIGGER
     // $(".index_category.active").trigger("click");
     ////View NOW
-    $(document).on("click", ".view_now_btn", async function(e) {
+    $(document).on("click", ".view_now_btn", async function (e) {
         e.preventDefault();
         let product = $(this).parents(".product");
         let id = product.data("id");
@@ -94,7 +97,7 @@ $(document).ready(function() {
         $.fancybox.open(html, {
             buttons: ["close"],
             toolbar: true,
-            afterLoad: function(instance, current) {
+            afterLoad: function (instance, current) {
                 var inner = this.$content;
                 $(".fancybox-toolbar").css({
                     visibility: 'visible',
@@ -132,10 +135,10 @@ $(document).ready(function() {
     })
 
     if (plugins.menu_bar.length > 0) {
-        $(plugins.menu_bar).click(function() {
+        $(plugins.menu_bar).click(function () {
             $(".rd-navbar-nav-wrap").addClass("active");
         })
-        $(".exits-bar").click(function() {
+        $(".exits-bar").click(function () {
             $(".rd-navbar-nav-wrap").removeClass("active");
         });
         // $(document).scroll(function() {
@@ -151,28 +154,28 @@ $(document).ready(function() {
             slidesToShow: 6,
             slidesToScroll: 6,
             responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
                 }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            }
                 // You can unslick at a given breakpoint now by adding:
                 // settings: "unslick"
                 // instead of a settings object
@@ -180,13 +183,13 @@ $(document).ready(function() {
         });
         plugins.topics_view.css("opacity", 1)
         plugins.topics_view.on({
-            mouseenter: function() {
+            mouseenter: function () {
                 $(".slick-arrow", this).fadeIn(500)
-                    //stuff to do on mouse enter
+                //stuff to do on mouse enter
             },
-            mouseleave: function() {
+            mouseleave: function () {
                 $(".slick-arrow", this).fadeOut(500)
-                    //stuff to do on mouse leave
+                //stuff to do on mouse leave
             }
         });
         $(".slick-arrow").hide()
@@ -223,12 +226,12 @@ $(document).ready(function() {
 
     // if (plugins.number.length) {
     $(".number", plugins.number).autoNumeric('init', { vMin: 1, mDec: 0 });
-    $(document).on("change", ".number", function() {
+    $(document).on("change", ".number", function () {
         if ($(this).autoNumeric("get") < 1) {
             $(this).val(1);
         }
     })
-    $(document).on("click", ".number-widget .down", function() {
+    $(document).on("click", ".number-widget .down", function () {
         console.log(12)
         let parent = $(this).parent();
         let numberEl = $(".number", parent);
@@ -238,7 +241,7 @@ $(document).ready(function() {
             numberEl.val(amount);
         }
     });
-    $(document).on("click", ".number-widget .up", function() {
+    $(document).on("click", ".number-widget .up", function () {
         console.log(12)
         let parent = $(this).parent();
         let numberEl = $(".number", parent);
@@ -253,7 +256,7 @@ $(document).ready(function() {
      * @description Enables UNIT plugin
      */
     // if (plugins.units.length) {
-    $(document).on("click", ".unit_product", function(e) {
+    $(document).on("click", ".unit_product", function (e) {
         e.preventDefault();
         let parent = $(this).closest(".product");
         var name = $(this).text();
@@ -299,43 +302,43 @@ $(document).ready(function() {
             mobileFirst: true,
             speed: 700,
             responsive: [{
-                    breakpoint: 0,
-                    settings: {
-                        slidesToShow: parseInt($slickItem.attr('data-items')) || 1,
-                    }
-                },
-                {
-                    breakpoint: 479,
-                    settings: {
-                        slidesToShow: parseInt($slickItem.attr('data-xs-items')) || 1,
-                    }
-                },
-                {
-                    breakpoint: 767,
-                    settings: {
-                        slidesToShow: parseInt($slickItem.attr('data-sm-items')) || 1,
-                    }
-                },
-                {
-                    breakpoint: 991,
-                    settings: {
-                        slidesToShow: parseInt($slickItem.attr('data-md-items')) || 1,
-                    }
-                },
-                {
-                    breakpoint: 1199,
-                    settings: {
-                        slidesToShow: parseInt($slickItem.attr('data-lg-items')) || 1,
-                    }
-                },
-                {
-                    breakpoint: 1799,
-                    settings: {
-                        slidesToShow: parseInt($slickItem.attr('data-xl-items')) || 1,
-                    }
-                },
+                breakpoint: 0,
+                settings: {
+                    slidesToShow: parseInt($slickItem.attr('data-items')) || 1,
+                }
+            },
+            {
+                breakpoint: 479,
+                settings: {
+                    slidesToShow: parseInt($slickItem.attr('data-xs-items')) || 1,
+                }
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: parseInt($slickItem.attr('data-sm-items')) || 1,
+                }
+            },
+            {
+                breakpoint: 991,
+                settings: {
+                    slidesToShow: parseInt($slickItem.attr('data-md-items')) || 1,
+                }
+            },
+            {
+                breakpoint: 1199,
+                settings: {
+                    slidesToShow: parseInt($slickItem.attr('data-lg-items')) || 1,
+                }
+            },
+            {
+                breakpoint: 1799,
+                settings: {
+                    slidesToShow: parseInt($slickItem.attr('data-xl-items')) || 1,
+                }
+            },
             ]
-        }).on('afterChange', function(event, slick, currentSlide, nextSlide) {
+        }).on('afterChange', function (event, slick, currentSlide, nextSlide) {
             var $this = $(this),
                 childCarousel = $this.attr('data-child');
 
@@ -356,12 +359,12 @@ $(document).ready(function() {
         //If have slick carousel inside tab - resize slick carousel on click
         if (responsiveTabsItem.find('.slick-slider').length) {
 
-            responsiveTabsItem.find('.resp-tab-item').on('click', $.proxy(function(event) {
+            responsiveTabsItem.find('.resp-tab-item').on('click', $.proxy(function (event) {
                 var $this = $(this);
                 $this.find('.resp-tab-content-active .slick-slider').slick('setPosition');
             }, responsiveTabsItem));
 
-            responsiveTabsItem.find('.resp-accordion').on('click', $.proxy(function(event) {
+            responsiveTabsItem.find('.resp-accordion').on('click', $.proxy(function (event) {
                 var $this = $(this);
 
                 $this.find('.resp-tab-content-active .slick-slider').slick('setPosition');
@@ -384,7 +387,7 @@ $(document).ready(function() {
         for (var i = 0; i < plugins.customToggle.length; i++) {
             var $this = $(plugins.customToggle[i]);
 
-            $this.on('click', $.proxy(function(event) {
+            $this.on('click', $.proxy(function (event) {
                 event.preventDefault();
 
                 var $ctx = $(this);
@@ -392,7 +395,7 @@ $(document).ready(function() {
             }, $this));
 
             if ($this.attr("data-custom-toggle-hide-on-blur") === "true") {
-                $body.on("click", $this, function(e) {
+                $body.on("click", $this, function (e) {
                     if (e.target !== e.data[0] &&
                         $(e.data.attr('data-custom-toggle')).find($(e.target)).length &&
                         e.data.find($(e.target)).length === 0) {
@@ -402,7 +405,7 @@ $(document).ready(function() {
             }
 
             if ($this.attr("data-custom-toggle-disable-on-blur") === "true") {
-                $body.on("click", $this, function(e) {
+                $body.on("click", $this, function (e) {
                     if (e.target !== e.data[0] && $(e.data.attr('data-custom-toggle')).find($(e.target)).length === 0 && e.data.find($(e.target)).length === 0) {
                         $(e.data.attr('data-custom-toggle')).add(e.data[0]).removeClass('active');
                     }
@@ -414,7 +417,7 @@ $(document).ready(function() {
 
     init_cart_icon()
 
-    $(document).on("click", ".add-cart", function() {
+    $(document).on("click", ".add-cart", function () {
         var data_cart = $.cookies.get('DATA_CART') || {};
         var cart = data_cart['details'] || [];
         /*
@@ -426,7 +429,7 @@ $(document).ready(function() {
         var qty = parseInt($(".number", product).val());
         var unit = $(".unit_product.active", product).data("id");
         var index = -1;
-        $.each(cart, function(i, v) {
+        $.each(cart, function (i, v) {
             if (v.id == id)
                 index = i;
         });
@@ -478,17 +481,17 @@ $(document).ready(function() {
         //     });
         // }
         $.toast({
-                // heading: 'Warning',
-                text: cart_alert,
-                position: 'top-right',
-                stack: false,
-                // showHideTransition: 'plain',
-                icon: 'success'
-            })
-            // alert(cart_alert);
+            // heading: 'Warning',
+            text: cart_alert,
+            position: 'top-right',
+            stack: false,
+            // showHideTransition: 'plain',
+            icon: 'success'
+        })
+        // alert(cart_alert);
         return false;
     });
-    $('.btn-up').click(function(e) {
+    $('.btn-up').click(function (e) {
         e.preventDefault();
         var parent = $(this).parents(".product");
         var input_qty = $('.quantity', parent);
@@ -501,7 +504,7 @@ $(document).ready(function() {
         input_qty.trigger("change");
     });
 
-    $(".btn-down").click(function(e) {
+    $(".btn-down").click(function (e) {
         e.preventDefault();
         var parent = $(this).parents(".product");
         var input_qty = $('.quantity', parent);
@@ -514,14 +517,14 @@ $(document).ready(function() {
         }
         input_qty.trigger("change");
     });
-    $(".quantity").change(function() {
+    $(".quantity").change(function () {
         var value = $(this).val();
         var parent = $(this).parents(".product");
         var data_cart = $.cookies.get('DATA_CART') || {};
         var cart = data_cart['details'] || [];
         var id = parent.data("id");
         var index = -1;
-        $.each(cart, function(i, v) {
+        $.each(cart, function (i, v) {
             if (v.id == id)
                 index = i;
         });
@@ -534,7 +537,7 @@ $(document).ready(function() {
         $("#cboxOverlay").show();
         location.reload();
     });
-    $(".remove_product").click(function(e) {
+    $(".remove_product").click(function (e) {
         e.preventDefault();
         if (confirm(remove_cart) == true) {
             var parent = $(this).parents(".product");
@@ -542,7 +545,7 @@ $(document).ready(function() {
             var data_cart = $.cookies.get('DATA_CART') || {};
             var cart = data_cart['details'] || [];
             var index = -1;
-            $.each(cart, function(i, v) {
+            $.each(cart, function (i, v) {
                 if (v.id == id)
                     index = i;
             });
@@ -557,14 +560,14 @@ $(document).ready(function() {
             location.reload();
         }
     })
-    $(".unit_select").change(function() {
+    $(".unit_select").change(function () {
         var value = $(this).val();
         var parent = $(this).parents(".product");
         var data_cart = $.cookies.get('DATA_CART') || {};
         var cart = data_cart['details'] || [];
         var id = parent.data("id");
         var index = -1;
-        $.each(cart, function(i, v) {
+        $.each(cart, function (i, v) {
             if (v.id == id)
                 index = i;
         });
@@ -590,15 +593,15 @@ function introCarousel() {
     var introCarousel = $(".carousel");
     if (introCarousel.length) {
         var introCarouselIndicators = $(".carousel-indicators");
-        introCarousel.on('slide.bs.carousel', function(e) {});
-        introCarousel.find(".carousel-inner").children(".carousel-item").each(function(index) {
+        introCarousel.on('slide.bs.carousel', function (e) { });
+        introCarousel.find(".carousel-inner").children(".carousel-item").each(function (index) {
             (index === 0) ?
-            introCarouselIndicators.append("<li data-target='#banner-main' data-slide-to='" + index + "' class='active'></li>"):
+                introCarouselIndicators.append("<li data-target='#banner-main' data-slide-to='" + index + "' class='active'></li>") :
                 introCarouselIndicators.append("<li data-target='#banner-main' data-slide-to='" + index + "'></li>");
         });
 
         $(".carousel").swipe({
-            swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+            swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
                 if (direction == 'left')
                     $(this).carousel('next');
                 if (direction == 'right')
@@ -606,7 +609,7 @@ function introCarousel() {
             },
             allowPageScroll: "vertical"
         });
-        setInterval(function() {
+        setInterval(function () {
             $(".carousel").carousel('next');
         }, 5000);
     }
@@ -671,7 +674,7 @@ function number_format(number, decimals, decPoint, thousandsSep) { // eslint-dis
     var dec = (typeof decPoint === 'undefined') ? '.' : decPoint
     var s = ''
 
-    var toFixedFix = function(n, prec) {
+    var toFixedFix = function (n, prec) {
         if (('' + n).indexOf('e') === -1) {
             return +(Math.round(n + 'e+' + prec) + 'e-' + prec)
         } else {

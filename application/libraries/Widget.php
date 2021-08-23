@@ -22,11 +22,15 @@ class Widget
     public function header()
     {
         $this->CI->load->model("user_model");
+        $this->CI->load->model("setting_model");
 
         $this->data['is_login'] = $this->CI->user_model->logged_in();
         $this->data['userdata'] = $this->CI->session->userdata();
         $this->CI->load->model("option_model");
         $this->data['options'] = $this->CI->option_model->all_option();
+        $this->data['popup'] = $this->CI->setting_model->get_setting("popup", "system_popup");
+        // print_r($this->data['popup']);
+        // die();
         $this->CI->load->model("menu_header_model");
         $list_menu = $this->CI->menu_header_model->where(array('deleted' => 0))->order_by('order', 'ASC')->get_all();
         $list_parent = array_filter((array) $list_menu, function ($item) {

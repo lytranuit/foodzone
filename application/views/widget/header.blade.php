@@ -289,3 +289,39 @@
     </div>
 </div>
 @endif
+
+
+@if(!isset($_SESSION['is_show_popup']))
+<?php $_SESSION['is_show_popup'] = true ?>
+<!-- Modal-->
+<div aria-hidden="true" aria-labelledby="popup-modalLabel" class="modal fade" id="popup-modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+            <div class="modal-body">
+                <a href="#" style="font-size: 20px;
+    z-index: 20;
+    position: absolute;
+    color: black;
+    right: 5px;
+    top: 5px;"><i class="far fa-times-circle" data-dismiss="modal"></i></a>
+
+                <?= $popup ?>
+            </div>
+        </div>
+    </div>
+    <style>
+        #popup-modal .modal-dialog {
+            width: fit-content;
+        }
+
+        @media (min-width: 768px) {
+            #popup-modal .modal-dialog {
+                min-width: 500px;
+                max-width: 90%;
+            }
+        }
+    </style>
+</div>
+
+@endif
